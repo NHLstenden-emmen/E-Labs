@@ -353,4 +353,4 @@ MigrationBackup/
 .vscode
 
 # Hide . env file
-.env
+.env.php
