@@ -1,7 +1,7 @@
 <?php
 	switch($pagePath)
 	{
-		case 'E-Labs': //file path of your home/start page
+		case 'E-labs': //file path of your home/start page
 			include 'home.php';
 			break;
 		case 'docent':
