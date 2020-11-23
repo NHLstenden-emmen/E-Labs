@@ -1,0 +1,12 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: "CeraPro";
+	font-weight: normal;
+	--secondaryColor: #005aa7;
+	--lightPrimaryColor: #1a9193;
+	--primaryColor: #008487;
+	--darkPrimaryColor: #007779;
+	--dark: #151515;
+	--tekstColor: #ffffff;
+}
