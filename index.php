@@ -1,14 +1,15 @@
 <?php
     // all passwords and secrets that are not supposed to be on github
     // change the example.env.php to .env.php
-    include '.env.php';
+    $env = include '.env.php';
 
     // get the current location / path of the page
-    $pagePath = basename($_SERVER['REQUEST_URI'], '.php');    
+    $pagePath = basename($_SERVER['REQUEST_URI'], '.php');
     
     // main dependencies
     include 'inc/select.php';
     include 'inc/mysql.php';
+    $db = new Database();
     
     // build the website
     include 'inc/header.php';

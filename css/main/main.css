@@ -1,3 +1,7 @@
+@font-face {
+	font-family: CeraPro;
+	src: url(../font/Cera_Pro_medium.otf);
+}
 * {
 	margin: 0px;
 	padding: 0px;

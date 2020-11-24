@@ -14,7 +14,7 @@
 		<meta name="author" content="Niels">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<title>E-Labs <?php if ($pagePath !== "E-Labs" || $pagePath !== "E-labs") { echo " - " . $pagePath; } ?></title>
+		<title>E-Labs <?php if (strtolower($pagePath) !== "e-labs") { echo " - " . $pagePath; } ?></title>
 
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -25,10 +25,9 @@
 		<link rel="stylesheet" href="css/main/main.css">
 		<link rel="stylesheet" href="css/main/navbar.css">
 		<?php
-		switch($pagePath)
+		switch(strtolower($pagePath))
 		{
-			case 'E-Labs': //file path of your home/start page
-			case 'E-labs':
+			case 'e-labs'://file path of your home/start page
 				echo '<link rel="stylesheet" href="css/pages/home.css">';
 				break;
 			default:
