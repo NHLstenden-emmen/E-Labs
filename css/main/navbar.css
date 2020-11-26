@@ -1,0 +1,12 @@
+nav .bg-primary {
+	background-color: #298ed4; !important
+}
+
+nav img{
+	height: 60px;
+
+}
+
+nav nav-item{
+	color: white;
+}

@@ -10,7 +10,6 @@
     include 'inc/select.php';
     include 'inc/mysql.php';
     $db = new Database();
-    
     // build the website
     include 'inc/header.php';
     include 'inc/navbar.php';
