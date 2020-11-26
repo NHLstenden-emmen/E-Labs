@@ -1,1 +1,1 @@
-docent home
+<p>docent home</p>

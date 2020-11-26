@@ -1,4 +1,6 @@
-
+		<footer>
+		<p>@NHL Stenden</p>
+		</footer>
 	</body>
 </html>
 <!-- jQuery and JS bundle w/ Popper.js -->
