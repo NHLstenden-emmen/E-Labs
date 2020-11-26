@@ -8,14 +8,35 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto text-light">
       <li class="nav-item ">
-        <a class="nav-link text-light" href="#">Protecol</a>
+        <a class="nav-link text-light" href="#">E-labs</a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link text-light" href="#">Voorbereiding</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link text-light" href="#">Labjournaal</a>
-      </li>
+	  <?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+		   <li class="nav-item">
+			<a class="nav-link text-light" href="#">Jaar 1</a>
+		  </li>
+	  <?php } else{ ?>
+		   <li class="nav-item">
+			<a class="nav-link text-light" href="#">Labjournaal</a>
+		  </li>
+	  <?php }?>
+	  <?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+		  <li class="nav-item">
+			<a class="nav-link text-light" href="#">Jaar 2</a>
+		  </li>
+	  <?php } else {?>
+		  <li class="nav-item">
+			<a class="nav-link text-light" href="#">Voorbereidingen</a>
+		  </li>
+	  <?php } ?>
+	  <?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+		  <li class="nav-item">
+			<a class="nav-link text-light" href="#">Jaar 3</a>
+		  </li>
+	  <?php } else {?>
+	  		  <li class="nav-item">
+			<a class="nav-link text-light" href="#">Protocool</a>
+		  </li>
+	  <?php } ?>
         </div>
       </li>
     </ul>
@@ -23,13 +44,14 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
      
     </form>
-	<div class="img-logo">
-		<img src="images/person.jpg" class="rounded-circle">
-	</div>
-	 <ul class="navbar-nav mr-auto text-light">
+	<ul class="navbar-nav mr-auto text-light">
 		  <li class="nav-item">
         <a class="nav-link text-light" href="#">Persoon1</a>
       </li>
-	 </ul>
+	</ul>
+	<div class="img-logo">
+		<img src="images/person.jpg" class="rounded-circle">
+	</div>
+
   </div>
 </nav>
