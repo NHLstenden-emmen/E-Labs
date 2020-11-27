@@ -24,6 +24,7 @@
 		<!-- style sheet -->
 		<link rel="stylesheet" href="css/main/main.css">
 		<link rel="stylesheet" href="css/main/navbar.css">
+		<link rel="stylesheet" href="css/main/footer.css">
 		<?php
 		switch(strtolower($pagePath))
 		{

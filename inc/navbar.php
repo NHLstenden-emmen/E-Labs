@@ -7,13 +7,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto text-light">
-      <li class="nav-item ">
+      <li class="nav-item">
         <a class="nav-link text-light" href="#">E-labs</a>
       </li>
 	  <?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
-		   <li class="nav-item">
+		  <li class="nav-item">
 			<a class="nav-link text-light" href="#">Jaar 1</a>
 		  </li>
+		  <div class="streepje"></div>
 	  <?php } else{ ?>
 		   <li class="nav-item">
 			<a class="nav-link text-light" href="#">Labjournaal</a>
@@ -33,25 +34,26 @@
 			<a class="nav-link text-light" href="#">Jaar 3</a>
 		  </li>
 	  <?php } else {?>
-	  		  <li class="nav-item">
+		<li class="nav-item">
 			<a class="nav-link text-light" href="#">Protocool</a>
-		  </li>
+		</li>
 	  <?php } ?>
-        </div>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-     
-    </form>
-	<ul class="navbar-nav mr-auto text-light">
-		  <li class="nav-item">
-        <a class="nav-link text-light" href="#">Persoon1</a>
-      </li>
+	<ul class="navbar-nav ml-auto text-light">
+		<li class="nav-item">
+			<i class="fas fa-search fa-2x"></i>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text-light" href="#">Gebruikers Naam</a>
+		</li>
+		<li class="nav-item">
+		</li>
 	</ul>
-	<div class="img-logo">
-		<img src="images/person.jpg" class="rounded-circle">
-	</div>
-
-  </div>
+		<div class="img-logo">
+			<img src="images/person.jpg" class="rounded-circle">
+		</div>
+   </div>
 </nav>
+    <div class="slider">
+        <img src="images/banner.jpg" class="img-fluid" alt="slider">
+    </div>

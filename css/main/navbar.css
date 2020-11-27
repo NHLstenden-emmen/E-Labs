@@ -10,3 +10,14 @@ nav img{
 nav nav-item{
 	color: white;
 }
+
+.streepje{
+	height: 20px;
+	width: 5px;
+	background-color: white;
+}
+
+.fa-search{
+	padding-top: 3px;
+	
+}
