@@ -9,12 +9,13 @@
     <ul class="navbar-nav mr-auto text-light">
       <li class="nav-item">
         <a class="nav-link text-light" href="#">E-labs</a>
+		
       </li>
 	  <?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
 		  <li class="nav-item">
 			<a class="nav-link text-light" href="#">Jaar 1</a>
 		  </li>
-		  <div class="streepje"></div>
+
 	  <?php } else{ ?>
 		   <li class="nav-item">
 			<a class="nav-link text-light" href="#">Labjournaal</a>
@@ -43,13 +44,12 @@
 		<li class="nav-item">
 			<i class="fas fa-search fa-2x"></i>
 		</li>
-		<li class="nav-item">
+		<li class="nav-item1">
 			<a class="nav-link text-light" href="#">Gebruikers Naam</a>
 		</li>
-		<li class="nav-item">
-		</li>
+
 	</ul>
-		<div class="img-logo">
+		<div class="img-person">
 			<img src="images/person.jpg" class="rounded-circle">
 		</div>
    </div>

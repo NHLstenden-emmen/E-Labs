@@ -3,21 +3,30 @@ nav .bg-primary {
 }
 
 nav img{
-	height: 60px;
-
+	height: 60px;`
 }
 
-nav nav-item{
-	color: white;
+nav .nav-item{
+	border-right: 1px solid white;
 }
 
-.streepje{
-	height: 20px;
-	width: 5px;
-	background-color: white;
+.img-logo{
+	border-right: 1px solid white;
 }
+
+@media (max-width: 767px) {
+	nav .nav-item{
+		border-right: 0px solid white;
+	}
+	
+	.img-logo{
+		border-right: 0px solid white;
+	}	
+}
+
+
 
 .fa-search{
-	padding-top: 3px;
+	padding: 5px;
 	
 }
