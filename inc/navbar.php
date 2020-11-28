@@ -2,58 +2,56 @@
 	<div class="img-logo">
 		<img src="images/logo.png">
 	</div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto text-light">
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#">E-labs</a>
-		
-      </li>
-	  <?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
-		  <li class="nav-item">
-			<a class="nav-link text-light" href="#">Jaar 1</a>
-		  </li>
-
-	  <?php } else{ ?>
-		   <li class="nav-item">
-			<a class="nav-link text-light" href="#">Labjournaal</a>
-		  </li>
-	  <?php }?>
-	  <?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
-		  <li class="nav-item">
-			<a class="nav-link text-light" href="#">Jaar 2</a>
-		  </li>
-	  <?php } else {?>
-		  <li class="nav-item">
-			<a class="nav-link text-light" href="#">Voorbereidingen</a>
-		  </li>
-	  <?php } ?>
-	  <?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
-		  <li class="nav-item">
-			<a class="nav-link text-light" href="#">Jaar 3</a>
-		  </li>
-	  <?php } else {?>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
 		<li class="nav-item">
-			<a class="nav-link text-light" href="#">Protocool</a>
+			<a class="nav-link" href="#">E-labs</a>
+			
 		</li>
-	  <?php } ?>
-    </ul>
-	<ul class="navbar-nav ml-auto text-light">
-		<li class="nav-item">
-			<i class="fas fa-search fa-2x"></i>
-		</li>
-		<li class="nav-item1">
-			<a class="nav-link text-light" href="#">Gebruikers Naam</a>
-		</li>
-
-	</ul>
+		<?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Jaar 1</a>
+			</li>
+		<?php } else{ ?>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Labjournaal</a>
+			</li>
+		<?php }?>
+		<?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Jaar 2</a>
+			</li>
+		<?php } else {?>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Voorbereidingen</a>
+			</li>
+		<?php } ?>
+		<?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Jaar 3</a>
+			</li>
+		<?php } else {?>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Protocool</a>
+			</li>
+		<?php } ?>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<i class="fas fa-search fa-2x"></i>
+			</li>
+			<li class="nav-item1">
+				<a class="nav-link" href="#">Gebruikers Naam</a>
+			</li>
+		</ul>
 		<div class="img-person">
 			<img src="images/person.jpg" class="rounded-circle">
 		</div>
-   </div>
+	</div>
 </nav>
-    <div class="slider">
-        <img src="images/banner.jpg" class="img-fluid" alt="slider">
-    </div>
+	<div class="slider">
+		<img src="images/banner.jpg" class="img-fluid" alt="slider">
+	</div>
