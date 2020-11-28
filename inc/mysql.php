@@ -54,11 +54,11 @@
 			while ($checkIfUserIsUnique = $result->fetch_array(MYSQLI_ASSOC)) {
 				//this checks if the users email matches the new email
 				if ($checkIfUserIsUnique['email'] == $email) {
-					return "Het email adres word al gebruikt.";
+					return "Email in use.";
 				}
 				//this checks if the users number matches the new number
 				if ($checkIfUserIsUnique['user_number'] == $user_number) {
-					return "Het ingevoerde gebruikers id is al eerder gebruikt.";
+					return "User number in use.";
 				}
 			}
 			// it adds the users to the database and returns a message.
@@ -66,7 +66,7 @@
 				$stmt->bind_param("ssiss", $name, $email, $user_number, $password, $role);
 				$stmt->execute();
 				$stmt->close();
-				return "Gebruiker toegevoegd";
+				return "User Added";
 			}
 			return NULL;
 		}
