@@ -23,9 +23,14 @@
                 DIE("could not connect". mysqli_connect_error($this->conn));
             }
 		}
-	
-		public function selectAllFromStudenten(){
-			if ($stmt = $this->conn->prepare("SELECT * FROM student")) {
+
+		// 	$selectAllUsers = $db->selectAllUsers();
+		// while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
+		// 		echo  $result['name'];
+		// }
+		public function selectAllUsers(){
+			// this gets all the users and returns them
+			if ($stmt = $this->conn->prepare("SELECT * FROM `users`")) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -34,34 +39,36 @@
 			}
 			return NULL;
 		}
-
-		public function selectAllFromStudentensWhereStudentID($column){
-			if ($stmt = $this->conn->prepare("SELECT * FROM student WHERE StudentID = ?")) {
-				$stmt->bind_param("i", $column);
+		
+		// $message = $db->createNewUserWithoutProfielPictureAndLang("test 2","mail4@emai5ltje.com","12345","test","Student");
+		// echo $message;
+		public function createNewUserWithoutProfielPictureAndLang($name, $email, $user_number, $password, $role){
+			// this query gets all the users form the table
+			if ($stmt = $this->conn->prepare("SELECT `email`, `user_number` FROM `users`")) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
 				$stmt->close();
-				return $result;
+			}
+			// this loops trough all the users and checks if it is a unique value
+			while ($checkIfUserIsUnique = $result->fetch_array(MYSQLI_ASSOC)) {
+				//this checks if the users email matches the new email
+				if ($checkIfUserIsUnique['email'] == $email) {
+					return "Het email adres word al gebruikt.";
+				}
+				//this checks if the users number matches the new number
+				if ($checkIfUserIsUnique['user_number'] == $user_number) {
+					return "Het ingevoerde gebruikers id is al eerder gebruikt.";
+				}
+			}
+			// it adds the users to the database and returns a message.
+			if ($stmt = $this->conn->prepare("INSERT INTO `users`(`name`, `email`, `user_number`, `password`, `role`) VALUES (?,?,?,?,?)")) {
+				$stmt->bind_param("ssiss", $name, $email, $user_number, $password, $role);
+				$stmt->execute();
+				$stmt->close();
+				return "Gebruiker toegevoegd";
 			}
 			return NULL;
 		}
 	}
-?>
-
-<?php
-	//examples for the mysql select queries
-
-	// $selectAllFromStudenten = $db->selectAllFromStudenten();
-	// while ($result = $selectAllFromStudenten->fetch_array(MYSQLI_ASSOC)){
-	// 	// print_r($result);
-	// 	echo  "<br> all names " .$result['surname'];
-	// }
-
-	
-	// $selectAllFromStudentensWhereStudentID = $db->selectAllFromStudentensWhereStudentID("100");
-	// while ($result = $selectAllFromStudentensWhereStudentID->fetch_array(MYSQLI_ASSOC)){
-	// 	// print_r($result); 
-	// 	echo "<br> name of student id 100 " . $result["firstname"];
-	// }
 ?>
