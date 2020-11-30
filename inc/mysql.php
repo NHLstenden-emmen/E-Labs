@@ -24,13 +24,14 @@
             }
 		}
 
-		// 	$selectAllUsers = $db->selectAllUsers();
+		// 	$selectAllUsers = $db->selectAllUsers("student");
 		// while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
-		// 		echo  $result['name'];
+		// 	echo  $result['name'];
 		// }
-		public function selectAllUsers(){
+		public function selectAllUsers($role){
 			// this gets all the users and returns them
-			if ($stmt = $this->conn->prepare("SELECT * FROM `users`")) {
+			if ($stmt = $this->conn->prepare("SELECT * FROM `users` WHERE `role` = ?")) {
+				$stmt->bind_param("s", $role);
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -70,5 +71,7 @@
 			}
 			return NULL;
 		}
+
+
 	}
 ?>
