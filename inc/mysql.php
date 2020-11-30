@@ -1,4 +1,7 @@
 <?php
+	if (empty($env['DB_HOST'])) {
+		die("no .env.php file found or database host");
+	}
 	class Database{
 		private $host;
 		private $user;
