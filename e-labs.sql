@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2020 at 06:22 PM
+-- Generation Time: Nov 30, 2020 at 11:15 AM
 -- Server version: 10.4.16-MariaDB-log
 -- PHP Version: 7.4.12
 
@@ -64,7 +64,7 @@ CREATE TABLE `lab_journal_users` (
 CREATE TABLE `meldingen` (
   `creater` int(10) NOT NULL,
   `viewer` int(10) NOT NULL,
-  `tile` varchar(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `message` varchar(2000) NOT NULL,
   `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -87,7 +87,8 @@ CREATE TABLE `preparation` (
   `grade` int(2) NOT NULL,
   `year` int(1) NOT NULL,
   `safety` varchar(255) NOT NULL,
-  `preparation_questions` varchar(255) NOT NULL
+  `preparation_questions` varchar(255) NOT NULL,
+  `goal` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
