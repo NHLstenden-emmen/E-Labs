@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2020 at 11:15 AM
+-- Generation Time: Nov 30, 2020 at 05:30 PM
 -- Server version: 10.4.16-MariaDB-log
 -- PHP Version: 7.4.12
 
@@ -58,15 +58,16 @@ CREATE TABLE `lab_journal_users` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meldingen`
+-- Table structure for table `notifications`
 --
 
-CREATE TABLE `meldingen` (
+CREATE TABLE `notifications` (
+  `notification_id` int(10) NOT NULL,
   `creater` int(10) NOT NULL,
   `viewer` int(10) NOT NULL,
   `title` varchar(50) NOT NULL,
   `message` varchar(2000) NOT NULL,
-  `date_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `date_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -135,21 +136,22 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `user_number`, `password`, `pro
 --
 ALTER TABLE `lab_journal`
   ADD PRIMARY KEY (`labjournaal_id`),
-  ADD KEY `Creater` (`creater_id`);
+  ADD KEY `link creater id to user` (`creater_id`);
 
 --
 -- Indexes for table `lab_journal_users`
 --
 ALTER TABLE `lab_journal_users`
-  ADD KEY `lab_journal_id` (`lab_journal_id`),
-  ADD KEY `lab_journal_users_ibfk_2` (`user_id`);
+  ADD KEY `link labjournaal tussen id to  labjournaal id` (`lab_journal_id`),
+  ADD KEY `link labjournaal tussen  user to user id` (`user_id`);
 
 --
--- Indexes for table `meldingen`
+-- Indexes for table `notifications`
 --
-ALTER TABLE `meldingen`
-  ADD KEY `crea` (`creater`),
-  ADD KEY `viewer` (`viewer`);
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`notification_id`),
+  ADD KEY `link creater to user id` (`creater`),
+  ADD KEY `link viewer to user id` (`viewer`);
 
 --
 -- Indexes for table `preparation`
@@ -162,8 +164,8 @@ ALTER TABLE `preparation`
 -- Indexes for table `preperation_users`
 --
 ALTER TABLE `preperation_users`
-  ADD KEY `preperation_id` (`preperation_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `preperation_link additional user to user` (`user_id`),
+  ADD KEY `preperation_link additional id to preperation` (`preperation_id`);
 
 --
 -- Indexes for table `users`
@@ -190,34 +192,34 @@ ALTER TABLE `users`
 -- Constraints for table `lab_journal`
 --
 ALTER TABLE `lab_journal`
-  ADD CONSTRAINT `Creater` FOREIGN KEY (`creater_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `link creater id to user` FOREIGN KEY (`creater_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `lab_journal_users`
 --
 ALTER TABLE `lab_journal_users`
-  ADD CONSTRAINT `lab_journal_users_ibfk_1` FOREIGN KEY (`lab_journal_id`) REFERENCES `lab_journal` (`labjournaal_id`),
-  ADD CONSTRAINT `lab_journal_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `link labjournaal tussen  user to user id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `link labjournaal tussen id to  labjournaal id` FOREIGN KEY (`lab_journal_id`) REFERENCES `lab_journal` (`labjournaal_id`);
 
 --
--- Constraints for table `meldingen`
+-- Constraints for table `notifications`
 --
-ALTER TABLE `meldingen`
-  ADD CONSTRAINT `crea` FOREIGN KEY (`creater`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `meldingen_ibfk_1` FOREIGN KEY (`viewer`) REFERENCES `users` (`user_id`);
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `link creater to user id` FOREIGN KEY (`creater`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `link viewer to user id` FOREIGN KEY (`viewer`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `preparation`
 --
 ALTER TABLE `preparation`
-  ADD CONSTRAINT `preparation_ibfk_1` FOREIGN KEY (`creater_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `link preperations creater to user` FOREIGN KEY (`creater_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `preperation_users`
 --
 ALTER TABLE `preperation_users`
-  ADD CONSTRAINT `preperation_users_ibfk_1` FOREIGN KEY (`preperation_id`) REFERENCES `preparation` (`preparation_id`),
-  ADD CONSTRAINT `preperation_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `preperation_link additional id to preperation` FOREIGN KEY (`preperation_id`) REFERENCES `preparation` (`preparation_id`),
+  ADD CONSTRAINT `preperation_link additional user to user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
