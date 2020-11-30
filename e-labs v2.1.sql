@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2020 at 05:30 PM
+-- Generation Time: Nov 30, 2020 at 05:51 PM
 -- Server version: 10.4.16-MariaDB-log
 -- PHP Version: 7.4.12
 
@@ -64,11 +64,19 @@ CREATE TABLE `lab_journal_users` (
 CREATE TABLE `notifications` (
   `notification_id` int(10) NOT NULL,
   `creater` int(10) NOT NULL,
-  `viewer` int(10) NOT NULL,
+  `viewer` int(10) DEFAULT NULL,
   `title` varchar(50) NOT NULL,
   `message` varchar(2000) NOT NULL,
   `date_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`notification_id`, `creater`, `viewer`, `title`, `message`, `date_time`) VALUES
+(1, 1, 1, 'title voor kevin', 'verhaaltje voor kevin', '2020-09-10 14:20:13'),
+(2, 1, NULL, 'title voor iedereen', 'verhaaltje voor iedereen', '2020-11-10 17:46:13');
 
 -- --------------------------------------------------------
 
@@ -142,8 +150,8 @@ ALTER TABLE `lab_journal`
 -- Indexes for table `lab_journal_users`
 --
 ALTER TABLE `lab_journal_users`
-  ADD KEY `link labjournaal tussen id to  labjournaal id` (`lab_journal_id`),
-  ADD KEY `link labjournaal tussen  user to user id` (`user_id`);
+  ADD KEY `link labjournaal tussen  user to user id` (`user_id`),
+  ADD KEY `link labjournaal id tussen to labjournaal id` (`lab_journal_id`);
 
 --
 -- Indexes for table `notifications`
@@ -179,6 +187,24 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `lab_journal`
+--
+ALTER TABLE `lab_journal`
+  MODIFY `labjournaal_id` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `notification_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `preparation`
+--
+ALTER TABLE `preparation`
+  MODIFY `preparation_id` int(50) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -198,8 +224,8 @@ ALTER TABLE `lab_journal`
 -- Constraints for table `lab_journal_users`
 --
 ALTER TABLE `lab_journal_users`
-  ADD CONSTRAINT `link labjournaal tussen  user to user id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `link labjournaal tussen id to  labjournaal id` FOREIGN KEY (`lab_journal_id`) REFERENCES `lab_journal` (`labjournaal_id`);
+  ADD CONSTRAINT `link labjournaal id tussen to labjournaal id` FOREIGN KEY (`lab_journal_id`) REFERENCES `lab_journal` (`labjournaal_id`),
+  ADD CONSTRAINT `link labjournaal tussen  user to user id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `notifications`
