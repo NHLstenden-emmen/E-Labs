@@ -42,6 +42,9 @@
 			case 'e-labs'://file path of your home/start page
 				echo '<link rel="stylesheet" href="css/pages/home.css">';
 				break;
+			case 'student':
+				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
+				break;
 			default:
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
 				break;
