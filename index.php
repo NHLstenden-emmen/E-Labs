@@ -11,8 +11,13 @@
     include 'inc/mysql.php';
     $db = new Database();
     // build the website
-    include 'inc/header.php';
-    include 'inc/navbar.php';
-    include 'pages/content.php';
-    include 'inc/footer.php';
+    if ($pagePath == 'login') {
+        include 'pages/login.php';
+    } else {
+        include 'inc/header.php';
+        include 'inc/navbar.php';
+        include 'pages/content.php';
+        include 'inc/footer.php';
+    }
+    
 ?>

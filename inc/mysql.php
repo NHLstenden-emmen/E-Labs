@@ -75,6 +75,18 @@
 			return NULL;
 		}
 
+		public function login($username, $password){
+			if ($stmt = $this->conn->prepare("select * from users where name = ? && password = ?")) {
+				$stmt->bind_param("ss", $username, $password);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
 
 	}
 ?>
