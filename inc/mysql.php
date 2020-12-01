@@ -76,5 +76,16 @@
 		}
 
 
+		public function selectAllLabjournals() {
+			if ($stmt = $this->conn->prepare("SELECT * FROM `lab_journal`")) {
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+		}
+
+
 	}
 ?>
