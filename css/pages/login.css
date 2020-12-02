@@ -1,27 +1,32 @@
 .background {
+    background-image: url("../../images/blue.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 33.3% 33.4% 33.3%;
     width: 100%;
-    margin: 0 auto;
-    margin-top: 10%
+    padding: 0 auto;
+    padding-top: 5%;
+    height: 100vh;
 }
+
 .loginbox{
-    
     grid-column: span 1 / -2;
     text-align: center;
     background-color: #134074;
+    height: 70%;
 }
 
 .logo{
     grid-column: span 1 / -2;
     text-align: center;
-    padding: 20px 20px;
+    padding: 4% 4%;
 }  
 
 input[type=text], input[type=password] {
-    width: 90%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    width: 80%;
+    padding: 3% 7%;
+    margin: 3% 0%;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -30,8 +35,8 @@ input[type=text], input[type=password] {
 .inloggen {
     background-color: lightskyblue;
     color: white;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 3% 7%;
+    margin: 1% 0%;
     border: none;
     cursor: pointer;
     width: 50%;
@@ -43,40 +48,80 @@ input[type=text], input[type=password] {
 }
 
 .check{
-    padding: 12px 20px;
+    color: white;
+}
+
+.nl-en{
+    margin: 3%;
 }
 
 .nl{
-    border: none;
+    background-color: white;
     cursor: pointer;
-    width: 44%;
-    border-bottom-left-radius: 30px;
-    border-top-left-radius: 30px;
-    padding: 8px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    padding: 2%;
     margin-right: -3px;
+    padding-left: 10%;
+    padding-right: 7%;
 }
 
 .en{
-    border: none;
+    background-color: white;
     cursor: pointer;
-    width: 44%;
-    border-bottom-right-radius: 30px;
-    border-top-right-radius: 30px;
-    padding: 8px;
-    margin-bottom: 10px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 2%;
     margin-left: -3px;
+    padding-right: 10%;
+    padding-left: 13%;
+
 }
 
 .nl:hover{
-    background-color: lightskyblue;
+    background-color: grey;
     color: white;
 }
 
 .en:hover{
+    background-color: grey;
+    color: white;
+}
+
+.nl:checked{
+    background-color: lightskyblue;
+    color: white;
+}
+
+.en:checked{
     background-color: lightskyblue;
     color: white;
 }
 
 .vergeten{
-    padding: 12px 20px;    
+    padding: 3% 7%;   
+    color: white;
 }
+
+.vergeten-tekst{   
+    color: white;
+}
+
+@media screen and (max-width: 900px) {
+    .loginbox {
+    grid-column: 1 / 4;
+    width: 50%;  
+    height: 80%;
+    margin-left: 25%;
+    } 
+}
+
+@media screen and (max-width: 600px) {
+    .loginbox {
+    grid-column: 1 / 4;
+    width: 90%; 
+    height: 80%;
+    margin-left: 5%;
+    }
+}
+

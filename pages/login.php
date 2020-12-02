@@ -4,16 +4,20 @@
             <img src="images/Logo2.png" alt="logo">
         </div>
             <form method="post">
-                <button class="nl" type="">Nederlands</button>
-                <button class="en" type="">Engels</button>
-                <input type="text" name="name" placeholder="Enter Username" required>
-                <input type="password" name="password" placeholder="Enter Password" required>
+                <div class="nl-en">    
+                    <a class="nl">Nederlands</a>
+                    <a class="en">Engels</a>
+                </div>
+                <input value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" type="text" name="name" placeholder="Gebruikersnaam" required>
+                <input type="password" name="password" placeholder="Wachtwoord" required>
                 <label class="check">
-                    <input type="checkbox" checked="checked" name="remember"> Onthoud Gebruikersnaam
+                    <input type="checkbox" name="remember" id="remember"
+                    <?php if(isset($_COOKIE["member_login"])) { ?> checked
+                    <?php } ?> /> Onthoud Gebruikersnaam
                 </label><br>
                 <button class="inloggen" type="submit">inloggen</button><br>
                 <div class="vergeten">
-                    <a href="#">Wachtwoord vergeten?</a>
+                    <a href="https://passwordreset.microsoftonline.com/?whr=nhlstenden.com" target=”_blank” class="vergeten-tekst">Wachtwoord vergeten?</a>
                 </div>
             </form> 
     </div>
@@ -26,7 +30,13 @@
         echo $result['name'];
         if ($result['role'] == "docent") {
             exit('hoi');
-        }
+        } 
+    }
+    
+    if (! empty($_POST["remember"])) {
+    setcookie("member_login", $name);
+    } else {
+        return NULL;
     }
 ?>
 
