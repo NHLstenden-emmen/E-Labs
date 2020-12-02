@@ -1,40 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< Updated upstream
-<head>
-  <title> Docenten Pagina </title>
-</head>
-<body>
-    <p>docent home</p>
-    <table>
-      <tr>
-        <th>User ID</th>
-        <th>Cijfer</th>
-      </tr>
-    <?php
-    $conn = mysqli_connect("localhost", "root", "", "e-labs")
-    if ($conn-> connect_error){
-      die("Connection failed:". $conn-> connect_error);
-    }
-
-    $sql = "SELECT user_id, lab_journal_id FROM lab_journal_users";
-    $result = $conn-> query($sql);
-
-    if (result)-> num_rows > 0) {
-      while($row = result-> fetch_assoc()){
-        echo "<tr><td>". $row{"user_id"}. "</td><td>". $row{"lab_journal_id"}. "</td></tr>";
-      }
-      echo "</table>";
-    }
-    else{
-      echo "Geen resultaat";
-    }
-
-    $conn-> close();
-    ?>  
-    </table>
-</body
-=======
     <head>
         <title> Docenten Pagina </title>
     </head>
@@ -60,14 +25,14 @@
         }
 
         //  Get value's for column
-        $sql = "SELECT DISTINCT users.user_id, users.name, lab_journal.grade  
+        $sql = "SELECT DISTINCT users.user_id, users.name, lab_journal.grade
                 FROM users
                 INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
                 INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
                 GROUP BY users.user_id";
 
         // Get value's for the grades
-        $sql2 = "SELECT lab_journal.grade  
+        $sql2 = "SELECT lab_journal.grade
                 FROM users
                 INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
                 INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
@@ -103,5 +68,4 @@
         ?>
     </table>
 </body>
->>>>>>> Stashed changes
 </html>
