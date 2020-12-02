@@ -12,6 +12,7 @@
     $db = new Database();
     // build the website
     if ($pagePath == 'login') {
+        include 'inc/header.php';
         include 'pages/login.php';
     } else {
         include 'inc/header.php';
