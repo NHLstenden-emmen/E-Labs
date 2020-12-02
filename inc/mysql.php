@@ -76,8 +76,13 @@
 		}
 
 
-		public function selectAllLabjournals() {
-			if ($stmt = $this->conn->prepare("SELECT * FROM `lab_journal`")) {
+		public function selectAllLabjournals($year, $userId) {
+            if (
+            	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` 
+            		JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE year = ?
+					AND lab_journal_users.user_id = ?")) {
+                $stmt->bind_param("ii", $year, $userId);
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -85,7 +90,5 @@
 				return $result;
 			}
 		}
-
-
 	}
 ?>

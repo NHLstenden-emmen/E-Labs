@@ -43,6 +43,9 @@
 				echo '<link rel="stylesheet" href="css/pages/home.css">';
 				break;
 			case 'labjournaal':
+			case 'labjournaal?year=1':
+			case 'labjournaal?year=2':
+			case 'labjournaal?year=3':
 				echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
 				break;
 			default:
