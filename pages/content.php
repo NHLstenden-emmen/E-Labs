@@ -10,6 +10,9 @@
 		case 'student':
 			include 'student/studentHome.php';
 			break;
+		case 'editprofpic':
+			include 'Editprofpic.php';
+			break;
 		default:
 			include '404.php'; // when the page isset found
 	}
