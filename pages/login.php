@@ -42,7 +42,7 @@
                 setcookie("lang", $result['lang'], time()+3600);
 
             // store values in session
-            $_SESSION['name'] = $result['name'];
+            $_SESSION['username'] = $result['name'];
             $_SESSION['user_id'] = $result['user_id'];
 
             // go to the page of the users role
@@ -51,7 +51,7 @@
                 header("Location: docent");
                 die();
             } else if ($result['role'] == "Student") {
-                $_SESSION['role'] = 'Student';
+                $_SESSION['role'] = 'Docent';
                 header("Location: student");
                 die();
             }

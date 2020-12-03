@@ -5,7 +5,9 @@
 
     // get the current location / path of the page
     $pagePath = basename($_SERVER['REQUEST_URI'], '.php');
-    
+    if (strpos($pagePath, '?') !== false) {   
+        $pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
+    }
     // main dependencies
     include 'inc/select.php';
     include 'inc/mysql.php';
