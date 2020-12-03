@@ -1,0 +1,37 @@
+.notificationsTable {
+	border-radius: 25px;
+	border: 2px solid var(--primaryColor);
+	padding: 20px;
+	margin: 100px 0;
+}
+.notificationsTable .notifications {
+	display: grid;
+	grid-template-areas:
+		"title . ."
+		"message message message"
+		". creater date";
+	grid-template-rows: 30px 25px;
+	grid-template-columns: 60% 15% 25%;
+}
+.notificationsTable .notifications .title {
+	grid-area: title;
+	font-size: 1.2em;
+	color: var(--primaryColor);
+}
+.notificationsTable .notifications .message {
+	grid-area: message;
+}
+.notificationsTable .notifications .creater {
+	grid-area: creater;
+	font-size: 0.7em;
+	color: var(--primaryColor);
+}
+.notificationsTable .notifications .date_time {
+	grid-area: date;
+	color: var(--primaryColor);
+	text-align: center;
+	font-size: 0.7em;
+}
+.notificationsTable .notificationsTable hr {
+	border-top: 1px solid rgba(0, 90, 167, 0.4);
+}
