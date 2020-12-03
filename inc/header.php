@@ -41,13 +41,13 @@ session_start();
 		<link rel="stylesheet" href="css/main/navbar.css">
 		<link rel="stylesheet" href="css/main/footer.css">
 		<?php
+		if (empty($_SESSION['role'])) {
+			echo '<link rel="stylesheet" href="css/pages/login.css">';
+		}
 		switch(strtolower($pagePath))
 		{
 			case 'e-labs'://file path of your home/start page
 				echo '<link rel="stylesheet" href="css/pages/home.css">';
-				break;
-			case 'login'://file path of your home/start page
-				echo '<link rel="stylesheet" href="css/pages/login.css">';
 				break;
 			default:
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
