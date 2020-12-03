@@ -8,7 +8,6 @@
     <p>docent home</p>
     <table>
         <tr>
-            <th>User ID</th>
             <th>Name</th>
             <th>Grade</th>
         </tr>
@@ -33,7 +32,7 @@
                 GROUP BY users.user_id";
 
         // Get value's for the grades
-        $sql2 = "SELECT lab_journal.grade
+        $sql2 = "SELECT lab_journal.grade, lab_journal.title
                 FROM users
                 INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
                 INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
@@ -46,6 +45,7 @@
 
         //  If sql query found row(with information) -> do this
         if ($leerlingen) {
+
             //  Loop array $leerlingen from executed query as $leerling
             foreach($leerlingen as $leerling) {
 
@@ -57,11 +57,29 @@
                 //  Start the table-row
                 echo "<tr>";
 
-                echo "<td>" . $leerling['user_id'] . "</td><td>" . $leerling['name'] . "</td>";
+                echo "<td>" . $leerling['name'] . "</td>";
+
                 //  Re-loop(Grades ONLY) for multiple grade's in column, from exectured query
                 foreach($grades as $grade) {
-                    echo "<td>" . $grade['grade'] . "</td>";
+
+                    //  Put looped value's in variables
+                    $cijfer = $grade['grade'];
+                    $cijferTitel = $grade['title'];
+
+                    //  Switch for displaying digit & correct background color
+                    switch ($cijfer) {
+                        case $cijfer <= 5.4:
+                            echo "<td class='onvoldoende'>" .  $cijferTitel . ": " . $cijfer . "</td>";
+                            break;
+                        case $cijfer >= 5.5 && $cijfer < 7:
+                            echo "<td class='voldoende'>" .  $cijferTitel . ": " . $cijfer . "</td>";
+                            break;
+                        case $cijfer >= 7:
+                            echo "<td class='goed'>" .  $cijferTitel . ": " . $cijfer . "</td>";
+                            break;
+                    }
                 }
+
                 // End the table-row
                 echo "</tr>";
             }
