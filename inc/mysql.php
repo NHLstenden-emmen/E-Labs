@@ -86,7 +86,54 @@
 			}
 			return NULL;
 		}
+    
+		public function addNewNotification($creater, $viewer, $title, $message, $date_time){
+			if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `viewer`, `title`, `message`, `date_time`) VALUES (?,?,?,?,?)")) {
+				$stmt->bind_param("iissd", $creater, $viewer, $title, $message, $date_time);
+				$stmt->execute();
+				$stmt->close();
+				return "bericht toegevoegd";
+			}
+			return NULL;
+		}
 
+		
+		public function selectAllNotifications(){
+			if ($stmt = $this->conn->prepare("SELECT * FROM `notifications` WHERE `viewer` IS NULL")) {
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
 
+		public function selectCurrentUserNotifications($userID){
+			if ($stmt = $this->conn->prepare("SELECT * FROM `notifications` WHERE `viewer` = ?")) {
+				$stmt->bind_param("i", $userID);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function selectAllLabjournals($year, $userId) {
+            if (
+            	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` 
+            		JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE year = ?
+					AND lab_journal_users.user_id = ?")) {
+                $stmt->bind_param("ii", $year, $userId);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+		}
 	}
 ?>
