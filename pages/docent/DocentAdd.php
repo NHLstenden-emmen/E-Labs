@@ -1,32 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Add New Account</title>
-        <link rel="stylesheet" href="css/pages/DocentAdd.css">
-    </head>
-    <body>
-        <div id="InputAdd">
-            <form action="gebruikertoevoegen" method="POST" autocomplete="off">
-                <label for="role">Rol:</label><br>
-                <input type="radio" name="role" id="Studentrole" value="Student" checked><label for="Studentrole">Student</label>
-                <input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole">Docent</label><br>
-                <label for="name">Volledige naam:</label><br>
-                <input type="text" name="name" required><br>
-                <label for="studentid">Studentnummer:</label><br>
-                <input type="number" name="studentid" required><br>
-                <label for="email">Emailadres:</label><br>
-                <input type="email" name="email" required><br>
-                <label for="password">Wachtwoord:</label><br>
-                <input type="password" name="password" required min="8"><br>
-                <label for="password-repeat">Herhaling Wachtwoord:</label><br>
-                <input type="password" name="passwordrepeat" required min="8"><br>
-                <div class=buttons>
-                    <input type="submit" name="submitadd" value="Toevoegen">
-                    <input type="reset" name="resetadd" value="Reset">
-                </div>
-            </form>
+<div id="InputAdd">
+    <form action="gebruikertoevoegen" method="POST" autocomplete="off">
+        <label for="role">Rol:</label><br>
+        <input type="radio" name="role" id="Studentrole" value="Student" checked><label for="Studentrole">Student</label>
+        <input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole">Docent</label><br>
+        <label for="name">Volledige naam:</label><br>
+        <input type="text" name="name" required><br>
+        <label for="studentid">Studentnummer:</label><br>
+        <input type="number" name="studentid" required><br>
+        <label for="email">Emailadres:</label><br>
+        <input type="email" name="email" required><br>
+        <label for="password">Wachtwoord:</label><br>
+        <input type="password" name="password" required min="8"><br>
+        <label for="password-repeat">Herhaling Wachtwoord:</label><br>
+        <input type="password" name="passwordrepeat" required min="8"><br>
+        <div class=buttons>
+            <input type="submit" name="submitadd" value="Toevoegen">
+            <input type="reset" name="resetadd" value="Reset">
         </div>
-    </body>
+    </form>
+</div>
 
 <?php
 if(isset($_POST['submitadd'])){

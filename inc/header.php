@@ -45,11 +45,14 @@
 			case 'student':
 				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
 				break;
+			case 'gebruikertoevoegen':
+				echo '<link rel="stylesheet" href="css/pages/DocentAdd.css">';
+				break;
 			default:
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
 				break;
 		}
 		
-		?>
+		?> 
     </head>
 	<body>
