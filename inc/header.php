@@ -47,13 +47,12 @@ session_start();
 		switch(strtolower($pagePath))
 		{
 			case 'e-labs'://file path of your home/start page
-				echo '<link rel="stylesheet" href="css/pages/home.css">';
+			case 'home':
+				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
 				break;
 			case 'labjournaal':
 				echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
-			case 'student':
-				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
-				break;
+
 			case 'gebruikertoevoegen':
 				echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 				break;
