@@ -1,5 +1,7 @@
 <?php
-	if (!empty($_SESSION['role'])) {
+	if (empty($_SESSION['role'])) {
+		include 'login.php'; 
+	} else {
 		if ($_SESSION['role'] == 'Student') {
 			switch(strtolower($pagePath))
 			{
@@ -28,7 +30,5 @@
 		} else{
 			include '404.php';
 		}
-	} else {
-		include 'login.php'; // when the page isset found
 	}
 ?>
