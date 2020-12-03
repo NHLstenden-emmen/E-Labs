@@ -9,7 +9,7 @@
                 <a class="nl <?php if($_COOKIE['lang'] == 'nl' || empty($_COOKIE['lang'])){echo 'checked';} ?>">Nederlands</a>
                 <a class="en <?php if($_COOKIE['lang'] == 'en'){echo 'checked';} ?>">Engels</a>
             </div>
-            <input value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" type="text" name="name" placeholder="email" required>
+            <input value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" type="text" name="email" placeholder="email" required>
             <input type="password" name="password" placeholder="Wachtwoord" required>
             <div class="error">bericht voor een error ofzo </div>
             <label class="check">
@@ -29,12 +29,12 @@
 </html>
 <?php
     if (isset($_POST['email'])) {
+
         $email = $_POST['email'];
         $pass = $_POST['password'];
         $loginInfo = $db->getTheUserPasswordForLogin($email);
         while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
             if (password_verify($pass, $result['password'])) {
-                echo 'ja';
                 if (!empty($_POST["remember"])) {
                     setcookie("member_login", $email);
                 } else {
@@ -45,20 +45,25 @@
                 // store values in session
                 $_SESSION['email'] = $result['email'];
                 $_SESSION['user_id'] = $result['user_id'];
-
+                
                 // go to the page of the users role
                 if ($result['role'] == "Docent") {
                     $_SESSION['role'] = 'Docent';
+                    header("Location: home");
+                    die();
                 } else if ($result['role'] == "Student") {
                     $_SESSION['role'] = 'Student';
+                    header("Location: home");
+                    die();
                 } else{
                     die('er is iets fout gegaan.');
                 }
-                header("Location: home");
-                die();
             } else {
                 echo 'het wachtwoord klopt niet';
             }
+        }
+        if (empty($loginInfo->fetch_array(MYSQLI_ASSOC))) {
+            echo 'de gebruiker is niet gevonden';
         }
     }
 ?>
