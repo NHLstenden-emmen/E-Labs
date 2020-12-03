@@ -8,7 +8,7 @@
 			include 'docent/docentHome.php';
 			break;
 		case 'gebruikertoevoegen':
-			include 'docent/DocentAdd.php';
+			include 'docent/gebruikerToevoegen.php';
 			break;
 		case 'student':
 			include 'student/studentHome.php';

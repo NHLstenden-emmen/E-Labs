@@ -46,7 +46,7 @@
 				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
 				break;
 			case 'gebruikertoevoegen':
-				echo '<link rel="stylesheet" href="css/pages/DocentAdd.css">';
+				echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 				break;
 			default:
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
