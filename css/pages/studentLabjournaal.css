@@ -2,35 +2,33 @@
 	height: 700px;
 }
 
-#newLabjournal {
+#labjournaalContainer #newLabjournal {
 	text-align: center;
 	padding-top: 20px;
 }
 
-
-
-table {
+#labjournaalContainer table {
 	border: 1px solid grey;
 	width: 100%;
 }
 
-th {
+#labjournaalContainer th {
 	background-color: var(--primaryColor);
 	color: var(--white);
 	text-align: center;
 }
 
-td {
+#labjournaalContainer td {
 	border: 1px solid grey;
 	text-align: center;
 }
 
-#mainContainer {
-    margin-left: 0px;
-    margin-right: 0px;
+#labjournaalContainer #mainContainer {
+	margin-left: 0px;
+	margin-right: 0px;
 }
 
-#yearNav {
+#labjournaalContainer #yearNav {
 	display: flex;
 	flex-direction: column;
 	align-content: flex-end;

@@ -49,6 +49,7 @@
                 // go to the page of the users role
                 if ($result['role'] == "Docent") {
                     $_SESSION['role'] = 'Docent';
+                    setcookie("aksldfjlksdf", 'piksdlfjs');
                     header("Location: home");
                     die();
                 } else if ($result['role'] == "Student") {

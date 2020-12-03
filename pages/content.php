@@ -19,10 +19,11 @@
 			switch(strtolower($pagePath))
 			{
 				case 'e-labs': //file path of your home/start page
-					include 'home.php';
-					break;
-				case 'docent':
+				case 'home':
 					include 'docent/docentHome.php';
+					break;
+				case 'gebruikertoevoegen':
+					include 'docent/gebruikerToevoegen.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found
