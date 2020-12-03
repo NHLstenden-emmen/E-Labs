@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    zoom: 1.50;
+}
+form{
+    width: 180px;
+    display: block;
+    margin:0 auto;
+    margin-top: 50px;
+}
+label{
+    margin-right: 5px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+#InputAdd{
+    width: 500px;
+    height: 500px;
+    border: 2px solid black;
+    margin: 0 auto;
+}
+.buttons{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-row-gap: 5px;;
+    width: 180px;
+    height: 25px;
+}
+.buttons input{
+    width: 90px;
+}
