@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <link rel="stylesheet" href="style.css">
         <title> Docenten Pagina </title>
     </head>
 <body>
