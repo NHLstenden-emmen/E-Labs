@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2020 at 05:51 PM
+-- Generation Time: Dec 03, 2020 at 11:55 PM
 -- Server version: 10.4.16-MariaDB-log
 -- PHP Version: 7.4.12
 
@@ -124,7 +124,7 @@ CREATE TABLE `users` (
   `user_number` int(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `profile_picture` varchar(255) NOT NULL,
-  `lang` varchar(10) NOT NULL,
+  `lang` varchar(2) NOT NULL,
   `role` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -133,7 +133,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `user_number`, `password`, `profile_picture`, `lang`, `role`) VALUES
-(1, 'Kevin', 'email@mailtje.com', 123456, 'test', '', '', 'Student');
+(1, 'Kevin', 'email@mailtje.com', 123456, '$2y$12$x1mzfqUZcEBFkCvhKRt35.SBs5RLRD0D.PZVzyXmBrOXBDXQepF92', '', '', 'Student'),
+(2, 'mike', 'mikie@mikel.com', 444318, '$2y$12$cTqvLHlsL/PmgCF/F8o4rOpq33St9IwVNs7bLjB79QBp4Hraodlsa', '', '', 'Docent');
 
 --
 -- Indexes for dumped tables
@@ -208,7 +209,7 @@ ALTER TABLE `preparation`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
