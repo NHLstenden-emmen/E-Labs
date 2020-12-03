@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Add New Account</title>
-        <link rel="stylesheet" href="../../css/pages/DocentAdd.css">
+        <link rel="stylesheet" href="css/pages/DocentAdd.css">
     </head>
     <body>
         <div id="InputAdd">
