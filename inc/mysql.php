@@ -75,12 +75,24 @@
 			return NULL;
 		}
 
+		public function login($username, $password){
+			if ($stmt = $this->conn->prepare("select * from users where name = ? && password = ?")) {
+				$stmt->bind_param("ss", $username, $password);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+    
 		public function addNewNotification($creater, $viewer, $title, $message, $date_time){
 			if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `viewer`, `title`, `message`, `date_time`) VALUES (?,?,?,?,?)")) {
 				$stmt->bind_param("iissd", $creater, $viewer, $title, $message, $date_time);
 				$stmt->execute();
 				$stmt->close();
-				return "User Added";
+				return "bericht toegevoegd";
 			}
 			return NULL;
 		}
