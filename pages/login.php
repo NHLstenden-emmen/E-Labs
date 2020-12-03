@@ -23,20 +23,22 @@
     </div>
     
 <?php
-    $name = $_POST['name'];
-    $pass = $_POST['password'];
-    $login = $db->login($name,$pass);
-    while ($result = $login->fetch_array(MYSQLI_ASSOC)){
-        echo $result['name'];
-        if ($result['role'] == "docent") {
-            exit('hoi');
-        } 
-    }
-    
-    if (! empty($_POST["remember"])) {
-    setcookie("member_login", $name);
-    } else {
-        return NULL;
+    if (isset($_POST['name'])) {
+        $name = $_POST['name'];
+        $pass = $_POST['password'];
+        $login = $db->login($name,$pass);
+        while ($result = $login->fetch_array(MYSQLI_ASSOC)){
+            echo $result['name'];
+            if ($result['role'] == "docent") {
+                exit('hoi');
+            } 
+        }
+        
+        if (! empty($_POST["remember"])) {
+        setcookie("member_login", $name);
+        } else {
+            setcookie("member_login", '');
+        }
     }
 ?>
 
