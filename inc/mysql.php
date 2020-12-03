@@ -75,9 +75,9 @@
 			return NULL;
 		}
 
-		public function login($username, $password){
-			if ($stmt = $this->conn->prepare("select * from users where name = ? && password = ?")) {
-				$stmt->bind_param("ss", $username, $password);
+		public function getTheUserPasswordForLogin($email){
+			if ($stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ?")) {
+				$stmt->bind_param("s", $email);
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
