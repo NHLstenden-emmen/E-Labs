@@ -1,0 +1,32 @@
+nav img {
+	height: 60px;
+}
+
+nav .nav-item {
+	border-right: 1px solid var(--white);
+}
+nav .nav-link {
+	color: var(--white);
+}
+.navbar-light .navbar-nav .nav-link {
+	color: var(--white);
+}
+
+.img-logo {
+	border-right: 1px solid var(--white);
+}
+
+@media (max-width: 767px) {
+	nav .nav-item {
+		border-right: 0px solid var(--white);
+	}
+
+	.img-logo {
+		border-right: 0px solid var(--white);
+	}
+}
+
+nav .fa-search {
+	padding: 5px;
+	color: var(--white);
+}

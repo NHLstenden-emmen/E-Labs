@@ -15,20 +15,7 @@ if(!empty(isset($_POST['changelang']))){
 	header("Refresh:0");
 }
 
-switch ($selectLang) {
-	case 'en':
-	$lang_file = 'lang.en.php';
-	break;
+// de taal uit de database halen inplaats van een coockie.
 
-	case 'nl':
-	$lang_file = 'lang.nl.php';
-	break;
-
-	default:
-	$lang_file = 'lang.nl.php';
-
-}
-
-include_once 'lang/'.$lang_file;
-
+$lang = include_once 'lang/lang.'.$selectLang.'.php';
 ?>

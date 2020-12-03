@@ -1,0 +1,14 @@
+@font-face {
+	font-family: CeraPro;
+	src: url(../font/Cera_Pro_medium.otf);
+}
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: "CeraPro";
+	font-weight: normal;
+	--primaryColor: #005aa7;
+	--secondaryColor: #008487;
+	--dark: #151515;
+	--white: #ffffff;
+}

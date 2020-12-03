@@ -1,0 +1,126 @@
+.loginPagina.background {
+	background-image: url("../../images/blue.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: grid;
+	grid-template-columns: 33.3% 33.4% 33.3%;
+	width: 100%;
+	padding: 0 auto;
+	padding-top: 5%;
+	height: 100vh;
+}
+
+.loginPagina .loginbox {
+	grid-column: span 1 / -2;
+	text-align: center;
+	background-color: #134074;
+	height: 70%;
+}
+
+.loginPagina .logo {
+	grid-column: span 1 / -2;
+	text-align: center;
+	padding: 4% 4%;
+}
+
+.loginPagina input[type="text"],
+.loginPagina input[type="password"] {
+	width: 80%;
+	padding: 3% 7%;
+	margin: 3% 0%;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+.loginPagina .inloggen {
+	background-color: lightskyblue;
+	color: white;
+	padding: 3% 7%;
+	margin: 1% 0%;
+	border: none;
+	cursor: pointer;
+	width: 50%;
+	border-radius: 30px;
+}
+
+.loginPagina .inloggen:hover {
+	background-color: lightblue;
+}
+
+.loginPagina .check {
+	color: white;
+}
+
+.loginPagina .nl-en {
+	margin: 3%;
+}
+
+.loginPagina .nl {
+	background-color: white;
+	cursor: pointer;
+	border-bottom-left-radius: 20px;
+	border-top-left-radius: 20px;
+	padding: 2%;
+	margin-right: -3px;
+	padding-left: 10%;
+	padding-right: 7%;
+}
+
+.loginPagina .en {
+	background-color: white;
+	cursor: pointer;
+	border-bottom-right-radius: 20px;
+	border-top-right-radius: 20px;
+	padding: 2%;
+	margin-left: -3px;
+	padding-right: 10%;
+	padding-left: 13%;
+}
+
+.loginPagina .nl:hover {
+	background-color: grey;
+	color: white;
+}
+
+.loginPagina .en:hover {
+	background-color: grey;
+	color: white;
+}
+
+.loginPagina .nl.checked {
+	background-color: lightskyblue;
+	color: white;
+}
+
+.loginPagina .en.checked {
+	background-color: lightskyblue;
+	color: white;
+}
+
+.loginPagina .vergeten {
+	padding: 3% 7%;
+	color: white;
+}
+
+.loginPagina .vergeten-tekst {
+	color: white;
+}
+
+@media screen and (max-width: 900px) {
+	.loginPagina .loginbox {
+		grid-column: 1 / 4;
+		width: 50%;
+		height: 80%;
+		margin-left: 25%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.loginPagina .loginbox {
+		grid-column: 1 / 4;
+		width: 90%;
+		height: 80%;
+		margin-left: 5%;
+	}
+}
