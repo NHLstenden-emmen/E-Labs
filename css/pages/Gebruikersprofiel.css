@@ -1,0 +1,54 @@
+body
+{
+	/*background-image: url('.../.../images/achtergrond123.jpg');*/
+}
+
+.Gebruikersprofielcontainer
+{
+	display: grid;
+    grid-template-rows: 100px 100px 100px;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-gap: 4%;
+}
+
+img
+{
+	margin: center;
+	width: 40px;
+	height:40px;
+}
+
+h2
+{
+	text-align: center;
+	margin: 0;
+	text-decoration: underline;
+}
+
+h2:hover
+{
+	color: blue;
+}
+
+p
+{
+	font-family: verdana;
+	font-size: 12;
+    margin: auto;
+    margin: 0;
+}
+
+#Gebruikersprofielstudentinformatierechts
+{
+	width: 200px;
+	height: 80px;
+	grid-column: 2/auto;
+	
+}
+
+#Gebruikersprofielstudentinformatielinks
+{
+	width: 200px;
+	height: 80px;
+	grid-column: 3/auto;
+}

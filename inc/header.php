@@ -56,6 +56,9 @@ session_start();
 			case 'gebruikertoevoegen':
 				echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 				break;
+			case 'gebruikersprofiel'://file path of your home/start page
+				echo '<link rel="stylesheet" href="css/pages/Gebruikersprofiel.css">';
+				break;
 			default:
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
 				break;
