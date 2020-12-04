@@ -1,6 +1,5 @@
 body
 {
-	background-color: yellow;
 	/*background-image: url('.../.../images/achtergrond123.jpg');*/
 }
 
@@ -24,7 +23,6 @@ h2
 	text-align: center;
 	margin: 0;
 	text-decoration: underline;
-	background-color: green;
 }
 
 h2:hover

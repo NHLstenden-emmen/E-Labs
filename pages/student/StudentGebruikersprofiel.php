@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="../../css/pages/Gebruikersprofiel.css">
-		<link rel="stylesheet" type="text/css" href="">
-		<title> Gebruikersprofiel </title>
-		<!-- Hier komt de navbar -->
-	</head>
-	<body>
-
-
 		<h1>Gebruikersprofiel</h1>
 		<img src="../../images/unknown.png" alt="Profielfoto">
 		<h2>Profielfoto aanpassen</h2>
@@ -33,20 +22,3 @@
 			</p>
 		</div>
 		<h1>Opslaan</h1>
-
-
-		<!-- Hier komt de titel van de pagina -->
-
-
-		<!-- Hier komt de inhoud van de pagina -->
-
-
-		<!-- Hier komt de footer -->
-
-		<?php
-
-
-
-		?>
-	</body>
-</html>
