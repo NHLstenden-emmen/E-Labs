@@ -17,6 +17,7 @@
                 // store values in session
                 $_SESSION['email'] = $result['email'];
                 $_SESSION['user_id'] = $result['user_id'];
+                $_SESSION['name'] = $result['name'];
                 
                 // go to the page of the users role
                 if ($result['role'] == "Docent") {
