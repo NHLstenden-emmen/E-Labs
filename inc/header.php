@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -37,16 +41,26 @@
 		<link rel="stylesheet" href="css/main/navbar.css">
 		<link rel="stylesheet" href="css/main/footer.css">
 		<?php
+		if (empty($_SESSION['role'])) {
+			echo '<link rel="stylesheet" href="css/pages/login.css">';
+		}
 		switch(strtolower($pagePath))
 		{
 			case 'e-labs'://file path of your home/start page
-				echo '<link rel="stylesheet" href="css/pages/home.css">';
+			case 'home':
+				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
+				break;
+			case 'labjournaal':
+				echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
+
+			case 'gebruikertoevoegen':
+				echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 				break;
 			default:
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
 				break;
 		}
 		
-		?>
+		?> 
     </head>
 	<body>

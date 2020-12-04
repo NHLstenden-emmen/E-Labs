@@ -1,4 +1,18 @@
 # Contributor Covenant Code of Conduct
+## Our custom rules
+Schrijf alles in het engels( commits comments etc)
+Doe niet niks wanneer je een idee hebt van een onderdeel wat er nog bij moet komen zeg het dan.
+
+GIT:
+- Maak veel commits tussen het schrijven van je code doe een push aan het einde van de dag/wanneer je klaar bent voor dat moment. (Probeer na elk grote werkende stukje code te commiten) Niet na elke commit pushen een per dag
+- Maak een branch aan voor alle grote onderdelen.
+- Wanneer je een onderdeel klaar hebt update het project board en maak een pull request en selecteer Kevin voor controle.
+- Merge je branch alleen maar met de dev branch nooit met master.
+
+CODE:
+- Maak gebruik van inline comments boven de code waar het over gaat.
+- Zorg er voor dat als je een speciale functie maakt / een groot onderdeel dat je er documentatie over schrijft in de docs. (Dit mag in het nederlands)
+- Alles wat je maakt moet responsive zijn.
 
 ## Our Pledge
 
