@@ -68,7 +68,7 @@
 			</div>
 		</ul>
 		<div class="img-person">
-			<img src="images/person.jpg" class="rounded-circle">
+			<img src="<?php echo $_SESSION['pf_Pic'] ?>" class="rounded-circle">
 		</div>
 	</div>
 </nav>
