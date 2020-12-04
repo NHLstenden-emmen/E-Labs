@@ -68,7 +68,13 @@
 			</div>
 		</ul>
 		<div class="img-person">
-			<img src="<?php echo $_SESSION['pf_Pic'] ?>" class="rounded-circle">
+			<img src="<?php 
+			if (empty($_SESSION['pf_Pic'])) {
+				echo "gebruikersBestanden/profilePictures/blank-profile-picture.png";
+			} else {
+				echo $_SESSION['pf_Pic'];
+			}
+			?>" class="rounded-circle">
 		</div>
 	</div>
 </nav>

@@ -15,7 +15,7 @@ else {
   mysqli_select_db($DBConnect, $DBName);
   
   	  $UploadedFileName=$_FILES['profpic']['name'];
-	  $upload_directory = "MyUploadImages/"; //This is the folder which you created just now
+	  $upload_directory = "gebruikersBestanden/profilePictures/"; //This is the folder which you created just now
 	  $TargetPath=time().$UploadedFileName;
 	  if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
 			$TableName = "users";
@@ -27,6 +27,7 @@ else {
     }else{
       printf("Error: %s.\n", mysqli_stmt_error($stmt));
     }
+    $_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
     header('Location: editprofpic');                    
 	}
   
