@@ -1,10 +1,3 @@
-
-<html>
-<head>
-<title>PHP File Upload example</title>
-</head>
-<body>
- 
 <form action="EXEL.php" enctype="multipart/form-data" method="post">
 Select image :
 <input type="file" name="file"><br/>
@@ -63,6 +56,3 @@ while (($line = fgetcsv($f)) !== false) {
 fclose($f);
 echo "\n</table></body></html>";
 ?>
-
-</body>
-</html>

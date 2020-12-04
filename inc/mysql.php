@@ -27,7 +27,7 @@
             }
 		}
 
-		// 	$selectAllUsers = $db->selectAllUsers();
+		// $selectAllUsers = $db->selectAllUsers();
 		// while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
 		// 	echo  $result['name'];
 		// }
@@ -146,6 +146,17 @@
 				$stmt->close();
 				return $result;
 			}
+		}
+
+		// this still needs a join in lab-journaal-users
+		public function LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
+			if ($stmt = $this->conn->prepare("INSERT INTO `lab_journal`(`title`, `date`, `theory`, `safety`, `creater_id`, `logboek`, `method_materials`, `submitted`, `grade`, `year`, `Attachment`, `Goal`, `Hypothesis`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
+				$stmt->bind_param("ssssissiiisss", $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
+				$stmt->execute();
+				$stmt->close();
+				return "Labjournaal toegevoegd";
+			}
+			return NULL;
 		}
 	}
 ?>

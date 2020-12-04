@@ -1,6 +1,6 @@
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
-		<a href="#">+ Nieuw Labjournaal</a>
+		<a href="createNewLabjournaal">+ Nieuw Labjournaal</a>
 	</p>
 	<div id="mainContainer" class="row">
 		<div id="yearNav" class="col-xs-12 col-sm-3 col-lg-2">

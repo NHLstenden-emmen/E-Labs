@@ -1,5 +1,2 @@
 <p>404</p>
-<?php
-
-echo $pagePath;
-?>
+<?php echo '<br>'.$pagePath; ?>
