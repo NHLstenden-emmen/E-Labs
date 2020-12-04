@@ -1,23 +1,23 @@
-.gebruikertoevoegencss form {
+form {
 	width: 180px;
 	display: block;
 	margin: 0 auto;
 	margin-top: 50px;
 }
-.gebruikertoevoegencss label {
+label {
 	margin-right: 5px;
 }
-.gebruikertoevoegencss input::-webkit-outer-spin-button,
-.gebruikertoevoegencss input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 }
-.gebruikertoevoegencss#InputAdd {
+#InputAdd {
 	width: 500px;
 	height: 500px;
 	border: 2px solid black;
 	margin: 0 auto;
 }
-.gebruikertoevoegencss .buttons {
+.buttons {
 	margin-top: 50px;
 	display: grid;
 	grid-template-columns: auto auto;
@@ -25,6 +25,6 @@
 	width: 180px;
 	height: 25px;
 }
-.gebruikertoevoegencss .buttons input {
+.buttons input {
 	width: 90px;
 }
