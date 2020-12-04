@@ -42,6 +42,19 @@
 			}
 			return NULL;
 		}
+
+		public function selectCurrentUsers($userID){
+			// this gets all the users and returns them
+			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
+				$stmt->bind_param("i", $userID);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
 		
 		// $message = $db->createNewUserWithoutProfielPictureAndLang("test 2","mail4@emai5ltje.com","12345","test","Student");
 		// echo $message;
