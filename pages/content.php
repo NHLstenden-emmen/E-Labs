@@ -13,7 +13,7 @@
 					include 'student/studentLabjournaal.php';
 					break;
 				case 'editprofpic':
-					include 'student/Editprofpic.php';
+					include 'student/editProfpic.php';
 					break;
 				case 'update':
 					include 'student/update.php';
@@ -30,6 +30,9 @@
 					break;
 				case 'gebruikersoverzicht':
 					include 'docent/gebruikersoverzicht.php';
+					break;
+				case 'editprof':
+					include 'docent/editProf.php';
 					break;
 				case 'gebruikertoevoegen':
 					include 'docent/gebruikerToevoegen.php';
