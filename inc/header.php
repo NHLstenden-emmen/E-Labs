@@ -53,7 +53,7 @@ session_start();
 				break;
 			case 'labjournaal':
 				echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
-
+				break;
 			case 'gebruikertoevoegen':
 				echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 				break;

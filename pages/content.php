@@ -10,8 +10,17 @@
 				case '':
 					include 'student/studentHome.php';
 					break;
+				case 'exel':
+					include 'student/EXEL.php';
+					break;
 				case 'labjournaal':
 					include 'student/studentLabjournaal.php';
+					break;
+				case 'editprofpic':
+					include 'student/editProfpic.php';
+					break;
+				case 'update':
+					include 'student/update.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found
@@ -24,8 +33,17 @@
 				case '':
 					include 'docent/docentHome.php';
 					break;
+				case 'gebruikersoverzicht':
+					include 'docent/gebruikersoverzicht.php';
+					break;
+				case 'editprof':
+					include 'docent/editProf.php';
+					break;
 				case 'gebruikertoevoegen':
 					include 'docent/gebruikerToevoegen.php';
+					break;
+				case 'labjournaalview':
+					include 'docent/labjournaalView.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found

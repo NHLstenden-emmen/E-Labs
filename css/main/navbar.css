@@ -43,3 +43,10 @@ nav #searchForm {
 	display: flex;
 	align-items: center;
 }
+
+nav .topnavbar {
+	margin: 0px 20px;
+	border: 1px solid white;
+	background-color: white;
+	border-radius: 10px;
+}
