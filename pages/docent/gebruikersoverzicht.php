@@ -1,4 +1,4 @@
-<?PHP
+<?php
     $DBConnect = mysqli_connect("localhost", "root", "");
     if ($DBConnect === FALSE) {
         echo "<p>Unable to connect to the database

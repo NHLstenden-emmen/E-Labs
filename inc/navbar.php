@@ -2,25 +2,25 @@
 	<div class="img-logo">
 		<img src="images/logo.png">
 	</div>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controles="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 		<li class="nav-item">
-			<a class="nav-link" href="#">E-labs</a>
+			<a class="nav-link" href="home">E-labs</a>
 			
 		</li>
-		<?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Jaar 1</a>
 			</li>
 		<?php } else{ ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Labjournaal</a>
+				<a class="nav-link" href="labjournaal">Labjournaal</a>
 			</li>
 		<?php }?>
-		<?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Jaar 2</a>
 			</li>
@@ -29,14 +29,12 @@
 				<a class="nav-link" href="#">Voorbereidingen</a>
 			</li>
 		<?php } ?>
-		<?php  if (isset($_SESSION['username']) && $_SESSION['rol'] == 'docent') { ?>
+		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Jaar 3</a>
 			</li>
 		<?php } else {?>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Protocool</a>
-			</li>
+			
 		<?php } ?>
 		</ul>
 		<ul class="navbar-nav ml-auto">
