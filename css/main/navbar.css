@@ -30,3 +30,16 @@ nav .fa-search {
 	padding: 5px;
 	color: var(--white);
 }
+
+nav #searchIcon {
+	padding-right: 10px;
+}
+
+nav #searchBar {
+	padding-right: 10px;
+}
+
+nav #searchForm {
+	display: flex;
+	align-items: center;
+}

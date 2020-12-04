@@ -48,6 +48,7 @@ session_start();
 		{
 			case 'e-labs'://file path of your home/start page
 			case 'home':
+			case '':
 				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
 				break;
 			case 'labjournaal':

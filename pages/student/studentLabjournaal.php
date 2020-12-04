@@ -56,8 +56,3 @@
 		</div>
 	</div>
 </div>
-
-
-<?php
-	// Bewerk icon disabelen wanneer labjournaal al verstuurt is.
-?>

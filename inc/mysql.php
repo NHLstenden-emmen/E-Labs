@@ -121,6 +121,7 @@
 			return NULL;
 		}
 
+		// Gets all the labjournals of the year and userId
 		public function selectAllLabjournals($year, $userId) {
             if (
             	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` 
@@ -135,5 +136,19 @@
 				return $result;
 			}
 		}
+
+		// Gets the labjournal, preparation or notifications on the word that user is searching for
+		public function search($userId, $searchWord) {
+			if (
+            	$stmt = $this->conn->prepare()) {
+                $stmt->bind_param("is", $userId, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+		}
 	}
 ?>
+	
