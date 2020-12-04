@@ -5,14 +5,21 @@
 
     // get the current location / path of the page
     $pagePath = basename($_SERVER['REQUEST_URI'], '.php');
-    
+    if (strpos($pagePath, '?') !== false) {   
+        $pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
+    }
     // main dependencies
     include 'inc/select.php';
     include 'inc/mysql.php';
     $db = new Database();
-    // build the website
+    
     include 'inc/header.php';
-    include 'inc/navbar.php';
-    include 'pages/content.php';
-    include 'inc/footer.php';
+    // build the website
+    if (empty($_SESSION['role'])) {
+        include 'pages/content.php';
+    } else {
+        include 'inc/navbar.php';
+        include 'pages/content.php';
+        include 'inc/footer.php';
+    }
 ?>
