@@ -1,9 +1,9 @@
 <?php
+    $error = "";
     if (isset($_POST['email'])) {
 
         $email = $_POST['email'];
         $pass = $_POST['password'];
-        $error = "";
         $loginInfo = $db->getTheUserPasswordForLogin($email);
         while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
             if (password_verify($pass, $result['password'])) {
