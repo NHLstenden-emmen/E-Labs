@@ -14,15 +14,11 @@ else {
   $DBName = "e-labs";
   mysqli_select_db($DBConnect, $DBName);
   
-  	  $UploadedFileName=$_FILES['Uplmages']['name'];
+  	  $UploadedFileName=$_FILES['profpic']['name'];
 	  $upload_directory = "MyUploadImages/"; //This is the folder which you created just now
 	  $TargetPath=time().$UploadedFileName;
-	  if(move_uploaded_file($_FILES['UplImages']['tmp_name'], $upload_directory.$TargetPath)){ 
-			// Write Mysql Query Here to insert this $QueryInsertFile   .                    
-		}
-  
-  else{
-    $TableName = "users";
+	  if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
+			$TableName = "users";
 	
 	
     $SQLstring = "UPDATE " . $TableName . " SET profile_picture = '" . $upload_directory.$TargetPath . "' WHERE user_id=" . $id;
@@ -31,7 +27,8 @@ else {
     }else{
       printf("Error: %s.\n", mysqli_stmt_error($stmt));
     }
-    header('Location: ');
-  }
+    header('Location: editprofpic');                    
+	}
+  
 }
   ?>

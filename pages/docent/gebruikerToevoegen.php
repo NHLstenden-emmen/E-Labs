@@ -1,4 +1,4 @@
-<div class="gebruikertoevoegencss" id="InputAdd">
+<div class="gebruikertoevoegenblock" id="InputAdd">
     <form action="gebruikertoevoegen" method="POST" autocomplete="off">
         <label for="role">Rol:</label><br>
         <input type="radio" name="role" id="Studentrole" value="Student" checked><label for="Studentrole">Student</label>
