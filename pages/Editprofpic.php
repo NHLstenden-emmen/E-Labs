@@ -22,11 +22,11 @@
 
 			?>
 			<h2>Edit Profilepic</h2>
-			<form method="POST" action="update.php?id=<?php echo $id; ?>">
-			<p>profilepic </p><p><input type="text" name="profilepic" value="<?php echo $profilepic; ?>"/></p>
-			<p><input type="submit" value="Submit" /></p>
+			<form method="POST" action="update?id=<?php echo $id; ?>">
+			<p>profilepic </p><p><?php echo $profilepic; ?>
+			</td><td><input name="UploadImages" input type="file"  /><br></td>
+			<p><input type="submit" value="Update" /></p>
 			</form>
-			<p><a href="home.php">Show Bugs</a></p>
 			<?php
 
 		}

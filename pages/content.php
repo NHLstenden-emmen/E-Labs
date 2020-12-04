@@ -13,6 +13,9 @@
 		case 'editprofpic':
 			include 'Editprofpic.php';
 			break;
+		case 'update':
+			include 'update.php';
+			break;
 		default:
 			include '404.php'; // when the page isset found
 	}
