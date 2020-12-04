@@ -9,6 +9,9 @@
 				case 'home':
 					include 'student/studentHome.php';
 					break;
+				case 'exel':
+					include 'student/EXEL.php';
+					break;
 				case 'labjournaal':
 					include 'student/studentLabjournaal.php';
 					break;
