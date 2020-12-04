@@ -8,6 +8,7 @@
     if (strpos($pagePath, '?') !== false) {   
         $pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
     }
+    
     // main dependencies
     include 'inc/select.php';
     include 'inc/mysql.php';

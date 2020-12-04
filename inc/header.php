@@ -43,22 +43,38 @@ session_start();
 		<?php
 		if (empty($_SESSION['role'])) {
 			echo '<link rel="stylesheet" href="css/pages/login.css">';
-		}
-		switch(strtolower($pagePath))
-		{
-			case 'e-labs'://file path of your home/start page
-			case 'home':
-				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
-				break;
-			case 'labjournaal':
-				echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
-				break;
-			case 'gebruikertoevoegen':
-				echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
-				break;
-			default:
+		} else {
+			if ($_SESSION['role'] == 'Student') {
+				switch(strtolower($pagePath))
+				{
+					case 'e-labs'://file path of your home/start page
+					case 'home':
+						echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
+						break;
+					case 'labjournaal':
+						echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
+						break;
+					case 'gebruikertoevoegen':
+						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
+						break;
+					default:
+						echo '<link rel="stylesheet" href="css/pages/404.css">';
+						break;
+				}
+			} else if($_SESSION['role'] == 'Docent') {
+				switch(strtolower($pagePath))
+				{
+					case 'e-labs'://file path of your home/start page
+					case 'home':
+						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+					default:
+						echo '<link rel="stylesheet" href="css/pages/404.css">';
+						break;
+				}
+			} else{
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
-				break;
+			}
 		}
 		
 		?> 
