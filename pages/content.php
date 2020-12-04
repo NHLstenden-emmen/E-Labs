@@ -25,6 +25,9 @@
 				case 'gebruikertoevoegen':
 					include 'docent/gebruikerToevoegen.php';
 					break;
+				case 'labjournaalview':
+					include 'docent/labjournaalView.php';
+					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
