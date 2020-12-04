@@ -12,6 +12,12 @@
 				case 'labjournaal':
 					include 'student/studentLabjournaal.php';
 					break;
+				case 'editprofpic':
+					include 'student/Editprofpic.php';
+					break;
+				case 'update':
+					include 'student/update.php';
+					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
@@ -21,6 +27,9 @@
 				case 'e-labs': //file path of your home/start page
 				case 'home':
 					include 'docent/docentHome.php';
+					break;
+				case 'gebruikersoverzicht':
+					include 'docent/gebruikersoverzicht.php';
 					break;
 				case 'gebruikertoevoegen':
 					include 'docent/gebruikerToevoegen.php';
