@@ -1,4 +1,5 @@
 <?php
+
 $id = $_GET['id'];
 $DBConnect = mysqli_connect("localhost", "root", "");
 if ($DBConnect === FALSE)
@@ -13,13 +14,12 @@ else {
   $DBName = "e-labs";
   mysqli_select_db($DBConnect, $DBName);
   
-  	  $UploadedFileName=$_FILES['UploadImages']['name'];
-
+  	  $UploadedFileName=$_FILES['Uplmages']['name'];
 	  $upload_directory = "MyUploadImages/"; //This is the folder which you created just now
 	  $TargetPath=time().$UploadedFileName;
-	  if(move_uploaded_file($_FILES['UploadImages']['tmp_name'], $upload_directory.$TargetPath)){ 
-    // Write Mysql Query Here to insert this $QueryInsertFile   .                    
-	}
+	  if(move_uploaded_file($_FILES['UplImages']['tmp_name'], $upload_directory.$TargetPath)){ 
+			// Write Mysql Query Here to insert this $QueryInsertFile   .                    
+		}
   
   else{
     $TableName = "users";
@@ -31,7 +31,7 @@ else {
     }else{
       printf("Error: %s.\n", mysqli_stmt_error($stmt));
     }
-    header('Location: index');
+    header('Location: ');
   }
 }
   ?>
