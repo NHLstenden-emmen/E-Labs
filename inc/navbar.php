@@ -43,6 +43,15 @@
 			</li>
 			<li class="nav-item1">
 				<a class="nav-link" href="#">Gebruikers Naam</a>
+                <form method="post"> 
+                <input type="submit" name="logout"
+                class="button" value="logout" /> 
+                </form>
+                <?php if(array_key_exists('logout', $_POST)) { 
+                    session_destroy(); 
+                    header("Location: login");
+                } 
+                ?>
 			</li>
 		</ul>
 		<div class="img-person">

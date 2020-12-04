@@ -124,3 +124,8 @@
 		margin-left: 5%;
 	}
 }
+
+.loginpagina .error {
+    color: white;
+	padding: 4% 4%;
+}
