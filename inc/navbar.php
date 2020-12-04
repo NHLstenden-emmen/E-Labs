@@ -11,7 +11,7 @@
 			<a class="nav-link" href="home">E-labs</a>
 			
 		</li>
-		<?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'Docent') { ?>
+		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Jaar 1</a>
 			</li>
@@ -20,7 +20,7 @@
 				<a class="nav-link" href="labjournaal">Labjournaal</a>
 			</li>
 		<?php }?>
-		<?php  if (isset($_SESSION['username']) && $_SESSION['role'] == 'Docent') { ?>
+		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Jaar 2</a>
 			</li>
@@ -29,7 +29,7 @@
 				<a class="nav-link" href="#">Voorbereidingen</a>
 			</li>
 		<?php } ?>
-		<?php  if (isset($_SESSION['username']) && $_SESSION['role'] == 'Docent') { ?>
+		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Jaar 3</a>
 			</li>
