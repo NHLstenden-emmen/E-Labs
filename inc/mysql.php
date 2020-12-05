@@ -10,7 +10,7 @@
 		private $conn;
 	
 		public function __construct() {
-			// include the env file agina
+			// include the env file pagina
 			$env = include '.env.php';
 			$this->host = $env['DB_HOST'];
 			$this->user = $env['DB_USERNAME'];
@@ -146,6 +146,21 @@
 				$stmt->close();
 				return $result;
 			}
+		}
+		public function selectpdfcontentlabjournal($docid){
+			if(
+				$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` 
+				WHERE labjournaal_id = ?")){
+					$stmt->bind_param("i", $docid);
+					$stmt->execute();
+					$result = $stmt->get_result();
+					$stmt->free_result();
+					$stmt->close();
+					return $result;
+				}
+		}
+		public function selectpdfcontentpreperation(){
+
 		}
 	}
 ?>
