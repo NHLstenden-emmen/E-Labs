@@ -28,6 +28,9 @@
 				case 'gebruikertoevoegen':
 					include 'docent/gebruikerToevoegen.php';
 					break;
+				case 'gebruikersprofiel':
+					include 'docent/DocentGebruikersprofiel.php';
+					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
