@@ -159,7 +159,7 @@
 					return $result;
 				}
 		}
-		public function selectpdfcontentpreperation(){
+		public function selectpdfcontentpreperation(){}
 
 
 		// this still needs a join in lab-journaal-users

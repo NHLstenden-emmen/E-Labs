@@ -7,7 +7,7 @@ class PDF extends FPDF
 // Page header
 function Header()
 {
-    $this->Image('../images/logo2.0.png',5,5,35);
+    $this->Image('../images/logo2.0.png',7,5,35);
     // Arial bold 15
     $this->SetFont('Arial','B',25);
     // Move to the right
@@ -86,16 +86,16 @@ $pdf->Cell(32,5, "Var3:", 0, 2);
 $pdf->SetFont('Arial','',16);
 $pdf->MultiCell(0,5,"$var3",'0','L');
 $pdf->ln(5);
-    if(isset($var4)){
-        $pdf->SetFont('Arial','',18);
-        $pdf->Cell(32,5, "Var4:", 0, 2);
-        $pdf->SetFont('Arial','',16);
-        $pdf->MultiCell(0,5,"$var4",'0','L');
-        $pdf->ln(5);
-    }
+if(isset($var4)){
     $pdf->SetFont('Arial','',18);
-    $pdf->Cell(32,5, "Safety:", 0, 2);
+    $pdf->Cell(32,5, "Var4:", 0, 2);
     $pdf->SetFont('Arial','',16);
+    $pdf->MultiCell(0,5,"$var4",'0','L');
+    $pdf->ln(5);
+}
+$pdf->SetFont('Arial','',18);
+$pdf->Cell(32,5, "Safety:", 0, 2);
+$pdf->SetFont('Arial','',16);
 $pdf->MultiCell(0,5,"$safety",'0','L');
 $pdf->ln(5);
 $pdf->SetFont('Arial','',18);
