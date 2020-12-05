@@ -13,7 +13,7 @@
 		</li>
 		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 1</a>
+				<a class="nav-link" href="year1">Jaar 1</a>
 			</li>
 		<?php } else{ ?>
 			<li class="nav-item">
@@ -22,7 +22,7 @@
 		<?php }?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 2</a>
+				<a class="nav-link" href="year2">Jaar 2</a>
 			</li>
 		<?php } else {?>
 			<li class="nav-item">
@@ -31,7 +31,7 @@
 		<?php } ?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 3</a>
+				<a class="nav-link" href="year3">Jaar 3</a>
 			</li>
 		<?php } else {?>
 			

@@ -135,29 +135,30 @@
 			}
 		}
 
-		public function getAllGradeResults(){
-			$sql = "SELECT DISTINCT users.user_id, users.name, lab_journal.grade
+		public function getAllGradeResults($year){
+			$sql = "SELECT DISTINCT users.user_id, users.name
                 FROM users
                 INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
                 INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-				GROUP BY users.user_id";
+				WHERE lab_journal.year = $year
+				GROUP BY users.user_id ";
 			// This returns all the grade results
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
 				$stmt->close();
-				return $result;
+				return $result; 
 			}
 			return NULL;
 		}
 
-		public function getGradeResultsPerPerson($userId){
+		public function getGradeResultsPerPerson($userId, $year){
 			$sql = "SELECT lab_journal.grade, lab_journal.title
                 FROM users
                 INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
                 INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-                WHERE users.user_id = ?";
+                WHERE users.user_id = ? AND lab_journal.year = $year";
 			// This returns all the grade results
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->bind_param("i", $userId);

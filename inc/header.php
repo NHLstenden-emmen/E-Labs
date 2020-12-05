@@ -68,6 +68,15 @@ session_start();
 					case 'home':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
+					case 'year1':
+						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+					case 'year2':
+						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+					case 'year3':
+						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
 						break;
