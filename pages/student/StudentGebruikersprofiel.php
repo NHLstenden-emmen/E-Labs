@@ -1,13 +1,15 @@
-		<h1>Gebruikersprofiel</h1>
-		<img src="../../images/unknown.png" alt="Profielfoto">
-		<h2>Profielfoto aanpassen</h2>
+<div>
+	<h1 id="titelgebruikersprofiel">Gebruikersprofiel</h1>
+			<img class="profielfototje" src="images/unknown.png" alt="Profielfoto">
+			</br>
+			<button id="Buttonaanpassenprofiel"> Profielfoto aanpassen</button>
 		<div class="Gebruikersprofielcontainer">
 			<p id="Gebruikersprofielstudentinformatierechts"> Studentnummer:
 				</br> 564234
 				</br> Voornaam:
 				</br> Piet
 				</br> Achternaam:
-				</br> Klaassen
+				</br> Klassen
 				</br> Klas:
 				</br> INF1A
 			</p>
@@ -21,4 +23,5 @@
 				</br> ********************
 			</p>
 		</div>
-		<h1>Opslaan</h1>
+	<button id="Buttonopslaanprofiel">Opslaan</button>
+</div>
