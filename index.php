@@ -16,7 +16,7 @@
         elseif(isset($_GET['preperation_id'])){
             $id = 'preperation_id='.$_GET['preperation_id'];
         }
-        header('location: http://localhost/e-labs/FPDF/printpdf.php?'.$id);
+        header('location: FPDF/printpdf.php?'.$id);
     } else{
         // main dependencies
         include 'inc/select.php';

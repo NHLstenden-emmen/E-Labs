@@ -80,7 +80,7 @@
 			</div>
 		</ul>
 		<div class="img-person">
-			<a class="dropdown-item" href="gebruikersprofiel">
+			<a href="gebruikersprofiel">
 				<img src="<?php 
 				if (empty($_SESSION['pf_Pic'])) {
 					echo "gebruikersBestanden/profilePictures/blank-profile-picture.png";
