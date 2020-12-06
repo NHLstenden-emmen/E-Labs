@@ -32,6 +32,5 @@
             include 'pages/content.php';
             include 'inc/footer.php';
         }
-        
     }
 ?>
