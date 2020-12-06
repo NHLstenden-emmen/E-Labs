@@ -8,19 +8,29 @@
     if (strpos($pagePath, '?') !== false) {   
         $pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
     }
-    
-    // main dependencies
-    include 'inc/select.php';
-    include 'inc/mysql.php';
-    $db = new Database();
-    
-    include 'inc/header.php';
-    // build the website
-    if (empty($_SESSION['role'])) {
-        include 'pages/content.php';
-    } else {
-        include 'inc/navbar.php';
-        include 'pages/content.php';
-        include 'inc/footer.php';
+
+    if (strtolower($pagePath) == 'pdf'){
+        if(isset($_GET['labjournaal_id'])){
+            $id = 'labjournaal_id='.$_GET['labjournaal_id'];
+        }
+        elseif(isset($_GET['preperation_id'])){
+            $id = 'preperation_id='.$_GET['preperation_id'];
+        }
+        header('location: http://localhost/e-labs/FPDF/printpdf.php?'.$id);
+    } else{
+        // main dependencies
+        include 'inc/select.php';
+        include 'inc/mysql.php';
+        $db = new Database();
+        
+        include 'inc/header.php';
+        // build the website
+        if (empty($_SESSION['role'])) {
+            include 'pages/content.php';
+        } else {
+            include 'inc/navbar.php';
+            include 'pages/content.php';
+            include 'inc/footer.php';
+        }
     }
 ?>

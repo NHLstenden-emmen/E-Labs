@@ -354,3 +354,5 @@ MigrationBackup/
 
 # Hide . env file
 .env.php
+.DS_Store
+css/.DS_Store

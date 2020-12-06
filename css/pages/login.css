@@ -124,3 +124,8 @@
 		margin-left: 5%;
 	}
 }
+
+.loginPagina .error {
+	color: white;
+	padding: 4% 4%;
+}

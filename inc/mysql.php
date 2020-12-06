@@ -10,7 +10,7 @@
 		private $conn;
 	
 		public function __construct() {
-			// include the env file agina
+			// include the env file pagina
 			$env = include '.env.php';
 			$this->host = $env['DB_HOST'];
 			$this->user = $env['DB_USERNAME'];
@@ -27,14 +27,26 @@
             }
 		}
 
-		// 	$selectAllUsers = $db->selectAllUsers("student");
+		// $selectAllUsers = $db->selectAllUsers();
 		// while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
 		// 	echo  $result['name'];
 		// }
-		public function selectAllUsers($role){
+		public function selectAllUsers(){
 			// this gets all the users and returns them
-			if ($stmt = $this->conn->prepare("SELECT * FROM `users` WHERE `role` = ?")) {
-				$stmt->bind_param("s", $role);
+			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users`")) {
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function selectCurrentUsers($userID){
+			// this gets all the users and returns them
+			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
+				$stmt->bind_param("i", $userID);
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -134,7 +146,7 @@
 				return $result;
 			}
 		}
-
+    
 		public function getAllGradeResults($year){
 			$sql = "SELECT DISTINCT users.user_id, users.name
                 FROM users
@@ -167,6 +179,29 @@
 				$stmt->free_result();
 				$stmt->close();
 				return $result;
+        
+		public function selectpdfcontentlabjournal($docid){
+			if(
+				$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` 
+				WHERE labjournaal_id = ?")){
+					$stmt->bind_param("i", $docid);
+					$stmt->execute();
+					$result = $stmt->get_result();
+					$stmt->free_result();
+					$stmt->close();
+					return $result;
+				}
+		}
+		public function selectpdfcontentpreperation(){}
+
+
+		// this still needs a join in lab-journaal-users
+		public function LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
+			if ($stmt = $this->conn->prepare("INSERT INTO `lab_journal`(`title`, `date`, `theory`, `safety`, `creater_id`, `logboek`, `method_materials`, `submitted`, `grade`, `year`, `Attachment`, `Goal`, `Hypothesis`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
+				$stmt->bind_param("ssssissiiisss", $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
+				$stmt->execute();
+				$stmt->close();
+				return "Labjournaal toegevoegd";
 			}
 			return NULL;
 		}
