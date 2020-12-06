@@ -5,24 +5,25 @@
 			<button id="Buttonaanpassenprofiel"> Profielfoto aanpassen</button>
 		<div class="Gebruikersprofielcontainer">
 			<div id="Gebruikersprofielstudentinformatierechts"> 
+				<form action=""></form>
 				<p> Studentnummer: </p>
-				<p id="profielinformatiekleurgrijs"> 564234 </p>
+				<input type="text" name="Studentnummer"/>
 				<p> Voornaam: </p>
-				<p id="profielinformatiekleurgrijs"> Piet </p>
+				<input type="text" name="Voornaam"/>
 				<p> Achternaam: </p>
-				<p id="profielinformatiekleurgrijs"> Klassen </p>
+				<input type="text" name="Achternaam"/>
 				<p> Klas: </p>
-				<p id="profielinformatiekleurgrijs"> INF1A </p>
+				<input type="text" name="Klas"/>
 			</div>
 			<div id="Gebruikersprofielstudentinformatielinks"> 
 				<p> Studie: </p>
-				<p id="profielinformatiekleurgrijs"> Informatica </p>
+				<input type="text" name="Studie"/>
 				<p> E-mail: </p>
-				<p id="profielinformatiekleurgrijs"> Student@student.nhlstenden.nl </p>
+				<input type="text" name="E-mail"/>
 				<p> Jaar: </p>
-				<p id="profielinformatiekleurgrijs"> Jaar 1 </p>
+				<input type="text" name="Jaar"/>
 				<p> Wachtwoord: </p>
-				<p id="profielinformatiekleurgrijs"> ******************** </p>
+				<input type="text" name="Wachtwoord"/>
 		</div>
 	</div>
 	<button id="Buttonopslaanprofiel">Opslaan</button>
