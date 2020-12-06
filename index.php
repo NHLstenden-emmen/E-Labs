@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // all passwords and secrets that are not supposed to be on github
     // change the example.env.php to .env.php
     $env = include '.env.php';
@@ -21,8 +22,8 @@
         // main dependencies
         include 'inc/mysql.php';
         $db = new Database();
-        include 'inc/header.php';
         include 'inc/select.php';
+        include 'inc/header.php';
         
         // build the website
         if (empty($_SESSION['role'])) {

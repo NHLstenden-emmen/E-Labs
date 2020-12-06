@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -57,9 +53,9 @@ session_start();
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 						break;
-          case 'createNewLabjournaal'://file path of nieuwlabjournaal
-            echo '<link rel="stylesheet" href="css/pages/Nieuwlabjournaal.css">';
-            break;
+					case 'createNewLabjournaal'://file path of nieuwlabjournaal
+						echo '<link rel="stylesheet" href="css/pages/Nieuwlabjournaal.css">';
+						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
 						break;
@@ -88,7 +84,6 @@ session_start();
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
 			}
 		}
-		
 		?> 
     </head>
 	<body>

@@ -1,12 +1,12 @@
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
-		<a href="createNewLabjournaal">+ Nieuw Labjournaal</a>
+		<a href="createNewLabjournaal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
 	</p>
 	<div id="mainContainer" class="row">
 		<div id="yearNav" class="col-xs-12 col-sm-3 col-lg-2">
-			<a href="?year=1">- Jaar 1</a>
-			<a href="?year=2">- Jaar 2</a>
-			<a href="?year=3">- Jaar 3</a>
+			<a href="?year=1">- <?php echo $lang["YEAR_1"];  ?></a>
+			<a href="?year=2">- <?php echo $lang["YEAR_2"];  ?></a>
+			<a href="?year=3">- <?php echo $lang["YEAR_3"];  ?></a>
 		</div>
 		<div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
 			<table>
@@ -28,11 +28,11 @@
 					// Get every labjournal of the choosen year
 					$allLabjournals = $db->selectAllLabjournals($year, $userId);
 				?>
-				<h3><?php echo "Overzicht jaar " . $year; ?></h3>
-				<th>Titel</th>
-				<th>Datum</th>
-				<th>Cijfer</th>
-				<th>Acties</th>
+				<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
+				<th><?php echo $lang["TITLE"];?></th>
+				<th><?php echo $lang["DATE"];?></th>
+				<th><?php echo $lang["GRADE"];?></th>
+				<th><?php echo $lang["ACTION"];?></th>
 				<?php
 					while($allResults = $allLabjournals->fetch_array(MYSQLI_ASSOC)){
 						echo "<tr>";

@@ -13,25 +13,25 @@
 		</li>
 		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=1">Jaar 1</a>
+				<a class="nav-link" href="year?year=1"><?php echo $lang["YEAR_1"];?></a>
 			</li>
 		<?php } else{ ?>
 			<li class="nav-item">
-				<a class="nav-link" href="labjournaal">Labjournaal</a>
+				<a class="nav-link" href="labjournaal"><?php echo $lang["LAB_JOURNAL"];?></a>
 			</li>
 		<?php }?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=2">Jaar 2</a>
+				<a class="nav-link" href="year?year=2"><?php echo $lang["YEAR_2"];?></a>
 			</li>
 		<?php } else {?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Voorbereidingen</a>
+				<a class="nav-link" href="#"><?php echo $lang["PREPARATIONS"];?></a>
 			</li>
 		<?php } ?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=3">Jaar 3</a>
+				<a class="nav-link" href="year?year=3"><?php echo $lang["YEAR_3"];?></a>
 			</li>
 		<?php } else {?>
 			
@@ -60,10 +60,10 @@
 				</button>
 				<div class="dropdown-menu">
 					<?php  if ($_SESSION['role'] == 'Docent') { ?>
-						<a class="dropdown-item" href="gebruikersoverzicht">gebruikers overzicht</a>
-						<a class="dropdown-item" href="gebruikertoevoegen">gebruiker toevoegen</a>
+						<a class="dropdown-item" href="gebruikersoverzicht"><?php echo $lang["USER_OVERVIEW"];?> </a>
+						<a class="dropdown-item" href="gebruikertoevoegen"><?php echo $lang["ADD_USER"];?></a>
 					<?php } else {?>
-						<a class="dropdown-item" href="editprofpic">editprofpic</a>
+						<a class="dropdown-item" href="editprofpic"><?php echo $lang["EDIT_PROFILE_PHOTO"];?> </a>
 					<?php } ?>
 					<div class="dropdown-divider"></div>
 					<?php
@@ -96,7 +96,7 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item">
 					<form method="post"> 
-						<input type="submit" name="logout" class="dropdown-item" value="logout" /> 
+						<input type="submit" name="logout" class="dropdown-item" value="<?php echo $lang["LOGOUT"];?>" /> 
 					</form>
 					<?php if(array_key_exists('logout', $_POST)) { 
 						session_destroy(); 

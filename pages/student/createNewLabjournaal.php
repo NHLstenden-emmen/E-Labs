@@ -29,29 +29,30 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 if (empty($message)) {
 ?>
 <form action="createNewLabjournaal.php" method="post">
-	<label for="title">Titel:</label> </br>
+	<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
 		<input type="text" name="title" required> </br>
-	<label for="theory">Theorie:</label> </br>
+	<label for="theory"><?php echo $lang["THEORY"];?>:</label> </br>
 		<textarea name="theory"></textarea> </br>
-	<label for="safety">Veiligheid:</label> </br>
+	<label for="safety"><?php echo $lang["SAFETY"];?>:</label> </br>
 		<textarea class="groteretextarealabjournaal" name="safety"></textarea> </br>
-	<label for="logboek">Logboek:</label> </br>
+	<label for="logboek"><?php echo $lang["LOGBOOK"];?>:</label> </br>
 		<textarea class="groteretextarealabjournaal" name="logboek"></textarea> </br>
-	<label for="method_materials">Methode Materialen:</label> </br>
+	<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label> </br>
 		<textarea class="groteretextarealabjournaal" name="method_materials"></textarea> </br>
-	<label for="1">Year 1</label>
+	<label for="1"><?php echo $lang["YEAR_1"];?></label>
 		<input type="radio" name="year" value="1" checked>
-	<label for="1">Year 2</label>
+	<label for="1"><?php echo $lang["YEAR_2"];?></label>
 		<input type="radio" name="year" value="2">
-	<label for="1">Year 3</label>
+	<label for="1"><?php echo $lang["YEAR_3"];?></label>
 		<input type="radio" name="year" value="3"> </br>
-	<label for="fileupload">Upload file:</label> </br>
+	<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label> </br>
 		<input type="file" name="fileupload"> </br>
-	<label for="Goal">Doel:</label> </br>
+	<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
 		<textarea class="groteretextarealabjournaal" name="Goal"></textarea> </br>
-	<label for="Hypothesis">Hypothese:</label> </br>
+	<label for="Hypothesis"><?php echo $lang["HYPOTHESIS"];?>:</label> </br>
 		<textarea class="groteretextarealabjournaal" name="Hypothesis"></textarea> </br>
-	<input type="submit" name="opslaan" value="opslaan">	<input type="submit" name="inleveren" value="inleveren"> </br>
-	<input type="reset" name="reset" value="Reset"> </br>
+	<input type="submit" name="opslaan" value="<?php echo $lang["SAVE"];?>">
+	<input type="submit" name="inleveren" value="<?php echo $lang["HAND_IN"];?>"> </br>
+	<input type="reset" name="reset" value="<?php echo $lang["RESET"];?>"> </br>
 </form>
 <?php } ?>
