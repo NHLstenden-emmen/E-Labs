@@ -1,8 +1,8 @@
 <div class="docentenHomePage">
     <table>
         <tr>
-            <th>Name</th>
-            <th>Grade</th>
+            <th><?php echo $lang["NAME"];?></th>
+            <th><?php echo $lang["GRADE"];?></th>
         </tr>
         <?php
         if(isset($_GET['year'])) {

@@ -5,13 +5,13 @@
         <input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole">Docent</label><br>
         <label for="name">Volledige naam:</label><br>
         <input type="text" name="name" required><br>
-        <label for="studentid">Studentnummer:</label><br>
+        <label for="studentid"><?php echo $lang["STUDENT_NUMBER"];?>:</label><br>
         <input type="number" name="studentid" required><br>
-        <label for="email">Emailadres:</label><br>
+        <label for="email"><?php echo $lang["E-MAIL"];?>:</label><br>
         <input type="email" name="email" required><br>
-        <label for="password">Wachtwoord:</label><br>
+        <label for="password"><?php echo $lang["PASSWORD"];?>:</label><br>
         <input type="password" name="password" required min="8"><br>
-        <label for="password-repeat">Herhaling Wachtwoord:</label><br>
+        <label for="password-repeat"><?php echo $lang["REPEAT_PASSWORD"];?>:</label><br>
         <input type="password" name="passwordrepeat" required min="8"><br>
         <div class=buttons>
             <input type="submit" name="submitadd" value="Toevoegen">

@@ -5,7 +5,7 @@
 	?>
 	<div class="row">
 		<div class="notificationsTable col-md-5">
-			<h3>Mijn notifications</h3>
+			<h3><?php echo $lang["USERS_NOTIFICATIONS"];?></h3>
 			<?php while ($thisResult = $selectCurrentUserNotifications->fetch_array(MYSQLI_ASSOC)){ ?>
 					<hr>
 				<div class="notifications">
@@ -18,7 +18,7 @@
 		</div>
 		<div class="col-md-2"></div>
 		<div class="notificationsTable col-md-5">
-			<h3>Alle Meldingen</h3>
+			<h3><?php echo $lang["ALL_NOTIFICATIONS"];?></h3>
 			<?php while ($allResults = $selectAllNotifications->fetch_array(MYSQLI_ASSOC)){ ?>
 				<hr>
 				<div class="notifications">
