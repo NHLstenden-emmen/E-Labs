@@ -23,7 +23,6 @@
                 // go to the page of the users role
                 if ($result['role'] == "Docent") {
                     $_SESSION['role'] = 'Docent';
-                    setcookie("aksldfjlksdf", 'piksdlfjs');
                     header("Location: home");
                     die();
                 } else if ($result['role'] == "Student") {
@@ -37,7 +36,7 @@
                 $error = "het wachtwoord klopt niet.";
             }
         }
-        if (! empty($loginInfo->fetch_array(MYSQLI_ASSOC))) {
+        if (!empty($loginInfo->fetch_array(MYSQLI_ASSOC))) {
             $error = "de gebruiker is niet gevonden.";
         }
     }
@@ -48,11 +47,19 @@
         <div class="logo">
             <img src="images/Logo2.png" alt="logo">
         </div>
+        <div class="nl-en">
+            <form method='post' id='langSwitch'>
+                <button type='submit' value='nl' class='nl <?php if($_COOKIE['lang'] == 'nl' || empty($_COOKIE['lang'])){echo 'checked';} ?>' name='changelang'>
+                    Engels
+                </button>
+            </form>
+            <form method='post' id='langSwitch'>
+                <button type='submit' value='en' class='en <?php if($_COOKIE['lang'] == 'en'){echo 'checked';} ?>' name='changelang'>
+                    Nederlands
+                </button>
+            </form>
+        </div>
         <form method="POST">
-            <div class="nl-en">
-                <a class="nl <?php if($_COOKIE['lang'] == 'nl' || empty($_COOKIE['lang'])){echo 'checked';} ?>">Nederlands</a>
-                <a class="en <?php if($_COOKIE['lang'] == 'en'){echo 'checked';} ?>">Engels</a>
-            </div>
             <input value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" type="text" name="email" placeholder="email" required>
             <input type="password" name="password" placeholder="Wachtwoord" required>
             <div class="error"><?php echo $error; ?></div>

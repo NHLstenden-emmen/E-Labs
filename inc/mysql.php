@@ -227,5 +227,15 @@
 			}
 			return NULL;
 		}
+
+		public function updateUsersLanguage($userId, $language){
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `lang`=? WHERE `user_id` = ?")) {
+                $stmt->bind_param('si',  $language, $userId);
+				$stmt->execute();
+				$stmt->close();
+				return "Labjournaal toegevoegd";
+			}
+			return NULL;
+		}
 	}
 ?>

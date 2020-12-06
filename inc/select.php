@@ -14,6 +14,10 @@ if(!empty(isset($_POST['changelang']))){
 	setcookie("lang", $_POST["changelang"], time()+ (3600 * 24 * 30));
 	header("Refresh:0");
 }
+// update users language
+if (!empty(isset($_POST['changelang'])) && !empty(isset($_SESSION['user_id']))) {
+	$message = $db->updateUsersLanguage($_SESSION['user_id'],$selectLang);
+}
 
 // de taal uit de database halen inplaats van een coockie.
 

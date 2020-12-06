@@ -19,11 +19,11 @@
         header('location: FPDF/printpdf.php?'.$id);
     } else{
         // main dependencies
-        include 'inc/select.php';
         include 'inc/mysql.php';
         $db = new Database();
-        
         include 'inc/header.php';
+        include 'inc/select.php';
+        
         // build the website
         if (empty($_SESSION['role'])) {
             include 'pages/content.php';

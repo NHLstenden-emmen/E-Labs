@@ -63,8 +63,7 @@
 	border-top-left-radius: 20px;
 	padding: 2%;
 	margin-right: -3px;
-	padding-left: 10%;
-	padding-right: 7%;
+	width: 150px;
 }
 
 .loginPagina .en {
@@ -74,8 +73,7 @@
 	border-top-right-radius: 20px;
 	padding: 2%;
 	margin-left: -3px;
-	padding-right: 10%;
-	padding-left: 13%;
+	width: 150px;
 }
 
 .loginPagina .nl:hover {
@@ -128,4 +126,7 @@
 .loginPagina .error {
 	color: white;
 	padding: 4% 4%;
+}
+.loginPagina #langSwitch {
+	display: contents;
 }

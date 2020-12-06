@@ -50,3 +50,8 @@ nav .topnavbar {
 	background-color: white;
 	border-radius: 10px;
 }
+nav .languageSwitch {
+	width: 100%;
+	border: 0;
+	background: none;
+}
