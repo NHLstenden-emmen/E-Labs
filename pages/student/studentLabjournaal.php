@@ -1,6 +1,6 @@
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
-		<a href="#">+ Nieuw Labjournaal</a>
+		<a href="createNewLabjournaal">+ Nieuw Labjournaal</a>
 	</p>
 	<div id="mainContainer" class="row">
 		<div id="yearNav" class="col-xs-12 col-sm-3 col-lg-2">
@@ -14,7 +14,7 @@
 					if(isset($_GET['year'])) {
 						if($_GET['year'] == 2) {
 							$year = 2;
-						} elseif ($_GET['year'] == '3') {
+						} elseif ($_GET['year'] == 3) {
 							$year = 3;
 						} else {
 							$year = 1;

@@ -11,27 +11,27 @@
 			<a class="nav-link" href="home">E-labs</a>
 			
 		</li>
-		<?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'Docent') { ?>
+		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 1</a>
+				<a class="nav-link" href="year?year=1">Jaar 1</a>
 			</li>
 		<?php } else{ ?>
 			<li class="nav-item">
 				<a class="nav-link" href="labjournaal">Labjournaal</a>
 			</li>
 		<?php }?>
-		<?php  if (isset($_SESSION['username']) && $_SESSION['role'] == 'Docent') { ?>
+		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 2</a>
+				<a class="nav-link" href="year?year=2">Jaar 2</a>
 			</li>
 		<?php } else {?>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Voorbereidingen</a>
 			</li>
 		<?php } ?>
-		<?php  if (isset($_SESSION['username']) && $_SESSION['role'] == 'Docent') { ?>
+		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 3</a>
+				<a class="nav-link" href="year?year=3">Jaar 3</a>
 			</li>
 		<?php } else {?>
 			
@@ -41,12 +41,42 @@
 			<li class="nav-item">
 				<i class="fas fa-search fa-2x"></i>
 			</li>
-			<li class="nav-item1">
-				<a class="nav-link" href="#">Gebruikers Naam</a>
-			</li>
+			<div class="btn-group topnavbar">
+				<button type="button" class="btn"><?php echo $_SESSION['name'];?></button>
+				<button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="sr-only">Toggle Dropdown</span>
+				</button>
+				<div class="dropdown-menu">
+					<?php  if ($_SESSION['role'] == 'Docent') { ?>
+						<a class="dropdown-item" href="gebruikersoverzicht">gebruikers overzicht</a>
+						<a class="dropdown-item" href="gebruikertoevoegen">gebruiker toevoegen</a>
+					<?php } else {?>
+						<a class="dropdown-item" href="editprofpic">editprofpic</a>
+					<?php } ?>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item">
+					<form method="post"> 
+						<input type="submit" name="logout" class="dropdown-item" value="logout" /> 
+					</form>
+					<?php if(array_key_exists('logout', $_POST)) { 
+						session_destroy(); 
+						header("Location: login");
+					} 
+					?>
+					</a>
+				</div>
+			</div>
 		</ul>
 		<div class="img-person">
-			<img src="images/person.jpg" class="rounded-circle">
+			<a class="dropdown-item" href="gebruikersprofiel">
+				<img src="<?php 
+				if (empty($_SESSION['pf_Pic'])) {
+					echo "gebruikersBestanden/profilePictures/blank-profile-picture.png";
+				} else {
+					echo $_SESSION['pf_Pic'];
+				}
+				?>" class="rounded-circle">
+			</a>
 		</div>
 	</div>
 </nav>

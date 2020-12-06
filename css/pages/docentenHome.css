@@ -1,0 +1,27 @@
+.docentenHomePage {
+	margin: 20px;
+}
+.docentenHomePage table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 45%;
+}
+
+.docentenHomePage td,
+.docentenHomePage th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+.docentenHomePage .onvoldoende {
+	background-color: red;
+}
+
+.docentenHomePage .voldoende {
+	background-color: gold;
+}
+
+.docentenHomePage .goed {
+	background-color: lime;
+}
