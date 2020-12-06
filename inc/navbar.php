@@ -13,7 +13,7 @@
 		</li>
 		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 1</a>
+				<a class="nav-link" href="year?year=1">Jaar 1</a>
 			</li>
 		<?php } else{ ?>
 			<li class="nav-item">
@@ -22,7 +22,7 @@
 		<?php }?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 2</a>
+				<a class="nav-link" href="year?year=2">Jaar 2</a>
 			</li>
 		<?php } else {?>
 			<li class="nav-item">
@@ -31,7 +31,7 @@
 		<?php } ?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Jaar 3</a>
+				<a class="nav-link" href="year?year=3">Jaar 3</a>
 			</li>
 		<?php } else {?>
 			
@@ -60,8 +60,8 @@
 				</button>
 				<div class="dropdown-menu">
 					<?php  if ($_SESSION['role'] == 'Docent') { ?>
-						<a class="dropdown-item" href="editprof">editprof</a>
-						<a class="dropdown-item" href="gebruikertoevoegen">gebruikertoevoegen</a>
+						<a class="dropdown-item" href="gebruikersoverzicht">gebruikers overzicht</a>
+						<a class="dropdown-item" href="gebruikertoevoegen">gebruiker toevoegen</a>
 					<?php } else {?>
 						<a class="dropdown-item" href="editprofpic">editprofpic</a>
 					<?php } ?>
@@ -80,7 +80,15 @@
 			</div>
 		</ul>
 		<div class="img-person">
-			<img src="images/person.jpg" class="rounded-circle">
+			<a class="dropdown-item" href="gebruikersprofiel">
+				<img src="<?php 
+				if (empty($_SESSION['pf_Pic'])) {
+					echo "gebruikersBestanden/profilePictures/blank-profile-picture.png";
+				} else {
+					echo $_SESSION['pf_Pic'];
+				}
+				?>" class="rounded-circle">
+			</a>
 		</div>
 	</div>
 </nav>

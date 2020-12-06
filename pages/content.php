@@ -7,18 +7,23 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
-				case '':
-					include 'student/studentHome.php';
-					break;
-				case 'exel':
-					include 'student/EXEL.php';
+					include 'student/home.php';
 					break;
 				case 'labjournaal':
 					include 'student/studentLabjournaal.php';
 					break;
+				case 'createnewlabjournaal':
+					include 'student/createNewLabjournaal.php';
+					break;
 				case 'editprofpic':
 					include 'student/editProfpic.php';
 					break;
+				case 'exel':
+					include 'student/EXEL.php';
+					break;
+				case 'gebruikersprofiel':
+					include 'student/gebruikersprofiel.php';
+					break;	
 				case 'update':
 					include 'student/update.php';
 					break;
@@ -30,17 +35,17 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
-				case '':
-					include 'docent/docentHome.php';
+				case 'year':
+					include 'docent/year.php';
 					break;
 				case 'gebruikersoverzicht':
 					include 'docent/gebruikersoverzicht.php';
 					break;
-				case 'editprof':
-					include 'docent/editProf.php';
-					break;
 				case 'gebruikertoevoegen':
 					include 'docent/gebruikerToevoegen.php';
+					break;
+				case 'gebruikersprofiel':
+					include 'docent/gebruikersprofiel.php';
 					break;
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';

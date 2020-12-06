@@ -43,26 +43,50 @@ session_start();
 		<?php
 		if (empty($_SESSION['role'])) {
 			echo '<link rel="stylesheet" href="css/pages/login.css">';
-		}
-		switch(strtolower($pagePath))
-		{
-			case 'e-labs'://file path of your home/start page
-			case 'home':
-			case '':
-				echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
-				break;
-			case 'labjournaal':
-				echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
-				break;
-			case 'gebruikertoevoegen':
-				echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
-				break;
-			case 'gebruikersprofiel'://file path of your home/start page
-				echo '<link rel="stylesheet" href="css/pages/Gebruikersprofiel.css">';
-				break;
-			default:
+		} else {
+			if ($_SESSION['role'] == 'Student') {
+				switch(strtolower($pagePath))
+				{
+					case 'e-labs'://file path of your home/start page
+					case 'home':
+						echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
+						break;
+					case 'labjournaal':
+						echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
+						break;
+					case 'gebruikertoevoegen':
+						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
+						break;
+          case 'createNewLabjournaal'://file path of nieuwlabjournaal
+            echo '<link rel="stylesheet" href="css/pages/Nieuwlabjournaal.css">';
+            break;
+					default:
+						echo '<link rel="stylesheet" href="css/pages/404.css">';
+						break;
+				}
+			} else if($_SESSION['role'] == 'Docent') {
+				switch(strtolower($pagePath))
+				{
+					case 'e-labs'://file path of your home/start page
+					case 'home':
+						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+					case 'year':
+						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+					case 'year2':
+						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+					case 'year3':
+						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+					default:
+						echo '<link rel="stylesheet" href="css/pages/404.css">';
+						break;
+				}
+			} else{
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
-				break;
+			}
 		}
 		
 		?> 

@@ -1,1 +1,0 @@
-hier moet het zelfde komen als in de studenten versie maar dan dat je het gehele profiel kan bewerken
