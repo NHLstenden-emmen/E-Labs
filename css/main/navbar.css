@@ -30,3 +30,10 @@ nav .fa-search {
 	padding: 5px;
 	color: var(--white);
 }
+
+nav .topnavbar {
+	margin: 0px 20px;
+	border: 1px solid white;
+	background-color: white;
+	border-radius: 10px;
+}
