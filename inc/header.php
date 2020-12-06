@@ -71,7 +71,7 @@ session_start();
 					case 'home':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
-					case 'year1':
+					case 'year':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
 					case 'year2':

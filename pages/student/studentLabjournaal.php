@@ -14,7 +14,7 @@
 					if(isset($_GET['year'])) {
 						if($_GET['year'] == 2) {
 							$year = 2;
-						} elseif ($_GET['year'] == '3') {
+						} elseif ($_GET['year'] == 3) {
 							$year = 3;
 						} else {
 							$year = 1;
