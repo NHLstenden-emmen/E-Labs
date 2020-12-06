@@ -2,6 +2,7 @@
 	if (empty($env['DB_HOST'])) {
 		die("no .env.php file found or database host");
 	}
+
 	class Database{
 		private $host;
 		private $user;
@@ -11,7 +12,16 @@
 	
 		public function __construct() {
 			// include the env file pagina
-			$env = include '.env.php';
+			$pagePath = basename($_SERVER['REQUEST_URI'], '.php');
+			if (strpos($pagePath, '?') !== false) {   
+				$pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
+			}
+			if($pagePath == 'printpdf.php'){
+					$env = include '../.env.php';
+				}
+			else{
+				$env = include '.env.php';
+			}
 			$this->host = $env['DB_HOST'];
 			$this->user = $env['DB_USERNAME'];
 			$this->pass = $env['DB_PASSWORD'];
