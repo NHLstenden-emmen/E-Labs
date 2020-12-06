@@ -39,7 +39,19 @@
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<i class="fas fa-search fa-2x"></i>
+				<a href="?search" id="searchIcon" <?php if(isset($_GET['search'])){ echo "style='display:none'"; } ?> class="search-form-tigger">
+					<i class="fas fa-search fa-2x"></i>
+				</a>
+				<?php 
+					if(isset($_GET['search'])) {
+						echo "<form action='#' method='get' id='searchForm'>";
+						echo "<input class='form-control' type='text'>";
+						echo "<button type='submit' class='btn btn-default' name='submit'>";
+						echo "<i class='fas fa-search fa-2x'></i>";
+						echo "</button>";
+						echo "</form>";
+					}
+				?>
 			</li>
 			<div class="btn-group topnavbar">
 				<button type="button" class="btn"><?php echo $_SESSION['name'];?></button>
@@ -80,6 +92,13 @@
 		</div>
 	</div>
 </nav>
-	<div class="slider">
-		<img src="images/banner.jpg" class="img-fluid" alt="slider">
-	</div>
+<div class="slider">
+	<img src="images/banner.jpg" class="img-fluid" alt="slider">
+</div>
+
+<?php 
+	if(isset($_GET['submit'])) {
+		echo "geklikt";
+	}
+
+?>
