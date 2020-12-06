@@ -1,41 +1,86 @@
-.Gebruikersprofielcontainer {
-	display: grid;
-	grid-template-rows: 100px 100px 100px;
-	grid-template-columns: 200px 200px 200px 200px;
-	grid-gap: 4%;
-}
-
-img {
-	margin: center;
-	width: 40px;
-	height: 40px;
-}
-
-h2 {
+#titelgebruikersprofiel
+{
 	text-align: center;
-	margin: 0;
-	text-decoration: underline;
 }
 
-h2:hover {
-	color: blue;
+.Gebruikersprofielcontainer
+{
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
+	width: 100%;
+	height: 250px;
+	padding: 0 auto;
+	line-height: 10px;
+	padding-top: 8px;
 }
 
-p {
-	font-family: verdana;
-	font-size: 12;
-	margin: auto;
-	margin: 0;
+.profielfototje
+{
+	text-align: center;
+	width: 80px;
+	height:80px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-#Gebruikersprofielstudentinformatierechts {
-	width: 200px;
-	height: 80px;
-	grid-column: 2 / auto;
+#Buttonaanpassenprofiel
+{
+	border-radius: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
 
-#Gebruikersprofielstudentinformatielinks {
-	width: 200px;
-	height: 80px;
-	grid-column: 3 / auto;
+#Gebruikersprofielstudentinformatierechts
+{
+	height: 270px;
+	width: 260px;
+	grid-column: span 1 / -3;
+	padding: 0px;
+	line-height: 15px;
+}
+
+#Gebruikersprofielstudentinformatielinks
+{
+	height: 270px;
+	width: 260px;
+	grid-column: span 1 / -2;
+	padding: 0px;
+	line-height: 15px;
+}
+
+#profielinformatiekleurgrijs
+{
+	color: grey;
+}
+
+#Buttonopslaanprofiel
+{
+	text-align: center;
+	margin: 20px auto;
+	border-radius: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+@media screen and (max-width: 700px){
+.Gebruikersprofielcontainer, #Gebruikersprofielstudentinformatielinks, #Gebruikersprofielstudentinformatierechts
+{
+	grid-column: 1 / 4;
+	width: 70%;
+	height: 100%;
+	margin-left: 5%;
+}
+}
+
+@media screen and (max-width: 600px){
+#Gebruikersprofielstudentinformatierechts, #Gebruikersprofielstudentinformatielinks, .Gebruikersprofielcontainer
+{
+	grid-column: 1 / 4;
+	width: 90%;
+	height: 100%;
+	margin-left: 5%;
+}
 }

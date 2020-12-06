@@ -10,7 +10,7 @@
 		private $conn;
 	
 		public function __construct() {
-			// include the env file agina
+			// include the env file pagina
 			$env = include '.env.php';
 			$this->host = $env['DB_HOST'];
 			$this->user = $env['DB_USERNAME'];
@@ -135,8 +135,7 @@
 
 		public function selectAllLabjournals($year, $userId) {
             if (
-            	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` 
-            		JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+            	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
 					WHERE year = ?
 					AND lab_journal_users.user_id = ?")) {
                 $stmt->bind_param("ii", $year, $userId);
@@ -147,6 +146,54 @@
 				return $result;
 			}
 		}
+    
+		public function getAllGradeResults($year){
+			$sql = "SELECT DISTINCT users.user_id, users.name
+                FROM users
+                INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+                INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+				WHERE lab_journal.year = $year
+				GROUP BY users.user_id ";
+			// This returns all the grade results
+			if ($stmt = $this->conn->prepare($sql)) {
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result; 
+			}
+			return NULL;
+		}
+
+		public function getGradeResultsPerPerson($userId, $year){
+			$sql = "SELECT lab_journal.grade, lab_journal.title
+                FROM users
+                INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+                INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+                WHERE users.user_id = ? AND lab_journal.year = $year";
+			// This returns all the grade results
+			if ($stmt = $this->conn->prepare($sql)) {
+				$stmt->bind_param("i", $userId);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+        
+		public function selectpdfcontentlabjournal($docid){
+			if(
+				$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` 
+				WHERE labjournaal_id = ?")){
+					$stmt->bind_param("i", $docid);
+					$stmt->execute();
+					$result = $stmt->get_result();
+					$stmt->free_result();
+					$stmt->close();
+					return $result;
+				}
+		}
+		public function selectpdfcontentpreperation(){}
+
 
 		// this still needs a join in lab-journaal-users
 		public function LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
