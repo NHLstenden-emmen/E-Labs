@@ -1,6 +1,6 @@
 <?php
-$env = include 'D:\xampp\htdocs\E-Labs\.env.php';
-include 'D:\xampp\htdocs\E-Labs\inc\mysql.php';
+$env = include '../.env.php';
+include '../inc/mysql.php';
 require('fpdf.php');
 class PDF extends FPDF
 {
