@@ -27,6 +27,9 @@
 				case 'update':
 					include 'student/update.php';
 					break;
+				case 'searchresults':
+					include 'searchResults.php';
+					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
@@ -49,6 +52,9 @@
 					break;
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
+					break;
+				case 'searchresults':
+					include 'searchResults.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found

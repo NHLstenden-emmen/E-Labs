@@ -60,6 +60,9 @@ session_start();
           case 'createNewLabjournaal'://file path of nieuwlabjournaal
             echo '<link rel="stylesheet" href="css/pages/Nieuwlabjournaal.css">';
             break;
+            		case 'searchresults':
+						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
+						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
 						break;
@@ -79,6 +82,9 @@ session_start();
 						break;
 					case 'year3':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+					case 'searchresults':
+						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
 						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';

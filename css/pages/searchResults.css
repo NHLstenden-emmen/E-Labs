@@ -1,0 +1,23 @@
+#searchResultContainer {
+	height: 700px;
+	
+}
+#searchResultTable {
+	margin: 0 auto;
+	padding-top: 20px;
+}
+#searchResultTable table {
+	border: 1px solid grey;
+	width: 100%;
+}
+
+#searchResultTable th {
+	background-color: var(--primaryColor);
+	color: var(--white);
+	text-align: center;
+}
+
+#searchResultTable td {
+	border: 1px solid grey;
+	text-align: center;
+}
