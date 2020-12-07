@@ -50,6 +50,9 @@
 					case 'labjournaal':
 						echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
 						break;
+					case 'gebruikersprofiel':
+						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
+					break;
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 						break;
@@ -75,6 +78,9 @@
 						break;
 					case 'year3':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						break;
+						case 'gebruikersprofiel':
+							echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
 						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
