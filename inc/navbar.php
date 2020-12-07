@@ -44,12 +44,14 @@
 				</a>
 				<?php 
 					if(isset($_GET['search'])) {
-						echo "<form action='#' method='get' id='searchForm'>";
-						echo "<input class='form-control' type='text'>";
-						echo "<button type='submit' class='btn btn-default' name='submit'>";
-						echo "<i class='fas fa-search fa-2x'></i>";
-						echo "</button>";
-						echo "</form>";
+				?>
+						<form action="#" method="get" id="searchForm">
+							<input class="form-control" type="text">
+							<button type="submit" id="searchSubmitButton" class="btn btn-default" name="submit">
+								<i class="fas fa-search fa-2x"></i>
+							</button>
+						</form>
+				<?php
 					}
 				?>
 			</li>

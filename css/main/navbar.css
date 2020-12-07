@@ -50,3 +50,6 @@ nav .topnavbar {
 	background-color: white;
 	border-radius: 10px;
 }
+nav #searchSubmitButton{
+	padding: 0;
+}
