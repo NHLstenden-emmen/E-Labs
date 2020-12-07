@@ -28,7 +28,7 @@ return [
 	'EDIT_PROFILE' => 'profiel bewerken',
 	'E-MAIL' => 'email',
 	'ADJUST_PROFILE_PICTURE' => 'Profielfoto aanpassen',
-	'STUDENT_NUMBER' => 'Studetnen nummer',
+	'STUDENT_NUMBER' => 'Studenten nummer',
 	'FIRST_NAME' => 'Voornaam',
 	'LAST_NAME' => 'Achternaam',
 	'CLASS' => 'Klas',

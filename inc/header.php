@@ -82,6 +82,9 @@
 						case 'gebruikersprofiel':
 							echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
 						break;
+					case 'gebruikertoevoegen':
+						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
+					break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
 						break;

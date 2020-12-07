@@ -1,29 +1,30 @@
+<?php
+$name = $_SESSION['name'];
+$email = $_SESSION['email'];
+$stud_id = $_SESSION['user_id'];
+$lang = $_COOKIE['lang'];
+$pf_pic = $_SESSION['pf_Pic'];
+var_dump($pf_pic);
+?>
+
 <div>
 	<h1 id="titelgebruikersprofiel">Gebruikersprofiel</h1>
-			<img class="profielfototje" src="images/unknown.png" alt="Profielfoto">
+			<img class="profielfototje" src="<?=$pf_pic?>" alt="Profielfoto">
 			</br>
-			<button id="Buttonaanpassenprofiel"> Profielfoto aanpassen</button>
+			<a href="editprofpic"><button id="Buttonaanpassenprofiel">Profielfoto aanpassen</button></a>
 		<div class="Gebruikersprofielcontainer">
 			<div id="Gebruikersprofielstudentinformatierechts"> 
 				<p> Studentnummer: </p>
-				<p id="profielinformatiekleurgrijs"> 564234 </p>
-				<p> Voornaam: </p>
-				<p id="profielinformatiekleurgrijs"> Piet </p>
-				<p> Achternaam: </p>
-				<p id="profielinformatiekleurgrijs"> Klassen </p>
-				<p> Klas: </p>
-				<p id="profielinformatiekleurgrijs"> INF1A </p>
+				<p id="profielinformatiekleurgrijs"> <?=$stud_id?></p>
+				<p> Naam: </p>
+				<p id="profielinformatiekleurgrijs"> <?=$name?></p>
 			</div>
 			<div id="Gebruikersprofielstudentinformatielinks"> 
-				<p> Studie: </p>
-				<p id="profielinformatiekleurgrijs"> Informatica </p>
 				<p> E-mail: </p>
-				<p id="profielinformatiekleurgrijs"> Student@student.nhlstenden.nl </p>
-				<p> Jaar: </p>
-				<p id="profielinformatiekleurgrijs"> Jaar 1 </p>
-				<p> Wachtwoord: </p>
-				<p id="profielinformatiekleurgrijs"> ******************** </p>
+				<p id="profielinformatiekleurgrijs">  <?=$email?> </p>
+				<p> language: </p>
+				<p id="profielinformatiekleurgrijs">  <?=$lang?> </p>
+			</div>
 		</div>
 	</div>
-	<button id="Buttonopslaanprofiel">Opslaan</button>
 </div>
