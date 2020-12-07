@@ -12,6 +12,9 @@
 				case 'labjournaal':
 					include 'student/studentLabjournaal.php';
 					break;
+				case 'editjournaal':
+					include 'student/EditJournaal.php';
+					break;
 				case 'createnewlabjournaal':
 					include 'student/createNewLabjournaal.php';
 					break;

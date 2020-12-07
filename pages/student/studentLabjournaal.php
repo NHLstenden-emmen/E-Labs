@@ -28,6 +28,7 @@
 					// Get every labjournal of the choosen year
 					$allLabjournals = $db->selectAllLabjournals($year, $userId);
 				?>
+				
 				<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
 				<th><?php echo $lang["TITLE"];?></th>
 				<th><?php echo $lang["DATE"];?></th>
@@ -44,7 +45,7 @@
 							echo "<td>$allResults[grade]</td>";
 						}
 						echo "<td id='actionButtons'>
-								<a href='#'><i class='far fa-edit'></i></a>
+								<a <a href='EditJournaal?id=" . $userId . "'><i class='far fa-edit'></i></a>
 								<a href='#'><i class='fas fa-eye'></i></a>
 								<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'><i class='fas fa-print'></i></a>
 							</td>";
