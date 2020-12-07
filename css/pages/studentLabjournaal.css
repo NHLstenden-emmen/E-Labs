@@ -34,3 +34,7 @@
 	align-content: flex-end;
 	padding-left: 20px;
 }
+
+#disabledEdit {
+	color: lightgrey;
+}

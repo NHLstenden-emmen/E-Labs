@@ -11,6 +11,8 @@
 		<div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
 			<table>
 				<?php
+
+					// Gets the clicked year
 					if(isset($_GET['year'])) {
 						if($_GET['year'] == 2) {
 							$year = 2;
@@ -22,7 +24,8 @@
 					} else {
 						$year = 1;
 					}
-					// When session is available getting the user id from session
+
+					// Gets the user_id from the session
 					$userId = $_SESSION['user_id'];
 
 					// Get every labjournal of the choosen year
@@ -43,10 +46,14 @@
 						} else {
 							echo "<td>$allResults[grade]</td>";
 						}
-						echo "<td id='actionButtons'>
-								<a href='#'><i class='far fa-edit'></i></a>
-								<a href='#'><i class='fas fa-eye'></i></a>
-								<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'><i class='fas fa-print'></i></a>
+						echo "<td id='actionButtons'>";
+						if ($allResults['submitted'] == 0) {
+							echo "<a href='#'><i class='far fa-edit'></i></a>";
+						} else {
+							echo "<i class='far fa-edit' id='disabledEdit'></i>";
+						}
+						echo "<a href='#'><i class='fas fa-eye'></i></a>
+							<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'><i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";
 					}	
