@@ -237,5 +237,15 @@
 			}
 			return NULL;
 		}
+
+		public function updateProfielFoto($UserID ,$profilePictureName){
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `profile_picture` =? WHERE `user_id` = ?")) {
+                $stmt->bind_param('si', $profilePictureName, $UserID);
+				$stmt->execute();
+				$stmt->close();
+				return;
+			}
+			return NULL;
+		}
 	}
 ?>

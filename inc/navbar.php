@@ -1,3 +1,12 @@
+<?php 
+	if(array_key_exists('logout', $_POST)) { 
+		session_destroy(); 
+		header("Location: login");
+	} 
+	if(isset($_GET['submit'])) {
+		echo "geklikt";
+	}
+?>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 	<div class="img-logo">
 		<img src="images/logo.png">
@@ -95,14 +104,9 @@
 					?>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item">
-					<form method="post"> 
-						<input type="submit" name="logout" class="dropdown-item" value="<?php echo $lang["LOGOUT"];?>" /> 
-					</form>
-					<?php if(array_key_exists('logout', $_POST)) { 
-						session_destroy(); 
-						header("Location: login");
-					} 
-					?>
+						<form method="post"> 
+							<input type="submit" name="logout" class="dropdown-item" value="<?php echo $lang["LOGOUT"];?>" /> 
+						</form>
 					</a>
 				</div>
 			</div>
@@ -124,9 +128,3 @@
 	<img src="images/banner.jpg" class="img-fluid" alt="slider">
 </div>
 
-<?php 
-	if(isset($_GET['submit'])) {
-		echo "geklikt";
-	}
-
-?>
