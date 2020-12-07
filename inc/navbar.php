@@ -97,10 +97,3 @@
 <div class="slider">
 	<img src="images/banner.jpg" class="img-fluid" alt="slider">
 </div>
-
-<?php 
-	if(isset($_GET['submit'])) {
-		echo "geklikt";
-	}
-
-?>

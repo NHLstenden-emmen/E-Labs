@@ -2,6 +2,11 @@
 	<?php
 		// When session is available getting the user id from session
 		$userId = $_SESSION['user_id'];
+		if(!empty($_GET['searchInput'])) {
+			$input = $_GET['searchInput'];
+		} else {
+			$input = "";
+		}
 		// Get every labjournal of the choosen year
 		// if($_SESSION['role'] == "student") {
 		// 	$allResults = $db->selectStudentSearchResults($userId);
@@ -12,7 +17,7 @@
 
 		<div id="searchResultTable" class="col-xs-12 col-sm-9 col-lg-9">
 			<table>
-				<h3>Gezocht op: <?php echo $_GET['searchInput']?></h3>
+				<h3>Gezocht op: <?php echo $input?></h3>
 				<th>Titel</th>
 				<th>Datum</th>
 				<th>Cijfer</th>
