@@ -23,7 +23,7 @@
 						$year = 1;
 					}
 					// When session is available getting the user id from session
-					$userId = 1;
+					$userId = $_SESSION['user_id'];
 
 					// Get every labjournal of the choosen year
 					$allLabjournals = $db->selectAllLabjournals($year, $userId);
