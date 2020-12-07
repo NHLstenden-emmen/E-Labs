@@ -27,7 +27,7 @@
 .loginPagina input[type="password"] {
 	width: 80%;
 	padding: 3% 7%;
-	margin: 3% 0%;
+	margin: 2% 0%;
 	display: inline-block;
 	border: 1px solid #ccc;
 	box-sizing: border-box;
@@ -97,7 +97,7 @@
 }
 
 .loginPagina .vergeten {
-	padding: 3% 7%;
+	padding: 2% 7%;
 	color: white;
 }
 
@@ -125,7 +125,7 @@
 
 .loginPagina .error {
 	color: white;
-	padding: 4% 4%;
+	padding: 1% 1%;
 }
 .loginPagina #langSwitch {
 	display: contents;
