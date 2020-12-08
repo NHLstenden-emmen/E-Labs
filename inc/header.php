@@ -59,7 +59,7 @@ session_start();
 			case 'gebruikersprofiel'://file path of your home/start page
 				echo '<link rel="stylesheet" href="css/pages/Gebruikersprofiel.css">';
 				break;
-			case 'createNewLabjournaal'://file path of nieuwlabjournaal
+			case 'createnewlabjournaal'://file path of nieuwlabjournaal
 				echo '<link rel="stylesheet" href="css/pages/Nieuwlabjournaal.css">';
 				break;
 			default:
