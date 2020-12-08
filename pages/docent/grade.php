@@ -17,7 +17,6 @@
             $year = 1;
         }
         ?>
-
         <form action="" method="POST" enctype="multipart/form-data">
             <label for="sortDate">Sorteer de datum</label>
                 <select name="sortOptionDate" id="sortOptionDate" onchange="document.getElementById('textDate').value=this.options[this.selectedIndex].text; this.form.submit()">
@@ -36,8 +35,6 @@
                     <option value="DESC">Datum nieuw-oud</option>
                 </select>
                 <input type="hidden" name="textDate" id="textDate" value="" />
-
-
                 <label for="sortName">Sorteer de naam</label>
                 <select name="sortOptionName" id="sortOptionName" onchange="document.getElementById('textName').value=this.options[this.selectedIndex].text; this.form.submit()">
                     <?php
@@ -77,8 +74,6 @@
                 $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year, '');
             }
 
-    
-
             echo "<tr>";
             echo "<td>" . $result['name'] . "</td>";
         
@@ -87,16 +82,13 @@
                 $cijfer = $labjournaal['grade'];
                 $cijferTitel = mb_strimwidth($labjournaal['title'], 0, 15, "...");
                 $labjournaalID = $labjournaal['labjournaal_id'];
-                if($cijfer == 0) {
-                    echo "<td class='nietbeoordeeld'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . '-' . "</a></td>";
-                } elseif($cijfer >= 1 && $cijfer <= 5.4) {
-                    echo "<td class='onvoldoende'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
-                } elseif($cijfer >= 5.5 && $cijfer < 7) {
-                    echo "<td class='voldoende'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
+                if($cijfer >= 1 && $cijfer <= 5.4) {
+                    echo "<td class='onvoldoende'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . '-' . "</a></td>";
+                } elseif($cijfer >= 5.5 && $cijfer < 10) {
+                    echo "<td class='goed'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
                 } else {
-                    echo "<td class='goed'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>"; 
+                    echo "<td class='nietbeoordeeld'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>"; 
                 }
-                
             }
 
             echo "</tr>";
