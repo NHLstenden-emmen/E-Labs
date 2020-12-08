@@ -2,7 +2,7 @@
 	if (empty($_SESSION['role'])) {
 		include 'login.php'; 
 	} else {
-		if ($_SESSION['role'] == 'Student') {
+		if ($_SESSION['role'] == 'Student' && isset($_SESSION['name']) && isset($_SESSION['user_id']) && isset($_SESSION['email'])) {
 			switch(strtolower($pagePath))
 			{
 				case 'e-labs': //file path of your home/start page
@@ -33,7 +33,7 @@
 				default:
 					include '404.php'; // when the page isset found
 			}
-		} else if($_SESSION['role'] == 'Docent') {
+		} else if($_SESSION['role'] == 'Docent' && isset($_SESSION['name']) && isset($_SESSION['user_id']) && isset($_SESSION['email'])) {
 			switch(strtolower($pagePath))
 			{
 				case 'e-labs': //file path of your home/start page
