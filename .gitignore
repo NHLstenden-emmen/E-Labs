@@ -357,6 +357,5 @@ MigrationBackup/
 .DS_Store
 css/.DS_Store
 pages/.DS_Store
-gebruikersBestanden/profilePictures/1607342695tiger.png
-gebruikersBestanden/profilePictures/1607342674wallpaper.jpg
-MyUploadImages/1607084269tiger.png
+gebruikersBestanden/profilePictures/
+gebruikersBestanden/uploads/

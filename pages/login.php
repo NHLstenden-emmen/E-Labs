@@ -25,6 +25,7 @@
                 $_SESSION['user_id'] = $result['user_id'];
                 $_SESSION['name'] = $result['name'];
                 $_SESSION['pf_Pic'] = $result['profile_picture'];
+                $_SESSION['user_number'] = $result['user_number'];
                 
                 // go to the page of the users role
                 if ($result['role'] == "Docent") {

@@ -44,5 +44,8 @@ return [
 	'REMEMBER_EMAIL' => 'Onthoud e-mail',
 	'LOGIN' => 'Log in',
 	'FORGOT_YOUR_PASSWORD' => 'Je wachtwoord vergeten?',
+	'MADE_BY' => 'Aan gemaakt door:',
+	'LANGUAGE' => 'taal',
+	'CHANGE_PROFILE_PHOTO' => 'profielfoto veranderen',
 ]
 ?>

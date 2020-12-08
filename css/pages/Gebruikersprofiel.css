@@ -1,10 +1,8 @@
-#titelgebruikersprofiel
-{
+#titelgebruikersprofiel {
 	text-align: center;
 }
 
-.Gebruikersprofielcontainer
-{
+.Gebruikersprofielcontainer {
 	display: grid;
 	grid-template-columns: 35% 25% 25% 15%;
 	width: 100%;
@@ -14,26 +12,23 @@
 	padding-top: 8px;
 }
 
-.profielfototje
-{
+.profielfototje {
 	text-align: center;
 	width: 100px;
-	height:80px;
+	height: 100px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#Buttonaanpassenprofiel
-{
+#Buttonaanpassenprofiel {
 	border-radius: 8px;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 }
 
-#Gebruikersprofielstudentinformatierechts
-{
+#Gebruikersprofielstudentinformatierechts {
 	height: 270px;
 	width: 260px;
 	grid-column: span 1 / -3;
@@ -41,8 +36,7 @@
 	line-height: 15px;
 }
 
-#Gebruikersprofielstudentinformatielinks
-{
+#Gebruikersprofielstudentinformatielinks {
 	height: 270px;
 	width: 260px;
 	grid-column: span 1 / -2;
@@ -50,13 +44,11 @@
 	line-height: 15px;
 }
 
-#profielinformatiekleurgrijs
-{
+#profielinformatiekleurgrijs {
 	color: grey;
 }
 
-#Buttonopslaanprofiel
-{
+#Buttonopslaanprofiel {
 	text-align: center;
 	margin: 20px auto;
 	border-radius: 8px;
@@ -65,22 +57,30 @@
 	display: block;
 }
 
-@media screen and (max-width: 700px){
-.Gebruikersprofielcontainer, #Gebruikersprofielstudentinformatielinks, #Gebruikersprofielstudentinformatierechts
-{
-	grid-column: 1 / 4;
-	width: 70%;
-	height: 100%;
-	margin-left: 5%;
-}
+@media screen and (max-width: 700px) {
+	.Gebruikersprofielcontainer,
+	#Gebruikersprofielstudentinformatielinks,
+	#Gebruikersprofielstudentinformatierechts {
+		grid-column: 1 / 4;
+		width: 70%;
+		height: 100%;
+		margin-left: 5%;
+	}
 }
 
-@media screen and (max-width: 600px){
-#Gebruikersprofielstudentinformatierechts, #Gebruikersprofielstudentinformatielinks, .Gebruikersprofielcontainer
-{
-	grid-column: 1 / 4;
-	width: 90%;
-	height: 100%;
-	margin-left: 5%;
+@media screen and (max-width: 600px) {
+	#Gebruikersprofielstudentinformatierechts,
+	#Gebruikersprofielstudentinformatielinks,
+	.Gebruikersprofielcontainer {
+		grid-column: 1 / 4;
+		width: 90%;
+		height: 100%;
+		margin-left: 5%;
+	}
 }
+.gebruikersProfile {
+	margin-top: 20px;
+}
+.changeprofilepicture {
+	text-align: center;
 }

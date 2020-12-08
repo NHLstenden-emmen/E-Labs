@@ -18,17 +18,11 @@
 				case 'createnewlabjournaal':
 					include 'student/createNewLabjournaal.php';
 					break;
-				case 'editprofpic':
-					include 'student/editProfpic.php';
-					break;
 				case 'exel':
 					include 'student/EXEL.php';
 					break;
 				case 'gebruikersprofiel':
 					include 'student/gebruikersprofiel.php';
-					break;	
-				case 'update':
-					include 'student/update.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found

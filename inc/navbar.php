@@ -117,7 +117,7 @@
 				} else {
 					echo $_SESSION['pf_Pic'];
 				}
-				?>" alt="profile foto in header" class="rounded-circle">
+				?>" alt="profile foto in header" class="rounded-circle nav-profile-pic">
 			</a>
 		</div>
 	</div>

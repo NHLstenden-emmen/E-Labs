@@ -44,5 +44,8 @@ return [
 	'REMEMBER_EMAIL' => 'Remember email',
 	'LOGIN' => 'login',
 	'FORGOT_YOUR_PASSWORD' => 'Forgot your password?',
+	'MADE_BY' => 'Made by:',
+	'LANGUAGE' => 'language',
+	'CHANGE_PROFILE_PHOTO' => 'change profile photo',
 ]
 ?>

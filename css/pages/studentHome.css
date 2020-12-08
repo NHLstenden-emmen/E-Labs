@@ -9,7 +9,7 @@
 	grid-template-areas:
 		"title . ."
 		"message message message"
-		". creater date";
+		"creater creater date";
 	grid-template-rows: 30px 25px;
 	grid-template-columns: 60% 15% 25%;
 }
@@ -24,6 +24,8 @@
 .notificationsTable .notifications .creater {
 	grid-area: creater;
 	font-size: 0.7em;
+	text-align: end;
+	padding-right: 20px;
 	color: var(--primaryColor);
 }
 .notificationsTable .notifications .date_time {
