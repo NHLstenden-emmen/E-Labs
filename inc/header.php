@@ -13,7 +13,7 @@
 		<meta name="theme-color" content="#ffffff">
 
 		<!-- meta tags -->
-		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="description" content="Free Web tutorials">
 		<meta name="keywords" content="E-labs">
 		<meta name="author" content="Kevin Smulders">
