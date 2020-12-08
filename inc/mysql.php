@@ -69,6 +69,12 @@
 		// $message = $db->createNewUserWithoutProfielPictureAndLang("test 2","mail4@emai5ltje.com","12345","test","Student");
 		// echo $message;
 		public function createNewUserWithoutProfielPictureAndLang($name, $email, $user_number, $password, $role){
+			
+			$name = htmlspecialchars($name);
+			$email = htmlspecialchars($email);
+			$user_number = htmlspecialchars($user_number);
+			$password = htmlspecialchars($password);
+			$role = htmlspecialchars($role);
 			// this query gets all the users form the table
 			if ($stmt = $this->conn->prepare("SELECT `email`, `user_number` FROM `users`")) {
 				$stmt->execute();
@@ -110,6 +116,13 @@
 		}
     
 		public function addNewNotification($creater, $viewer, $title, $message, $date_time){
+			
+			$creater = htmlspecialchars($creater);
+			$viewer = htmlspecialchars($viewer);
+			$title = htmlspecialchars($title);
+			$message = htmlspecialchars($message);
+			$date_time = htmlspecialchars($date_time);
+
 			if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `viewer`, `title`, `message`, `date_time`) VALUES (?,?,?,?,?)")) {
 				$stmt->bind_param("iissd", $creater, $viewer, $title, $message, $date_time);
 				$stmt->execute();
@@ -203,6 +216,21 @@
 
 		// this still needs a join in lab-journaal-users
 		public function LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
+			
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$creater_id = htmlspecialchars($creater_id);
+			$logboek = htmlspecialchars($logboek);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$grade = htmlspecialchars($grade);
+			$year = htmlspecialchars($year);
+			$Attachment = htmlspecialchars($Attachment);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+
 			if ($stmt = $this->conn->prepare("INSERT INTO `lab_journal`(`title`, `date`, `theory`, `safety`, `creater_id`, `logboek`, `method_materials`, `submitted`, `grade`, `year`, `Attachment`, `Goal`, `Hypothesis`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
 				$stmt->bind_param("ssssissiiisss", $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
 				$stmt->execute();
@@ -219,6 +247,9 @@
 			return NULL;
 		}
 		public function connectNewLabjournaalWithUser($userId, $LabjournaalId){
+			
+			$userId = htmlspecialchars($userId);
+			$LabjournaalId = htmlspecialchars($LabjournaalId);
 			if ($stmt = $this->conn->prepare("INSERT INTO `lab_journal_users`(`user_id`, `lab_journal_id`) VALUES (?,?)")) {
                 $stmt->bind_param('ii', $userId, $LabjournaalId);
 				$stmt->execute();
@@ -229,6 +260,10 @@
 		}
 
 		public function updateUsersLanguage($userId, $language){
+
+			$userId = htmlspecialchars($userId);
+			$language = htmlspecialchars($language);
+
 			if ($stmt = $this->conn->prepare("UPDATE `users` SET `lang`=? WHERE `user_id` = ?")) {
                 $stmt->bind_param('si',  $language, $userId);
 				$stmt->execute();
@@ -239,6 +274,10 @@
 		}
 
 		public function updateProfielFoto($UserID ,$profilePictureName){
+
+			$UserID = htmlspecialchars($UserID);
+			$profilePictureName = htmlspecialchars($profilePictureName);
+
 			if ($stmt = $this->conn->prepare("UPDATE `users` SET `profile_picture` =? WHERE `user_id` = ?")) {
                 $stmt->bind_param('si', $profilePictureName, $UserID);
 				$stmt->execute();
