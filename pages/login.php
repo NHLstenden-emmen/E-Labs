@@ -1,17 +1,23 @@
 <?php
     $error = "";
-    if (isset($_POST['email'])) {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
 
         $email = $_POST['email'];
         $pass = $_POST['password'];
         $loginInfo = $db->getTheUserPasswordForLogin($email);
+        if ($loginInfo->num_rows === 0) { 
+            $error = "de gebruiker is niet gevonden.";
+        }
         while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
+            // this is a check if the password is correct
             if (password_verify($pass, $result['password'])) {
+                // this is a checkbox check for the remeber me check 
                 if (!empty($_POST["remember"])) {
                     setcookie("member_login", $email);
                 } else {
                     setcookie("member_login", '');
                 }
+                // this changes the cookie lang to the users database prefred lang
                 setcookie("lang", $result['lang'], time()+3600);
 
                 // store values in session
@@ -35,9 +41,6 @@
             } else {
                 $error = "het wachtwoord klopt niet.";
             }
-        }
-        if (!empty($loginInfo->fetch_array(MYSQLI_ASSOC))) {
-            $error = "de gebruiker is niet gevonden.";
         }
     }
 ?>
@@ -65,12 +68,12 @@
             <div class="error"><?php echo $error; ?></div>
             <label class="check">
                 <input type="checkbox" name="remember" id="remember"
-                <?php if(isset($_COOKIE["member_login"])) { ?> checked
-                <?php } ?> /> Onthoud e-mail
+                <?php if(isset($_COOKIE["member_login"])) { ?> checked 
+                <?php } ?> /><?php echo $lang["REMEMBER_EMAIL"];?>
             </label><br>
-            <button class="inloggen" type="submit">inloggen</button><br>
+            <button class="inloggen" type="submit"><?php echo $lang["LOGIN"];?></button><br>
             <div class="vergeten">
-                <a href="https://passwordreset.microsoftonline.com/?whr=nhlstenden.com" target=”_blank” class="vergeten-tekst">Wachtwoord vergeten?</a>
+                <a href="https://passwordreset.microsoftonline.com/?whr=nhlstenden.com" target=”_blank” class="vergeten-tekst"><?php echo $lang["FORGOT_YOUR_PASSWORD"];?> </a>
             </div>
         </form> 
     </div>

@@ -56,7 +56,7 @@
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 						break;
-					case 'createNewLabjournaal'://file path of nieuwlabjournaal
+					case 'createnewlabjournaal'://file path of nieuwlabjournaal
 						echo '<link rel="stylesheet" href="css/pages/Nieuwlabjournaal.css">';
 						break;
 					default:
@@ -73,14 +73,8 @@
 					case 'year':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
-					case 'year2':
-						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
-						break;
-					case 'year3':
-						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
-						break;
-						case 'gebruikersprofiel':
-							echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
+					case 'gebruikersprofiel':
+						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
 						break;
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';

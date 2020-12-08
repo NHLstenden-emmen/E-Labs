@@ -41,5 +41,8 @@ return [
 	'ADD_USER' => 'Add user',
 	'EDIT_PROFILE_PHOTO' => 'Edit profile photo',
 	'LOGOUT' => 'log out',
+	'REMEMBER_EMAIL' => 'Remember email',
+	'LOGIN' => 'login',
+	'FORGOT_YOUR_PASSWORD' => 'Forgot your password?',
 ]
 ?>

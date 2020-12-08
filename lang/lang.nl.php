@@ -41,5 +41,8 @@ return [
 	'ADD_USER' => 'gebruiker toevoegen',
 	'EDIT_PROFILE_PHOTO' => 'profiel foto bewerken',
 	'LOGOUT' => 'uitloggen',
+	'REMEMBER_EMAIL' => 'Onthoud e-mail',
+	'LOGIN' => 'Log in',
+	'FORGOT_YOUR_PASSWORD' => 'Je wachtwoord vergeten?',
 ]
 ?>
