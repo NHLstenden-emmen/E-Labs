@@ -25,3 +25,7 @@
 .docentenHomePage .goed {
 	background-color: lime;
 }
+
+.docentenHomePage .nietbeoordeeld{
+	background-color: grey;
+}

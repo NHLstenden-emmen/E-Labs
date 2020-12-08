@@ -38,8 +38,8 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
-				case 'year':
-					include 'docent/year.php';
+				case 'grade':
+					include 'docent/grade.php';
 					break;
 				case 'gebruikersoverzicht':
 					include 'docent/gebruikersoverzicht.php';

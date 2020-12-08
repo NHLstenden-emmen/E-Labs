@@ -157,29 +157,50 @@
 			}
 		}
     
-		public function getAllGradeResults($year){
-			$sql = "SELECT DISTINCT users.user_id, users.name
-                FROM users
-                INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-                INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-				WHERE lab_journal.year = $year
-				GROUP BY users.user_id";
+		public function getAllGradeResults($year, $sortName){
+			if(!empty($sortName)){
+				$sql = "SELECT DISTINCT users.user_id, users.name
+					FROM users
+					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE lab_journal.year = $year
+					GROUP BY users.user_id
+					ORDER BY users.name $sortName";
+			} else {
+				$sql = "SELECT DISTINCT users.user_id, users.name
+					FROM users
+					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE lab_journal.year = $year
+					GROUP BY users.user_id";
+			}
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
 				$stmt->close();
-				return $result; 
+				return $result;
 			}
 			return NULL;
 		}
 
-		public function getGradeResultsPerPerson($userId, $year){
-			$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
-                FROM users
-                INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-                INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-                WHERE users.user_id = ? AND lab_journal.year = $year";
+		public function getGradeResultsPerPerson($userId, $year, $sortDate){
+		
+			if(!empty($sortDate)) {
+				$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
+					FROM users
+					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE users.user_id = ? AND lab_journal.year = $year
+					ORDER BY lab_journal.date $sortDate";
+			} else{	
+				$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
+					FROM users
+					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE users.user_id = ? AND lab_journal.year = $year";					
+			}
+
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->bind_param("i", $userId);
 				$stmt->execute();

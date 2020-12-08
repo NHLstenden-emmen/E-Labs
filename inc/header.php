@@ -70,18 +70,12 @@
 					case 'home':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
-					case 'year':
+					case 'grade':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
-					case 'year2':
-						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
-						break;
-					case 'year3':
-						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
-						break;
-						case 'gebruikersprofiel':
-							echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
-						break;
+					case 'gebruikersprofiel':
+						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
+					break;
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 					break;
