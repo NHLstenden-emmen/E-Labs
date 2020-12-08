@@ -1,5 +1,3 @@
-<!-- call it via: -->
-<!-- <?php echo $lang["REPEAT_PASSWORD"];?>   -->
 <?php
 return [
 	'USERS_NOTIFICATIONS' => 'Mijn notifications',

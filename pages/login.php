@@ -50,18 +50,18 @@
         <div class="nl-en">
             <form method='post' id='langSwitch'>
                 <button type='submit' value='nl' class='nl <?php if($_COOKIE['lang'] == 'nl' || empty($_COOKIE['lang'])){echo 'checked';} ?>' name='changelang'>
-                    Engels
+                    Nederlands
                 </button>
             </form>
             <form method='post' id='langSwitch'>
                 <button type='submit' value='en' class='en <?php if($_COOKIE['lang'] == 'en'){echo 'checked';} ?>' name='changelang'>
-                    Nederlands
+                    Engels
                 </button>
             </form>
         </div>
         <form method="POST">
-            <input value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" type="text" name="email" placeholder="email" required>
-            <input type="password" name="password" placeholder="Wachtwoord" required>
+            <input value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" type="text" name="email" placeholder="<?php echo $lang["E-MAIL"];?>" required>
+            <input type="password" name="password" placeholder="<?php echo $lang["PASSWORD"];?>" required>
             <div class="error"><?php echo $error; ?></div>
             <label class="check">
                 <input type="checkbox" name="remember" id="remember"

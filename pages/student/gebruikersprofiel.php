@@ -4,7 +4,6 @@ $email = $_SESSION['email'];
 $stud_id = $_SESSION['user_id'];
 $lang = $_COOKIE['lang'];
 $pf_pic = $_SESSION['pf_Pic'];
-var_dump($pf_pic);
 ?>
 
 <div>

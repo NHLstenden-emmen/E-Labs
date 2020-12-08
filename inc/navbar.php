@@ -71,10 +71,9 @@
 					<?php  if ($_SESSION['role'] == 'Docent') { ?>
 						<a class="dropdown-item" href="gebruikersoverzicht"><?php echo $lang["USER_OVERVIEW"];?> </a>
 						<a class="dropdown-item" href="gebruikertoevoegen"><?php echo $lang["ADD_USER"];?></a>
+						<div class="dropdown-divider"></div>
 					<?php } else {?>
-						<a class="dropdown-item" href="editprofpic"><?php echo $lang["EDIT_PROFILE_PHOTO"];?> </a>
 					<?php } ?>
-					<div class="dropdown-divider"></div>
 					<?php
 						// check if there is a cookie for lang set
 						if(!isset($_COOKIE['lang'])){
