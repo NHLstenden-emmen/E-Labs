@@ -268,5 +268,20 @@
 			}
 			return NULL;
 		}
+
+		public function DocentLabjournaalView($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
+			if ($stmt = $this->conn->prepare("SELECT `labjournaal_id`, `title`, `date`, `theory`, `safety`, `createrid`, `logboek`, `method_materials`, `grade`, `year` FROM `lab_journal`")){
+				$stmt->bind_param('ssssissiiisss', $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
+				$stmt->execute();
+				$result = $stmt->get_result();
+                $stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		
+		
 	}
 ?>

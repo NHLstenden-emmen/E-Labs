@@ -84,7 +84,7 @@
                 $labjournaalID = $labjournaal['labjournaal_id'];
                 if($cijfer >= 1 && $cijfer <= 5.4) {
                     echo "<td class='onvoldoende'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . '-' . "</a></td>";
-                } elseif($cijfer >= 5.5 && $cijfer < 10) {
+                } elseif($cijfer >= 5.5 && $cijfer <= 10) {
                     echo "<td class='goed'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
                 } else {
                     echo "<td class='nietbeoordeeld'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>"; 
