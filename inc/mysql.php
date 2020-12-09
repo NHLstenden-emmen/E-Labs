@@ -169,6 +169,7 @@
 				return $result;
 			}
 		}
+		
     
 		public function getAllGradeResults($year){
 			$sql = "SELECT DISTINCT users.user_id, users.name
@@ -280,6 +281,22 @@
 
 			if ($stmt = $this->conn->prepare("UPDATE `users` SET `profile_picture` =? WHERE `user_id` = ?")) {
                 $stmt->bind_param('si', $profilePictureName, $UserID);
+				$stmt->execute();
+				$stmt->close();
+				return;
+			}
+			return NULL;
+		}
+		
+		public function updatelabjournaal($UserID ,$title, $date, $grade){
+
+			$UserID = htmlspecialchars($UserID);
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$grade = htmlspecialchars($grade);
+
+			if ($stmt = $this->conn->prepare("UPDATE `lab_journaal` SET `title` =?, `date` =?, `grade` =? WHERE `user_id` = ?")) {
+                $stmt->bind_param('si', $title, $date, $grade, $UserID);
 				$stmt->execute();
 				$stmt->close();
 				return;
