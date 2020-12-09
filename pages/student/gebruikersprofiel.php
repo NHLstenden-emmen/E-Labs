@@ -11,11 +11,21 @@
 		}
 	}
 ?>
+<?php
+	if(isset($_POST['deletepf'])){
+		$upload_directory = "gebruikersBestanden/profilePictures/";
+		$TargetPath="blank-profile-picture.png";
+		$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
+		$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
+		$deletemessage="Verwijderen voltooid!";
+	}
+?>
 <div class="gebruikersProfile">
 	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle">
 	<form method='post' enctype='multipart/form-data' class="changeprofilepicture"> 
 		<input name='profpic' type='file'>
 		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit'>
+		<input value='delete' name='deletepf' type='submit'>
 	</form>
 	<div class="Gebruikersprofielcontainer">
 		<div id="Gebruikersprofielstudentinformatierechts"> 
