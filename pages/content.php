@@ -52,6 +52,8 @@
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
 					break;
+				case 'gebruikersprofielstudent':
+					include 'docent/gebruikersprofielstudentbewerken.php';
 				case 'gradelabjournal':
 					include 'docent/CijferJournaal.php';
 					break;

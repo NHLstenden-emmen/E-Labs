@@ -337,5 +337,22 @@
 			}
 			return NULL;
 		}
+
+		public function docentstudentprofielbewerken($userID, $name, $email, $usernumber, $password){
+
+			$userID = htmlspecialchars($userID);
+			$name = htmlspecialchars($name);
+			$email = htmlspecialchars($email);
+			$usernumber = htmlspecialchars($usernumber);
+			$password = htmlspecialchars($password);
+
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `user_id` =?, `name` =?, `email` =?, `user_number` =?, `password` =?")) {
+				$stmt->bind_param('issis', $userID, $name, $email, $usernumber, $password);
+				$stmt->execute();
+				$stmt->close();
+				return;
+			}
+			return NULL;
+		}
 	}
 ?>
