@@ -24,18 +24,24 @@
 			$deletemessage="Verwijderen voltooid!";
 		}
 	}
-	
+
 	$errorPass ='';
 	if(isset($_POST['wachtwoordweizigen'])){
+		// a check if all passwords are filled in
 		if (!empty($_POST['newWachtwoord']) && !empty($_POST['newWachtwoordHerhalen']) && !empty($_POST['huidigewachtwoord'])) {
+			// check if the new password matches
 			if ($_POST['newWachtwoord'] == $_POST['newWachtwoordHerhalen']) {
+				// gets the current users pasword
 				$loginInfo = $db->getTheUserPasswordForLogin($_SESSION['email']);
 				while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
+					// verifys the current password with the hash
 					if (password_verify($_POST['huidigewachtwoord'], $result['password'])){
+						// hashes the password
 						$errorPass = "wachtwoord verandert";
 						$options = [ 'cost' => 12, ];
 						$newpass = $_POST['newWachtwoord'];
 						$hash = password_hash($newpass, PASSWORD_BCRYPT, $options);
+						// puts the password in the databse
 						$db->updateCurrentUsersPassword($result['user_id'], $hash);
 					} else {
 						$errorPass = "current wacht woord klopt niet";
