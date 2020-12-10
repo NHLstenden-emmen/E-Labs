@@ -203,9 +203,9 @@
 				return $result;
 			}
 		}
-		public function selectpdfcontentlabjournal($docid){
+		public function selectcontentlabjournal($labjournaal_id){
 			if($stmt = $this->conn->prepare("SELECT * FROM `lab_journal` WHERE labjournaal_id = ?")){
-					$stmt->bind_param("i", $docid);
+					$stmt->bind_param("i", $labjournaal_id);
 					$stmt->execute();
 					$result = $stmt->get_result();
 					$stmt->free_result();
@@ -311,9 +311,12 @@
                 $stmt->bind_param('ssssssiisssii', $title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 				$stmt->execute();
 				$stmt->close();
-				return;
+				return "gelukt";
 			}
-			return NULL;
+			else{
+				$conn = $this->conn;
+				return mysqli_error($conn);
+			}
 		}
 
 		public function getLabjournaal($labjournaal, $userId){
