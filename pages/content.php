@@ -51,6 +51,9 @@
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
 					break;
+				case 'gebruikersprofielstudent':
+					include 'docent/gebruikersprofielstudentbewerken.php';
+					break;
 				default:
 					include '404.php'; // when the page isset found
 			}

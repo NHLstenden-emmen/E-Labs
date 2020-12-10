@@ -16,14 +16,15 @@
 		<div class="Gebruikersprofielcontainer">
 			<div id="Gebruikersprofielstudentinformatierechts"> 
 				
-				<p> <?php echo $lang["TEACHER_NUMBER"];?>: </p>
-				<input type="text" name="Docentnummer"/>
+				<p> <?php echo $lang["STUDENT_NUMBER"];?>: </p>
+				<input type="text" name="Studentnummer"/>
 				<p> <?php echo $lang["NAME"];?> : </p>
 				<input type="text" name="Naam"/>
 				<p> <?php echo $lang["E-MAIL"];?>: </p>
 				<input type="text" name="E-mail"/>
 			</div>
-			<div id="Gebruikersprofielstudentinformatielinks">
+			<div id="Gebruikersprofielstudentinformatielinks"> 
+				
 				<p> <?php echo $lang["PASSWORD"];?>: </p>
 				<input type="text" name="Wachtwoord"/>
 				<p> <?php echo $lang["PASSWORD"];?>: </p>
@@ -38,17 +39,17 @@
 <?php
 	var_dump($_POST);
 	if (ISSET($_POST['submitgegevens'])) {
-		$Docentnummer = $_POST['Studentnummer'];
+		$Studentnummer = $_POST['Studentnummer'];
 		$Naam = $_POST['Naam'];
 		$Mail = $_POST['E-mail'];
 		$Wachtwoord = $_POST['Wachtwoord'];
 		$Wachtwoordnog = $_POST['Wachtwoordnogmaals'];
 	}
-	if(!empty($Docentnummer) && !empty($Naam) && !empty($Mail) && !empty($Wachtwoord) && !empty($Wachtwoordnog)){
+	if(!empty($Studentnummer) && !empty($Naam) && !empty($Mail) && !empty($Wachtwoord) && !empty($Wachtwoordnog)){
 		if ($Wachtwoord != $Wachtwoordnog) {
 			die("Wachtwoorden komen niet overeen.");
 		}
         die("Vul alle velden in s.v.p.");
     }
-    $db->docentstudentprofielbewerken($Docentnummer, $Naam, $Mail, $Wachtwoord, $Wachtwoordnog);
+    $db->docentstudentprofielbewerken($Studentnummer, $Naam, $Mail, $Wachtwoord, $Wachtwoordnog);
 ?>
