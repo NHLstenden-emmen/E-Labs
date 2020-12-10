@@ -30,6 +30,9 @@ if(isset($_POST['submitadd'])){
     $passwordr = $_POST['passwordrepeat'];
     if(!empty($name) && !empty($studentid) && !empty($email) && !empty($password) && !empty($passwordr)){
         if($password === $passwordr){
+            $options = [ 'cost' => 12, ];
+            $newpass = $password;
+            $password = password_hash($newpass, PASSWORD_BCRYPT, $options);
             $message = $db->createNewUserWithoutProfielPictureAndLang($name, $email, $studentid, $password, $role);
             echo $message;
         }
@@ -42,4 +45,4 @@ if(isset($_POST['submitadd'])){
     }
     }
 ?>
-
+ 

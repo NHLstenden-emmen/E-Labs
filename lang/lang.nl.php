@@ -39,7 +39,7 @@ return [
 	'PREPARATIONS' => 'Voorbereidingen',
 	'USER_OVERVIEW' => 'gebruikers overzicht',
 	'ADD_USER' => 'gebruiker toevoegen',
-	'EDIT_PROFILE_PHOTO' => 'profiel foto bewerken',
+	'EDIT' => 'bewerken',
 	'LOGOUT' => 'uitloggen',
 	'REMEMBER_EMAIL' => 'Onthoud e-mail',
 	'LOGIN' => 'Log in',

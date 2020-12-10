@@ -39,7 +39,7 @@ return [
 	'PREPARATIONS' => 'Preparations',
 	'USER_OVERVIEW' => 'User overview',
 	'ADD_USER' => 'Add user',
-	'EDIT_PROFILE_PHOTO' => 'Edit profile photo',
+	'EDIT' => 'Edit',
 	'LOGOUT' => 'log out',
 	'REMEMBER_EMAIL' => 'Remember email',
 	'LOGIN' => 'login',
