@@ -27,6 +27,7 @@ return [
 	'E-MAIL' => 'email',
 	'ADJUST_PROFILE_PICTURE' => 'Profielfoto aanpassen',
 	'STUDENT_NUMBER' => 'Studenten nummer',
+	'TEACHER_NUMBER' => 'Docent nummmer',
 	'FIRST_NAME' => 'Voornaam',
 	'LAST_NAME' => 'Achternaam',
 	'CLASS' => 'Klas',

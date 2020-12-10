@@ -27,6 +27,7 @@ return [
 	'E-MAIL' => 'e-mail',
 	'ADJUST_PROFILE_PICTURE' => 'Edit profile picture',
 	'STUDENT_NUMBER' => 'Student number',
+	'TEACHER_NUMBER' => 'Teacher number',
 	'FIRST_NAME' => 'First Name',
 	'LAST_NAME' => 'Last name',
 	'CLASS' => 'Class',
