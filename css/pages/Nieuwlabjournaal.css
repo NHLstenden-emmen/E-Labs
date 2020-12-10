@@ -1,21 +1,25 @@
-.groteretextarealabjournaal {
-	margin: auto;
-	height: 200px;
-	width: 600px;
-	resize: none;
-}
-
-.newlabjournaalcontainer
-{
+.newlabjournaalcontainer {
 	padding: 20px;
 	text-align: center;
 	display: grid;
 	grid-template-columns: 660px 660px;
 }
 
-.nieuwetitellabjournaal
-{
+.newlabjournaalcontainer .groteretextarealabjournaal {
+	margin: auto;
+	height: 200px;
+	width: 600px;
+	resize: none;
+	margin-bottom: 30px;
+}
+
+.newlabjournaalcontainer .nieuwetitellabjournaal {
 	margin: auto;
 	height: 30px;
 	width: 600px;
+	margin-bottom: 30px;
+}
+.newlabjournaalcontainer input[type="submit"],
+.newlabjournaalcontainer input[type="reset"] {
+	margin-top: 30px;
 }
