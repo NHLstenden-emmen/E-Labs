@@ -9,31 +9,32 @@
 			<a href="?year=3">- <?php echo $lang["YEAR_3"];  ?></a>
 		</div>
 		<div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
-			<table>
-				<?php
-					if(isset($_GET['year'])) {
-						if($_GET['year'] == 2) {
-							$year = 2;
-						} elseif ($_GET['year'] == 3) {
-							$year = 3;
-						} else {
-							$year = 1;
-						}
+			<?php
+				if(isset($_GET['year'])) {
+					if($_GET['year'] == 2) {
+						$year = 2;
+					} elseif ($_GET['year'] == 3) {
+						$year = 3;
 					} else {
 						$year = 1;
 					}
-					// When session is available getting the user id from session
-					$userId = 1;
+				} else {
+					$year = 1;
+				}
+				// When session is available getting the user id from session
+				$userId = 1;
 
-					// Get every labjournal of the choosen year
-					$allLabjournals = $db->selectAllLabjournals($year, $userId);
-				?>
-				
-				<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
-				<th><?php echo $lang["TITLE"];?></th>
-				<th><?php echo $lang["DATE"];?></th>
-				<th><?php echo $lang["GRADE"];?></th>
-				<th><?php echo $lang["ACTION"];?></th>
+				// Get every labjournal of the choosen year
+				$allLabjournals = $db->selectAllLabjournals($year, $userId);
+			?>
+			<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
+			<table>
+				<tr>
+					<th><?php echo $lang["TITLE"];?></th>
+					<th><?php echo $lang["DATE"];?></th>
+					<th><?php echo $lang["GRADE"];?></th>
+					<th><?php echo $lang["ACTION"];?></th>
+				</tr>
 				<?php
 					while($allResults = $allLabjournals->fetch_array(MYSQLI_ASSOC)){
 						echo "<tr>";
@@ -44,10 +45,13 @@
 						} else {
 							echo "<td>$allResults[grade]</td>";
 						}
-						echo "<td id='actionButtons'>
-								<a <a href='EditJournaal?id=" . $userId . "'><i class='far fa-edit'></i></a>
-								<a href='#'><i class='fas fa-eye'></i></a>
-								<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'><i class='fas fa-print'></i></a>
+						echo "<td class='actionButtons'>";
+						if ($allResults['submitted'] == 0) {
+							echo "<a href='EditJournaal?id=" . $allResults['labjournaal_id'] . "'><i class='far fa-edit'></i></a>";
+						} else{
+							echo "<a href='viewLabjournaal?id=" . $allResults['labjournaal_id'] . "'><i class='fas fa-eye'></i></a>";
+						}
+						echo "<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'>  <i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";
 					}	

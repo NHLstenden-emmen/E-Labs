@@ -2,11 +2,12 @@
 	if (empty($_SESSION['role'])) {
 		include 'login.php'; 
 	} else {
-		if ($_SESSION['role'] == 'Student') {
+		if ($_SESSION['role'] == 'Student' && isset($_SESSION['name']) && isset($_SESSION['user_id']) && isset($_SESSION['email'])) {
 			switch(strtolower($pagePath))
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
+				case '':
 					include 'student/home.php';
 					break;
 				case 'labjournaal':
@@ -18,27 +19,28 @@
 				case 'createnewlabjournaal':
 					include 'student/createNewLabjournaal.php';
 					break;
-				case 'editprofpic':
-					include 'student/editProfpic.php';
+				case 'updatelabjournaal':
+					include 'student/updatelabjournaal.php';
 					break;
 				case 'exel':
 					include 'student/EXEL.php';
 					break;
 				case 'gebruikersprofiel':
 					include 'student/gebruikersprofiel.php';
-					break;	
-				case 'update':
-					include 'student/update.php';
+					break;
+				case 'viewlabjournaal':
+					include 'student/viewLabjournaal.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
-		} else if($_SESSION['role'] == 'Docent') {
+		} else if($_SESSION['role'] == 'Docent' && isset($_SESSION['name']) && isset($_SESSION['user_id']) && isset($_SESSION['email'])) {
 			switch(strtolower($pagePath))
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
 				case 'grade':
+				case '':
 					include 'docent/grade.php';
 					break;
 				case 'gebruikersoverzicht':
@@ -52,6 +54,11 @@
 					break;
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
+					break;
+				case 'gebruikersprofielstudent':
+					include 'docent/gebruikersprofielstudentbewerken.php';
+				case 'gradelabjournal':
+					include 'docent/CijferJournaal.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found

@@ -9,16 +9,15 @@
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 	<div class="img-logo">
-		<img src="images/logo.png">
+		<img src="images/logo.png" alt="web logo">
 	</div>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controles="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 		<li class="nav-item">
 			<a class="nav-link" href="home">E-labs</a>
-			
 		</li>
 		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
@@ -62,7 +61,7 @@
 					}
 				?>
 			</li>
-			<div class="btn-group topnavbar">
+			<li class="btn-group topnavbar">
 				<button type="button" class="btn"><?php echo $_SESSION['name'];?></button>
 				<button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<span class="sr-only">Toggle Dropdown</span>
@@ -71,10 +70,9 @@
 					<?php  if ($_SESSION['role'] == 'Docent') { ?>
 						<a class="dropdown-item" href="gebruikersoverzicht"><?php echo $lang["USER_OVERVIEW"];?> </a>
 						<a class="dropdown-item" href="gebruikertoevoegen"><?php echo $lang["ADD_USER"];?></a>
+						<div class="dropdown-divider"></div>
 					<?php } else {?>
-						<a class="dropdown-item" href="editprofpic"><?php echo $lang["EDIT_PROFILE_PHOTO"];?> </a>
 					<?php } ?>
-					<div class="dropdown-divider"></div>
 					<?php
 						// check if there is a cookie for lang set
 						if(!isset($_COOKIE['lang'])){
@@ -103,13 +101,13 @@
 						}
 					?>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item">
+					<div class="dropdown-item">
 						<form method="post"> 
 							<input type="submit" name="logout" class="dropdown-item" value="<?php echo $lang["LOGOUT"];?>" /> 
 						</form>
-					</a>
+					</div>
 				</div>
-			</div>
+			</li>
 		</ul>
 		<div class="img-person">
 			<a href="gebruikersprofiel">
@@ -119,7 +117,7 @@
 				} else {
 					echo $_SESSION['pf_Pic'];
 				}
-				?>" class="rounded-circle">
+				?>" alt="profile foto in header" class="rounded-circle nav-profile-pic">
 			</a>
 		</div>
 	</div>
