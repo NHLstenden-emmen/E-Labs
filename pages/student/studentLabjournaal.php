@@ -45,10 +45,13 @@
 						} else {
 							echo "<td>$allResults[grade]</td>";
 						}
-						echo "<td class='actionButtons'>
-								<a href='EditJournaal?id=" . $userId . "'><i class='far fa-edit'></i></a>
-								<a href='#'><i class='fas fa-eye'></i></a>
-								<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'><i class='fas fa-print'></i></a>
+						echo "<td class='actionButtons'>";
+						if ($allResults['submitted'] == 0) {
+							echo "<a href='EditJournaal?id=" . $allResults['labjournaal_id'] . "'><i class='far fa-edit'></i></a>";
+						} else{
+							echo "<a href='viewLabjournaal?id=" . $allResults['labjournaal_id'] . "'><i class='fas fa-eye'></i></a>";
+						}
+						echo "<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'>  <i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";
 					}	

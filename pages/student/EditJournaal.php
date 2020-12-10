@@ -58,7 +58,7 @@ if (empty($message) && isset($_GET['id'])) {
 				<textarea class="groteretextarealabjournaal" name="method_materials" value="<?php echo $result['method_materials'];?>"><?php echo $result['method_materials'];?></textarea>
 		</div>
 		<div>
-			<label for="year">Year:</label> </br>
+			<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
 			<label for="1"><?php echo $lang["YEAR_1"];?></label>
 				<input type="radio" name="year" value="1" checked>
 			<label for="1"><?php echo $lang["YEAR_2"];?></label>

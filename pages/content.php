@@ -28,6 +28,9 @@
 				case 'gebruikersprofiel':
 					include 'student/gebruikersprofiel.php';
 					break;
+				case 'viewlabjournaal':
+					include 'student/viewLabjournaal.php';
+					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
