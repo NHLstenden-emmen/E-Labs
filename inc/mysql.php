@@ -354,5 +354,19 @@
 			}
 			return NULL;
 		}
+
+		public function updateCurrentUsersPassword($UserID ,$newPassword){
+
+			$UserID = htmlspecialchars($UserID);
+			$newPassword = htmlspecialchars($newPassword);
+
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `password` = ? WHERE `user_id` = ?")) {
+                $stmt->bind_param('si', $newPassword, $UserID);
+				$stmt->execute();
+				$stmt->close();
+				return;
+			}
+			return NULL;
+		}
 	}
 ?>

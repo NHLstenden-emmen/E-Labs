@@ -24,6 +24,7 @@
 			$deletemessage="Verwijderen voltooid!";
 		}
 	}
+	
 	$errorPass ='';
 	if(isset($_POST['wachtwoordweizigen'])){
 		if (!empty($_POST['newWachtwoord']) && !empty($_POST['newWachtwoordHerhalen']) && !empty($_POST['huidigewachtwoord'])) {
@@ -31,9 +32,13 @@
 				$loginInfo = $db->getTheUserPasswordForLogin($_SESSION['email']);
 				while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
 					if (password_verify($_POST['huidigewachtwoord'], $result['password'])){
-						echo "wooo";
+						$errorPass = "wachtwoord verandert";
+						$options = [ 'cost' => 12, ];
+						$newpass = $_POST['newWachtwoord'];
+						$hash = password_hash($newpass, PASSWORD_BCRYPT, $options);
+						$db->updateCurrentUsersPassword($result['user_id'], $hash);
 					} else {
-						$errorPass = "nieuwe wachtwoord komt niet overeen";
+						$errorPass = "current wacht woord klopt niet";
 					}
 				}
 			} else {
@@ -68,15 +73,15 @@
 	<form method="POST" class='changePassword'>
 		<div>
 			<label for="huidigewachtwoord">Current <?php echo $lang['PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='huidigewachtwoord' type='text'>
+			<input placeholder='******' name='huidigewachtwoord' type='password'>
 		</div></br>
 		<div>
 			<label for="newWachtwoord">New <?php echo $lang['PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='newWachtwoord' type='text'>
+			<input placeholder='******' name='newWachtwoord' type='password'>
 		</div>
 		<div>
 			<label for="newWachtwoordHerhalen"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='newWachtwoordHerhalen' type='text'>
+			<input placeholder='******' name='newWachtwoordHerhalen' type='password'>
 		</div></br>
 		<p><?php echo $errorPass?></p>
 		<input value='update' name='wachtwoordweizigen' type='submit'>
