@@ -36,6 +36,7 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
+				case 'year':	
 				case '':
 					include 'docent/year.php';
 					break;
@@ -50,6 +51,9 @@
 					break;
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
+					break;
+				case 'gradelabjournal':
+					include 'docent/CijferJournaal.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found
