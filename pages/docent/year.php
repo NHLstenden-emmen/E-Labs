@@ -24,15 +24,14 @@
         //  If sql query found row(with information) -> do this
         while ($result = $leerlingen->fetch_array(MYSQLI_ASSOC)){
             $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year);
-
-            echo "<tr>";
-            echo "<td>" . $result['name'] . "</td>";
-        
             //  Switch for displaying digit & correct background color
             while ($labjournaal = $labjournaals->fetch_array(MYSQLI_ASSOC)){
+                $name = $result['name'];
                 $cijfer = $labjournaal['grade'];
                 $title = $labjournaal['title'];
                 $labjournaalID = $labjournaal['labjournaal_id'];
+                echo "<tr>";
+                echo "<td>".$name."</td>";
                 echo "<td>".$title."</td>";
                 
                 switch ($cijfer) {
@@ -47,13 +46,12 @@
                         break;
                 }
                 echo "<td>
-                        <a href='labjournaalview?labjournaal=".$labjournaalID."'TITLE='".$lang['VIEWLAB']."'><i class='fas fa-eye'></i></a>
-                        <a href ='gradelabjournal?labjournaal=".$labjournaalID."'TITLE='".$lang['GRADELAB']."'><i class='far fa-edit'></i></a>
+                        <a href='labjournaalview?labjournaal_id=".$labjournaalID."'TITLE='".$lang['VIEWLAB']."'><i class='fas fa-eye'></i></a>
+                        <a href ='gradelabjournal?labjournaal_id=".$labjournaalID."'TITLE='".$lang['GRADELAB']."'><i class='far fa-edit'></i></a>
                         <a href='pdf?labjournaal_id=".$labjournaalID."target='_blank' TITLE='".$lang['PRINTLAB']."'><i class='fas fa-print'></i></a>
                     </td>";
+                    echo "</tr>";
             }
-
-            echo "</tr>";
         }
         ?>
     </table>

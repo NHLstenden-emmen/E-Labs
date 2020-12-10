@@ -23,9 +23,9 @@ $id = $_GET['id'];
 			<?php
 					while($allResults = $allLabjournals->fetch_array(MYSQLI_ASSOC)){
 			?> 
+			<p>Title:<?php echo "$allResults[title]" ?></p>
+			<p>Date:<?php echo "$allResults[date]" ?></p>
 			<form method='post' enctype='multipart/form-data'>
-			<p>Title </p><p><input type="text" name="title" value="<?php echo "$allResults[title]" ?>"/></p>
-			<p>Date</p><p><input type="text" name="title" value="<?php echo "$allResults[date]" ?>"/></p>
 			<p>Grade </p><p><input type="text" name="title" value="<?php echo "$allResults[grade]" ?>"/></p>
 			 <p><input name="submit" type="submit" value="Submit" /></p>
 			
