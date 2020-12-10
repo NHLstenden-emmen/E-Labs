@@ -1,30 +1,35 @@
 <?php
 	if(isset($_POST['changepf'])){
-		$UploadedFileName=$_FILES['profpic']['name'];
-		$upload_directory = "gebruikersBestanden/profilePictures/"; //This is the folder which you created just now
-		$TargetPath=time().$UploadedFileName;
+		if(!empty($_FILES['profpic']['name'])){
+			if($_SESSION['pf_Pic'] != "gebruikersBestanden/profilePictures/blank-profile-picture.png"){
+				unlink($_SESSION['pf_Pic']);
+			}
+			$UploadedFileName=$_FILES['profpic']['name'];
+			$upload_directory = "gebruikersBestanden/profilePictures/"; //This is the folder which you created just now
+			$time = time();
+			$TargetPath=$time.$UploadedFileName;
 		
-		if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
-			$TableName = "users";
-			$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
-			$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
+			if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
+				$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
+				$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
+			}
 		}
 	}
-?>
-<?php
 	if(isset($_POST['deletepf'])){
-		$upload_directory = "gebruikersBestanden/profilePictures/";
-		$TargetPath="blank-profile-picture.png";
-		$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
-		$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
-		$deletemessage="Verwijderen voltooid!";
+		if($_SESSION['pf_Pic'] != "gebruikersBestanden/profilePictures/blank-profile-picture.png"){
+			unlink($_SESSION['pf_Pic']);
+			$upload_directory = "gebruikersBestanden/profilePictures/blank-profile-picture.png";
+			$db->updateProfielFoto($_SESSION['user_id'], $upload_directory);
+			$_SESSION['pf_Pic'] = $upload_directory;
+			$deletemessage="Verwijderen voltooid!";
+		}
 	}
 ?>
 <div class="gebruikersProfile">
 	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle">
 	<form method='post' enctype='multipart/form-data' class="changeprofilepicture"> 
 		<input name='profpic' type='file'>
-		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit'>
+		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' >
 		<input value='delete' name='deletepf' type='submit'>
 	</form>
 	<div class="Gebruikersprofielcontainer">
