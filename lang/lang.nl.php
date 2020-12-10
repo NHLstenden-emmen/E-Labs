@@ -50,5 +50,14 @@ return [
 	'GRADELAB' => 'Labjournaal becijferen',
 	'PRINTLAB' => 'Labjournaal printen',
 	'CHANGE_PROFILE_PHOTO' => 'profielfoto veranderen',
+	'NEW' => 'Nieuw',
+	'CURRENT' => 'Huidig',
+	'RESULT' => 'Resultaat',
+	'SAFETY' => 'Veiligheid',
+	'RESULT' => 'Resultaat',
+	'MATERIAL' => 'Materiaal',
+	'GOAL' => 'Doel',
+	'YEAR' => 'Jaar',
+	'HYPOTHESIS' => 'Hypothese'
 ]
 ?>
