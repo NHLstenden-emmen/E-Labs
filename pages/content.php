@@ -31,6 +31,9 @@
 				case 'viewlabjournaal':
 					include 'student/viewLabjournaal.php';
 					break;
+				case 'searchresults':
+					include 'searchResults.php';
+					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
@@ -55,8 +58,12 @@
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
 					break;
+				case 'searchresults':
+					include 'searchResults.php';
+					break;
 				case 'gebruikersprofielstudent':
 					include 'docent/gebruikersprofielstudentbewerken.php';
+					break;
 				case 'gradelabjournal':
 					include 'docent/CijferJournaal.php';
 					break;

@@ -296,6 +296,32 @@
 			return NULL;
 		}
 
+		// public function selectStudentSearchResults($userId) {
+  		//	if (
+  		//     	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+		// 		WHERE lab_journal_users.user_id = ?")) {
+ 		//      $stmt->bind_param("i", $userId);
+		// 		$stmt->execute();
+		// 		$result = $stmt->get_result();
+		// 		$stmt->free_result();
+		// 		$stmt->close();
+		// 		return $result;
+		// 		}
+		// }
+
+		// 	public function selectTeacherSearchResults($userId) {
+  		//      if (
+  		//      $stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+		// 		WHERE lab_journal_users.user_id = ?")) {
+ 		//      $stmt->bind_param("i", $userId);
+		// 		$stmt->execute();
+		// 		$result = $stmt->get_result();
+		// 		$stmt->free_result();
+		// 		$stmt->close();
+		// 		return $result;
+		// 		}
+		// }
+    
 		public function updateProfielFoto($UserID ,$profilePictureName){
 
 			$UserID = htmlspecialchars($UserID);
