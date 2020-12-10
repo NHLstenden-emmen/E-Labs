@@ -3,6 +3,7 @@
 	text-align: center;
 	display: grid;
 	grid-template-columns: 660px 660px;
+	justify-content: center;
 }
 
 .newlabjournaalcontainer .groteretextarealabjournaal {
