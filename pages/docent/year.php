@@ -2,7 +2,9 @@
     <table>
         <tr>
             <th><?php echo $lang["NAME"];?></th>
+            <th><?php echo $lang['TITLE'];?></th>
             <th><?php echo $lang["GRADE"];?></th>
+            <th><?php echo $lang["ACTION"];?></th>
         </tr>
         <?php
         if(isset($_GET['year'])) {
@@ -29,20 +31,26 @@
             //  Switch for displaying digit & correct background color
             while ($labjournaal = $labjournaals->fetch_array(MYSQLI_ASSOC)){
                 $cijfer = $labjournaal['grade'];
-                $cijferTitel = $labjournaal['title'];
+                $title = $labjournaal['title'];
                 $labjournaalID = $labjournaal['labjournaal_id'];
+                echo "<td>".$title."</td>";
                 
                 switch ($cijfer) {
                     case $cijfer <= 5.4:
-                        echo "<td class='onvoldoende'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
+                        echo "<td class='onvoldoende'>".$cijfer."</td>";
                         break;
                     case $cijfer >= 5.5 && $cijfer < 7:
-                        echo "<td class='voldoende'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
+                        echo "<td class='voldoende'>".$cijfer."</td>";
                         break;
                     case $cijfer >= 7:
-                        echo "<td class='goed'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
+                        echo "<td class='goed'>".$cijfer."</td>";
                         break;
                 }
+                echo "<td>
+                        <a href='labjournaalview?labjournaal=".$labjournaalID."'TITLE='".$lang['VIEWLAB']."'><i class='fas fa-eye'></i></a>
+                        <a href ='unknown?labjournaal=".$labjournaalID."'TITLE='".$lang['GRADELAB']."'><i class='far fa-edit'></i></a>
+                        <a href='pdf?labjournaal_id=".$labjournaalID."target='_blank' TITLE='".$lang['PRINTLAB']."'><i class='fas fa-print'></i></a>
+                    </td>";
             }
 
             echo "</tr>";

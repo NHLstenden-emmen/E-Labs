@@ -36,6 +36,7 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
+				case 'year':	
 				case '':
 					include 'docent/year.php';
 					break;

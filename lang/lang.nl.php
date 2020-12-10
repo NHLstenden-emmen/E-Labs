@@ -46,6 +46,9 @@ return [
 	'FORGOT_YOUR_PASSWORD' => 'Je wachtwoord vergeten?',
 	'MADE_BY' => 'Aan gemaakt door:',
 	'LANGUAGE' => 'taal',
+	'VIEWLAB' => 'Labjournaal bekijken',
+	'GRADELAB' => 'Labjournaal becijferen',
+	'PRINTLAB' => 'Labjournaal printen',
 	'CHANGE_PROFILE_PHOTO' => 'profielfoto veranderen',
 ]
 ?>
