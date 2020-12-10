@@ -94,8 +94,9 @@
 				}
 			}
 			// it adds the users to the database and returns a message.
-			if ($stmt = $this->conn->prepare("INSERT INTO `users`(`name`, `email`, `user_number`, `password`, `role`) VALUES (?,?,?,?,?)")) {
-				$stmt->bind_param("ssiss", $name, $email, $user_number, $password, $role);
+			$emptyProfilePic = 'gebruikersBestanden/profilePictures/blank-profile-picture.png';
+			if ($stmt = $this->conn->prepare("INSERT INTO `users`(`name`, `email`, `user_number`, `password`, `role`,`profile_picture`) VALUES (?,?,?,?,?,?)")) {
+				$stmt->bind_param("ssisss", $name, $email, $user_number, $password, $role, $emptyProfilePic);
 				$stmt->execute();
 				$stmt->close();
 				return "User Added";
