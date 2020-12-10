@@ -24,6 +24,25 @@
 			$deletemessage="Verwijderen voltooid!";
 		}
 	}
+	$errorPass ='';
+	if(isset($_POST['wachtwoordweizigen'])){
+		if (!empty($_POST['newWachtwoord']) && !empty($_POST['newWachtwoordHerhalen']) && !empty($_POST['huidigewachtwoord'])) {
+			if ($_POST['newWachtwoord'] == $_POST['newWachtwoordHerhalen']) {
+				$loginInfo = $db->getTheUserPasswordForLogin($_SESSION['email']);
+				while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
+					if (password_verify($_POST['huidigewachtwoord'], $result['password'])){
+						echo "wooo";
+					} else {
+						$errorPass = "nieuwe wachtwoord komt niet overeen";
+					}
+				}
+			} else {
+				$errorPass = "de wachtwoorden komen niet overeen";
+			}
+		} else {
+			$errorPass = "vul op alle locaties een wachtwoord in";
+		}
+	}
 ?>
 <div class="gebruikersProfile">
 	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle">
@@ -46,4 +65,20 @@
 			<p id="profielinformatiekleurgrijs">  <?php echo $_COOKIE['lang']?> </p>
 		</div>
 	</div>
+	<form method="POST" class='changePassword'>
+		<div>
+			<label for="huidigewachtwoord">Current <?php echo $lang['PASSWORD']?>:</label> </br>
+			<input placeholder='******' name='huidigewachtwoord' type='text'>
+		</div></br>
+		<div>
+			<label for="newWachtwoord">New <?php echo $lang['PASSWORD']?>:</label> </br>
+			<input placeholder='******' name='newWachtwoord' type='text'>
+		</div>
+		<div>
+			<label for="newWachtwoordHerhalen"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
+			<input placeholder='******' name='newWachtwoordHerhalen' type='text'>
+		</div></br>
+		<p><?php echo $errorPass?></p>
+		<input value='update' name='wachtwoordweizigen' type='submit'>
+	</form>
 </div>
