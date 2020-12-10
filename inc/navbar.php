@@ -1,19 +1,27 @@
+<?php 
+	if(array_key_exists('logout', $_POST)) { 
+		session_destroy(); 
+		header("Location: login");
+	} 
+	if(isset($_GET['submit'])) {
+		// echo "geklikt";
+	}
+?>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 	<div class="img-logo">
-		<img src="images/logo.png">
+		<img src="images/logo.png" alt="web logo">
 	</div>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controles="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 		<li class="nav-item">
 			<a class="nav-link" href="home">E-labs</a>
-			
 		</li>
 		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=1"><?php echo $lang["YEAR_1"];?></a>
+				<a class="nav-link" href="grade?year=1"><?php echo $lang["YEAR_1"];?></a>
 			</li>
 		<?php } else{ ?>
 			<li class="nav-item">
@@ -22,7 +30,7 @@
 		<?php }?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=2"><?php echo $lang["YEAR_2"];?></a>
+				<a class="nav-link" href="grade?year=2"><?php echo $lang["YEAR_2"];?></a>
 			</li>
 		<?php } else {?>
 			<li class="nav-item">
@@ -31,7 +39,7 @@
 		<?php } ?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=3"><?php echo $lang["YEAR_3"];?></a>
+				<a class="nav-link" href="grade?year=3"><?php echo $lang["YEAR_3"];?></a>
 			</li>
 		<?php } else {?>
 			
@@ -44,16 +52,18 @@
 				</a>
 				<?php 
 					if(isset($_GET['search'])) {
-						echo "<form action='#' method='get' id='searchForm'>";
-						echo "<input class='form-control' type='text'>";
-						echo "<button type='submit' class='btn btn-default' name='submit'>";
-						echo "<i class='fas fa-search fa-2x'></i>";
-						echo "</button>";
-						echo "</form>";
+				?>
+						<form action="searchResults" method="get" id="searchForm">
+							<input class="form-control" type="text" name="searchInput">
+							<button type="submit" id="searchSubmitButton" class="btn btn-default" name="submit">
+								<i class="fas fa-search fa-2x"></i>
+							</button>
+						</form>
+				<?php
 					}
 				?>
 			</li>
-			<div class="btn-group topnavbar">
+			<li class="btn-group topnavbar">
 				<button type="button" class="btn"><?php echo $_SESSION['name'];?></button>
 				<button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<span class="sr-only">Toggle Dropdown</span>
@@ -62,10 +72,9 @@
 					<?php  if ($_SESSION['role'] == 'Docent') { ?>
 						<a class="dropdown-item" href="gebruikersoverzicht"><?php echo $lang["USER_OVERVIEW"];?> </a>
 						<a class="dropdown-item" href="gebruikertoevoegen"><?php echo $lang["ADD_USER"];?></a>
+						<div class="dropdown-divider"></div>
 					<?php } else {?>
-						<a class="dropdown-item" href="editprofpic"><?php echo $lang["EDIT_PROFILE_PHOTO"];?> </a>
 					<?php } ?>
-					<div class="dropdown-divider"></div>
 					<?php
 						// check if there is a cookie for lang set
 						if(!isset($_COOKIE['lang'])){
@@ -94,18 +103,13 @@
 						}
 					?>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item">
-					<form method="post"> 
-						<input type="submit" name="logout" class="dropdown-item" value="<?php echo $lang["LOGOUT"];?>" /> 
-					</form>
-					<?php if(array_key_exists('logout', $_POST)) { 
-						session_destroy(); 
-						header("Location: login");
-					} 
-					?>
-					</a>
+					<div class="dropdown-item">
+						<form method="post"> 
+							<input type="submit" name="logout" class="dropdown-item" value="<?php echo $lang["LOGOUT"];?>" /> 
+						</form>
+					</div>
 				</div>
-			</div>
+			</li>
 		</ul>
 		<div class="img-person">
 			<a href="gebruikersprofiel">
@@ -115,7 +119,7 @@
 				} else {
 					echo $_SESSION['pf_Pic'];
 				}
-				?>" class="rounded-circle">
+				?>" alt="profile foto in header" class="rounded-circle nav-profile-pic">
 			</a>
 		</div>
 	</div>
@@ -123,10 +127,3 @@
 <div class="slider">
 	<img src="images/banner.jpg" class="img-fluid" alt="slider">
 </div>
-
-<?php 
-	if(isset($_GET['submit'])) {
-		echo "geklikt";
-	}
-
-?>

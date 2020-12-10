@@ -1,5 +1,3 @@
-<!-- call it via: -->
-<!-- <?php echo $lang["REPEAT_PASSWORD"];?>   -->
 <?php
 return [
 	'USERS_NOTIFICATIONS' => 'Mijn notifications',
@@ -28,9 +26,9 @@ return [
 	'EDIT_PROFILE' => 'profiel bewerken',
 	'E-MAIL' => 'email',
 	'ADJUST_PROFILE_PICTURE' => 'Profielfoto aanpassen',
-	'STUDENT_NUMBER' => 'Studetnen nummer',
-	'FIRST_NAME' => 'Voornaam',
-	'LAST_NAME' => 'Achternaam',
+	'STUDENT_NUMBER' => 'Studenten nummer',
+	'TEACHER_NUMBER' => 'Docent nummmer',
+	'NAME' => 'Naam',
 	'CLASS' => 'Klas',
 	'STUDY' => 'Studie',
 	'YEAR' => 'jaar',
@@ -41,7 +39,25 @@ return [
 	'PREPARATIONS' => 'Voorbereidingen',
 	'USER_OVERVIEW' => 'gebruikers overzicht',
 	'ADD_USER' => 'gebruiker toevoegen',
-	'EDIT_PROFILE_PHOTO' => 'profiel foto bewerken',
+	'EDIT' => 'bewerken',
 	'LOGOUT' => 'uitloggen',
+	'REMEMBER_EMAIL' => 'Onthoud e-mail',
+	'LOGIN' => 'Log in',
+	'FORGOT_YOUR_PASSWORD' => 'Je wachtwoord vergeten?',
+	'MADE_BY' => 'Aan gemaakt door:',
+	'LANGUAGE' => 'taal',
+	'VIEWLAB' => 'Labjournaal bekijken',
+	'GRADELAB' => 'Labjournaal becijferen',
+	'PRINTLAB' => 'Labjournaal printen',
+	'CHANGE_PROFILE_PHOTO' => 'profielfoto veranderen',
+	'NEW' => 'Nieuw',
+	'CURRENT' => 'Huidig',
+	'RESULT' => 'Resultaat',
+	'SAFETY' => 'Veiligheid',
+	'RESULT' => 'Resultaat',
+	'MATERIAL' => 'Materiaal',
+	'GOAL' => 'Doel',
+	'YEAR' => 'Jaar',
+	'HYPOTHESIS' => 'Hypothese'
 ]
 ?>

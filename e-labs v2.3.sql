@@ -133,8 +133,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `user_number`, `password`, `profile_picture`, `lang`, `role`) VALUES
-(1, 'Kevin', 'email@mailtje.com', 123456, '$2y$12$x1mzfqUZcEBFkCvhKRt35.SBs5RLRD0D.PZVzyXmBrOXBDXQepF92', '', '', 'Student'),
-(2, 'mike', 'mikie@mikel.com', 444318, '$2y$12$cTqvLHlsL/PmgCF/F8o4rOpq33St9IwVNs7bLjB79QBp4Hraodlsa', '', '', 'Docent');
+(1, 'Kevin', 'kevin@docent.com', 123456, '$2y$12$x1mzfqUZcEBFkCvhKRt35.SBs5RLRD0D.PZVzyXmBrOXBDXQepF92', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent'),
+(2, 'Marjolein', 'Marjolein@docent.com', 444318, '$2y$12$x1mzfqUZcEBFkCvhKRt35.SBs5RLRD0D.PZVzyXmBrOXBDXQepF92', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent');
+(3, 'Faya', 'Faya@docent.com', 444318, '$2y$12$cTqvLHlsL/PmgCF/F8o4rOpq33St9IwVNs7bLjB79QBp4Hraodlsa', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent');
 
 --
 -- Indexes for dumped tables

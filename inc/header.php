@@ -13,7 +13,7 @@
 		<meta name="theme-color" content="#ffffff">
 
 		<!-- meta tags -->
-		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="description" content="Free Web tutorials">
 		<meta name="keywords" content="E-labs">
 		<meta name="author" content="Kevin Smulders">
@@ -45,16 +45,25 @@
 				{
 					case 'e-labs'://file path of your home/start page
 					case 'home':
+					case '':
 						echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
 						break;
 					case 'labjournaal':
 						echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
 						break;
+					case 'gebruikersprofiel':
+						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
+					break;
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 						break;
-					case 'createNewLabjournaal'://file path of nieuwlabjournaal
-						echo '<link rel="stylesheet" href="css/pages/Nieuwlabjournaal.css">';
+          case 'searchresults':
+						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
+            break;
+					case 'editjournaal':
+					case 'viewlabjournaal':
+					case 'createnewlabjournaal'://file path of nieuwlabjournaal
+						echo '<link rel="stylesheet" href="css/pages/nieuwlabjournaal.css">';
 						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
@@ -65,17 +74,22 @@
 				{
 					case 'e-labs'://file path of your home/start page
 					case 'home':
+					case 'grade':
+					case '':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
 					case 'year':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
-					case 'year2':
-						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+					case 'gebruikersprofiel':
+						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
 						break;
-					case 'year3':
-						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+					case 'searchresults':
+						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
 						break;
+					case 'gebruikertoevoegen':
+						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
+					break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
 						break;
