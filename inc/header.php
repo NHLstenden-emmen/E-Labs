@@ -57,6 +57,7 @@
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 						break;
+					case 'editjournaal':
 					case 'createnewlabjournaal'://file path of nieuwlabjournaal
 						echo '<link rel="stylesheet" href="css/pages/nieuwlabjournaal.css">';
 						break;

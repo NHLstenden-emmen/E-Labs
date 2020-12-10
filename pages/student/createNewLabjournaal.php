@@ -8,9 +8,9 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 	$logboek = $_POST['logboek'];
 	$method_materials = $_POST['method_materials'];
 	if(isset($_POST['inleveren'])){
-		$submitted = '1';
+		$submitted = 1;
 	} elseif(isset($_POST['opslaan'])) {
-		$submitted = '0';
+		$submitted = 0;
 	}
 	$grade = '';
 	$year = $_POST['year'];
