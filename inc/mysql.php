@@ -203,9 +203,9 @@
 				return $result;
 			}
 		}
-		public function selectpdfcontentlabjournal($docid){
+		public function selectcontentlabjournal($labjournaal_id){
 			if($stmt = $this->conn->prepare("SELECT * FROM `lab_journal` WHERE labjournaal_id = ?")){
-					$stmt->bind_param("i", $docid);
+					$stmt->bind_param("i", $labjournaal_id);
 					$stmt->execute();
 					$result = $stmt->get_result();
 					$stmt->free_result();
@@ -288,18 +288,52 @@
 			return NULL;
 		}
 		
-		public function updatelabjournaal($UserID ,$title, $date, $grade){
+		public function updatelabjournaal($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id){
 
-			$UserID = htmlspecialchars($UserID);
 			$title = htmlspecialchars($title);
 			$date = htmlspecialchars($date);
-			$grade = htmlspecialchars($grade);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$logboek = htmlspecialchars($logboek);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$year = htmlspecialchars($year);
+			$Attachment = htmlspecialchars($Attachment);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+			$UserID = htmlspecialchars($UserID);
+			$labjournaal_id = htmlspecialchars($labjournaal_id);
 
-			if ($stmt = $this->conn->prepare("UPDATE `lab_journaal` SET `title` =?, `date` =?, `grade` =? WHERE `user_id` = ?")) {
-                $stmt->bind_param('si', $title, $date, $grade, $UserID);
+			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` 
+			JOIN lab_journal_users ON lab_journal_users.lab_journal_id =  lab_journal.labjournaal_id
+			SET `title`=?,`date`=?,`theory`=?,`safety`=?, `logboek`=?,`method_materials`=?,`submitted`=?, `year`=?,`Attachment`=?,`Goal`=?,`Hypothesis`=? 
+			WHERE lab_journal_users.`user_id` = ? AND labjournaal_id = ?")) {
+                $stmt->bind_param('ssssssiisssii', $title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 				$stmt->execute();
 				$stmt->close();
-				return;
+				return "gelukt";
+			}
+			else{
+				$conn = $this->conn;
+				return mysqli_error($conn);
+			}
+		}
+
+		public function getLabjournaal($labjournaal, $userId){
+			
+			$labjournaal = htmlspecialchars($labjournaal);
+			$userId = htmlspecialchars($userId);
+			
+			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis` 
+			FROM `lab_journal` 
+			JOIN lab_journal_users ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ? ")) {
+                $stmt->bind_param('ii', $labjournaal, $userId);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
 			}
 			return NULL;
 		}
