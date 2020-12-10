@@ -203,9 +203,9 @@
 				return $result;
 			}
 		}
-		public function selectpdfcontentlabjournal($docid){
+		public function selectcontentlabjournal($labjournaal_id){
 			if($stmt = $this->conn->prepare("SELECT * FROM `lab_journal` WHERE labjournaal_id = ?")){
-					$stmt->bind_param("i", $docid);
+					$stmt->bind_param("i", $labjournaal_id);
 					$stmt->execute();
 					$result = $stmt->get_result();
 					$stmt->free_result();
@@ -288,20 +288,23 @@
 			return NULL;
 		}
 		
-		public function updatelabjournaal($UserID ,$title, $date, $grade){
+		public function updatelabjournaal($labjournaal_id ,$title, $date, $grade){
 
-			$UserID = htmlspecialchars($UserID);
+			$labjournaal_id = htmlspecialchars($labjournaal_id);
 			$title = htmlspecialchars($title);
 			$date = htmlspecialchars($date);
 			$grade = htmlspecialchars($grade);
 
-			if ($stmt = $this->conn->prepare("UPDATE `lab_journaal` SET `title` =?, `date` =?, `grade` =? WHERE `user_id` = ?")) {
-                $stmt->bind_param('si', $title, $date, $grade, $UserID);
+			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` SET `title` =?, `date` =?, `grade` =? WHERE `labjournaal_id` =?")) {
+                $stmt->bind_param('ssii', $title, $date, $grade, $labjournaal_id);
 				$stmt->execute();
 				$stmt->close();
-				return;
+				return "gelukt";
 			}
-			return NULL;
+			else{
+				$conn = $this->conn;
+				return mysqli_error($conn);
+			}
 		}
 	}
 ?>

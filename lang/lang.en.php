@@ -46,6 +46,9 @@ return [
 	'FORGOT_YOUR_PASSWORD' => 'Forgot your password?',
 	'MADE_BY' => 'Made by:',
 	'LANGUAGE' => 'language',
+	'VIEWLAB' => 'View Labjournal',
+	'GRADELAB' => 'Grade Labjournal',
+	'PRINTLAB' => 'Print Labjournal',
 	'CHANGE_PROFILE_PHOTO' => 'change profile photo',
 ]
 ?>
