@@ -39,9 +39,9 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
-				case 'year':	
+				case 'grade':
 				case '':
-					include 'docent/year.php';
+					include 'docent/grade.php';
 					break;
 				case 'gebruikersoverzicht':
 					include 'docent/gebruikersoverzicht.php';

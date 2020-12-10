@@ -21,7 +21,7 @@
 		</li>
 		<?php if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=1"><?php echo $lang["YEAR_1"];?></a>
+				<a class="nav-link" href="grade?year=1"><?php echo $lang["YEAR_1"];?></a>
 			</li>
 		<?php } else{ ?>
 			<li class="nav-item">
@@ -30,7 +30,7 @@
 		<?php }?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=2"><?php echo $lang["YEAR_2"];?></a>
+				<a class="nav-link" href="grade?year=2"><?php echo $lang["YEAR_2"];?></a>
 			</li>
 		<?php } else {?>
 			<li class="nav-item">
@@ -39,7 +39,7 @@
 		<?php } ?>
 		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
-				<a class="nav-link" href="year?year=3"><?php echo $lang["YEAR_3"];?></a>
+				<a class="nav-link" href="grade?year=3"><?php echo $lang["YEAR_3"];?></a>
 			</li>
 		<?php } else {?>
 			
