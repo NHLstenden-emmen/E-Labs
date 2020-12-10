@@ -30,7 +30,7 @@
 		}
 	
 		private function db_connect(){
-			$this->conn = @mysqli_connect($this->host,$this->user,$this->password, $this->table);
+			$this->conn = @mysqli_connect($this->host,$this->user,$this->pass, $this->table);
             if(!$this->conn)
             {
                 DIE("could not connect". mysqli_connect_error($this->conn));

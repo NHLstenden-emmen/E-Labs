@@ -45,6 +45,7 @@
 				{
 					case 'e-labs'://file path of your home/start page
 					case 'home':
+					case '':
 						echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
 						break;
 					case 'labjournaal':
@@ -68,6 +69,8 @@
 				{
 					case 'e-labs'://file path of your home/start page
 					case 'home':
+					case 'year':
+					case '':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
 					case 'year':

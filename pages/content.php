@@ -7,6 +7,7 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
+				case '':
 					include 'student/home.php';
 					break;
 				case 'labjournaal':
@@ -35,7 +36,7 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
-				case 'year':
+				case '':
 					include 'docent/year.php';
 					break;
 				case 'gebruikersoverzicht':
