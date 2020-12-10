@@ -37,10 +37,6 @@
             }
 		}
 
-		// $selectAllUsers = $db->selectAllUsers();
-		// while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
-		// 	echo  $result['name'];
-		// }
 		public function selectAllUsers(){
 			// this gets all the users and returns them
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users`")) {
@@ -54,7 +50,6 @@
 		}
 
 		public function selectCurrentUsers($userID){
-			// this gets all the users and returns them
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
 				$stmt->bind_param("i", $userID);
 				$stmt->execute();
@@ -66,8 +61,6 @@
 			return NULL;
 		}
 		
-		// $message = $db->createNewUserWithoutProfielPictureAndLang("test 2","mail4@emai5ltje.com","12345","test","Student");
-		// echo $message;
 		public function createNewUserWithoutProfielPictureAndLang($name, $email, $user_number, $password, $role){
 			
 			$name = htmlspecialchars($name);
@@ -295,7 +288,7 @@
 			}
 			return NULL;
 		}
-
+		// AAA TAMARA FIX DIT
 		// public function selectStudentSearchResults($userId) {
   		//	if (
   		//     	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
@@ -386,19 +379,20 @@
 			return NULL;
 		}
 
-		public function docentstudentprofielbewerken($userID, $name, $email, $usernumber, $password){
+		public function docentstudentprofielbewerken($userID, $name, $email, $usernumber, $password,$role){
 
 			$userID = htmlspecialchars($userID);
 			$name = htmlspecialchars($name);
 			$email = htmlspecialchars($email);
 			$usernumber = htmlspecialchars($usernumber);
 			$password = htmlspecialchars($password);
+			$role = htmlspecialchars($role);
 
-			if ($stmt = $this->conn->prepare("UPDATE `users` SET `user_id` =?, `name` =?, `email` =?, `user_number` =?, `password` =?")) {
-				$stmt->bind_param('issis', $userID, $name, $email, $usernumber, $password);
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `name` =?, `email` =?, `user_number` =?, `password` =?, `role`=? WHERE `user_id`=?")) {
+				$stmt->bind_param('ssissi', $name, $email, $usernumber, $password,$role,$userID);
 				$stmt->execute();
 				$stmt->close();
-				return;
+				return 'geupdate';
 			}
 			return NULL;
 		}

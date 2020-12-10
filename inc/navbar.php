@@ -4,7 +4,7 @@
 		header("Location: login");
 	} 
 	if(isset($_GET['submit'])) {
-		echo "geklikt";
+		// echo "geklikt";
 	}
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
