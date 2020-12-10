@@ -269,9 +269,12 @@
 			return NULL;
 		}
 
-		public function DocentLabjournaalView($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
-			if ($stmt = $this->conn->prepare("SELECT `labjournaal_id`, `title`, `date`, `theory`, `safety`, `createrid`, `logboek`, `method_materials`, `grade`, `year` FROM `lab_journal`")){
-				$stmt->bind_param('ssssissiiisss', $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
+		public function DocentLabjournaalView($labjournalid){
+			$sql = "SELECT * FROM `lab_journal`
+					INNER JOIN users ON lab_journal.creater_id = users.user_id	
+					WHERE labjournaal_id = ?";			
+			if ($stmt = $this->conn->prepare($sql)){
+				$stmt->bind_param('i', $labjournalid);
 				$stmt->execute();
 				$result = $stmt->get_result();
                 $stmt->free_result();
