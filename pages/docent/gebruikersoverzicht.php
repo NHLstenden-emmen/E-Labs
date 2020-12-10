@@ -1,12 +1,17 @@
 <?php
     $selectAllUsers = $db->selectAllUsers();
     echo "<table width='100%' border='1'>";
-    echo "<tr><th>naam</th><th>email</th><th>role</th><th>profiel bewerken</th></tr>";
+    echo "<tr>
+            <th>".$lang['NAME']."</th>
+            <th>".$lang['ROLE']."</th>
+            <th>".$lang['EDIT_PROFILE']."</th>
+            <th>".$lang['E-MAIL']."</th>
+        </tr>";
     while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
         echo "<td>" . $result['name'] . "</td>";
         echo "<td>" . $result['email'] . "</td>";
         echo "<td>" . $result['role'] . "</td>";
-        echo "<td> <a href='editprof?id=" . $result['user_id'] . "'>edit</a></td></tr>";
+        echo "<td> <a href='editprof?id=" . $result['user_id'] . "'>".$result['EDIT']."</a></td></tr>";
     }
     echo "</table>";
 ?>

@@ -31,9 +31,31 @@ nav .fa-search {
 	color: var(--white);
 }
 
+nav #searchIcon {
+	padding-right: 10px;
+}
+
+nav #searchBar {
+	padding-right: 10px;
+}
+
+nav #searchForm {
+	display: flex;
+	align-items: center;
+}
+
 nav .topnavbar {
 	margin: 0px 20px;
 	border: 1px solid white;
 	background-color: white;
 	border-radius: 10px;
+}
+nav .languageSwitch {
+	width: 100%;
+	border: 0;
+	background: none;
+}
+nav .nav-profile-pic {
+	height: 60px;
+	width: 60px;
 }

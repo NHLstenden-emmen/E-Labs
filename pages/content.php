@@ -2,46 +2,51 @@
 	if (empty($_SESSION['role'])) {
 		include 'login.php'; 
 	} else {
-		if ($_SESSION['role'] == 'Student') {
+		if ($_SESSION['role'] == 'Student' && isset($_SESSION['name']) && isset($_SESSION['user_id']) && isset($_SESSION['email'])) {
 			switch(strtolower($pagePath))
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
-					include 'student/studentHome.php';
-					break;
-				case 'exel':
-					include 'student/EXEL.php';
+				case '':
+					include 'student/home.php';
 					break;
 				case 'labjournaal':
 					include 'student/studentLabjournaal.php';
 					break;
+				case 'editjournaal':
+					include 'student/EditJournaal.php';
+					break;
 				case 'createnewlabjournaal':
 					include 'student/createNewLabjournaal.php';
 					break;
-				case 'editprofpic':
-					include 'student/editProfpic.php';
+				case 'updatelabjournaal':
+					include 'student/updatelabjournaal.php';
 					break;
-				case 'update':
-					include 'student/update.php';
+				case 'exel':
+					include 'student/EXEL.php';
+					break;
+				case 'gebruikersprofiel':
+					include 'student/gebruikersprofiel.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
-		} else if($_SESSION['role'] == 'Docent') {
+		} else if($_SESSION['role'] == 'Docent' && isset($_SESSION['name']) && isset($_SESSION['user_id']) && isset($_SESSION['email'])) {
 			switch(strtolower($pagePath))
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
-					include 'docent/docentHome.php';
+				case '':
+					include 'docent/year.php';
 					break;
 				case 'gebruikersoverzicht':
 					include 'docent/gebruikersoverzicht.php';
 					break;
-				case 'editprof':
-					include 'docent/editProf.php';
-					break;
 				case 'gebruikertoevoegen':
 					include 'docent/gebruikerToevoegen.php';
+					break;
+				case 'gebruikersprofiel':
+					include 'docent/gebruikersprofiel.php';
 					break;
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
