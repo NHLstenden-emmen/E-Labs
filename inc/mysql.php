@@ -270,10 +270,7 @@
 		}
 
 		public function DocentLabjournaalView($labjournalid){
-			$sql = "SELECT * FROM `lab_journal`
-					INNER JOIN users ON lab_journal.creater_id = users.user_id	
-					WHERE labjournaal_id = ?";			
-			if ($stmt = $this->conn->prepare($sql)){
+			if ($stmt = $this->conn->prepare('SELECT * FROM `lab_journal` INNER JOIN users ON lab_journal.creater_id = users.user_id WHERE labjournaal_id = ?')){
 				$stmt->bind_param('i', $labjournalid);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -283,8 +280,5 @@
 			}
 			return NULL;
 		}
-
-		
-		
 	}
 ?>

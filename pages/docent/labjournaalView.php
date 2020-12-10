@@ -4,11 +4,9 @@ if(isset($_GET['labjournaal'])) {
 } else {
 	$labjournaalid = 'not found';
 }
+$labjournal = $db->DocentLabjournaalView($labjournaalid);
 
-$newsql = new Database();
-$labjournal2 = $newsql->DocentLabjournaalView($labjournaalid);
-
-while ($result = $labjournal2->fetch_array(MYSQLI_ASSOC)){
+while ($result = $labjournal->fetch_array(MYSQLI_ASSOC)){
 	echo "<h1>" . $result['title'] . "</h1>";
 	echo "<p>Naam: " . $result['name'] . "</p>";
 	echo "<p>Datum: " . $result['date'] . "</p>";
@@ -21,11 +19,7 @@ while ($result = $labjournal2->fetch_array(MYSQLI_ASSOC)){
 	} else {
 		echo "<p>Cijfer: " . $result['grade'] . "</p>";
 	}
-	if(empty($result['goal'])) {
-		echo "<p>Goal: Geen goal</p>";
-	} else {
-		echo "<p>Goal: " . $result['goal'] . "</p>";
-	}
+	echo "<p>Goal: " . $result['Goal'] . "</p>";
 	echo "<p>Jaar: " . $result['year'] . "</p>";
 	echo "<p>Document: " . $result['Attachment'] . "</p>";
 	echo "<p>Hypothese: " . $result['Hypothesis'] . "</p>";
