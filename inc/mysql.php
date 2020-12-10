@@ -283,7 +283,7 @@
                 $stmt->bind_param('si', $profilePictureName, $UserID);
 				$stmt->execute();
 				$stmt->close();
-				return;
+				return $profilePictureName;
 			}
 			return NULL;
 		}
