@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // all passwords and secrets that are not supposed to be on github
     // change the example.env.php to .env.php
     $env = include '.env.php';
@@ -16,14 +17,14 @@
         elseif(isset($_GET['preperation_id'])){
             $id = 'preperation_id='.$_GET['preperation_id'];
         }
-        header('location: http://localhost/e-labs/FPDF/printpdf.php?'.$id);
+        header('location: FPDF/printpdf.php?'.$id);
     } else{
         // main dependencies
-        include 'inc/select.php';
         include 'inc/mysql.php';
         $db = new Database();
-        
+        include 'inc/select.php';
         include 'inc/header.php';
+        
         // build the website
         if (empty($_SESSION['role'])) {
             include 'pages/content.php';

@@ -1,6 +1,6 @@
 <?php
-$env = include 'D:\xampp\htdocs\E-Labs\.env.php';
-include 'D:\xampp\htdocs\E-Labs\inc\mysql.php';
+$env = include '../.env.php';
+include '../inc/mysql.php';
 require('fpdf.php');
 class PDF extends FPDF
 {
@@ -29,8 +29,8 @@ function Footer()
 }
 $db = new DATABASE;
 if(isset($_GET['labjournaal_id'])){
-    $docid = $_GET['labjournaal_id'];
-    $output = $db->selectpdfcontentlabjournal($docid);
+    $labjournaal_id = $_GET['labjournaal_id'];
+    $output = $db->selectcontentlabjournal($labjournaal_id);
     while ($outputarray = $output->fetch_array(MYSQLI_ASSOC)){
         $title = $outputarray['title'];
         $date = $outputarray['date'];
@@ -43,8 +43,8 @@ if(isset($_GET['labjournaal_id'])){
     }
 }
 if(isset($_GET['preperation_id'])){
-    $docid = $_GET['preperation_id'];
-    $output = $db->selectpdfcontentpreperation($docid);
+    $preperation_id = $_GET['preperation_id'];
+    $output = $db->selectcontentpreperation($preperation_id);
     while ($outputarray = $output->fetch_array(MYSLQI_ASSOC)){
         $title = $outputarray['title'];
         $date = $outputarray['date'];
