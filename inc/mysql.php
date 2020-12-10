@@ -171,7 +171,7 @@
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE lab_journal.year = $year
+					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
 					GROUP BY users.user_id
 					ORDER BY users.name $sortName";
 			} else {
@@ -179,7 +179,7 @@
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE lab_journal.year = $year
+					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
 					GROUP BY users.user_id";
 			}
 			if ($stmt = $this->conn->prepare($sql)) {
@@ -199,14 +199,14 @@
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE users.user_id = ? AND lab_journal.year = $year
+					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = 1
 					ORDER BY lab_journal.date $sortDate";
 			} else{	
 				$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE users.user_id = ? AND lab_journal.year = $year";					
+					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = 1";					
 			}
 
 			if ($stmt = $this->conn->prepare($sql)) {
