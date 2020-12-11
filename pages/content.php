@@ -11,7 +11,7 @@
 					include 'student/home.php';
 					break;
 				case 'labjournaal':
-					include 'student/studentLabjournaal.php';
+					include 'student/labjournaal.php';
 					break;
 				case 'editjournaal':
 					include 'student/EditJournaal.php';
@@ -58,14 +58,11 @@
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
 					break;
+				case'acountbewerken':
+					include 'docent/editAccount.php';
+					break;
 				case 'searchresults':
 					include 'searchResults.php';
-					break;
-				case 'gebruikersprofielstudent':
-					include 'docent/gebruikersprofielstudentbewerken.php';
-					break;
-				case 'gradelabjournal':
-					include 'docent/CijferJournaal.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found

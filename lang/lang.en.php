@@ -50,5 +50,14 @@ return [
 	'GRADELAB' => 'Grade Labjournal',
 	'PRINTLAB' => 'Print Labjournal',
 	'CHANGE_PROFILE_PHOTO' => 'change profile photo',
+	'NEW' => 'New',
+	'CURRENT' => 'Current',
+	'RESULT' => 'Result',
+	'SAFETY' => 'Safety',
+	'RESULT' => 'Result',
+	'MATERIAL' => 'Material',
+	'GOAL' => 'Goal',
+	'YEAR' => 'Year',
+	'HYPOTHESIS' => 'Hypothesis',
 ]
 ?>

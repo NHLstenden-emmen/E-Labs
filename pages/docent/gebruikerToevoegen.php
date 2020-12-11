@@ -21,27 +21,27 @@
 </div>
 
 <?php
-if(isset($_POST['submitadd'])){
-    $role = $_POST['role'];
-    $name = $_POST['name'];
-    $studentid = $_POST['studentid'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $passwordr = $_POST['passwordrepeat'];
-    if(!empty($name) && !empty($studentid) && !empty($email) && !empty($password) && !empty($passwordr)){
-        if($password === $passwordr){
-            $options = [ 'cost' => 12, ];
-            $newpass = $password;
-            $password = password_hash($newpass, PASSWORD_BCRYPT, $options);
-            $message = $db->createNewUserWithoutProfielPictureAndLang($name, $email, $studentid, $password, $role);
-            echo $message;
+    if(isset($_POST['submitadd'])){
+        $role = $_POST['role'];
+        $name = $_POST['name'];
+        $studentid = $_POST['studentid'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $passwordr = $_POST['passwordrepeat'];
+        if(!empty($name) && !empty($studentid) && !empty($email) && !empty($password) && !empty($passwordr)){
+            if($password === $passwordr){
+                $options = [ 'cost' => 12, ];
+                $newpass = $password;
+                $password = password_hash($newpass, PASSWORD_BCRYPT, $options);
+                $message = $db->createNewUserWithoutProfielPictureAndLang($name, $email, $studentid, $password, $role);
+                echo $message;
+            }
+            else{
+                die("Wachtwoorden komen niet overeen");
+            }
         }
         else{
-            die("Wachtwoorden komen niet overeen");
+            die("Vul alle velden in s.v.p.");
         }
-    }
-    else{
-        die("Vul alle velden in s.v.p.");
-    }
     }
 ?>

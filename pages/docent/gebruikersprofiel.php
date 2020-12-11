@@ -78,11 +78,11 @@
 	</div>
 	<form method="POST" class='changePassword'>
 		<div>
-			<label for="huidigewachtwoord">Current <?php echo $lang['PASSWORD']?>:</label> </br>
+			<label for="huidigewachtwoord"><?php echo $lang['CURRENT']. " " . $lang['PASSWORD']?>:</label> </br>
 			<input placeholder='******' name='huidigewachtwoord' type='password'>
 		</div></br>
 		<div>
-			<label for="newWachtwoord">New <?php echo $lang['PASSWORD']?>:</label> </br>
+			<label for="newWachtwoord"><?php echo $lang['NEW']." " .$lang['PASSWORD']?>:</label> </br>
 			<input placeholder='******' name='newWachtwoord' type='password'>
 		</div>
 		<div>

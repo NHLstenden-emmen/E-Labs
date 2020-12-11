@@ -37,10 +37,6 @@
             }
 		}
 
-		// $selectAllUsers = $db->selectAllUsers();
-		// while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
-		// 	echo  $result['name'];
-		// }
 		public function selectAllUsers(){
 			// this gets all the users and returns them
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users`")) {
@@ -54,7 +50,6 @@
 		}
 
 		public function selectCurrentUsers($userID){
-			// this gets all the users and returns them
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
 				$stmt->bind_param("i", $userID);
 				$stmt->execute();
@@ -66,8 +61,6 @@
 			return NULL;
 		}
 		
-		// $message = $db->createNewUserWithoutProfielPictureAndLang("test 2","mail4@emai5ltje.com","12345","test","Student");
-		// echo $message;
 		public function createNewUserWithoutProfielPictureAndLang($name, $email, $user_number, $password, $role){
 			
 			$name = htmlspecialchars($name);
@@ -179,7 +172,7 @@
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE lab_journal.year = $year
+					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
 					GROUP BY users.user_id
 					ORDER BY users.name $sortName";
 			} else {
@@ -187,7 +180,7 @@
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE lab_journal.year = $year
+					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
 					GROUP BY users.user_id";
 			}
 			if ($stmt = $this->conn->prepare($sql)) {
@@ -207,14 +200,14 @@
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE users.user_id = ? AND lab_journal.year = $year
+					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = 1
 					ORDER BY lab_journal.date $sortDate";
 			} else{	
 				$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE users.user_id = ? AND lab_journal.year = $year";					
+					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = 1";					
 			}
 
 			if ($stmt = $this->conn->prepare($sql)) {
@@ -296,7 +289,6 @@
 			}
 			return NULL;
 		}
-
 		public function selectStudentSearchResultsLabjournal($userId, $searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
@@ -459,19 +451,20 @@
 			return NULL;
 		}
 
-		public function docentstudentprofielbewerken($userID, $name, $email, $usernumber, $password){
+		public function docentstudentprofielbewerken($userID, $name, $email, $usernumber, $password,$role){
 
 			$userID = htmlspecialchars($userID);
 			$name = htmlspecialchars($name);
 			$email = htmlspecialchars($email);
 			$usernumber = htmlspecialchars($usernumber);
 			$password = htmlspecialchars($password);
+			$role = htmlspecialchars($role);
 
-			if ($stmt = $this->conn->prepare("UPDATE `users` SET `user_id` =?, `name` =?, `email` =?, `user_number` =?, `password` =?")) {
-				$stmt->bind_param('issis', $userID, $name, $email, $usernumber, $password);
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `name` =?, `email` =?, `user_number` =?, `password` =?, `role`=? WHERE `user_id`=?")) {
+				$stmt->bind_param('ssissi', $name, $email, $usernumber, $password,$role,$userID);
 				$stmt->execute();
 				$stmt->close();
-				return;
+				return 'geupdate';
 			}
 			return NULL;
 		}

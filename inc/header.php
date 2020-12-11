@@ -53,13 +53,13 @@
 						break;
 					case 'gebruikersprofiel':
 						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
-					break;
+						break;
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 						break;
-          case 'searchresults':
+					case 'searchresults':
 						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
-            break;
+						break;
 					case 'editjournaal':
 					case 'viewlabjournaal':
 					case 'createnewlabjournaal'://file path of nieuwlabjournaal

@@ -87,7 +87,7 @@
                 } elseif($cijfer >= 5.5 && $cijfer <= 10) {
                     echo "<td class='goed'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
                 } else {
-                    echo "<td class='nietbeoordeeld'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>"; 
+                    echo "<td class='nietbeoordeeld'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": - </a></td>"; 
                 }
             }
 

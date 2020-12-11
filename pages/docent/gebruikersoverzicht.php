@@ -11,7 +11,7 @@
         echo "<td>" . $result['name'] . "</td>";
         echo "<td>" . $result['email'] . "</td>";
         echo "<td>" . $result['role'] . "</td>";
-        echo "<td> <a href='editprof?id=" . $result['user_id'] . "'>".$lang['EDIT']."</a></td></tr>";
+        echo "<td> <a href='acountbewerken?id=" . $result['user_id'] . "'>".$lang['EDIT']."</a></td></tr>";
     }
     echo "</table>";
 ?>
