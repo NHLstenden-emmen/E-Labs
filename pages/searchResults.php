@@ -4,29 +4,26 @@
 		$userId = $_SESSION['user_id'];
 		if(!empty($_POST['searchInput'])) {
 			$searchWord = $_POST['searchInput'];
-		} else {
-			$searchWord = "";
-		}
-		// Get every labjournal of the choosen year
-		if($_SESSION['role'] == "Student") {
-			$allResultsLabjournal = $db->selectStudentSearchResultsLabjournal($userId, "%" . $searchWord . "%");
-			$allResultsPreperation = $db->selectStudentSearchResultsPreperation($userId, "%". $searchWord . "%");
-		} elseif($_SESSION['role'] == "Docent"){
-			// $allResults = $db->selectTeacherSearchResults($userId);
-		}
-	?>
 
-	<div id="searchResultTable" class="col-xs-12 col-sm-9 col-lg-9">
-		<?php
+			// Get every labjournal of the choosen year
+			if($_SESSION['role'] == "Student") {
+				$allResultsLabjournal = $db->selectStudentSearchResultsLabjournal($userId, "%" . $searchWord . "%");
+				$allResultsPreperation = $db->selectStudentSearchResultsPreperation($userId, "%". $searchWord . "%");
+			} elseif($_SESSION['role'] == "Docent"){
+				// $allResults = $db->selectTeacherSearchResults($userId);
+			}
+	?>
+			<div id="searchResultTable" class="col-xs-12 col-sm-9 col-lg-9">
+			<?php
 			if($allResultsLabjournal->num_rows !== 0){
-		?>
+			?>
 			<table>
-			<h3>Gezocht op: <?php echo $searchWord?></h3>
-			<h4>Labjournaal</h4>
-			<th>Titel</th>
-			<th>Datum</th>
-			<th>Cijfer</th>
-			<th>Acties</th>
+				<h3>Gezocht op: <?php echo $searchWord?></h3>
+				<h4>Labjournaal</h4>
+				<th>Titel</th>
+				<th>Datum</th>
+				<th>Cijfer</th>
+				<th>Acties</th>
 			<?php
 				while($searchResults = $allResultsLabjournal->fetch_array(MYSQLI_ASSOC)){
 					echo "<tr>";
@@ -74,6 +71,10 @@
 				}
 				echo "</table>";
 			}
+		} else {
+			echo "<h4 id='noResultsText'>Er is niks ingevoerd</h4>";
+		}
+
 		?>
 	</div>
 </div>
