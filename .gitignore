@@ -357,3 +357,5 @@ MigrationBackup/
 .DS_Store
 css/.DS_Store
 pages/.DS_Store
+gebruikersBestanden/profilePictures/
+gebruikersBestanden/uploads/
