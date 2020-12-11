@@ -5,12 +5,13 @@
 		if(!empty($_POST['searchInput'])) {
 			$searchWord = $_POST['searchInput'];
 
-			// Get every labjournal of the choosen year
+			// Check which role the user has and gets the labjournals and/or preperations which contains the searched word
 			if($_SESSION['role'] == "Student") {
 				$allResultsLabjournal = $db->selectStudentSearchResultsLabjournal($userId, "%" . $searchWord . "%");
 				$allResultsPreperation = $db->selectStudentSearchResultsPreperation($userId, "%". $searchWord . "%");
 			} elseif($_SESSION['role'] == "Docent"){
-				// $allResults = $db->selectTeacherSearchResults($userId);
+				$allResultsLabjournal = $db->selectTeacherSearchResultsLabjournal("%" . $searchWord . "%");
+				$allResultsPreperation = $db->selectTeacherSearchResultsPreperation("%". $searchWord . "%");
 			}
 	?>
 			<div id="searchResultTable" class="col-xs-12 col-sm-9 col-lg-9">

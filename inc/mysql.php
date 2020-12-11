@@ -347,28 +347,54 @@
 			return NULL;
 		}
 
-		// 	public function selectTeacherSearchResultsLabjournal($searchWord) {
-  // 		     if ($stmt = $this->conn->prepare(
-  // 		     	"SELECT title, `date`, grade, creater_id FROM `lab_journal`
-		// 		JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
-		// 		JOIN users ON lab_journal_users.user_id = users.user_id
-		// 		WHERE (title LIKE ?
-		// 		OR materials LIKE ?
-		// 		OR safety LIKE ?
-		// 		OR method LIKE ?
-		// 		OR preparation_questions LIKE ?
-		// 		OR goal LIKE ?
-		// 		OR hypothesis LIKE ?)
-		// 		")) {
- 	// 	    		$stmt->bind_param("s", $searchWord);
-		// 			$stmt->execute();
-		// 			$result = $stmt->get_result();
-		// 			$stmt->free_result();
-		// 			$stmt->close();
-		// 			return $result;
-		// 	}
-		// }
-    
+		public function selectTeacherSearchResultsPreperation($searchWord) {
+			$searchWord = htmlspecialchars($searchWord);
+			if($stmt = $this->conn->prepare(
+				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
+				JOIN users ON preperation_users.user_id = users.user_id
+				WHERE (title LIKE ?
+				OR materials LIKE ?
+				OR safety LIKE ?
+				OR method LIKE ?
+				OR preparation_questions LIKE ?
+				OR goal LIKE ?
+				OR hypothesis LIKE ?)
+				")) {
+				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function selectTeacherSearchResultsLabjournal($searchWord) {
+			$searchWord = htmlspecialchars($searchWord);
+			if($stmt = $this->conn->prepare(
+				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
+				JOIN users ON lab_journal_users.user_id = users.user_id
+				WHERE (title LIKE ?
+				OR theory LIKE ?
+				OR safety LIKE ?
+				OR logboek LIKE ?
+				OR method_materials LIKE ?
+				OR goal LIKE ?
+				OR hypothesis LIKE ?)
+				")) {
+				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
 		public function updateProfielFoto($UserID ,$profilePictureName){
 
 			$UserID = htmlspecialchars($UserID);
