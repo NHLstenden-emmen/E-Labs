@@ -298,6 +298,7 @@
 		}
 
 		public function selectStudentSearchResultsLabjournal($userId, $searchWord) {
+			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
 				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
 				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
@@ -322,10 +323,11 @@
 		}
 
 		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
+			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
-				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
-				JOIN users ON lab_journal_users.user_id = users.user_id
+				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
+				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE creater_id = ?
 				AND (title LIKE ?
 				OR materials LIKE ?

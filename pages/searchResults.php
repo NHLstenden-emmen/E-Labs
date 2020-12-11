@@ -11,14 +11,14 @@
 		if($_SESSION['role'] == "Student") {
 			$allResultsLabjournal = $db->selectStudentSearchResultsLabjournal($userId, "%" . $searchWord . "%");
 			$allResultsPreperation = $db->selectStudentSearchResultsPreperation($userId, "%". $searchWord . "%");
-		} else {
+		} elseif($_SESSION['role'] == "Docent"){
 			// $allResults = $db->selectTeacherSearchResults($userId);
 		}
 	?>
 
 	<div id="searchResultTable" class="col-xs-12 col-sm-9 col-lg-9">
 		<?php
-			if(!empty($allResultsLabjournal)){
+			if($allResultsLabjournal->num_rows !== 0){
 		?>
 			<table>
 			<h3>Gezocht op: <?php echo $searchWord?></h3>
@@ -47,7 +47,7 @@
 				echo "</table>";
 			}
 
-			if(!empty($allResultsPreperation)) {
+			if($allResultsPreperation->num_rows !==0) {
 			?>
 				<h4>Voorbereiding</h4>
 				<table>
