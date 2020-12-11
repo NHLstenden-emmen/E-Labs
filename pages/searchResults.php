@@ -2,8 +2,8 @@
 	<?php
 		// When session is available getting the user id from session
 		$userId = $_SESSION['user_id'];
-		if(!empty($_GET['searchInput'])) {
-			$searchWord = $_GET['searchInput'];
+		if(!empty($_POST['searchInput'])) {
+			$searchWord = $_POST['searchInput'];
 		} else {
 			$searchWord = "";
 		}

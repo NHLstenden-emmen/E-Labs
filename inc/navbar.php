@@ -55,7 +55,7 @@
 				<?php 
 					if(isset($_GET['search'])) {
 				?>
-						<form action="searchResults" method="get" id="searchForm">
+						<form action="searchResults" method="post" id="searchForm">
 							<input class="form-control" type="text" name="searchInput">
 							<button type="submit" class="searchButton btn btn-default" name="submit">
 								<i class="fas fa-search fa-2x"></i>
