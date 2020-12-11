@@ -47,15 +47,17 @@
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a href="?search" id="searchIcon" <?php if(isset($_GET['search'])){ echo "style='display:none'"; } ?> class="search-form-tigger">
-					<i class="fas fa-search fa-2x"></i>
-				</a>
+				<button <?php if(isset($_GET['search'])){ echo "style='display:none'"; } ?> class="btn btn-default">
+					<a href="?search" class="searchButton search-form-tigger">
+						<i class="fas fa-search fa-2x"></i>
+					</a>
+				</button>
 				<?php 
 					if(isset($_GET['search'])) {
 				?>
-						<form action="searchResults" method="get" id="searchForm">
+						<form action="searchResults" method="post" id="searchForm">
 							<input class="form-control" type="text" name="searchInput">
-							<button type="submit" id="searchSubmitButton" class="btn btn-default" name="submit">
+							<button type="submit" class="searchButton btn btn-default" name="submit">
 								<i class="fas fa-search fa-2x"></i>
 							</button>
 						</form>
