@@ -32,6 +32,7 @@
 				<tr>
 					<th><?php echo $lang["TITLE"];?></th>
 					<th><?php echo $lang["DATE"];?></th>
+					<th><?php echo $lang["UPLOAD_FILE"];?></th>
 					<th><?php echo $lang["GRADE"];?></th>
 					<th><?php echo $lang["ACTION"];?></th>
 				</tr>
@@ -40,6 +41,7 @@
 						echo "<tr>";
 						echo "<td>$allResults[title]</td>";
 						echo "<td>$allResults[date]</td>";
+						echo "<td>$allResults[Attachment]</td>";
 						if($allResults['grade'] == NULL ) {
 							echo "<td>-</td>";
 						} else {

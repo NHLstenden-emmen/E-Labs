@@ -1,4 +1,20 @@
 <?php
+if(isset($_POST['uploadcsv'])){
+		if(!empty($_FILES['fileupload']['name'])){
+
+			$UploadedFileName=$_FILES['fileupload']['name'];
+			
+			$upload_directory = "gebruikersBestanden/uploads/"; //This is the folder which you created just now
+			$time = time();
+			$TargetPath=$time.$UploadedFileName;
+		
+			if(move_uploaded_file($_FILES['fileupload']['tmp_name'], $upload_directory.$TargetPath)){ 
+				$db->updatebestanden($_SESSION['user_id'], $upload_directory.$TargetPath);
+			}
+
+		}
+}
+
 if (!empty($_POST['title']) && isset($_POST['title'])) {
 	$title = $_POST['title'];
 	$date =  date('Y-m-d H:i:s');
@@ -21,6 +37,7 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 	$labjournaal_id = $_GET['id'];
 	$message = $db->updatelabjournaal($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 }
+
 
 if (empty($message) && isset($_GET['id'])) {
 	$getLabjournaal = $db->getLabjournaal($_GET['id'], $_SESSION['user_id']);
@@ -69,6 +86,7 @@ if (empty($message) && isset($_GET['id'])) {
 		<div>
 			<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label> </br>
 				<input type="file" name="fileupload" value="<?php echo $result['Attachment'];?>">
+				<input type="submit" name="uploadcsv" value="Change/Upload File">
 		</div>	
 		<div>
 			<input type="submit" name="opslaan" value="<?php echo $lang["SAVE"];?>">
