@@ -145,6 +145,7 @@
 				$stmt->close();
 				return $result;
 			}
+			return NULL;
 		}
     
 		public function getAllGradeResults($year){
@@ -204,30 +205,74 @@
 			return NULL;
 		}
 
-		// public function selectStudentSearchResults($userId) {
-  		//	if (
-  		//     	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-		// 		WHERE lab_journal_users.user_id = ?")) {
- 		//      $stmt->bind_param("i", $userId);
-		// 		$stmt->execute();
-		// 		$result = $stmt->get_result();
-		// 		$stmt->free_result();
-		// 		$stmt->close();
-		// 		return $result;
-		// 		}
-		// }
+		public function selectStudentSearchResultsLabjournal($userId, $searchWord) {
+			if($stmt = $this->conn->prepare(
+				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
+				JOIN users ON lab_journal_users.user_id = users.user_id
+				WHERE creater_id = ?
+				AND (title LIKE ?
+				OR theory LIKE ?
+				OR safety LIKE ?
+				OR logboek LIKE ?
+				OR method_materials LIKE ?
+				OR goal LIKE ?
+				OR hypothesis LIKE ?)
+				")) {
+				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
 
-		// 	public function selectTeacherSearchResults($userId) {
-  		//      if (
-  		//      $stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-		// 		WHERE lab_journal_users.user_id = ?")) {
- 		//      $stmt->bind_param("i", $userId);
-		// 		$stmt->execute();
-		// 		$result = $stmt->get_result();
-		// 		$stmt->free_result();
-		// 		$stmt->close();
-		// 		return $result;
-		// 		}
+		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
+			if($stmt = $this->conn->prepare(
+				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
+				JOIN users ON lab_journal_users.user_id = users.user_id
+				WHERE creater_id = ?
+				AND (title LIKE ?
+				OR materials LIKE ?
+				OR safety LIKE ?
+				OR method LIKE ?
+				OR preparation_questions LIKE ?
+				OR goal LIKE ?
+				OR hypothesis LIKE ?)
+				")) {
+				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		// 	public function selectTeacherSearchResultsLabjournal($searchWord) {
+  // 		     if ($stmt = $this->conn->prepare(
+  // 		     	"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+		// 		JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
+		// 		JOIN users ON lab_journal_users.user_id = users.user_id
+		// 		WHERE (title LIKE ?
+		// 		OR materials LIKE ?
+		// 		OR safety LIKE ?
+		// 		OR method LIKE ?
+		// 		OR preparation_questions LIKE ?
+		// 		OR goal LIKE ?
+		// 		OR hypothesis LIKE ?)
+		// 		")) {
+ 	// 	    		$stmt->bind_param("s", $searchWord);
+		// 			$stmt->execute();
+		// 			$result = $stmt->get_result();
+		// 			$stmt->free_result();
+		// 			$stmt->close();
+		// 			return $result;
+		// 	}
 		// }
 	}
 ?>
