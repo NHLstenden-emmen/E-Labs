@@ -53,10 +53,15 @@
 						break;
 					case 'gebruikersprofiel':
 						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
-					break;
+						break;
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 						break;
+					case 'searchresults':
+						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
+						break;
+					case 'editjournaal':
+					case 'viewlabjournaal':
 					case 'createnewlabjournaal'://file path of nieuwlabjournaal
 						echo '<link rel="stylesheet" href="css/pages/nieuwlabjournaal.css">';
 						break;
@@ -69,7 +74,7 @@
 				{
 					case 'e-labs'://file path of your home/start page
 					case 'home':
-					case 'year':
+					case 'grade':
 					case '':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
@@ -78,6 +83,9 @@
 						break;
 					case 'gebruikersprofiel':
 						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
+						break;
+					case 'searchresults':
+						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
 						break;
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';

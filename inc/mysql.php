@@ -37,10 +37,6 @@
             }
 		}
 
-		// $selectAllUsers = $db->selectAllUsers();
-		// while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
-		// 	echo  $result['name'];
-		// }
 		public function selectAllUsers(){
 			// this gets all the users and returns them
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users`")) {
@@ -54,7 +50,6 @@
 		}
 
 		public function selectCurrentUsers($userID){
-			// this gets all the users and returns them
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
 				$stmt->bind_param("i", $userID);
 				$stmt->execute();
@@ -66,8 +61,6 @@
 			return NULL;
 		}
 		
-		// $message = $db->createNewUserWithoutProfielPictureAndLang("test 2","mail4@emai5ltje.com","12345","test","Student");
-		// echo $message;
 		public function createNewUserWithoutProfielPictureAndLang($name, $email, $user_number, $password, $role){
 			
 			$name = htmlspecialchars($name);
@@ -94,8 +87,9 @@
 				}
 			}
 			// it adds the users to the database and returns a message.
-			if ($stmt = $this->conn->prepare("INSERT INTO `users`(`name`, `email`, `user_number`, `password`, `role`) VALUES (?,?,?,?,?)")) {
-				$stmt->bind_param("ssiss", $name, $email, $user_number, $password, $role);
+			$emptyProfilePic = 'gebruikersBestanden/profilePictures/blank-profile-picture.png';
+			if ($stmt = $this->conn->prepare("INSERT INTO `users`(`name`, `email`, `user_number`, `password`, `role`,`profile_picture`) VALUES (?,?,?,?,?,?)")) {
+				$stmt->bind_param("ssisss", $name, $email, $user_number, $password, $role, $emptyProfilePic);
 				$stmt->execute();
 				$stmt->close();
 				return "User Added";
@@ -168,32 +162,54 @@
 				$stmt->close();
 				return $result;
 			}
+			return NULL;
 		}
 		
     
-		public function getAllGradeResults($year){
-			$sql = "SELECT DISTINCT users.user_id, users.name
-                FROM users
-                INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-                INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-				WHERE lab_journal.year = $year
-				GROUP BY users.user_id";
+		public function getAllGradeResults($year, $sortName){
+			if(!empty($sortName)){
+				$sql = "SELECT DISTINCT users.user_id, users.name
+					FROM users
+					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
+					GROUP BY users.user_id
+					ORDER BY users.name $sortName";
+			} else {
+				$sql = "SELECT DISTINCT users.user_id, users.name
+					FROM users
+					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
+					GROUP BY users.user_id";
+			}
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
 				$stmt->close();
-				return $result; 
+				return $result;
 			}
 			return NULL;
 		}
 
-		public function getGradeResultsPerPerson($userId, $year){
-			$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
-                FROM users
-                INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-                INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-                WHERE users.user_id = ? AND lab_journal.year = $year";
+		public function getGradeResultsPerPerson($userId, $year, $sortDate){
+		
+			if(!empty($sortDate)) {
+				$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
+					FROM users
+					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = 1
+					ORDER BY lab_journal.date $sortDate";
+			} else{	
+				$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
+					FROM users
+					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = 1";					
+			}
+
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->bind_param("i", $userId);
 				$stmt->execute();
@@ -203,9 +219,9 @@
 				return $result;
 			}
 		}
-		public function selectpdfcontentlabjournal($docid){
+		public function selectcontentlabjournal($labjournaal_id){
 			if($stmt = $this->conn->prepare("SELECT * FROM `lab_journal` WHERE labjournaal_id = ?")){
-					$stmt->bind_param("i", $docid);
+					$stmt->bind_param("i", $labjournaal_id);
 					$stmt->execute();
 					$result = $stmt->get_result();
 					$stmt->free_result();
@@ -273,6 +289,103 @@
 			}
 			return NULL;
 		}
+		public function selectStudentSearchResultsLabjournal($userId, $searchWord) {
+			$searchWord = htmlspecialchars($searchWord);
+			if($stmt = $this->conn->prepare(
+				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
+				JOIN users ON lab_journal_users.user_id = users.user_id
+				WHERE creater_id = ?
+				AND (title LIKE ?
+				OR theory LIKE ?
+				OR safety LIKE ?
+				OR logboek LIKE ?
+				OR method_materials LIKE ?
+				OR goal LIKE ?
+				OR hypothesis LIKE ?)
+				")) {
+				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
+			$searchWord = htmlspecialchars($searchWord);
+			if($stmt = $this->conn->prepare(
+				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
+				JOIN users ON preperation_users.user_id = users.user_id
+				WHERE creater_id = ?
+				AND (title LIKE ?
+				OR materials LIKE ?
+				OR safety LIKE ?
+				OR method LIKE ?
+				OR preparation_questions LIKE ?
+				OR goal LIKE ?
+				OR hypothesis LIKE ?)
+				")) {
+				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function selectTeacherSearchResultsPreperation($searchWord) {
+			$searchWord = htmlspecialchars($searchWord);
+			if($stmt = $this->conn->prepare(
+				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
+				JOIN users ON preperation_users.user_id = users.user_id
+				WHERE (title LIKE ?
+				OR materials LIKE ?
+				OR safety LIKE ?
+				OR method LIKE ?
+				OR preparation_questions LIKE ?
+				OR goal LIKE ?
+				OR hypothesis LIKE ?)
+				")) {
+				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function selectTeacherSearchResultsLabjournal($searchWord) {
+			$searchWord = htmlspecialchars($searchWord);
+			if($stmt = $this->conn->prepare(
+				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
+				JOIN users ON lab_journal_users.user_id = users.user_id
+				WHERE (title LIKE ?
+				OR theory LIKE ?
+				OR safety LIKE ?
+				OR logboek LIKE ?
+				OR method_materials LIKE ?
+				OR goal LIKE ?
+				OR hypothesis LIKE ?)
+				")) {
+				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
 
 		public function updateProfielFoto($UserID ,$profilePictureName){
 
@@ -288,18 +401,96 @@
 			return NULL;
 		}
 		
-		public function updatelabjournaal($UserID ,$title, $date, $grade){
+		public function updatelabjournaal($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id){
 
-			$UserID = htmlspecialchars($UserID);
 			$title = htmlspecialchars($title);
 			$date = htmlspecialchars($date);
-			$grade = htmlspecialchars($grade);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$logboek = htmlspecialchars($logboek);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$year = htmlspecialchars($year);
+			$Attachment = htmlspecialchars($Attachment);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+			$UserID = htmlspecialchars($UserID);
+			$labjournaal_id = htmlspecialchars($labjournaal_id);
 
-			if ($stmt = $this->conn->prepare("UPDATE `lab_journaal` SET `title` =?, `date` =?, `grade` =? WHERE `user_id` = ?")) {
-                $stmt->bind_param('si', $title, $date, $grade, $UserID);
+			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` 
+			JOIN lab_journal_users ON lab_journal_users.lab_journal_id =  lab_journal.labjournaal_id
+			SET `title`=?,`date`=?,`theory`=?,`safety`=?, `logboek`=?,`method_materials`=?,`submitted`=?, `year`=?,`Attachment`=?,`Goal`=?,`Hypothesis`=? 
+			WHERE lab_journal_users.`user_id` = ? AND labjournaal_id = ?")) {
+                $stmt->bind_param('ssssssiisssii', $title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+				$stmt->execute();
+				$stmt->close();
+				return "gelukt";
+			}
+			else{
+				$conn = $this->conn;
+				return mysqli_error($conn);
+			}
+		}
+
+		public function getLabjournaal($labjournaal, $userId){
+			
+			$labjournaal = htmlspecialchars($labjournaal);
+			$userId = htmlspecialchars($userId);
+			
+			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis` 
+			FROM `lab_journal` 
+			JOIN lab_journal_users ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ? ")) {
+                $stmt->bind_param('ii', $labjournaal, $userId);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function docentstudentprofielbewerken($userID, $name, $email, $usernumber, $password,$role){
+
+			$userID = htmlspecialchars($userID);
+			$name = htmlspecialchars($name);
+			$email = htmlspecialchars($email);
+			$usernumber = htmlspecialchars($usernumber);
+			$password = htmlspecialchars($password);
+			$role = htmlspecialchars($role);
+
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `name` =?, `email` =?, `user_number` =?, `password` =?, `role`=? WHERE `user_id`=?")) {
+				$stmt->bind_param('ssissi', $name, $email, $usernumber, $password,$role,$userID);
+				$stmt->execute();
+				$stmt->close();
+				return 'geupdate';
+			}
+			return NULL;
+		}
+
+		public function updateCurrentUsersPassword($UserID ,$newPassword){
+
+			$UserID = htmlspecialchars($UserID);
+			$newPassword = htmlspecialchars($newPassword);
+
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `password` = ? WHERE `user_id` = ?")) {
+                $stmt->bind_param('si', $newPassword, $UserID);
 				$stmt->execute();
 				$stmt->close();
 				return;
+			}
+			return NULL;
+		}
+
+		public function DocentLabjournaalView($labjournalid){
+			if ($stmt = $this->conn->prepare('SELECT * FROM `lab_journal` INNER JOIN users ON lab_journal.creater_id = users.user_id WHERE labjournaal_id = ?')){
+				$stmt->bind_param('i', $labjournalid);
+				$stmt->execute();
+				$result = $stmt->get_result();
+                $stmt->free_result();
+				$stmt->close();
+				return $result;
 			}
 			return NULL;
 		}

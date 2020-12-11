@@ -11,7 +11,7 @@
 					include 'student/home.php';
 					break;
 				case 'labjournaal':
-					include 'student/studentLabjournaal.php';
+					include 'student/labjournaal.php';
 					break;
 				case 'editjournaal':
 					include 'student/EditJournaal.php';
@@ -28,6 +28,12 @@
 				case 'gebruikersprofiel':
 					include 'student/gebruikersprofiel.php';
 					break;
+				case 'viewlabjournaal':
+					include 'student/viewLabjournaal.php';
+					break;
+				case 'searchresults':
+					include 'searchResults.php';
+					break;
 				default:
 					include '404.php'; // when the page isset found
 			}
@@ -36,9 +42,9 @@
 			{
 				case 'e-labs': //file path of your home/start page
 				case 'home':
-				case 'year':	
+				case 'grade':
 				case '':
-					include 'docent/year.php';
+					include 'docent/grade.php';
 					break;
 				case 'gebruikersoverzicht':
 					include 'docent/gebruikersoverzicht.php';
@@ -51,6 +57,12 @@
 					break;
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
+					break;
+				case'acountbewerken':
+					include 'docent/editAccount.php';
+					break;
+				case 'searchresults':
+					include 'searchResults.php';
 					break;
 				default:
 					include '404.php'; // when the page isset found
