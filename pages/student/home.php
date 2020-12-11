@@ -1,7 +1,7 @@
 <div class="container">
 	<?php
 		$selectAllNotifications = $db->selectAllNotifications();
-		$selectCurrentUserNotifications = $db->selectCurrentUserNotifications(1);
+		$selectCurrentUserNotifications = $db->selectCurrentUserNotifications($_SESSION['user_id']);
 	?>
 	<div class="row">
 		<div class="notificationsTable col-md-5">

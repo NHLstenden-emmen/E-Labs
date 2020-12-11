@@ -21,3 +21,8 @@
 	border: 1px solid grey;
 	text-align: center;
 }
+
+#noResultsText {
+	padding-top: 50px;
+	text-align: center;
+}
