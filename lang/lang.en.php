@@ -49,6 +49,7 @@ return [
 	'VIEWLAB' => 'View Labjournal',
 	'GRADELAB' => 'Grade Labjournal',
 	'PRINTLAB' => 'Print Labjournal',
+	'ADDSTUDENTS' => 'Add Students',
 	'CHANGE_PROFILE_PHOTO' => 'change profile photo',
 	'NEW' => 'New',
 	'CURRENT' => 'Current',

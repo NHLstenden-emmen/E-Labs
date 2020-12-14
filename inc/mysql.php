@@ -48,6 +48,17 @@
 			}
 			return NULL;
 		}
+		public function selectStudents(){
+			// this gets all students and returns them
+			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `role` = 'Student'")) {
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
 
 		public function selectCurrentUsers($userID){
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
@@ -227,6 +238,9 @@
 					$stmt->free_result();
 					$stmt->close();
 					return $result;
+				}
+				else{
+					return mysqli_error($this->conn);
 				}
 		}
 		public function selectpdfcontentpreperation(){}
