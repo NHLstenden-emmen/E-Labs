@@ -1,7 +1,7 @@
 <div class="container">
 	<?php
 		$selectAllNotifications = $db->selectAllNotifications();
-		$selectCurrentUserNotifications = $db->selectCurrentUserNotifications(1);
+		$selectCurrentUserNotifications = $db->selectCurrentUserNotifications($_SESSION['user_id']);
 	?>
 	<div class="row">
 		<div class="notificationsTable col-md-5">
@@ -9,10 +9,10 @@
 			<?php while ($thisResult = $selectCurrentUserNotifications->fetch_array(MYSQLI_ASSOC)){ ?>
 					<hr>
 				<div class="notifications">
-					<p class="title"><?= $thisResult['title']?></p>
-					<p class="message"><?= $thisResult['message']?></p>
-					<p class="creater"><?= $thisResult['creater']?></p>
-					<p class="date_time"><?= $thisResult['date_time']?></p>
+					<p class="title"><?php echo $thisResult['title']?></p>
+					<p class="message"><?php echo $thisResult['message']?></p>
+					<p class="creater"><?php echo $lang['MADE_BY'].' '. $thisResult['name'] ?></p>
+					<p class="date_time"><?php echo $thisResult['date_time']?></p>
 				</div>
 			<?php }?>
 		</div>
@@ -22,10 +22,10 @@
 			<?php while ($allResults = $selectAllNotifications->fetch_array(MYSQLI_ASSOC)){ ?>
 				<hr>
 				<div class="notifications">
-					<p class="title"><?= $allResults['title']?></p>
-					<p class="message"><?= $allResults['message']?></p>
-					<p class="creater"><?= $allResults['creater']?></p>
-					<p class="date_time"><?= $allResults['date_time']?></p>
+					<p class="title"><?php echo $allResults['title']?></p>
+					<p class="message"><?php echo $allResults['message']?></p>
+					<p class="creater"><?php echo $lang['MADE_BY'].' '. $allResults['name'] ?></p>
+					<p class="date_time"><?php echo $allResults['date_time']?></p>
 				</div>
 			<?php }?>
 		</div>

@@ -1,39 +1,33 @@
-#titelgebruikersprofiel
-{
+.gebruikersProfile #titelgebruikersprofiel {
 	text-align: center;
 }
 
-.Gebruikersprofielcontainer
-{
+.gebruikersProfile .Gebruikersprofielcontainer {
 	display: grid;
 	grid-template-columns: 35% 25% 25% 15%;
 	width: 100%;
-	height: 250px;
-	padding: 0 auto;
+	height: 110px;
 	line-height: 10px;
 	padding-top: 8px;
 }
 
-.profielfototje
-{
+.gebruikersProfile .profielfototje {
 	text-align: center;
 	width: 100px;
-	height:80px;
+	height: 100px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#Buttonaanpassenprofiel
-{
+.gebruikersProfile #Buttonaanpassenprofiel {
 	border-radius: 8px;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 }
 
-#Gebruikersprofielstudentinformatierechts
-{
+.gebruikersProfile #Gebruikersprofielstudentinformatierechts {
 	height: 270px;
 	width: 260px;
 	grid-column: span 1 / -3;
@@ -41,8 +35,7 @@
 	line-height: 15px;
 }
 
-#Gebruikersprofielstudentinformatielinks
-{
+.gebruikersProfile #Gebruikersprofielstudentinformatielinks {
 	height: 270px;
 	width: 260px;
 	grid-column: span 1 / -2;
@@ -50,13 +43,11 @@
 	line-height: 15px;
 }
 
-#profielinformatiekleurgrijs
-{
+.gebruikersProfile #profielinformatiekleurgrijs {
 	color: grey;
 }
 
-#Buttonopslaanprofiel
-{
+.gebruikersProfile #Buttonopslaanprofiel {
 	text-align: center;
 	margin: 20px auto;
 	border-radius: 8px;
@@ -65,22 +56,41 @@
 	display: block;
 }
 
-@media screen and (max-width: 700px){
-.Gebruikersprofielcontainer, #Gebruikersprofielstudentinformatielinks, #Gebruikersprofielstudentinformatierechts
-{
-	grid-column: 1 / 4;
-	width: 70%;
-	height: 100%;
-	margin-left: 5%;
-}
+@media screen and (max-width: 700px) {
+	.gebruikersProfile .Gebruikersprofielcontainer,
+	.gebruikersProfile #Gebruikersprofielstudentinformatielinks,
+	.gebruikersProfile #Gebruikersprofielstudentinformatierechts {
+		grid-column: 1 / 4;
+		width: 70%;
+		height: 100%;
+		margin-left: 5%;
+	}
 }
 
-@media screen and (max-width: 600px){
-#Gebruikersprofielstudentinformatierechts, #Gebruikersprofielstudentinformatielinks, .Gebruikersprofielcontainer
-{
-	grid-column: 1 / 4;
-	width: 90%;
-	height: 100%;
-	margin-left: 5%;
+@media screen and (max-width: 600px) {
+	.gebruikersProfile #Gebruikersprofielstudentinformatierechts,
+	.gebruikersProfile #Gebruikersprofielstudentinformatielinks,
+	.gebruikersProfile .Gebruikersprofielcontainer {
+		grid-column: 1 / 4;
+		width: 90%;
+		height: 100%;
+		margin-left: 5%;
+	}
 }
+.gebruikersProfile {
+	margin-top: 20px;
+}
+.gebruikersProfile .changeprofilepicture {
+	text-align: center;
+}
+.gebruikersProfile .changePassword {
+	text-align: center;
+}
+.gebruikersProfile .changePassword div {
+	display: inline-block;
+	margin: 30px;
+}
+
+.gebruikersProfile .changePassword input[type="submit"] {
+	margin-bottom: 50px;
 }

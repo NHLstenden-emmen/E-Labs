@@ -1,5 +1,3 @@
-<!-- call it via: -->
-<!-- <?php echo $lang["REPEAT_PASSWORD"];?>   -->
 <?php
 return [
 	'USERS_NOTIFICATIONS' => 'My notifications',
@@ -29,8 +27,8 @@ return [
 	'E-MAIL' => 'e-mail',
 	'ADJUST_PROFILE_PICTURE' => 'Edit profile picture',
 	'STUDENT_NUMBER' => 'Student number',
-	'FIRST_NAME' => 'First Name',
-	'LAST_NAME' => 'Last name',
+	'TEACHER_NUMBER' => 'Teacher number',
+	'NAME' => 'Name',
 	'CLASS' => 'Class',
 	'STUDY' => 'Study',
 	'YEAR' => 'year',
@@ -41,7 +39,25 @@ return [
 	'PREPARATIONS' => 'Preparations',
 	'USER_OVERVIEW' => 'User overview',
 	'ADD_USER' => 'Add user',
-	'EDIT_PROFILE_PHOTO' => 'Edit profile photo',
+	'EDIT' => 'Edit',
 	'LOGOUT' => 'log out',
+	'REMEMBER_EMAIL' => 'Remember email',
+	'LOGIN' => 'login',
+	'FORGOT_YOUR_PASSWORD' => 'Forgot your password?',
+	'MADE_BY' => 'Made by:',
+	'LANGUAGE' => 'language',
+	'VIEWLAB' => 'View Labjournal',
+	'GRADELAB' => 'Grade Labjournal',
+	'PRINTLAB' => 'Print Labjournal',
+	'CHANGE_PROFILE_PHOTO' => 'change profile photo',
+	'NEW' => 'New',
+	'CURRENT' => 'Current',
+	'RESULT' => 'Result',
+	'SAFETY' => 'Safety',
+	'RESULT' => 'Result',
+	'MATERIAL' => 'Material',
+	'GOAL' => 'Goal',
+	'YEAR' => 'Year',
+	'HYPOTHESIS' => 'Hypothesis',
 ]
 ?>
