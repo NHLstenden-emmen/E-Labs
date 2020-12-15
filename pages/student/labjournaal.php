@@ -1,3 +1,36 @@
+<?php
+	// Gets the user_id from the session
+	$userId = $_SESSION['user_id'];
+
+	// Checks if sorting is set and checks value of it
+	if(isset($_GET['sorting'])) {
+		if($_GET['sorting'] == "title"){
+			$sorting = "title";
+			if($_GET['ad'] == "ASC") {
+				$ascdesc = "DESC";
+			} elseif($_GET['ad'] == "DESC") {
+				$ascdesc = "ASC";
+			}
+		} elseif($_GET['sorting'] == "date") {
+			$sorting = "date";
+			if($_GET['ad'] == "ASC") {
+				$ascdesc = "DESC";
+			} elseif($_GET['ad'] == "DESC") {
+				$ascdesc = "ASC";
+			}
+		}
+		// Gets every labjournal of the choosen year 
+		$allLabjournals = $db->selectAllLabjournals($year, $userId, $sorting, $ascdesc);
+	} else {
+		// Set default value
+		$sorting = "title";
+		$ascdesc = "ASC";
+
+		// Gets every labjournal of the choosen year
+		$allLabjournals = $db->selectAllLabjournals($year, $userId, $sorting, $ascdesc);
+	}
+?>
+
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
 		<a href="createNewLabjournaal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
@@ -12,16 +45,12 @@
 			<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
 			<table>
 				<tr>
-					<th><?php echo $lang["TITLE"];?><button href="" class="tableHeaderIcons btn btn-default"><i class="fas fa-sort"></i></button></th>
-					<th><?php echo $lang["DATE"];?><button href="" class="tableHeaderIcons btn btn-default"><i class="fas fa-sort"></i></button></th>
+					<th><?php echo $lang["TITLE"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+					<th><?php echo $lang["DATE"];?><a href="?sorting=date&ad=<?php echo $ascdesc?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
 					<th><?php echo $lang["GRADE"];?></th>
 					<th><?php echo $lang["ACTION"];?></th>
 				</tr>
 				<?php
-					// Gets the user_id from the session
-					$userId = $_SESSION['user_id'];
-					// Get every labjournal of the choosen year
-					$allLabjournals = $db->selectAllLabjournals($year, $userId);
 					while($allResults = $allLabjournals->fetch_array(MYSQLI_ASSOC)){
 						echo "<tr>";
 						echo "<td>$allResults[title]</td>";
