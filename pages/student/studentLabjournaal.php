@@ -1,3 +1,23 @@
+<?php
+	// Checks if cookie is set
+	if(isset($_COOKIE['labYear'])) {
+		if(isset($_GET['year'])) {
+			echo "year exists";
+			setcookie("labYear", $_GET['year']);
+		}
+		// $year = $_COOKIE['labYear'];
+	} else {
+		if(isset($_GET['year'])){
+			setcookie("labYear", $_GET['year']);
+		}
+	}
+	
+	// Gets the user_id from the session
+	$userId = $_SESSION['user_id'];
+
+	// Get every labjournal of the choosen year
+	$allLabjournals = $db->selectAllLabjournals($year, $userId);
+?>
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
 		<a href="createNewLabjournaal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
@@ -10,27 +30,7 @@
 		</div>
 		<div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
 			<table>
-				<?php
 
-					// Gets the clicked year
-					if(isset($_GET['year'])) {
-						if($_GET['year'] == 2) {
-							$year = 2;
-						} elseif ($_GET['year'] == 3) {
-							$year = 3;
-						} else {
-							$year = 1;
-						}
-					} else {
-						$year = 1;
-					}
-
-					// Gets the user_id from the session
-					$userId = $_SESSION['user_id'];
-
-					// Get every labjournal of the choosen year
-					$allLabjournals = $db->selectAllLabjournals($year, $userId);
-				?>
 				<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
 				<th><?php echo $lang["TITLE"];?></th>
 				<th><?php echo $lang["DATE"];?></th>
