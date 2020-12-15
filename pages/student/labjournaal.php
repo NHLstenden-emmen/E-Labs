@@ -1,10 +1,3 @@
-<?php
-	// Gets the user_id from the session
-	$userId = $_SESSION['user_id'];
-
-	// Get every labjournal of the choosen year
-	$allLabjournals = $db->selectAllLabjournals($year, $userId);
-?>
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
 		<a href="createNewLabjournaal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
@@ -19,12 +12,16 @@
 			<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
 			<table>
 				<tr>
-					<th><?php echo $lang["TITLE"];?></th>
-					<th><?php echo $lang["DATE"];?></th>
+					<th><?php echo $lang["TITLE"];?><button href="" class="tableHeaderIcons btn btn-default"><i class="fas fa-sort"></i></button></th>
+					<th><?php echo $lang["DATE"];?><button href="" class="tableHeaderIcons btn btn-default"><i class="fas fa-sort"></i></button></th>
 					<th><?php echo $lang["GRADE"];?></th>
 					<th><?php echo $lang["ACTION"];?></th>
 				</tr>
 				<?php
+					// Gets the user_id from the session
+					$userId = $_SESSION['user_id'];
+					// Get every labjournal of the choosen year
+					$allLabjournals = $db->selectAllLabjournals($year, $userId);
 					while($allResults = $allLabjournals->fetch_array(MYSQLI_ASSOC)){
 						echo "<tr>";
 						echo "<td>$allResults[title]</td>";

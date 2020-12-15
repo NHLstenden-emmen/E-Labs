@@ -8,7 +8,7 @@
 			$year = $_COOKIE['labYear'];
 		}
 	} else {
-		if(isset($_GET['year']) && !empty($_GET['year'])){
+		if(isset($_GET['year'])){
 			setcookie("labYear", $_GET['year']);
 			$year = $_COOKIE['labYear'];
 		} else {
