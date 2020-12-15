@@ -1,3 +1,10 @@
+<?php
+	// Gets the user_id from the session
+	$userId = $_SESSION['user_id'];
+
+	// Get every labjournal of the choosen year
+	$allLabjournals = $db->selectAllLabjournals($year, $userId);
+?>
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
 		<a href="createNewLabjournaal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
@@ -9,24 +16,6 @@
 			<a href="?year=3">- <?php echo $lang["YEAR_3"];  ?></a>
 		</div>
 		<div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
-			<?php
-				if(isset($_GET['year'])) {
-					if($_GET['year'] == 2) {
-						$year = 2;
-					} elseif ($_GET['year'] == 3) {
-						$year = 3;
-					} else {
-						$year = 1;
-					}
-				} else {
-					$year = 1;
-				}
-				// When session is available getting the user id from session
-				$userId = $_SESSION['user_id'];
-
-				// Get every labjournal of the choosen year
-				$allLabjournals = $db->selectAllLabjournals($year, $userId);
-			?>
 			<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
 			<table>
 				<tr>
@@ -56,7 +45,6 @@
 						echo "</tr>";
 					}	
 				?>
-					
 			</table>
 		</div>
 	</div>
