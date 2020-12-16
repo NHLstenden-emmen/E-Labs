@@ -10,7 +10,7 @@
 			$TargetPath=$time.$UploadedFileName;
 			$type=$_FILES[ 'profpic' ][ 'type' ];     
  
-			$extensions=array( 'image/jpeg', 'image/png', 'image/gif' );
+			$extensions=array( 'image/jpeg', 'image/png', 'image/jpg' );
 				if( in_array( $type, $extensions )){
 					if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
 						$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
