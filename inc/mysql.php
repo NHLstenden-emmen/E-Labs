@@ -494,5 +494,17 @@
 			}
 			return NULL;
 		}
+		public function DeleteUser($userid){
+			if($stmt = $this->conn->prepare('UPDATE `users` SET `email` = "DELETED", `password` = "DELETED", `role`= "DELETED", `profile_picture` = NULL WHERE `user_id` =?')){
+				$stmt->bind_param('i', $userid);
+				$stmt->execute();
+				$stmt->close();
+				$message = "User Succesfully Deleted";
+				return $message;
+			}
+			else{
+				return mysqli_error($this->conn);
+			}
+		}
 	}
 ?>

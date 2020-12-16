@@ -60,11 +60,11 @@ if (empty($message) && isset($_GET['id'])) {
 		<div>
 			<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
 			<label for="1"><?php echo $lang["YEAR_1"];?></label>
-				<input type="radio" name="year" value="1" checked>
+				<input type="radio" name="year" value="1" <?php if($year = 1){echo 'checked';}?>>
 			<label for="1"><?php echo $lang["YEAR_2"];?></label>
-				<input type="radio" name="year" value="2">
+				<input type="radio" name="year" value="2"<?php if($year = 2){echo 'checked';}?>>
 			<label for="1"><?php echo $lang["YEAR_3"];?></label>
-				<input type="radio" name="year" value="3">
+				<input type="radio" name="year" value="3"<?php if($year = 3){echo 'checked';}?>>
 		</div>
 		<div>
 			<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label> </br>

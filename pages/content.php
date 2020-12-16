@@ -64,6 +64,10 @@
 				case 'searchresults':
 					include 'searchResults.php';
 					break;
+				case 'accountverwijderen':
+					include 'docent/accountverwijderen.php';
+					break;
+
 				default:
 					include '404.php'; // when the page isset found
 			}
