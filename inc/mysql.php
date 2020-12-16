@@ -360,8 +360,9 @@
 			}
 		}
 		
-		public function updatebestanden($UserID, $Attachment){
+		public function updatebestanden($labjournaal, $UserID, $Attachment){
 
+			$labjournaal = htmlspecialchars($labjournaal);
 			$Attachment = htmlspecialchars($Attachment);
 			$UserID = htmlspecialchars($UserID);
 
@@ -369,7 +370,7 @@
 			JOIN lab_journal_users ON lab_journal_users.lab_journal_id =  lab_journal.labjournaal_id
 			SET `Attachment`=? 
 			WHERE lab_journal_users.`user_id` = ? AND labjournaal_id = ?")) {
-                $stmt->bind_param('sii',  $Attachment,$UserID, $labjournaal_id);
+                $stmt->bind_param('sii',  $Attachment,$UserID, $labjournaal);
 				$stmt->execute();
 				$stmt->close();
 				return "geupload";
