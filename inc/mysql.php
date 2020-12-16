@@ -451,7 +451,7 @@
 			$labjournaal = htmlspecialchars($labjournaal);
 			$userId = htmlspecialchars($userId);
 			
-			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis` 
+			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis`,`creater_id` 
 			FROM `lab_journal` 
 			JOIN lab_journal_users ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
 			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ? ")) {
@@ -508,5 +508,25 @@
 			}
 			return NULL;
 		}
+		public function GetAllLabUsers($labid){
+		if ($stmt = $this->conn->prepare('SELECT * FROM `lab_journal_users` JOIN `users` ON lab_journal_users.user_id = users.user_id WHERE lab_journal_id = ?')){
+			$stmt->bind_param('i', $labid);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$stmt->free_result();
+			$stmt->close();
+			return $result;
+			}
+			else{ return mysqli_error($this->conn);}
+		}
+		public function DeleteExtraUser($userid, $labjournaalid){
+		if($stmt = $this->conn->prepare('DELETE FROM `lab_journal_users` WHERE `user_id` = ? AND `lab_journal_id` = ?')){
+			$stmt->bind_param('ii', $userid, $labjournaalid);
+			$stmt->execute();
+			$stmt->close();
+			return "Verwijderen gelukt";
+		}
+		else{ return mysqli_error($this->conn);}
+	}
 	}
 ?>

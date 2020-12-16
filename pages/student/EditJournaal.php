@@ -1,5 +1,5 @@
 <?php
-if (!empty($_POST['title']) && isset($_POST['title'])) {
+if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inleveren'])){
 	$title = $_POST['title'];
 	$date =  date('Y-m-d H:i:s');
 	$theory = $_POST['theory'];
@@ -31,8 +31,28 @@ if (empty($message) && isset($_GET['id'])) {
 		<div>
 			<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
 			<input type="text" name="title" class="nieuwetitellabjournaal" value="<?php echo $result['title'];?>">
+			<!-- </form> -->
 		</div>
-		<div></div>
+		<div>
+				<?php
+					if($_SESSION['user_id'] == $result['creater_id']){
+						echo "<label for='users'>".$lang['OTHERSTUDENTS']."</label>";
+						$users = $db->GetAllLabUsers($_GET['id']);
+						echo "<ul><pre>";
+						while ($user = $users->fetch_array(MYSQLI_ASSOC)){
+							$username = $user['name'];
+							echo "<li>".$username."&#9;&#9;<button name='delete'value='".$user['user_id']."'>Delete</button></li>";
+						}
+						echo "</pre></ul>";
+					}
+					if(isset($_POST['delete'])){
+						$deleteuser = $_POST['delete'];
+						$delete = $db->DeleteExtraUser($deleteuser, $_GET['id']);
+						echo $delete;
+					}
+					?>
+		</div>
+		<!-- <form method="post" class="newlabjournaalcontainer"> -->
 		<div>
 			<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
 				<textarea class="groteretextarealabjournaal" name="Goal" value="<?php echo $result['Goal'];?>"><?php echo $result['Goal'];?></textarea>

@@ -1,3 +1,10 @@
+li{
+	list-style-type: none;
+}
+/* .Deleteuser{
+	width: 200px;
+	height: 50px;
+} */
 .newlabjournaalcontainer {
 	padding: 20px;
 	text-align: center;

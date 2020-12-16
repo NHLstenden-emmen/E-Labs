@@ -41,7 +41,7 @@ if (empty($message)) {
 		<input type="text" name="title" class="nieuwetitellabjournaal">
 	</div>
 	<div>
-	<label for="medestudenten"><?php echo $lang["ADDSTUDENTS"];?>:</label> </br>
+	<label for="medestudenten"><?php echo $lang["OTHERSTUDENTS"];?>:</label> </br>
 	<select name="medestudenten[ ]" multiple>
 	<?php
 	while ($user = $result->fetch_array(MYSQLI_ASSOC)){
