@@ -15,22 +15,26 @@ $num_of_files = 1;
 if(isset($_POST['Submit1']))
 { 
 $filepath ="gebruikersBestanden/uploads/" . $_FILES["file"]["name"];
- 
-if(move_uploaded_file($_FILES["file"]["tmp_name"], $filepath)) 
-{
-echo "File is geupload";
-} 
-else 
-{
-echo "Error !!";
-}
-} 
+	$mimes = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
+			if(in_array($_FILES['file']['type'],$mimes)){
+					if(move_uploaded_file($_FILES["file"]["tmp_name"], $filepath)) 
+					{
+					echo "File is geupload";
+					} 
+			}
+					else 
+					{
+					echo "Dit is niet een csv!";
+					}
+					} 
 
 
 $dir = "gebruikersBestanden/uploads/";
 $dh = opendir($dir);
 $last = 0;
 $name = "";
+
+
 while (($file = readdir($dh)) !== false){
     if(is_file($dir.$file)){
         $mt = filemtime($dir.$file);
