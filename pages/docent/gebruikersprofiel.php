@@ -64,7 +64,7 @@
 	</form>
 	<div class="Gebruikersprofielcontainer">
 		<div id="Gebruikersprofielstudentinformatierechts"> 
-			<p> <?php echo $lang['STUDENT_NUMBER']?>: </p>
+			<p> <?php echo $lang['TEACHER_NUMBER']?>: </p>
 			<p id="profielinformatiekleurgrijs"> <?php echo $_SESSION['user_number']?></p>
 			<p> <?php echo $lang["NAME"];?>: </p>
 			<p id="profielinformatiekleurgrijs"> <?php echo $_SESSION['name']?></p>
@@ -73,7 +73,32 @@
 			<p><?php echo $lang['E-MAIL']?>: </p>
 			<p id="profielinformatiekleurgrijs">  <?php echo $_SESSION['email']?> </p>
 			<p> <?php echo $lang['LANGUAGE']?>: </p>
-			<p id="profielinformatiekleurgrijs">  <?php echo $_COOKIE['lang']?> </p>
+			<p id="profielinformatiekleurgrijs">  <?php 
+		// check if there is a cookie for lang set
+			if(!isset($_COOKIE['lang'])){
+				echo "<form method='post' id='langSwitch' class='dropdown-item'>
+					<button type='submit' value='en' class='languageSwitch' name='changelang'>
+						EN
+					</button>
+					</form>
+				";
+		} // change the button to a dutch button cause the lang is set to english
+			else if($_COOKIE['lang'] == 'en'){
+				echo "<form method='post' id='langSwitch'>
+					<button type='submit' value='nl' class='languageSwitch' name='changelang'>
+						NL
+					</button>
+					</form>
+				";
+		} // change the button to a english button cause the lang is set to dutch
+			else if($_COOKIE['lang'] == 'nl'){
+				echo "<form method='post' id='langSwitch'>
+					<button type='submit' value='en' class='languageSwitch' name='changelang'>										EN
+					</button>
+					</form>
+				";
+			}
+		?></p>
 		</div>
 	</div>
 	<form method="POST" class='changePassword'>
