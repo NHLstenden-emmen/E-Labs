@@ -1,6 +1,5 @@
 <?php
 if (!empty($_POST['title']) && isset($_POST['title'])) {
-	var_dump($_POST);
 	$title = $_POST['title'];
 	$date =  date('Y-m-d H:i:s');
 	$theory = $_POST['theory'];
@@ -18,11 +17,18 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 	$Attachment = '';
 	$Goal = $_POST['Goal'];
 	$Hypothesis = $_POST['Hypothesis'];
+	if(!empty($_POST['medestudenten'])){
+		$medestud = $_POST['medestudenten'];
+	}
 	
 	$createdLabjournaalID = $db->LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
 
 	while ($thisResult = $createdLabjournaalID->fetch_array(MYSQLI_ASSOC)){
 		$message = $db->connectNewLabjournaalWithUser($_SESSION['user_id'], $thisResult['labjournaal_id']);
+		if(isset($medestud)){
+		foreach($medestud as $entry){
+			$db->connectNewLabjournaalWithUser($entry, $thisResult['labjournaal_id']);
+		}}
 	}
 	echo $message;
 }
@@ -39,10 +45,8 @@ if (empty($message)) {
 	<select name="medestudenten[ ]" multiple>
 	<?php
 	while ($user = $result->fetch_array(MYSQLI_ASSOC)){
-		if($user['user_id'] == $_SESSION['user_id']){
-		}
-		else{
-		echo "<option value='".$user["user_id"]."'>".$user['name']."</option>";
+		if($user['user_id'] !== $_SESSION['user_id']){
+			echo "<option value='".$user["user_id"]."'>".$user['name']."</option>";
 		}
 	}
 	?>
