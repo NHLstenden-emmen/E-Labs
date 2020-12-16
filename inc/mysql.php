@@ -354,31 +354,7 @@
 				$stmt->close();
 				return "gelukt";
 			}
-			else{
-				$conn = $this->conn;
-				return mysqli_error($conn);
-			}
-		}
-		
-		public function updatebestanden($labjournaal, $UserID, $Attachment){
-
-			$labjournaal = htmlspecialchars($labjournaal);
-			$Attachment = htmlspecialchars($Attachment);
-			$UserID = htmlspecialchars($UserID);
-
-			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` 
-			JOIN lab_journal_users ON lab_journal_users.lab_journal_id =  lab_journal.labjournaal_id
-			SET `Attachment`=? 
-			WHERE lab_journal_users.`user_id` = ? AND labjournaal_id = ?")) {
-                $stmt->bind_param('sii',  $Attachment,$UserID, $labjournaal);
-				$stmt->execute();
-				$stmt->close();
-				return "geupload";
-			}
-			else{
-				$conn = $this->conn;
-				return mysqli_error($conn);
-			}
+			return NULL;
 		}
 
 		public function getLabjournaal($labjournaal, $userId){
@@ -389,7 +365,7 @@
 			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis` 
 			FROM `lab_journal` 
 			JOIN lab_journal_users ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ? ")) {
+			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ?")) {
                 $stmt->bind_param('ii', $labjournaal, $userId);
 				$stmt->execute();
 				$result = $stmt->get_result();

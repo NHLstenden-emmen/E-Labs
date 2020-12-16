@@ -1,20 +1,4 @@
 <?php
-if(isset($_POST['uploadcsv'])){
-		if(!empty($_FILES['fileupload']['name'])){
-
-			$UploadedFileName=$_FILES['fileupload']['name'];
-			
-			$upload_directory = "gebruikersBestanden/uploads/"; //This is the folder which you created just now
-			$time = time();
-			$TargetPath=$time.$UploadedFileName;
-		
-			if(move_uploaded_file($_FILES['fileupload']['tmp_name'], $upload_directory.$TargetPath)){ 
-				$db->updatebestanden($_SESSION['user_id'], $upload_directory.$TargetPath);
-			}
-
-		}
-}
-
 if (!empty($_POST['title']) && isset($_POST['title'])) {
 	$title = $_POST['title'];
 	$date =  date('Y-m-d H:i:s');
@@ -30,11 +14,22 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 	}
 	$grade = 0;
 	$year = $_POST['year'];
-	$Attachment = '';
+	$Attachment = 'euh';
 	$Goal = $_POST['Goal'];
 	$Hypothesis = 'Hypothesis';
 	$UserID = $_SESSION['user_id'];
 	$labjournaal_id = $_GET['id'];
+	if(!empty($_FILES['fileupload']['name'])){
+		$UploadedFileName=$_FILES['fileupload']['name'];
+		
+		$upload_directory = "gebruikersBestanden/uploads/";
+		$time = time();
+		$TargetPath=$time.$UploadedFileName;
+	
+		if(move_uploaded_file($_FILES['fileupload']['tmp_name'], $upload_directory.$TargetPath)){ 
+			$Attachment = $upload_directory.$TargetPath;
+		}
+	}
 	$message = $db->updatelabjournaal($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 }
 
@@ -44,7 +39,7 @@ if (empty($message) && isset($_GET['id'])) {
 	while ($result = $getLabjournaal->fetch_array(MYSQLI_ASSOC)){ 
 		if ($result["submitted"] == 0) {
 		?>
-	<form method="post" class="newlabjournaalcontainer">
+	<form method="post" enctype='multipart/form-data' class="newlabjournaalcontainer">
 		<div>
 			<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
 			<input type="text" name="title" class="nieuwetitellabjournaal" value="<?php echo $result['title'];?>">
@@ -85,8 +80,7 @@ if (empty($message) && isset($_GET['id'])) {
 		</div>
 		<div>
 			<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label> </br>
-				<input type="file" name="fileupload" value="<?php echo $result['Attachment'];?>">
-				<input type="submit" name="uploadcsv" value="Change/Upload File">
+			<input name='fileupload' type='file'>
 		</div>	
 		<div>
 			<input type="submit" name="opslaan" value="<?php echo $lang["SAVE"];?>">
