@@ -24,6 +24,7 @@
         $db = new Database();
         include 'inc/select.php';
         include 'inc/header.php';
+        include 'inc/selectYear.php';
         
         // build the website
         if (empty($_SESSION['role'])) {
