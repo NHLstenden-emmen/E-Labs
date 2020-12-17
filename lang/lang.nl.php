@@ -62,5 +62,6 @@ return [
 	'HYPOTHESIS' => 'Hypothese',
 	'DEL' => 'Verwijderen',
 	'WRONG_FILE' => 'Verkeerd type bestand toegevoegd',
+	'BIG_FILE' => 'Het toegevoegde bestand is te groot',
 ]
 ?>

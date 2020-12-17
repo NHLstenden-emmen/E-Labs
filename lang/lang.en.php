@@ -62,5 +62,6 @@ return [
 	'HYPOTHESIS' => 'Hypothesis',
 	'DEL' => 'Delete',
 	'WRONG_FILE' => 'Wrong file type added',
+	'BIG_FILE' => 'The file you added is too big',
 ]
 ?>
