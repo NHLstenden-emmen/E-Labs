@@ -11,7 +11,7 @@
         while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
             // this is a check if the password is correct
             if (password_verify($pass, $result['password'])) {
-                // this is a checkbox check for the remeber me check 
+                // this is a checkbox check for the remember me check 
                 if (!empty($_POST["remember"])) {
                     setcookie("member_login", $email);
                 } else {

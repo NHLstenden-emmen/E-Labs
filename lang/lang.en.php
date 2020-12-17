@@ -49,7 +49,8 @@ return [
 	'VIEWLAB' => 'View Labjournal',
 	'GRADELAB' => 'Grade Labjournal',
 	'PRINTLAB' => 'Print Labjournal',
-	'CHANGE_PROFILE_PHOTO' => 'change profile photo',
+	'OTHERSTUDENTS' => 'Other studentes',
+	'CHANGE_PROFILE_PHOTO' => 'Change profile photo',
 	'NEW' => 'New',
 	'CURRENT' => 'Current',
 	'RESULT' => 'Result',
@@ -59,5 +60,6 @@ return [
 	'GOAL' => 'Goal',
 	'YEAR' => 'Year',
 	'HYPOTHESIS' => 'Hypothesis',
+	'DEL' => 'Delete',
 ]
 ?>

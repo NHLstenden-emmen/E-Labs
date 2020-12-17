@@ -1,5 +1,5 @@
 <?php
-if (!empty($_POST['title']) && isset($_POST['title'])) {
+if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inleveren'])){
 	$title = $_POST['title'];
 	$date =  date('Y-m-d H:i:s');
 	$theory = $_POST['theory'];
@@ -31,8 +31,46 @@ if (empty($message) && isset($_GET['id'])) {
 		<div>
 			<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
 			<input type="text" name="title" class="nieuwetitellabjournaal" value="<?php echo $result['title'];?>">
+			<!-- </form> -->
 		</div>
-		<div></div>
+		<div>
+				<?php
+					echo "<label for='users'><a class='help'><i class='fas fa-question-circle' Title='Ctrl + Linkermuisknop om meerdere te selecteren'></i></a>".$lang['OTHERSTUDENTS']."</label>";
+					$student = $db->selectStudents();
+					echo '<div class="twoinone"><div><select name="medestudenten" multiple>';
+					while ($user = $student->fetch_array(MYSQLI_ASSOC)){
+						if($user['user_id'] !== $_SESSION['user_id'] && $user['user_id'] !== $result['creater_id']){
+							echo "<option value='".$user['user_id']."'";
+							$labusers = $db->GetAllLabUsers($_GET['id']);
+							while($labuser = $labusers->fetch_array(MYSQLI_ASSOC)){
+								if($user['user_id'] === $labuser['user_id']){
+									echo "selected='selected'";
+								}
+							}
+							echo ">".$user['name']."</option>";
+						}
+					}
+					echo "</select></div><div>";
+					if($_SESSION['user_id'] == $result['creater_id']){
+						$labusers = $db->GetAllLabUsers($_GET['id']);
+						echo "<ul><pre>";
+						while ($users = $labusers->fetch_array(MYSQLI_ASSOC)){
+							if($users['user_id'] !== $result['creater_id']){
+								$username = $users['name'];
+								echo "<li>".$username."&#9;&#9;<button name='delete' value='".$users['user_id']."'>Delete</button></li>";
+							}
+						}
+						echo "</pre></ul>";
+					}
+					echo "</div></div>";
+					if(isset($_POST['delete'])){
+						$deleteuser = $_POST['delete'];
+						$delete = $db->DeleteExtraUser($deleteuser, $_GET['id']);
+						echo $delete;
+					}
+					?>
+		</div>
+		<!-- <form method="post" class="newlabjournaalcontainer"> -->
 		<div>
 			<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
 				<textarea class="groteretextarealabjournaal" name="Goal" value="<?php echo $result['Goal'];?>"><?php echo $result['Goal'];?></textarea>
@@ -60,11 +98,11 @@ if (empty($message) && isset($_GET['id'])) {
 		<div>
 			<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
 			<label for="1"><?php echo $lang["YEAR_1"];?></label>
-				<input type="radio" name="year" value="1" checked>
+				<input type="radio" name="year" value="1" <?php if($year = 1){echo 'checked';}?>>
 			<label for="1"><?php echo $lang["YEAR_2"];?></label>
-				<input type="radio" name="year" value="2">
+				<input type="radio" name="year" value="2"<?php if($year = 2){echo 'checked';}?>>
 			<label for="1"><?php echo $lang["YEAR_3"];?></label>
-				<input type="radio" name="year" value="3">
+				<input type="radio" name="year" value="3"<?php if($year = 3){echo 'checked';}?>>
 		</div>
 		<div>
 			<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label> </br>
