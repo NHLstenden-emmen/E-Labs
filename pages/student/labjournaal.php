@@ -23,7 +23,7 @@
 		$allLabjournals = $db->selectAllLabjournals($year, $userId, $sorting, $ascdesc);
 	} else {
 		// Set default value
-		$sorting = "title";
+		$sorting = "date";
 		$ascdesc = "ASC";
 
 		// Gets every labjournal of the choosen year
