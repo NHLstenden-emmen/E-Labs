@@ -150,12 +150,19 @@
 			return NULL;
 		}
 
-		public function selectAllLabjournals($year, $userId) {
-            if (
-            	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE year = ?
-					AND lab_journal_users.user_id = ?")) {
-                $stmt->bind_param("ii", $year, $userId);
+		public function selectAllLabjournals($year, $userId, $sorting, $ascdesc) {
+            if ($ascdesc == "DESC"){
+            	$sql = "SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE year = $year
+					AND lab_journal_users.user_id = $userId
+					ORDER BY $sorting DESC";
+            } else {
+            	$sql = "SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE year = $year
+					AND lab_journal_users.user_id = $userId
+					ORDER BY $sorting ASC";
+            }
+            if($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
