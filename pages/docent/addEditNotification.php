@@ -59,6 +59,9 @@ if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($result)) {
 while ($result = $viewNotification->fetch_array(MYSQLI_ASSOC)){ ?>
 	<p class="title">title: <?php echo $result['title']?></p>
 	<p class="message">Message: <?php echo $result['message']?></p>
+	<?php if ($result['viewer'] != NULL ) { ?>
+		<p class="message">send to: <?php echo $result['viewer']?></p>
+	<?php }?>
 	<p class="creater"><?php echo $lang['MADE_BY'].' '. $result['name'] ?></p>
 	<p class="date_time">Datum: <?php echo $result['date_time']?></p>
 <?php }}?>
