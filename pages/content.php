@@ -55,6 +55,12 @@
 				case 'gebruikersprofiel':
 					include 'docent/gebruikersprofiel.php';
 					break;
+				case 'notificationsoverzicht':
+					include 'docent/notifications.php';
+					break;
+				case 'addeditnotification':
+					include 'docent/addEditNotification.php';
+					break;
 				case 'labjournaalview':
 					include 'docent/labjournaalView.php';
 					break;
