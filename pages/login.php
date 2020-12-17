@@ -30,15 +30,13 @@
                 // go to the page of the users role
                 if ($result['role'] == "Docent") {
                     $_SESSION['role'] = 'Docent';
-                    header("Location: home");
                     // server fix for the relocation problem
-                    echo "<script>window.location.href='login';</script>";
+                    echo "<script>window.location.href='home';</script>";
                     exit;
                 } else if ($result['role'] == "Student") {
                     $_SESSION['role'] = 'Student';
-                    header("Location: home");
                     // server fix for the relocation problem
-                    echo "<script>window.location.href='login';</script>";
+                    echo "<script>window.location.href='home';</script>";
                     exit;
                 } else{
                     die('er is iets fout gegaan.');
