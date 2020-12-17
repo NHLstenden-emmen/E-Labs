@@ -318,7 +318,7 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
-				ORDER BY `date` ASC
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -354,7 +354,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
-				ORDER BY `date` ASC
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -379,7 +379,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
-				ORDER BY `date` ASC
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -404,7 +404,7 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
-				ORDER BY `date` ASC
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
