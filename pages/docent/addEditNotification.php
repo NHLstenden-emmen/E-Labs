@@ -5,8 +5,8 @@
 		//this wil be loaded when you try to delete a notification
 		$viewNotification = $db->viewNotification($_GET['delete']);
 		if (isset($_POST['deletNotification'])) {
-			$result = $db->deleteNotification($_GET['delete']);
-		}if (!isset($result)){ ?> 
+			$deleteNotification = $db->deleteNotification($_GET['delete']);
+		}if (!isset($deleteNotification)){ ?> 
 			<form method="POST">
 				<input type="submit" name="deletNotification" value="deletNotification">
 			</form>
@@ -22,9 +22,9 @@
 			$message =  $_POST['message'];
 			$date_time =  date('Y-m-d H:i:s');
 			$viewer = $_POST['student'];
-			$result = $db->addNewNotification($userId, $viewer, $title, $message, $date_time);
+			$addNewNotification = $db->addNewNotification($userId, $viewer, $title, $message, $date_time);
 		}
-		if (!isset($result)) {
+		if (!isset($addNewNotification)) {
 		?> 
 		<h1>Create a notification</h1>
 		<form method="POST">
@@ -56,14 +56,14 @@
 			</div>
 			<div>
 		</form>
-<?php }else{ echo 'gebruiker toegevoegd';}}
-if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($result)) {
-while ($result = $viewNotification->fetch_array(MYSQLI_ASSOC)){ ?>
-	<p class="title">title: <?php echo $result['title']?></p>
-	<p class="message">Message: <?php echo $result['message']?></p>
-	<?php if ($result['viewer'] != NULL ) { ?>
-		<p class="message">send to: <?php echo $result['viewer']?></p>
+<?php } else { echo 'gebruiker toegevoegd';}}
+if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($deleteNotification)) {
+while ($notification = $viewNotification->fetch_array(MYSQLI_ASSOC)){ ?>
+	<p class="title">title: <?php echo $notification['title']?></p>
+	<p class="message">Message: <?php echo $notification['message']?></p>
+	<?php if ($notification['viewer'] != NULL ) { ?>
+		<p class="message">send to: <?php echo $notification['viewer']?></p>
 	<?php }?>
-	<p class="creater"><?php echo $lang['MADE_BY'].' '. $result['name'] ?></p>
-	<p class="date_time">Datum: <?php echo $result['date_time']?></p>
+	<p class="creater"><?php echo $lang['MADE_BY'].' '. $notification['name'] ?></p>
+	<p class="date_time">Datum: <?php echo $notification['date_time']?></p>
 <?php }}?>
