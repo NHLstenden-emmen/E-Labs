@@ -58,6 +58,12 @@
 					case 'gebruikersprofiel':
 						include 'docent/gebruikersprofiel.php';
 						break;
+					case 'notificationsoverzicht':
+						include 'docent/notifications.php';
+						break;
+					case 'addeditnotification':
+						include 'docent/addEditNotification.php';
+						break;
 					case 'labjournaalview':
 						include 'docent/labjournaalView.php';
 						break;
@@ -66,6 +72,9 @@
 						break;
 					case 'searchresults':
 						include 'searchResults.php';
+						break;
+					case 'accountverwijderen':
+						include 'docent/accountverwijderen.php';
 						break;
 					default:
 						include '404.php'; // when the page isset found
