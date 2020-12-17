@@ -292,7 +292,7 @@
 		public function selectStudentSearchResultsLabjournal($userId, $searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
 				JOIN users ON lab_journal_users.user_id = users.user_id
 				WHERE creater_id = ?
@@ -303,6 +303,7 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` ASC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -317,7 +318,7 @@
 		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE creater_id = ?
@@ -328,6 +329,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` ASC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -342,7 +344,7 @@
 		public function selectTeacherSearchResultsPreperation($searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE (title LIKE ?
@@ -352,6 +354,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` ASC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -366,7 +369,7 @@
 		public function selectTeacherSearchResultsLabjournal($searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
 				JOIN users ON lab_journal_users.user_id = users.user_id
 				WHERE (title LIKE ?
@@ -376,6 +379,7 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` ASC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
