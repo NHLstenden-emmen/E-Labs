@@ -587,7 +587,13 @@
 		}
 
 		public function viewNotification($labjournalid){
-			if ($stmt = $this->conn->prepare('SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `notification_id` = ? ORDER BY date_time DESC')){
+			if ($stmt = $this->conn->prepare('SELECT notification_id, title, `message`, date_time, 
+			krijgViewer.name as Vname, 
+			krijgCreater.name as Cname 
+			FROM `notifications`
+			JOIN users krijgCreater ON notifications.creater = krijgCreater.user_id
+			LEFT JOIN users krijgViewer ON notifications.viewer = krijgViewer.user_id
+			WHERE `notification_id` = ?')){
 				$stmt->bind_param('i', $labjournalid);
 				$stmt->execute();
 				$result = $stmt->get_result();
