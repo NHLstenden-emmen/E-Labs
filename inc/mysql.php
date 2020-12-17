@@ -128,18 +128,26 @@
 			$message = htmlspecialchars($message);
 			$date_time = htmlspecialchars($date_time);
 
-			if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `viewer`, `title`, `message`, `date_time`) VALUES (?,?,?,?,?)")) {
-				$stmt->bind_param("iissd", $creater, $viewer, $title, $message, $date_time);
-				$stmt->execute();
-				$stmt->close();
-				return "bericht toegevoegd";
+			if ($viewer == '0') {
+				if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `title`, `message`, `date_time`) VALUES (?,?,?,?)")) {
+					$stmt->bind_param("isss", $creater, $title, $message, $date_time);
+					$stmt->execute();
+					$stmt->close();
+					return "bericht toegevoegd";
+				}
+			} else {
+				if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `viewer`, `title`, `message`, `date_time`) VALUES (?,?,?,?,?)")) {
+					$stmt->bind_param("iisss", $creater, $viewer, $title, $message, $date_time);
+					$stmt->execute();
+					$stmt->close();
+					return "bericht toegevoegd";
+				}
 			}
-			return NULL;
 		}
 
 		
 		public function selectAllNotifications(){
-			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `viewer` IS NULL")) {
+			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `viewer` IS NULL ORDER BY date_time DESC")) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -150,7 +158,7 @@
 		}
 
 		public function selectCurrentUserNotifications($userID){
-			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `viewer` = ?")) {
+			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `viewer` = ? ORDER BY date_time DESC")) {
 				$stmt->bind_param("i", $userID);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -161,12 +169,19 @@
 			return NULL;
 		}
 
-		public function selectAllLabjournals($year, $userId) {
-            if (
-            	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE year = ?
-					AND lab_journal_users.user_id = ?")) {
-                $stmt->bind_param("ii", $year, $userId);
+		public function selectAllLabjournals($year, $userId, $sorting, $ascdesc) {
+            if ($ascdesc == "DESC"){
+            	$sql = "SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE year = $year
+					AND lab_journal_users.user_id = $userId
+					ORDER BY $sorting DESC";
+            } else {
+            	$sql = "SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE year = $year
+					AND lab_journal_users.user_id = $userId
+					ORDER BY $sorting ASC";
+            }
+            if($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -306,7 +321,7 @@
 		public function selectStudentSearchResultsLabjournal($userId, $searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
 				JOIN users ON lab_journal_users.user_id = users.user_id
 				WHERE creater_id = ?
@@ -317,8 +332,19 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+		public function selectStudents(){
+			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `role` = 'Student'")) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -331,7 +357,7 @@
 		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE creater_id = ?
@@ -342,6 +368,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -356,7 +383,7 @@
 		public function selectTeacherSearchResultsPreperation($searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE (title LIKE ?
@@ -366,6 +393,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -380,7 +408,7 @@
 		public function selectTeacherSearchResultsLabjournal($searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
 				JOIN users ON lab_journal_users.user_id = users.user_id
 				WHERE (title LIKE ?
@@ -390,6 +418,7 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -508,6 +537,7 @@
 			}
 			return NULL;
 		}
+    
 		public function GetAllLabUsers($labid){
 		if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `lab_journal_id` FROM `lab_journal_users` JOIN `users` ON lab_journal_users.user_id = users.user_id WHERE lab_journal_id = ?')){
 			$stmt->bind_param('i', $labid);
@@ -528,5 +558,42 @@
 		}
 		else{ return mysqli_error($this->conn);}
 	}
+    
+		public function deleteNotification($notificationId){
+			
+			$notificationId = htmlspecialchars($notificationId);
+
+			if ($stmt = $this->conn->prepare("DELETE FROM `notifications` WHERE `notification_id` = ?")) {
+                $stmt->bind_param('i', $notificationId);
+				$stmt->execute();
+				$stmt->close();
+				return "Deleted Notification";
+			}
+			return NULL;
+		}
+
+		public function viewNotification($labjournalid){
+			if ($stmt = $this->conn->prepare('SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `notification_id` = ? ORDER BY date_time DESC')){
+				$stmt->bind_param('i', $labjournalid);
+				$stmt->execute();
+				$result = $stmt->get_result();
+                $stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+		
+		public function selectCurrentCreaterNotifications($userID){
+			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `creater` = ? AND viewer IS NOT NULL ORDER BY date_time DESC")) {
+				$stmt->bind_param("i", $userID);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
 	}
 ?>
