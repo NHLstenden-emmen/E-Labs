@@ -59,10 +59,13 @@ return [
 	'GOAL' => 'Doel',
 	'YEAR' => 'Jaar',
 	'HYPOTHESIS' => 'Hypothese',
-	'DATE OLD-NEW' => 'Datum oud-nieuw',
-	'DATE NEW-OLD' => 'Datum nieuw-oud',
-	'SELECT A SORTING OPTION' => 'Selecteer een sorteer optie',
+	'DATE_OLD_NEW' => 'Datum oud-nieuw',
+	'DATE_NEW_OLD' => 'Datum nieuw-oud',
+	'SELECT_A_SORTING_OPTION' => 'Selecteer een sorteer optie',
 	'SORT DATE' => 'Sorteer de datum',
-	'DOCUMENT' => 'Document'
+	'DOCUMENT' => 'Document',
+	'SORT_NAME' => 'Sorteer de naam',
+	'NAME_A_Z' => 'Naam A-Z',
+	'NAME_Z_A' => 'Naam Z-A',
 ]
 ?>
