@@ -20,7 +20,15 @@ if (!empty(isset($_POST['changelang'])) && !empty(isset($_SESSION['user_id']))) 
 	header("Refresh:0");
 }
 
-// de taal uit de database halen inplaats van een coockie.
-
-$lang = include_once 'lang/lang.'.$selectLang.'.php';
+// de taal uit de database halen inplaats van een cookie.
+$pagePath = basename($_SERVER['REQUEST_URI'], '.php');
+if (strpos($pagePath, '?') !== false) {   
+	$pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
+}
+if (strtolower($pagePath) == 'printpdf.php'){
+	$lang = include_once '../lang/lang.'.$selectLang.'.php';
+}
+else{
+	$lang = include_once 'lang/lang.'.$selectLang.'.php';
+}
 ?>
