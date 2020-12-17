@@ -49,6 +49,7 @@ return [
 	'VIEWLAB' => 'Labjournaal bekijken',
 	'GRADELAB' => 'Labjournaal becijferen',
 	'PRINTLAB' => 'Labjournaal printen',
+	'OTHERSTUDENTS' => 'Andere Studenten',
 	'CHANGE_PROFILE_PHOTO' => 'profielfoto veranderen',
 	'NEW' => 'Nieuw',
 	'CURRENT' => 'Huidig',

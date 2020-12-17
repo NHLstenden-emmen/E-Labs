@@ -16,23 +16,42 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 	$year = $_POST['year'];
 	$Attachment = '';
 	$Goal = $_POST['Goal'];
-	$Hypothesis = 'Hypothesis';
+	$Hypothesis = $_POST['Hypothesis'];
+	if(!empty($_POST['medestudenten'])){
+		$medestud = $_POST['medestudenten'];
+	}
 	
 	$createdLabjournaalID = $db->LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
 
 	while ($thisResult = $createdLabjournaalID->fetch_array(MYSQLI_ASSOC)){
 		$message = $db->connectNewLabjournaalWithUser($_SESSION['user_id'], $thisResult['labjournaal_id']);
+		if(isset($medestud)){
+		foreach($medestud as $entry){
+			$db->connectNewLabjournaalWithUser($entry, $thisResult['labjournaal_id']);
+		}}
 	}
 	echo $message;
 }
 if (empty($message)) {
+	$result = $db->selectStudents();
 ?>
 <form action="createNewLabjournaal.php" method="post" class="newlabjournaalcontainer">
 	<div>
 		<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
 		<input type="text" name="title" class="nieuwetitellabjournaal">
 	</div>
-	<div></div>
+	<div>
+	<label for="medestudenten"><?php echo $lang["OTHERSTUDENTS"];?>:</label> </br>
+	<select name="medestudenten[ ]" multiple>
+	<?php
+	while ($user = $result->fetch_array(MYSQLI_ASSOC)){
+		if($user['user_id'] !== $_SESSION['user_id']){
+			echo "<option value='".$user["user_id"]."'>".$user['name']."</option>";
+		}
+	}
+	?>
+	</select>
+	</div>
 	<div>
 		<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
 			<textarea class="groteretextarealabjournaal" name="Goal"></textarea>
