@@ -41,7 +41,7 @@
 						echo "<tr>";
 						echo "<td>$allResults[title]</td>";
 						echo "<td>$allResults[date]</td>";
-						echo "<td>$allResults[Attachment]</td>";
+						echo "<td><a href='exel?id=$allResults[labjournaal_id]'>$allResults[Attachment]</a> </td> ";
 						if($allResults['grade'] == NULL ) {
 							echo "<td>-</td>";
 						} else {
