@@ -1,0 +1,48 @@
+.labjournaalcontainer {
+	padding: 20px;
+	text-align: center;
+	display: grid;
+	grid-template-columns: 660px 660px;
+	justify-content: center;
+}
+
+.labjournaalcontainer .groteretextarealabjournaal {
+	height: 200px;
+	width: 600px;
+	resize: none;
+	margin-bottom: 30px;
+	text-align: center;
+	
+}
+
+.labjournaalcontainer p {
+	border-radius: 10px;
+	border: 3px solid blue;
+	height: 200px;
+	margin-bottom: 30px;
+	width: 600px;
+}
+.labjournaalcontainer .nieuwetitellabjournaal {
+	margin: auto;
+	height: 30px;
+	width: 600px;
+	margin-bottom: 30px;
+}
+
+.labjournalcontainer .smalltextarealabjournaal{
+    margin: auto;
+	height: 200px;
+	width: 200px;
+	resize: none;
+	margin-bottom: 30px;
+}
+
+ .labjournaaltitle {
+	margin: auto;
+	height: 50px;
+	width: 	100%;
+	resize: none;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}

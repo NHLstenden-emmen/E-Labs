@@ -59,5 +59,11 @@ return [
 	'GOAL' => 'Goal',
 	'YEAR' => 'Year',
 	'HYPOTHESIS' => 'Hypothesis',
+	'DATE OLD-NEW' => 'Date old-new',
+	'DATE NEW-OLD' => 'Date new-old',
+	'SELECT A SORTING OPTION' => 'Select a sorting option',
+	'SORT DATE' => 'Sort date',
+	'DOCUMENT' => 'Document',
+	
 ]
 ?>

@@ -18,7 +18,7 @@
         }
         ?>
         <form action="" method="POST" enctype="multipart/form-data">
-            <label for="sortDate">Sorteer de datum</label>
+            <label for="sortDate"><?php echo $lang['SORT DATE']; ?> </label>
                 <select name="sortOptionDate" id="sortOptionDate" onchange="document.getElementById('textDate').value=this.options[this.selectedIndex].text; this.form.submit()">
                 <?php
                     if(isset($_POST['sortOptionName'])){

@@ -58,6 +58,11 @@ return [
 	'MATERIAL' => 'Materiaal',
 	'GOAL' => 'Doel',
 	'YEAR' => 'Jaar',
-	'HYPOTHESIS' => 'Hypothese'
+	'HYPOTHESIS' => 'Hypothese',
+	'DATE OLD-NEW' => 'Datum oud-nieuw',
+	'DATE NEW-OLD' => 'Datum nieuw-oud',
+	'SELECT A SORTING OPTION' => 'Selecteer een sorteer optie',
+	'SORT DATE' => 'Sorteer de datum',
+	'DOCUMENT' => 'Document'
 ]
 ?>
