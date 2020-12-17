@@ -60,6 +60,17 @@
 			return NULL;
 		}
 
+		public function checkUsersAllowance($userId, $userName, $userEmail){
+			if($stmt = $this->conn->prepare("SELECT `role` FROM `users` WHERE `user_id` = ? AND `name` = ? AND `email` = ? ")){
+					$stmt->bind_param("sss", $userId, $userName, $userEmail);
+					$stmt->execute();
+					$result = $stmt->get_result();
+					$stmt->free_result();
+					$stmt->close();
+					return $result;
+				}
+		}
+
 		public function selectCurrentUsers($userID){
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
 				$stmt->bind_param("i", $userID);
