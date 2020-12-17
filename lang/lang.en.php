@@ -61,5 +61,6 @@ return [
 	'YEAR' => 'Year',
 	'HYPOTHESIS' => 'Hypothesis',
 	'DEL' => 'Delete',
+	'WRONG_FILE' => 'Wrong file type added',
 ]
 ?>

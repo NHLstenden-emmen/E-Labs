@@ -61,5 +61,6 @@ return [
 	'YEAR' => 'Jaar',
 	'HYPOTHESIS' => 'Hypothese',
 	'DEL' => 'Verwijderen',
+	'WRONG_FILE' => 'Verkeerd type bestand toegevoegd',
 ]
 ?>
