@@ -494,5 +494,23 @@
 			}
 			return NULL;
 		}
+
+		public function docentprofielbewerken($userID, $name, $email, $usernumber, $password, $role){
+
+			$userID = htmlspecialchars($userID);
+			$name = htmlspecialchars($name);
+			$email = htmlspecialchars($email);
+			$usernumber = htmlspecialchars($usernumber);
+			$password = htmlspecialchars($password);
+			$role = htmlspecialchars($role);
+
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `name` =?, `email` =?, `user_number` =?, `password` =?, `role`=? WHERE `user_id`=?")) {
+				$stmt->bind_param('ssissi', $name, $email, $usernumber, $password, $role, $userID);
+				$stmt->execute();
+				$stmt->close();
+				return 'geupdate';
+			}
+			return NULL;
+		}
 	}
 ?>

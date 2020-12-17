@@ -44,7 +44,7 @@
 						// puts the password in the databse
 						$db->updateCurrentUsersPassword($result['user_id'], $hash);
 					} else {
-						$errorPass = "current wacht woord klopt niet";
+						$errorPass = "current wachtwoord klopt niet";
 					}
 				}
 			} else {
@@ -55,6 +55,7 @@
 		}
 	}
 ?>
+
 <div class="gebruikersProfile">
 	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle">
 	<form method='post' enctype='multipart/form-data' class="changeprofilepicture"> 
@@ -62,16 +63,18 @@
 		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' >
 		<input value='delete' name='deletepf' type='submit'>
 	</form>
+
+	<form method="POST" autocomplete="off" class="changeteacherinformation"> 
 	<div class="Gebruikersprofielcontainer">
-		<div id="Gebruikersprofielstudentinformatierechts"> 
-			<p> <?php echo $lang['TEACHER_NUMBER']?>: </p>
-			<p id="profielinformatiekleurgrijs"> <?php echo $_SESSION['user_number']?></p>
-			<p> <?php echo $lang["NAME"];?>: </p>
-			<p id="profielinformatiekleurgrijs"> <?php echo $_SESSION['name']?></p>
+		<div id="Gebruikersprofielstudentinformatierechts">
+			<label for="docentnummer"><?php echo $lang['TEACHER_NUMBER']?>:</label><br>
+			<input type="text" name="docentnummer" value='<?php echo $_SESSION['user_number']?>' id="profielinformatiekleurgrijs" required><br>
+			<label for="naam"><?php echo $lang['NAME']?>:</label><br>
+			<input type="text" name="naam" value='<?php echo $_SESSION['name']?>' id="profielinformatiekleurgrijs" required><br>
 		</div>
-		<div id="Gebruikersprofielstudentinformatielinks"> 
-			<p><?php echo $lang['E-MAIL']?>: </p>
-			<p id="profielinformatiekleurgrijs">  <?php echo $_SESSION['email']?> </p>
+		<div id="Gebruikersprofielstudentinformatielinks">
+			<label for="email"><?php echo $lang['E-MAIL']?>:</label><br>
+			<input type="text" name="email" value='<?php echo $_SESSION['email']?>' id="profielinformatiekleurgrijs" required><br>
 			<p> <?php echo $lang['LANGUAGE']?>: </p>
 			<p id="profielinformatiekleurgrijs">  <?php 
 		// check if there is a cookie for lang set
@@ -93,15 +96,21 @@
 		} // change the button to a english button cause the lang is set to dutch
 			else if($_COOKIE['lang'] == 'nl'){
 				echo "<form method='post' id='langSwitch'>
-					<button type='submit' value='en' class='languageSwitch' name='changelang'>										EN
+					<button type='submit' value='en' class='languageSwitch' name='changelang'>
+						EN
 					</button>
 					</form>
 				";
 			}
 		?></p>
 		</div>
-	</div>
-	<form method="POST" class='changePassword'>
+		</div>
+		<div class=buttons>
+					<input type="submit" name="update" value="update">
+					<input type="reset" name="resetadd" value="Reset">
+		</div>
+	</form>
+	<form method='post' class="changePassword">
 		<div>
 			<label for="huidigewachtwoord"><?php echo $lang['CURRENT']. " " . $lang['PASSWORD']?>:</label> </br>
 			<input placeholder='******' name='huidigewachtwoord' type='password'>
@@ -114,7 +123,34 @@
 			<label for="newWachtwoordHerhalen"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
 			<input placeholder='******' name='newWachtwoordHerhalen' type='password'>
 		</div></br>
+		<div>
 		<p><?php echo $errorPass?></p>
 		<input value='update' name='wachtwoordweizigen' type='submit'>
+		</div>
 	</form>
 </div>
+	<?php
+	if(isset($_POST['update'])){
+		$userID = $_GET['id'];
+        $name = $_POST['naam'];
+        $email = $_POST['email'];
+        $user_number = $_POST['docentnummer'];
+        if(!empty($name) && !empty($usernumber) && !empty($email)){
+                $message = $db->docentprofielbewerken($userID, $name, $email, $usernumber, $role);
+                echo $message;
+            }
+            else{
+                die("Wachtwoorden komen niet overeen");
+            }
+        }
+        else{
+            die("Vul alle velden in s.v.p.");
+        }
+	
+	if (!isset($message)) {
+		$selectCurrentUsers = $db->selectCurrentUsers($_GET['id']);
+		while ($result = $selectCurrentUsers->fetch_array(MYSQLI_ASSOC)){
+?>
+<?php }
+	}
+?>
