@@ -60,5 +60,6 @@ return [
 	'GOAL' => 'Goal',
 	'YEAR' => 'Year',
 	'HYPOTHESIS' => 'Hypothesis',
+	'DEL' => 'Delete',
 ]
 ?>

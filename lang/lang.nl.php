@@ -59,6 +59,7 @@ return [
 	'MATERIAL' => 'Materiaal',
 	'GOAL' => 'Doel',
 	'YEAR' => 'Jaar',
-	'HYPOTHESIS' => 'Hypothese'
+	'HYPOTHESIS' => 'Hypothese',
+	'DEL' => 'Verwijderen',
 ]
 ?>
