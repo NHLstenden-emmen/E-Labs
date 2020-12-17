@@ -35,16 +35,34 @@ if (empty($message) && isset($_GET['id'])) {
 		</div>
 		<div>
 				<?php
+					echo "<label for='users'><a class='help'><i class='fas fa-question-circle' Title='Ctrl + Linkermuisknop om meerdere te selecteren'></i></a>".$lang['OTHERSTUDENTS']."</label>";
+					$student = $db->selectStudents();
+					echo '<div class="twoinone"><div><select name="medestudenten" multiple>';
+					while ($user = $student->fetch_array(MYSQLI_ASSOC)){
+						if($user['user_id'] !== $_SESSION['user_id'] && $user['user_id'] !== $result['creater_id']){
+							echo "<option value='".$user['user_id']."'";
+							$labusers = $db->GetAllLabUsers($_GET['id']);
+							while($labuser = $labusers->fetch_array(MYSQLI_ASSOC)){
+								if($user['user_id'] === $labuser['user_id']){
+									echo "selected='selected'";
+								}
+							}
+							echo ">".$user['name']."</option>";
+						}
+					}
+					echo "</select></div><div>";
 					if($_SESSION['user_id'] == $result['creater_id']){
-						echo "<label for='users'>".$lang['OTHERSTUDENTS']."</label>";
-						$users = $db->GetAllLabUsers($_GET['id']);
+						$labusers = $db->GetAllLabUsers($_GET['id']);
 						echo "<ul><pre>";
-						while ($user = $users->fetch_array(MYSQLI_ASSOC)){
-							$username = $user['name'];
-							echo "<li>".$username."&#9;&#9;<button name='delete'value='".$user['user_id']."'>Delete</button></li>";
+						while ($users = $labusers->fetch_array(MYSQLI_ASSOC)){
+							if($users['user_id'] !== $result['creater_id']){
+								$username = $users['name'];
+								echo "<li>".$username."&#9;&#9;<button name='delete' value='".$users['user_id']."'>Delete</button></li>";
+							}
 						}
 						echo "</pre></ul>";
 					}
+					echo "</div></div>";
 					if(isset($_POST['delete'])){
 						$deleteuser = $_POST['delete'];
 						$delete = $db->DeleteExtraUser($deleteuser, $_GET['id']);

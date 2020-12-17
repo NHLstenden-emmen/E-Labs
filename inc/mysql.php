@@ -509,7 +509,7 @@
 			return NULL;
 		}
 		public function GetAllLabUsers($labid){
-		if ($stmt = $this->conn->prepare('SELECT * FROM `lab_journal_users` JOIN `users` ON lab_journal_users.user_id = users.user_id WHERE lab_journal_id = ?')){
+		if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `lab_journal_id` FROM `lab_journal_users` JOIN `users` ON lab_journal_users.user_id = users.user_id WHERE lab_journal_id = ?')){
 			$stmt->bind_param('i', $labid);
 			$stmt->execute();
 			$result = $stmt->get_result();
