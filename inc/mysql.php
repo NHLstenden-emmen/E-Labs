@@ -354,16 +354,6 @@
 			}
 			return NULL;
 		}
-		public function selectStudents(){
-			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `role` = 'Student'")) {
-				$stmt->execute();
-				$result = $stmt->get_result();
-				$stmt->free_result();
-				$stmt->close();
-				return $result;
-			}
-			return NULL;
-		}
 
 		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
@@ -560,6 +550,7 @@
 			else{
 				return mysqli_error($this->conn);
 			}
+		}
     
 		public function GetAllLabUsers($labid){
 		if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `lab_journal_id` FROM `lab_journal_users` JOIN `users` ON lab_journal_users.user_id = users.user_id WHERE lab_journal_id = ?')){

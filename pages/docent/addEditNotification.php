@@ -1,7 +1,8 @@
 <?php if (isset($_GET['view'])) {
+		//this wil be loaded when you try to view a notification
 		$viewNotification = $db->viewNotification($_GET['view']);
-
 	} else if (isset($_GET['delete']))  {
+		//this wil be loaded when you try to delete a notification
 		$viewNotification = $db->viewNotification($_GET['delete']);
 		if (isset($_POST['deletNotification'])) {
 			$result = $db->deleteNotification($_GET['delete']);
@@ -14,6 +15,7 @@
 			echo "<p>notification deleted</p>";
 		}
 	} else {
+		//this wil be loaded when there is no get set so you can add a new notification
 		$userId = $_SESSION['user_id'];
 		if(isset($_POST['postNotification'])){
 			$title =  $_POST['title'];
@@ -65,4 +67,3 @@ while ($result = $viewNotification->fetch_array(MYSQLI_ASSOC)){ ?>
 	<p class="creater"><?php echo $lang['MADE_BY'].' '. $result['name'] ?></p>
 	<p class="date_time">Datum: <?php echo $result['date_time']?></p>
 <?php }}?>
-
