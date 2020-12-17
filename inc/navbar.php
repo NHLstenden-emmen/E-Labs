@@ -2,6 +2,9 @@
 	if(array_key_exists('logout', $_POST)) { 
 		session_destroy(); 
 		header("Location: login");
+		// server fix for the relocation problem
+		echo "<script>window.location.href='login';</script>";
+		exit;
 	} 
 	if(isset($_GET['submit'])) {
 		// echo "geklikt";

@@ -12,6 +12,7 @@ else {
 // when the language changes set cookie or change it if it exist
 if(!empty(isset($_POST['changelang']))){
 	setcookie("lang", $_POST["changelang"], time()+ (3600 * 24 * 30));
+	header("Refresh:0");
 }
 // update users language
 if (!empty(isset($_POST['changelang'])) && !empty(isset($_SESSION['user_id']))) {
