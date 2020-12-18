@@ -13,6 +13,8 @@ return [
 	'SAFETY' => 'Safety',
 	'LOGBOOK' => 'Log book',
 	'METHOD_MATERIALS' => 'Method Materials',
+	'METHOD' => 'Method',
+	'DEVICE_SETTINGS' => 'Device settings',
 	'UPLOAD_FILE' => 'Upload file',
 	'GOAL' => 'Goal',
 	'HYPOTHESIS' => 'Hypothesis',
@@ -37,6 +39,7 @@ return [
 	'USER_PROFILE' => 'User profile',
 	'LAB_JOURNAL' => 'Lab journal',
 	'PREPARATIONS' => 'Preparations',
+	'PREPARATION_QUESTIONS' => 'Preparation questions',
 	'USER_OVERVIEW' => 'User overview',
 	'ADD_USER' => 'Add user',
 	'EDIT' => 'Edit',
@@ -49,7 +52,8 @@ return [
 	'VIEWLAB' => 'View Labjournal',
 	'GRADELAB' => 'Grade Labjournal',
 	'PRINTLAB' => 'Print Labjournal',
-	'CHANGE_PROFILE_PHOTO' => 'change profile photo',
+	'OTHERSTUDENTS' => 'Other studentes',
+	'CHANGE_PROFILE_PHOTO' => 'Change profile photo',
 	'NEW' => 'New',
 	'CURRENT' => 'Current',
 	'RESULT' => 'Result',
@@ -67,6 +71,8 @@ return [
 	'SORT_NAME' => 'Sort Name',
 	'NAME_A_Z' => 'Name A-Z',
 	'NAME_Z_A' => 'Name Z-A',
-	
+	'DEL' => 'Delete',
+	'WRONG_FILE' => 'Wrong file type added',
+	'BIG_FILE' => 'The file you added is too big',
 ]
 ?>
