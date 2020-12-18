@@ -394,6 +394,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				-- AND submitted = 1
 				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
@@ -419,6 +420,7 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				AND submitted = 1
 				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
