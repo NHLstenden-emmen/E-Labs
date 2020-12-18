@@ -335,7 +335,7 @@
 				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
 				JOIN users ON lab_journal_users.user_id = users.user_id
-				WHERE creater_id = ?
+				WHERE lab_journal_users.user_id = ?
 				AND (title LIKE ?
 				OR theory LIKE ?
 				OR safety LIKE ?
@@ -361,7 +361,7 @@
 				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
 				JOIN users ON preperation_users.user_id = users.user_id
-				WHERE creater_id = ?
+				WHERE preperation_users.user_id = ?
 				AND (title LIKE ?
 				OR materials LIKE ?
 				OR safety LIKE ?
