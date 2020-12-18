@@ -7,9 +7,9 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 	$creater_id = $_SESSION['user_id'];
 	$logboek = $_POST['logboek'];
 	$method_materials = $_POST['method_materials'];
-	if(isset($_POST['inleveren'])){
+	if(isset($_POST['Inleveren'])){
 		$submitted = 1;
-	} elseif(isset($_POST['opslaan'])) {
+	} elseif(isset($_POST['Opslaan'])) {
 		$submitted = 0;
 	}
 	$grade = 0;
@@ -109,8 +109,8 @@ if (empty($message) && isset($_GET['id'])) {
 				<input type="file" name="fileupload" value="<?php echo $result['Attachment'];?>">
 		</div>	
 		<div>
-			<input type="submit" name="opslaan" value="<?php echo $lang["SAVE"];?>">
-			<input type="submit" name="inleveren" value="<?php echo $lang["HAND_IN"];?>">
+			<input type="submit" name="Opslaan" value="<?php echo $lang["SAVE"];?>">
+			<input type="submit" name="Inleveren" value="<?php echo $lang["HAND_IN"];?>">
 		</div>
 		<div>
 			<input type="reset" name="reset" value="<?php echo $lang["RESET"];?>"> </br>
