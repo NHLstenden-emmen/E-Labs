@@ -4,6 +4,12 @@ if(isset($_GET['labjournaal'])) {
 } else {
 	$labjournaalid = 'not found';
 }
+
+if(isset($_POST['submit'])){
+	$grade = $_POST['grade'];
+	$db->updateGradeVieuw($labjournaalid, $grade);
+}
+
 $labjournal = $db->DocentLabjournaalView($labjournaalid);
 ?>
 
@@ -20,11 +26,15 @@ $labjournal = $db->DocentLabjournaalView($labjournaalid);
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[SAFETY]: </h4>" . "<p>" . $result['safety'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[RESULT]: </h4>" . "<p>" . $result['logboek'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[MATERIAL]: </h4>" . "<p>" . $result['method_materials'] . "</p></div>";
-		if(empty($result['grade'])) {
-			echo "<div class='grotetextarealabjournaal'><h4>$lang[GRADE]: </h4>" . "<p> Nog niet beoordeeld </p></div>";
-		} else {
-			echo "<div class='grotetextarealabjournaal'><h4>$lang[GRADE]: </h4>" . "<p>" . $result['grade'] . "</p></div>";
-		}
+					 
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[GRADE]: </h4> 
+		<form method='POST'>
+			<input type='text' name='grade' value=" .$result['grade'] . ">
+			<input type='submit' value='submit'>
+			<input type='hidden' value='submit' name='submit' id='submit'>
+		</form>
+		</div>";
+		
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[GOAL]: </h4>" . "<p>" . $result['Goal'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[YEAR]: </h4>" . "<p>" . $result['year'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[DOCUMENT]: </h4>" . "<p>" . $result['Attachment'] . "</p></div>";

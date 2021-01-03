@@ -501,5 +501,17 @@
 			}
 			return NULL;
 		}
+		
+		public function updateGradeVieuw($labjournaal_id, $cijfer){
+
+			$cijfer = htmlspecialchars($cijfer);
+
+			if ($stmt = $this->conn->prepare("UPDATE lab_journal SET grade='$cijfer' WHERE labjournaal_id=$labjournaal_id")) {
+				$stmt->execute();
+				$stmt->close();
+				return;
+			}
+			return NULL;
+		}
 	}
 ?>
