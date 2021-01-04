@@ -18,7 +18,7 @@
         }
         ?>
         <form action="" method="POST" enctype="multipart/form-data">
-            <label for="sortDate">Sorteer de datum</label>
+            <label for="sortDate"><?php echo $lang['SORT DATE']; ?> </label>
                 <select name="sortOptionDate" id="sortOptionDate" onchange="document.getElementById('textDate').value=this.options[this.selectedIndex].text; this.form.submit()">
                 <?php
                     if(isset($_POST['sortOptionName'])){
@@ -27,15 +27,15 @@
                     <?php
                     }else{
                     ?>
-                        <option selected value="">Selecteer een sorteer optie</option>
+                        <option selected value=""><?php echo $lang ['SELECT_A_SORTING_OPTION']; ?></option>
                     <?php
                     }
                     ?>
-                    <option value="ASC">Datum oud-nieuw</option>
-                    <option value="DESC">Datum nieuw-oud</option>
+                    <option value="ASC"><?php echo $lang ['DATE_OLD_NEW'];?></option>
+                    <option value="DESC"><?php echo $lang ['DATE_NEW_OLD']; ?></option>
                 </select>
                 <input type="hidden" name="textDate" id="textDate" value="" />
-                <label for="sortName">Sorteer de naam</label>
+                <label for="sortName"><?php echo $lang ['SORT_NAME'] ?></label>
                 <select name="sortOptionName" id="sortOptionName" onchange="document.getElementById('textName').value=this.options[this.selectedIndex].text; this.form.submit()">
                     <?php
                     if(isset($_POST['sortOptionName'])){
@@ -44,12 +44,12 @@
                     <?php
                     }else{
                     ?>
-                        <option selected value="">Selecteer een sorteer optie</option>
+                        <option selected value=""><?php echo $lang ['SELECT_A_SORTING_OPTION']; ?></option>
                     <?php
                     }
                     ?>
-                    <option value="ASC">Naam A-Z</option>
-                    <option value="DESC">Naam Z-A</option>
+                    <option value="ASC"><?php echo $lang ['NAME_A_Z']; ?></option>
+                    <option value="DESC"><?php echo $lang ['NAME_Z_A']; ?></option>
                 </select>
                 <input type="hidden" name="textName" id="textName" value="" />
 

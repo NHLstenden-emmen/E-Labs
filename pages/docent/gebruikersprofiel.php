@@ -1,17 +1,30 @@
 <?php
 	if(isset($_POST['changepf'])){
 		if(!empty($_FILES['profpic']['name'])){
-			if($_SESSION['pf_Pic'] != "gebruikersBestanden/profilePictures/blank-profile-picture.png"){
-				unlink($_SESSION['pf_Pic']);
+			$f_type = $_FILES['profpic']['type'];
+			if ($f_type== "image/gif" OR $f_type== "image/png" OR $f_type== "image/jpeg" OR $f_type== "image/JPEG" OR $f_type== "image/PNG" OR $f_type== "image/GIF"){
+				if($_FILES['profpic']['size'] <= 1500000){
+					if($_SESSION['pf_Pic'] != "gebruikersBestanden/profilePictures/blank-profile-picture.png"){
+						unlink($_SESSION['pf_Pic']);
+					}
+					$UploadedFileName = str_replace(" ","_", $_FILES['profpic']['name']);
+					$upload_directory = "gebruikersBestanden/profilePictures/"; //This is the folder which you created just now
+					$time = time();
+					$TargetPath=$time.$UploadedFileName;
+				
+					if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
+						$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
+						$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
+						echo "<script>window.location.href='gebruikersprofiel';</script>";
+						exit;
+					}
+				}
+				else{
+					$message = $lang['BIG_FILE'];
+				}
 			}
-			$UploadedFileName=$_FILES['profpic']['name'];
-			$upload_directory = "gebruikersBestanden/profilePictures/"; //This is the folder which you created just now
-			$time = time();
-			$TargetPath=$time.$UploadedFileName;
-		
-			if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
-				$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
-				$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
+			else{
+				$message = $lang['WRONG_FILE'];
 			}
 		}
 	}
@@ -21,7 +34,8 @@
 			$upload_directory = "gebruikersBestanden/profilePictures/blank-profile-picture.png";
 			$db->updateProfielFoto($_SESSION['user_id'], $upload_directory);
 			$_SESSION['pf_Pic'] = $upload_directory;
-			$deletemessage="Verwijderen voltooid!";
+			echo "<script>window.location.href='gebruikersprofiel';</script>";
+			exit;
 		}
 	}
 
@@ -58,6 +72,7 @@
 <div class="gebruikersProfile">
 	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle">
 	<form method='post' enctype='multipart/form-data' class="changeprofilepicture"> 
+	<?php if(isset($message)){echo "<h4><b>".$message."</b></h4>";}?>
 		<input name='profpic' type='file'>
 		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' >
 		<input value='delete' name='deletepf' type='submit'>

@@ -34,3 +34,13 @@
 	align-content: flex-end;
 	padding-left: 20px;
 }
+
+#disabledEdit {
+	color: lightgrey;
+}
+.tableHeaderIcons {
+	padding: 0;
+	margin: 0;
+	margin-left: 15px;
+	color: white;
+}

@@ -1,3 +1,36 @@
+<?php
+	// Gets the user_id from the session
+	$userId = $_SESSION['user_id'];
+
+	// Checks if sorting is set and checks value of it
+	if(isset($_GET['sorting'])) {
+		if($_GET['sorting'] == "title"){
+			$sorting = "title";
+			if($_GET['ad'] == "ASC") {
+				$ascdesc = "DESC";
+			} elseif($_GET['ad'] == "DESC") {
+				$ascdesc = "ASC";
+			}
+		} elseif($_GET['sorting'] == "date") {
+			$sorting = "date";
+			if($_GET['ad'] == "ASC") {
+				$ascdesc = "DESC";
+			} elseif($_GET['ad'] == "DESC") {
+				$ascdesc = "ASC";
+			}
+		}
+		// Gets every labjournal of the choosen year 
+		$allLabjournals = $db->selectAllLabjournals($year, $userId, $sorting, $ascdesc);
+	} else {
+		// Set default value
+		$sorting = "date";
+		$ascdesc = "DESC";
+
+		// Gets every labjournal of the choosen year
+		$allLabjournals = $db->selectAllLabjournals($year, $userId, $sorting, $ascdesc);
+	}
+?>
+
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
 		<a href="createNewLabjournaal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
@@ -9,30 +42,14 @@
 			<a href="?year=3">- <?php echo $lang["YEAR_3"];  ?></a>
 		</div>
 		<div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
-			<?php
-				if(isset($_GET['year'])) {
-					if($_GET['year'] == 2) {
-						$year = 2;
-					} elseif ($_GET['year'] == 3) {
-						$year = 3;
-					} else {
-						$year = 1;
-					}
-				} else {
-					$year = 1;
-				}
-				// When session is available getting the user id from session
-				$userId = $_SESSION['user_id'];
-
-				// Get every labjournal of the choosen year
-				$allLabjournals = $db->selectAllLabjournals($year, $userId);
-			?>
 			<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
 			<table>
 				<tr>
 					<th><?php echo $lang["TITLE"];?></th>
 					<th><?php echo $lang["DATE"];?></th>
 					<th><?php echo $lang["UPLOAD_FILE"];?></th>
+// 					<th><?php echo $lang["TITLE"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+// 					<th><?php echo $lang["DATE"];?><a href="?sorting=date&ad=<?php echo $ascdesc?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
 					<th><?php echo $lang["GRADE"];?></th>
 					<th><?php echo $lang["ACTION"];?></th>
 				</tr>
@@ -49,16 +66,15 @@
 						}
 						echo "<td class='actionButtons'>";
 						if ($allResults['submitted'] == 0) {
-							echo "<a href='EditJournaal?id=" . $allResults['labjournaal_id'] . "'><i class='far fa-edit'></i></a>";
+							echo "&nbsp;<a href='EditJournaal?id=".$allResults['labjournaal_id']."'><i class='far fa-edit'></i></a>";
 						} else{
-							echo "<a href='viewLabjournaal?id=" . $allResults['labjournaal_id'] . "'><i class='fas fa-eye'></i></a>";
+							echo "&nbsp;<a href='viewLabjournaal?id=".$allResults['labjournaal_id']."'><i class='fas fa-eye'></i></a>";
 						}
-						echo "<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'>  <i class='fas fa-print'></i></a>
+						echo "&nbsp;<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'><i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";
 					}	
 				?>
-					
 			</table>
 		</div>
 	</div>

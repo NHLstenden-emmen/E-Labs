@@ -2,6 +2,9 @@
 	if(array_key_exists('logout', $_POST)) { 
 		session_destroy(); 
 		header("Location: login");
+		// server fix for the relocation problem
+		echo "<script>window.location.href='login';</script>";
+		exit;
 	} 
 	if(isset($_GET['submit'])) {
 		// echo "geklikt";
@@ -23,39 +26,37 @@
 			<li class="nav-item">
 				<a class="nav-link" href="grade?year=1"><?php echo $lang["YEAR_1"];?></a>
 			</li>
-		<?php } else{ ?>
-			<li class="nav-item">
-				<a class="nav-link" href="labjournaal"><?php echo $lang["LAB_JOURNAL"];?></a>
-			</li>
-		<?php }?>
-		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="grade?year=2"><?php echo $lang["YEAR_2"];?></a>
 			</li>
-		<?php } else {?>
-			<li class="nav-item">
-				<a class="nav-link" href="#"><?php echo $lang["PREPARATIONS"];?></a>
-			</li>
-		<?php } ?>
-		<?php  if ($_SESSION['role'] == 'Docent') { ?>
 			<li class="nav-item">
 				<a class="nav-link" href="grade?year=3"><?php echo $lang["YEAR_3"];?></a>
 			</li>
-		<?php } else {?>
-			
-		<?php } ?>
+			<li class="nav-item">
+				<a class="nav-link" href="notificationsoverzicht">notifications overview</a>
+			</li>
+		<?php } else if ($_SESSION['role'] == 'Student'){ ?>
+			<li class="nav-item">
+				<a class="nav-link" href="labjournaal"><?php echo $lang["LAB_JOURNAL"];?></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#"><?php echo $lang["PREPARATIONS"];?></a>
+			</li>
+		<?php }?>
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a href="?search" id="searchIcon" <?php if(isset($_GET['search'])){ echo "style='display:none'"; } ?> class="search-form-tigger">
-					<i class="fas fa-search fa-2x"></i>
-				</a>
+				<button <?php if(isset($_GET['search'])){ echo "style='display:none'"; } ?> class="btn btn-default">
+					<a href="?search" class="searchButton search-form-tigger">
+						<i class="fas fa-search fa-2x"></i>
+					</a>
+				</button>
 				<?php 
 					if(isset($_GET['search'])) {
 				?>
-						<form action="searchResults" method="get" id="searchForm">
+						<form action="searchResults" method="post" id="searchForm">
 							<input class="form-control" type="text" name="searchInput">
-							<button type="submit" id="searchSubmitButton" class="btn btn-default" name="submit">
+							<button type="submit" class="searchButton btn btn-default" name="submit">
 								<i class="fas fa-search fa-2x"></i>
 							</button>
 						</form>

@@ -90,6 +90,9 @@
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
 					break;
+					case 'labjournaalview':
+						echo '<link rel="stylesheet" href="css/pages/labjournaalview.css">';
+						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
 						break;

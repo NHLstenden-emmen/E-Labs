@@ -11,7 +11,7 @@
         while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
             // this is a check if the password is correct
             if (password_verify($pass, $result['password'])) {
-                // this is a checkbox check for the remeber me check 
+                // this is a checkbox check for the remember me check 
                 if (!empty($_POST["remember"])) {
                     setcookie("member_login", $email);
                 } else {
@@ -30,12 +30,14 @@
                 // go to the page of the users role
                 if ($result['role'] == "Docent") {
                     $_SESSION['role'] = 'Docent';
-                    header("Location: home");
-                    die();
+                    // server fix for the relocation problem
+                    echo "<script>window.location.href='home';</script>";
+                    exit;
                 } else if ($result['role'] == "Student") {
                     $_SESSION['role'] = 'Student';
-                    header("Location: home");
-                    die();
+                    // server fix for the relocation problem
+                    echo "<script>window.location.href='home';</script>";
+                    exit;
                 } else{
                     die('er is iets fout gegaan.');
                 }
