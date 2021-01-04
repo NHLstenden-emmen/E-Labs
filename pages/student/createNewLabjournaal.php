@@ -31,7 +31,11 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 			$db->connectNewLabjournaalWithUser($entry, $thisResult['labjournaal_id']);
 		}}
 	}
-	echo $message;
+	if ($message == "Labjournaal toegevoegd") {
+		echo '<a href="labjournaal">Labjournaal toegevoegd terug naar het overzicht.</a>';
+	} else {
+		echo '<a href="labjournaal">Er is een probleem opgetreden.</a>';
+	}
 }
 
 

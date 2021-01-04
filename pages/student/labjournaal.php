@@ -48,8 +48,6 @@
 					<th><?php echo $lang["TITLE"];?></th>
 					<th><?php echo $lang["DATE"];?></th>
 					<th><?php echo $lang["UPLOAD_FILE"];?></th>
-// 					<th><?php echo $lang["TITLE"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
-// 					<th><?php echo $lang["DATE"];?><a href="?sorting=date&ad=<?php echo $ascdesc?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
 					<th><?php echo $lang["GRADE"];?></th>
 					<th><?php echo $lang["ACTION"];?></th>
 				</tr>
