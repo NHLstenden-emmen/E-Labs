@@ -48,7 +48,7 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 		}
 		if ($uploadOk == 1) {
 			echo $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis;
-			$createdLabjournaalID = $db->updatelabjournaalWithAtatchment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
+			$createdLabjournaalID = $db->LabjournaalToevoegenWithAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
 		} else {
 			$createdLabjournaalID = $db->LabjournaalToevoegenWithOutAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
 		}
