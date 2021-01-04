@@ -1,75 +1,66 @@
+<?php 
+if(isset($_GET['year'])) {
+    if($_GET['year'] == 2) {
+        $year = 2;
+    } elseif ($_GET['year'] == 3) {
+        $year = 3;
+    } else {
+        $year = 1;
+    }
+} else {
+    $year = 1;
+}
+// Checks if sorting is set and checks value of it
+if(isset($_GET['sorting'])) {
+    if($_GET['sorting'] == "name"){
+        $sorting = "name";
+        $ascdescDate = $_GET['datesort'];
+        if($_GET['namesort'] == "ASC") {
+            $ascdesc = "DESC";
+        } elseif($_GET['namesort'] == "DESC") {
+            $ascdesc = "ASC";
+        }
+    } elseif($_GET['sorting'] == "date") {
+        $sorting = "date";
+        $ascdesc = $_GET['namesort'];
+        if($_GET['datesort'] == "ASC") {
+            $ascdescDate = "DESC";
+        } elseif($_GET['datesort'] == "DESC") {
+            $ascdescDate = "ASC";
+        }
+    }
+    // Gets every labjournal of the choosen year 
+        $leerlingen = $db->getAllGradeResults($year,$ascdesc);
+} else {
+    $sorting = "name";
+    $ascdesc = "DESC";
+    $ascdescDate = "DESC";
+    // Set default value
+
+    $leerlingen = $db->getAllGradeResults($year,$ascdesc);
+}
+?>
 <div class="docentenHomePage">
+<h1>Dit is een overzicht van alle labjournaals</h1>
     <table>
         <tr>
-            <th><?php echo $lang["NAME"];?></th>
-            <th><?php echo $lang["GRADE"];?></th>
+            <th><a href="?year=<?php echo $year ?>&sorting=name&namesort=<?php echo $ascdesc?>&datesort=<?php echo $ascdescDate?>" class="icon-block tableHeaderIcons">
+                    <?php echo $lang["NAME"];?>
+                    <i class="fas fa-sort"></i>
+                </a>
+                <a href="?year=<?php echo $year ?>&sorting=date&namesort=<?php echo $ascdesc?>&datesort=<?php echo $ascdescDate?>" class="icon-block tableHeaderIcons">
+                    <?php echo $lang["DATE"];?>
+                    <i class="fas fa-sort"></i>
+                </a>
+            </th>
         </tr>
         <?php
-        if(isset($_GET['year'])) {
-            if($_GET['year'] == 2) {
-                $year = 2;
-            } elseif ($_GET['year'] == 3) {
-                $year = 3;
-            } else {
-                $year = 1;
-            }
-        } else {
-            $year = 1;
-        }
-        ?>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <label for="sortDate"><?php echo $lang['SORT DATE']; ?> </label>
-                <select name="sortOptionDate" id="sortOptionDate" onchange="document.getElementById('textDate').value=this.options[this.selectedIndex].text; this.form.submit()">
-                <?php
-                    if(isset($_POST['sortOptionName'])){
-                    ?>
-                        <option selected value="<?php echo $_POST['sortOptionDate']; ?>"><?php echo $_POST['textDate']; ?></option>
-                    <?php
-                    }else{
-                    ?>
-                        <option selected value=""><?php echo $lang ['SELECT_A_SORTING_OPTION']; ?></option>
-                    <?php
-                    }
-                    ?>
-                    <option value="ASC"><?php echo $lang ['DATE_OLD_NEW'];?></option>
-                    <option value="DESC"><?php echo $lang ['DATE_NEW_OLD']; ?></option>
-                </select>
-                <input type="hidden" name="textDate" id="textDate" value="" />
-                <label for="sortName"><?php echo $lang ['SORT_NAME'] ?></label>
-                <select name="sortOptionName" id="sortOptionName" onchange="document.getElementById('textName').value=this.options[this.selectedIndex].text; this.form.submit()">
-                    <?php
-                    if(isset($_POST['sortOptionName'])){
-                    ?>
-                        <option selected value="<?php echo $_POST['sortOptionName']; ?>"><?php echo $_POST['textName']; ?></option>
-                    <?php
-                    }else{
-                    ?>
-                        <option selected value=""><?php echo $lang ['SELECT_A_SORTING_OPTION']; ?></option>
-                    <?php
-                    }
-                    ?>
-                    <option value="ASC"><?php echo $lang ['NAME_A_Z']; ?></option>
-                    <option value="DESC"><?php echo $lang ['NAME_Z_A']; ?></option>
-                </select>
-                <input type="hidden" name="textName" id="textName" value="" />
-
-                <input type='hidden' name="submit" id='submit' value="submit">
-                <input type="submit" name='submitButton' id='submitButton' value='submit'>
-        </form>
-        <?php
-        if(isset($_POST['submit'])){
-            $sortName = $_POST['sortOptionName'];
-            $leerlingen = $db->getAllGradeResults($year,$sortName);
-        } else {
-            $leerlingen = $db->getAllGradeResults($year,'');
-        }
 
         //  If sql query found row(with information) -> do this
         while ($result = $leerlingen->fetch_array(MYSQLI_ASSOC)){
 
-            if(isset($_POST['submit'])){
-                $sortDate = $_POST['sortOptionDate'];
-                $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year, $sortDate);
+            if($sorting == "date"){
+                $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year, $ascdescDate);
             } else {
                 $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year, '');
             }
