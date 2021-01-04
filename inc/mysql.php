@@ -272,7 +272,38 @@
 		public function selectpdfcontentpreperation(){}
 
 		// this still needs a join in lab-journaal-users
-		public function LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
+		public function LabjournaalToevoegenWithOutAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis){
+			
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$creater_id = htmlspecialchars($creater_id);
+			$logboek = htmlspecialchars($logboek);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$grade = htmlspecialchars($grade);
+			$year = htmlspecialchars($year);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+
+			if ($stmt = $this->conn->prepare("INSERT INTO `lab_journal`(`title`, `date`, `theory`, `safety`, `creater_id`, `logboek`, `method_materials`, `submitted`, `grade`, `year`, `Goal`, `Hypothesis`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)")) {
+				$stmt->bind_param("ssssissiiiss", $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
+				$stmt->execute();
+				$stmt->close();
+			}
+			if ($stmt = $this->conn->prepare("SELECT `labjournaal_id` FROM `lab_journal` WHERE `date`= ? AND `creater_id`= ?")) {
+                $stmt->bind_param('si',$date, $creater_id);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function LabjournaalToevoegenWithAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
 			
 			$title = htmlspecialchars($title);
 			$date = htmlspecialchars($date);
@@ -447,7 +478,7 @@
 			return NULL;
 		}
 		
-		public function updatelabjournaal($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id){
+		public function updatelabjournaalWithAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id){
 
 			$title = htmlspecialchars($title);
 			$date = htmlspecialchars($date);
@@ -468,6 +499,33 @@
 			SET `title`=?,`date`=?,`theory`=?,`safety`=?, `logboek`=?,`method_materials`=?,`submitted`=?, `year`=?,`Attachment`=?,`Goal`=?,`Hypothesis`=? 
 			WHERE lab_journal_users.`user_id` = ? AND labjournaal_id = ?")) {
                 $stmt->bind_param('ssssssiisssii', $title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+				$stmt->execute();
+				$stmt->close();
+				return "gelukt";
+			}
+			return NULL;
+		}
+
+		public function updatelabjournaalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id){
+
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$logboek = htmlspecialchars($logboek);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$year = htmlspecialchars($year);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+			$UserID = htmlspecialchars($UserID);
+			$labjournaal_id = htmlspecialchars($labjournaal_id);
+
+			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` 
+			JOIN lab_journal_users ON lab_journal_users.lab_journal_id =  lab_journal.labjournaal_id
+			SET `title`=?,`date`=?,`theory`=?,`safety`=?, `logboek`=?,`method_materials`=?,`submitted`=?, `year`=?,`Goal`=?,`Hypothesis`=? 
+			WHERE lab_journal_users.`user_id` = ? AND labjournaal_id = ?")) {
+                $stmt->bind_param('ssssssiissii', $title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 				$stmt->execute();
 				$stmt->close();
 				return "gelukt";

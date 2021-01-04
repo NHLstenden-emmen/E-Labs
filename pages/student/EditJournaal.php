@@ -14,12 +14,27 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 	}
 	$grade = 0;
 	$year = $_POST['year'];
-	$Attachment = 'euh';
 	$Goal = $_POST['Goal'];
 	$Hypothesis = 'Hypothesis';
 	$UserID = $_SESSION['user_id'];
 	$labjournaal_id = $_GET['id'];
 	if(!empty($_FILES['fileupload']['name'])){
+		
+		$target_file = basename($_FILES["fileupload"]["name"]);
+		$uploadOk = 1;
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		// check the size of the file
+		if ($_FILES["fileupload"]["size"] > 2000000) {
+			echo "Sorry, your file is too large.<br>";
+			$uploadOk = 0;
+		}
+
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+			echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>";
+			$uploadOk = 0;
+		}
+
 		$UploadedFileName=$_FILES['fileupload']['name'];
 		
 		$upload_directory = "gebruikersBestanden/uploads/";
@@ -29,8 +44,14 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 		if(move_uploaded_file($_FILES['fileupload']['tmp_name'], $upload_directory.$TargetPath)){ 
 			$Attachment = $upload_directory.$TargetPath;
 		}
+		if ($uploadOk == 1) {
+			$message = $db->updatelabjournaalWithAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+		} else {
+			$message = $db->updatelabjournaalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+		}
+	} else{
+		$message = $db->updatelabjournaalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 	}
-	$message = $db->updatelabjournaal($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 }
 
 
@@ -118,8 +139,22 @@ if (empty($message) && isset($_GET['id'])) {
 				<input type="radio" name="year" value="3"<?php if($year == 3){echo 'checked';}?>>
 		</div>
 		<div>
-			<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label> </br>
+			<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
 			<input name='fileupload' type='file'>
+			<?php 
+				// check if its a img of excel file
+				// if (condition) {
+					echo '<img src="'.$result["Attachment"].'" alt="" srcset="">';
+				// } else if (condition){
+				// 	# code...
+				// } else if (empty($result["Attachment"])){
+				// 	# code...
+				// } else {
+				// 	# code...
+				// }
+				
+			?>
+			
 		</div>	
 		<div>
 			<input type="submit" name="Opslaan" value="<?php echo $lang["SAVE"];?>">
