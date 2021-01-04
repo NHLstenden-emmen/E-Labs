@@ -27,7 +27,7 @@ nav .nav-link {
 }
 
 nav .fa-search {
-	color: var(--white);
+/*	color: var(--white);*/
 }
 
 nav #searchBar {
@@ -58,4 +58,15 @@ nav .languageSwitch {
 nav .nav-profile-pic {
 	height: 60px;
 	width: 60px;
+}
+
+.hide-me[aria-expanded="true"] {
+	display: none;
+}
+
+nav #search {
+	background-color: transparent;
+	border: none;
+	position: unset;
+	padding: 0;
 }
