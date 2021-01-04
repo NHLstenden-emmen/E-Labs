@@ -59,9 +59,9 @@
 				</div>
 			</li>
 
-			<li class="btn-group topnavbar">
-				<button type="button" class="btn"><?php echo $_SESSION['name'];?></button>
+			<li class="nav-item btn-group topnavbar">
 				<button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<?php echo $_SESSION['name'];?>
 					<span class="sr-only">Toggle Dropdown</span>
 				</button>
 				<div class="dropdown-menu">

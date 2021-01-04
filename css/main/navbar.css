@@ -16,18 +16,9 @@ nav .nav-link {
 	border-right: 1px solid var(--white);
 }
 
-@media (max-width: 767px) {
-	nav .nav-item {
-		border-right: 0px solid var(--white);
-	}
-
-	.img-logo {
-		border-right: 0px solid var(--white);
-	}
-}
 
 nav .fa-search {
-/*	color: var(--white);*/
+	color: var(--white);
 }
 
 nav #searchBar {
@@ -69,4 +60,33 @@ nav #search {
 	border: none;
 	position: unset;
 	padding: 0;
+}
+
+@media (max-width: 767px) {
+	nav .navbar-collapse {
+		text-align: center;
+	}
+	nav .nav-item {
+		border-right: 0px solid var(--white);
+	}
+	.img-logo {
+		border-right: 0px solid var(--white);
+	}
+	nav .topnavbar {
+		margin: 0px;
+		display: flex;
+		flex-direction: column;
+		align-self: center;
+		width: 80%;
+	}
+	.navbar-nav .dropdown-menu {
+		width: 100%;
+	}
+	.dropdown-item {
+		text-align: center;
+	}
+	.img-person {
+		padding-top: 10px;
+	}
+
 }
