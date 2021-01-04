@@ -9,26 +9,26 @@
 	grid-template-areas:
 		"title . ."
 		"message message message"
+		"message message message"
 		"creater creater date";
-	grid-template-rows: 30px 25px;
-	grid-template-columns: 60% 15% 25%;
 }
-.notificationsTable .notifications .title {
+
+.notificationsTable .title {
 	grid-area: title;
 	font-size: 1.2em;
 	color: var(--primaryColor);
 }
-.notificationsTable .notifications .message {
+.notificationsTable .message {
 	grid-area: message;
 }
-.notificationsTable .notifications .creater {
+.notificationsTable .creater {
 	grid-area: creater;
 	font-size: 0.7em;
 	text-align: end;
 	padding-right: 20px;
 	color: var(--primaryColor);
 }
-.notificationsTable .notifications .date_time {
+.notificationsTable .date_time {
 	grid-area: date;
 	color: var(--primaryColor);
 	text-align: center;

@@ -8,10 +8,20 @@
 			$upload_directory = "gebruikersBestanden/profilePictures/"; //This is the folder which you created just now
 			$time = time();
 			$TargetPath=$time.$UploadedFileName;
-		
-			if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
-				$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
-				$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
+			$type=$_FILES[ 'profpic' ][ 'type' ];     
+			$extensions=array( 'image/jpeg', 'image/png', 'image/jpg' );
+				if( in_array( $type, $extensions )){
+					if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
+						$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
+						$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
+					}
+				}
+			else{		
+// 			if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
+// 				$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
+// 				$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
+// 				echo "<script>window.location.href='gebruikersprofiel';</script>";
+// 				exit;
 			}
 		}
 	}
@@ -21,7 +31,8 @@
 			$upload_directory = "gebruikersBestanden/profilePictures/blank-profile-picture.png";
 			$db->updateProfielFoto($_SESSION['user_id'], $upload_directory);
 			$_SESSION['pf_Pic'] = $upload_directory;
-			$deletemessage="Verwijderen voltooid!";
+			echo "<script>window.location.href='gebruikersprofiel';</script>";
+			exit;
 		}
 	}
 
