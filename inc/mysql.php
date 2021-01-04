@@ -204,22 +204,13 @@
 		
     
 		public function getAllGradeResults($year, $sortName){
-			if(!empty($sortName)){
-				$sql = "SELECT DISTINCT users.user_id, users.name
-					FROM users
-					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
-					GROUP BY users.user_id
-					ORDER BY users.name $sortName";
-			} else {
-				$sql = "SELECT DISTINCT users.user_id, users.name
-					FROM users
-					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
-					GROUP BY users.user_id";
-			}
+			$sql = "SELECT DISTINCT users.user_id, users.name
+				FROM users
+				INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+				INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+				WHERE lab_journal.year = $year AND lab_journal.submitted = 1
+				GROUP BY users.user_id
+				ORDER BY users.name $sortName";
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -592,6 +583,17 @@
                 $stmt->free_result();
 				$stmt->close();
 				return $result;
+			}
+			return NULL;
+		}
+		public function updateGradeVieuw($labjournaal_id, $cijfer){
+
+			$cijfer = htmlspecialchars($cijfer);
+
+			if ($stmt = $this->conn->prepare("UPDATE lab_journal SET grade='$cijfer' WHERE labjournaal_id=$labjournaal_id")) {
+				$stmt->execute();
+				$stmt->close();
+				return;
 			}
 			return NULL;
 		}
