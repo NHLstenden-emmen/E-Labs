@@ -23,6 +23,7 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 	
 	$createdLabjournaalID = $db->LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
 
+
 	while ($thisResult = $createdLabjournaalID->fetch_array(MYSQLI_ASSOC)){
 		$message = $db->connectNewLabjournaalWithUser($_SESSION['user_id'], $thisResult['labjournaal_id']);
 		if(isset($medestud)){
@@ -32,6 +33,9 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 	}
 	echo $message;
 }
+
+
+
 if (empty($message)) {
 	$result = $db->selectStudents();
 ?>
@@ -87,7 +91,7 @@ if (empty($message)) {
 	</div>
 	<div>
 		<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label> </br>
-			<input type="file" name="fileupload">
+			<input type="file" name="file">
 	</div>	
 	<div>
 		<input type="submit" name="opslaan" value="<?php echo $lang["SAVE"];?>">

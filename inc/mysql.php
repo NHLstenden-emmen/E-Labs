@@ -472,10 +472,7 @@
 				$stmt->close();
 				return "gelukt";
 			}
-			else{
-				$conn = $this->conn;
-				return mysqli_error($conn);
-			}
+			return NULL;
 		}
 
 		public function getLabjournaal($labjournaal, $userId){
@@ -486,7 +483,7 @@
 			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis`,`creater_id` 
 			FROM `lab_journal` 
 			JOIN lab_journal_users ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ? ")) {
+			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ?")) {
                 $stmt->bind_param('ii', $labjournaal, $userId);
 				$stmt->execute();
 				$result = $stmt->get_result();
