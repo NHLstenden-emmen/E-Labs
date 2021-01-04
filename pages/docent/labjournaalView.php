@@ -22,10 +22,13 @@ $labjournal = $db->DocentLabjournaalView($labjournaalid);
 		<?php
 		echo "<div class='groteretextarealabjournaal'><h4>$lang[NAME]: </h4>" . "<p>" . $result['name'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[DATE]: </h4>" . "<p>" . $result['date'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[RESULT]: </h4>" . "<p>" . $result['theory'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[GOAL]: </h4>" . "<p>" . $result['Goal'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[HYPOTHESIS]: </h4>" . "<p>" . $result['Hypothesis'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[MATERIAL]: </h4>" . "<p>" . $result['method_materials'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[SAFETY]: </h4>" . "<p>" . $result['safety'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[RESULT]: </h4>" . "<p>" . $result['logboek'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[MATERIAL]: </h4>" . "<p>" . $result['method_materials'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[DOCUMENT]: </h4>" . "<p>" . $result['Attachment'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[THEORY]: </h4>" . "<p>" . $result['theory'] . "</p></div>";
 					 
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[GRADE]: </h4> 
 		<form method='POST'>
@@ -34,11 +37,6 @@ $labjournal = $db->DocentLabjournaalView($labjournaalid);
 			<input type='hidden' value='submit' name='submit' id='submit'>
 		</form>
 		</div>";
-		
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[GOAL]: </h4>" . "<p>" . $result['Goal'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[YEAR]: </h4>" . "<p>" . $result['year'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[DOCUMENT]: </h4>" . "<p>" . $result['Attachment'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[HYPOTHESIS]: </h4>" . "<p>" . $result['Hypothesis'] . "</p></div>";
 	}
 
 ?>
