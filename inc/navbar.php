@@ -43,13 +43,13 @@
 
 			?>
 			<li class="nav-item">
-				<a class="nav-link" href="grade?year=1<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_1"];?></a>
+				<a class="nav-link" href="labjournaal?year=1<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_1"];?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="grade?year=2<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_2"];?></a>
+				<a class="nav-link" href="labjournaal?year=2<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_2"];?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="grade?year=3<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_3"];?></a>
+				<a class="nav-link" href="labjournaal?year=3<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_3"];?></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="notificationsoverzicht">notifications overview</a>
