@@ -10,6 +10,31 @@ if(isset($_GET['year'])) {
 } else {
     $year = 1;
 }
+
+// check if you need to search in archive or not
+if(isset($_GET['archive'])) {
+    if (isset($_GET['changeArchive'])) {
+        if($_GET['archive'] != "true") {
+            $archive = "true";
+            $submitted = 2;
+        } else {
+            $archive = "false";
+            $submitted = 1;
+        }
+    } else {
+        if($_GET['archive'] == "true") {
+            $archive = "true";
+            $submitted = 2;
+        } else {
+            $archive = "false";
+            $submitted = 1;
+        }
+    }
+} else {
+    $archive = "false";
+    $submitted = 1;
+}
+
 // Checks if sorting is set and checks value of it
 if(isset($_GET['sorting'])) {
     if($_GET['sorting'] == "name"){
@@ -30,25 +55,35 @@ if(isset($_GET['sorting'])) {
         }
     }
     // Gets every labjournal of the choosen year 
-        $leerlingen = $db->getAllGradeResults($year,$ascdesc);
+        $leerlingen = $db->getAllGradeResults($year,$submitted,$ascdesc);
 } else {
     $sorting = "name";
     $ascdesc = "DESC";
     $ascdescDate = "DESC";
     // Set default value
 
-    $leerlingen = $db->getAllGradeResults($year,$ascdesc);
+    $leerlingen = $db->getAllGradeResults($year,$submitted,$ascdesc);
 }
 ?>
 <div class="docentenHomePage">
 <h1>Dit is een overzicht van alle labjournaals</h1>
+<h4>
+    <a href="?year=<?php echo $year?>&archive=<?php echo $archive?>&changeArchive">
+        <?php if ($archive == "false") {
+            echo "go to archive";
+        } else {
+            echo "go back to dashboard";
+        }
+        ?>
+    </a>
+ </h4>
     <table>
         <tr>
-            <th><a href="?year=<?php echo $year ?>&sorting=name&namesort=<?php echo $ascdesc?>&datesort=<?php echo $ascdescDate?>" class="icon-block tableHeaderIcons">
+            <th><a href="?year=<?php echo $year ?>&sorting=name&namesort=<?php echo $ascdesc?>&datesort=<?php echo $ascdescDate?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons">
                     <?php echo $lang["NAME"];?>
                     <i class="fas fa-sort"></i>
                 </a>
-                <a href="?year=<?php echo $year ?>&sorting=date&namesort=<?php echo $ascdesc?>&datesort=<?php echo $ascdescDate?>" class="icon-block tableHeaderIcons">
+                <a href="?year=<?php echo $year ?>&sorting=date&namesort=<?php echo $ascdesc?>&datesort=<?php echo $ascdescDate?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons">
                     <?php echo $lang["DATE"];?>
                     <i class="fas fa-sort"></i>
                 </a>
@@ -60,9 +95,9 @@ if(isset($_GET['sorting'])) {
         while ($result = $leerlingen->fetch_array(MYSQLI_ASSOC)){
 
             if($sorting == "date"){
-                $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year, $ascdescDate);
+                $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year,$submitted, $ascdescDate);
             } else {
-                $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year, '');
+                $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year,$submitted, '');
             }
 
             echo "<tr>";

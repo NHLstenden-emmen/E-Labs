@@ -11,9 +11,9 @@
 	}
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-	<div class="img-logo">
+	<a href="home" class="img-logo">
 		<img src="images/logo.png" alt="web logo">
-	</div>
+	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -22,15 +22,34 @@
 		<li class="nav-item">
 			<a class="nav-link" href="home">E-labs</a>
 		</li>
-		<?php if ($_SESSION['role'] == 'Docent') { ?>
+		<?php if ($_SESSION['role'] == 'Docent') { 
+			if(isset($_GET['archive'])) {
+				if (isset($_GET['changeArchive'])) {
+					if($_GET['archive'] != "true") {
+						$archiveNavbar = "true";
+					} else {
+						$archiveNavbar = "false";
+					}
+				} else {
+					if($_GET['archive'] == "true") {
+						$archiveNavbar = "true";
+					} else {
+						$archiveNavbar = "false";
+					}
+				}
+			} else {
+				$archiveNavbar = "false";
+			}
+
+			?>
 			<li class="nav-item">
-				<a class="nav-link" href="grade?year=1"><?php echo $lang["YEAR_1"];?></a>
+				<a class="nav-link" href="grade?year=1<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_1"];?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="grade?year=2"><?php echo $lang["YEAR_2"];?></a>
+				<a class="nav-link" href="grade?year=2<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_2"];?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="grade?year=3"><?php echo $lang["YEAR_3"];?></a>
+				<a class="nav-link" href="grade?year=3<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_3"];?></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="notificationsoverzicht">notifications overview</a>
