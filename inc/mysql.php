@@ -338,6 +338,20 @@
 			return NULL;
 		}
 
+		public function archiveLabjournaal($labjournaalid, $submitted){
+			
+			$labjournaalid = htmlspecialchars($labjournaalid);
+			$submitted = htmlspecialchars($submitted);
+
+			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` SET `submitted`= ? WHERE `labjournaal_id` = ?")) {
+				$stmt->bind_param('ii', $submitted, $labjournaalid);
+				$stmt->execute();
+				$stmt->close();
+				return "functie is uit gevoegd";
+			}
+			return NULL;
+		}
+
 		public function updateUsersLanguage($userId, $language){
 
 			$userId = htmlspecialchars($userId);
