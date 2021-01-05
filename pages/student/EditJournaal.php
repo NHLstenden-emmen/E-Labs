@@ -15,7 +15,7 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 	$grade = 0;
 	$year = $_POST['year'];
 	$Goal = $_POST['Goal'];
-	$Hypothesis = 'Hypothesis';
+	$Hypothesis = $_POST['Hypothesis'];
 	$UserID = $_SESSION['user_id'];
 	$labjournaal_id = $_GET['id'];
 	if(!empty($_FILES['fileupload']['name'])){
