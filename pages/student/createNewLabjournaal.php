@@ -74,7 +74,6 @@ if (!empty($_POST['title']) && isset($_POST['title'])) {
 
 
 if (empty($message)) {
-	$result = $db->selectStudents();
 ?>
 
 <form method="post" class="newlabjournaalcontainer" enctype='multipart/form-data' >
@@ -84,16 +83,27 @@ if (empty($message)) {
 			<input type="text" name="title" class="nieuwetitellabjournaal">
 		</div>
 		<div class="col-md-4 mb-3 offset-1">
-		<label for="medestudenten"><?php echo $lang["OTHERSTUDENTS"];?>:</label> </br>
-		<select name="medestudenten[ ]" multiple>
-		<?php
-		while ($user = $result->fetch_array(MYSQLI_ASSOC)){
-			if($user['user_id'] !== $_SESSION['user_id']){
-				echo "<option value='".$user["user_id"]."'>".$user['name']."</option>";
-			}
-		}
-		?>
-		</select>
+			<div class="selectstudent">
+				<label for="medestudenten"><?php echo $lang["OTHERSTUDENTS"];?>:</label> <br>
+				<input type="search" name="searchstudent">
+				<input type="submit" name="search" Value="Search"> <br>
+				<table class="selectphp">
+				<?php
+				if(isset($_POST['search']) && !empty($_POST['searchstudent'])){
+					$searchfor = "%".$_POST['searchstudent']."%";
+					$result = $db->selectStudents($searchfor);
+					if(isset($result) && $result != NULL){
+						foreach ($result as $user){
+							echo "<tr><td>".$user['name']."</td><td>".$user['user_number']."</td><td><button name='adduser' Value='".$user['user_number']."'>Add user</button></td></tr>";
+						}
+					}
+					else{
+						echo "NO";
+					}
+				}
+				?>
+				</table>
+			</div>
 		</div>
 	</div>
 	<div class="form-row">

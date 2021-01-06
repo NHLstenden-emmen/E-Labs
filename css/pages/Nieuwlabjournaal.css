@@ -1,7 +1,14 @@
 li{
 	list-style-type: none;
 }
+.selectstudent{
+	text-align: left;
 
+}
+.selectphp{
+	padding: 10px;
+	width: 200px;
+}
 .help {
 	cursor: help;
 }
@@ -9,7 +16,6 @@ li{
 	border-radius: 25px;
 	padding: 20px;
 }
-
 
 .newlabjournaalcontainer .groteretextarealabjournaal {
 	margin: auto;
