@@ -60,9 +60,15 @@
 			$name = $_POST['naam'];
 			$email = $_POST['email'];
 			$user_number = $_POST['docentnummer'];
+			$userID = $_SESSION['user_id'];
 
-			$message = $db->docentprofielbewerken($_SESSION['user_id'], $name, $email, $user_number);
+			$message = $db->docentprofielbewerken($userID, $name, $email, $user_number);
 			echo $message;
+		if($message != NULL){
+			$_SESSION['name'] = $name;
+			$_SESSION['email'] = $email;
+			$_SESSION['user_number'] = $user_number;
+		}
 		} else{
 			echo "Vul alle velden in s.v.p.";
 		}

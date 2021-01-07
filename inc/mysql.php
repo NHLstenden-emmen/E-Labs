@@ -495,17 +495,15 @@
 			return NULL;
 		}
 
-		public function docentprofielbewerken($userId, $name, $email, $user_number){
+		public function docentprofielbewerken($userID, $name, $email, $user_number){
 
-			$userId = htmlspecialchars($userId);
+			$userID = htmlspecialchars($userID);
 			$name = htmlspecialchars($name);
 			$email = htmlspecialchars($email);
-			$usernumber = htmlspecialchars($usernumber);
-			$password = htmlspecialchars($password);
-			$role = htmlspecialchars($role);
+			$user_number = htmlspecialchars($user_number);
 
-			if ($stmt = $this->conn->prepare("UPDATE `users` SET `name` =?, `email` =?, `user_number` =?, `password` =?, `role`=? WHERE `user_id`=?")) {
-				$stmt->bind_param('ssissi', $name, $email, $usernumber, $password, $role, $userID);
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `name` =?, `email` =?, `user_number` =? WHERE `user_id`=?")) {
+				$stmt->bind_param('ssii', $name, $email, $user_number, $userID);
 				$stmt->execute();
 				$stmt->close();
 				return 'geupdate';
