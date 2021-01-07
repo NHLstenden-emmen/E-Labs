@@ -1,4 +1,4 @@
-li{
+li {
 	list-style-type: none;
 }
 
@@ -10,11 +10,9 @@ li{
 	padding: 20px;
 }
 
-
 .newlabjournaalcontainer .groteretextarealabjournaal {
 	margin: auto;
 	height: 150px;
-	width: 400px;
 	resize: none;
 	margin-bottom: 30px;
 }
@@ -26,11 +24,9 @@ li{
 .newlabjournaalcontainer .nieuwetitellabjournaal {
 	margin: auto;
 	height: 30px;
-	width: 400px;
 	margin-bottom: 30px;
 }
 .newlabjournaalcontainer input[type="submit"],
 .newlabjournaalcontainer input[type="reset"] {
 	margin-top: 30px;
 }
-
