@@ -79,6 +79,12 @@ nav #search {
 		align-self: center;
 		width: 80%;
 	}
+	nav .searchbar {
+		display: flex;
+		width: 80%;
+		align-self: center;
+		justify-content: center;
+	}
 	.navbar-nav .dropdown-menu {
 		width: 100%;
 	}

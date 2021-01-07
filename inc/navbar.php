@@ -64,7 +64,7 @@
 		<?php }?>
 		</ul>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
+			<li class="nav-item searchbar">
 				<button class="btn btn btn-default hide-me" data-target="#search" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-search fa-2x"></i>
 				</button>
