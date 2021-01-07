@@ -64,28 +64,23 @@
 		<?php }?>
 		</ul>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<button <?php if(isset($_GET['search'])){ echo "style='display:none'"; } ?> class="btn btn-default">
-					<a href="?search" class="searchButton search-form-tigger">
-						<i class="fas fa-search fa-2x"></i>
-					</a>
+			<li class="nav-item searchbar">
+				<button class="btn btn btn-default hide-me" data-target="#search" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-search fa-2x"></i>
 				</button>
-				<?php 
-					if(isset($_GET['search'])) {
-				?>
-						<form action="searchResults" method="post" id="searchForm">
-							<input class="form-control" type="text" name="searchInput">
-							<button type="submit" class="searchButton btn btn-default" name="submit">
-								<i class="fas fa-search fa-2x"></i>
-							</button>
-						</form>
-				<?php
-					}
-				?>
+				<div class="dropdown-menu" id="search">
+					<form action="searchResults" method="post" id="searchForm">
+						<input class="form-control" type="text" name="searchInput">
+						<button type="submit" class="searchButton btn btn-default" name="submit">
+							<i class="fas fa-search fa-2x"></i>
+						</button>
+					</form>
+				</div>
 			</li>
-			<li class="btn-group topnavbar">
-				<button type="button" class="btn"><?php echo $_SESSION['name'];?></button>
+
+			<li class="nav-item btn-group topnavbar">
 				<button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<?php echo $_SESSION['name'];?>
 					<span class="sr-only">Toggle Dropdown</span>
 				</button>
 				<div class="dropdown-menu">
