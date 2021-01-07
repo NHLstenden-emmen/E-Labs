@@ -495,9 +495,9 @@
 			return NULL;
 		}
 
-		public function docentprofielbewerken($userID, $name, $email, $usernumber, $password, $role){
+		public function docentprofielbewerken($userId, $name, $email, $user_number){
 
-			$userID = htmlspecialchars($userID);
+			$userId = htmlspecialchars($userId);
 			$name = htmlspecialchars($name);
 			$email = htmlspecialchars($email);
 			$usernumber = htmlspecialchars($usernumber);
