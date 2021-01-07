@@ -45,9 +45,9 @@
 				{
 					case 'e-labs': //file path of your home/start page
 					case 'home':
-					case 'grade':
+					case 'labjournaal':
 					case '':
-						include 'docent/grade.php';
+						include 'docent/labjournaal.php';
 						break;
 					case 'gebruikersoverzicht':
 						include 'docent/gebruikersoverzicht.php';

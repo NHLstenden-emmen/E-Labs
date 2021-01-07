@@ -1,25 +1,18 @@
-li{
+li {
 	list-style-type: none;
 }
-.twoinone{
-	display: grid;
-	grid-template-columns: 300px 300px;
-}
+
 .help {
 	cursor: help;
 }
 .newlabjournaalcontainer {
+	border-radius: 25px;
 	padding: 20px;
-	text-align: center;
-	display: grid;
-	grid-template-columns: 660px 660px;
-	justify-content: center;
 }
 
 .newlabjournaalcontainer .groteretextarealabjournaal {
 	margin: auto;
-	height: 200px;
-	width: 600px;
+	height: 150px;
 	resize: none;
 	margin-bottom: 30px;
 }
@@ -31,7 +24,6 @@ li{
 .newlabjournaalcontainer .nieuwetitellabjournaal {
 	margin: auto;
 	height: 30px;
-	width: 600px;
 	margin-bottom: 30px;
 }
 .newlabjournaalcontainer input[type="submit"],

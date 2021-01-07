@@ -4,25 +4,85 @@ if(isset($_GET['labjournaal'])) {
 } else {
 	$labjournaalid = 'not found';
 }
-$labjournal = $db->DocentLabjournaalView($labjournaalid);
 
-while ($result = $labjournal->fetch_array(MYSQLI_ASSOC)){
-	echo "<h1>" . $result['title'] . "</h1>";
-	echo "<p>$lang[NAME]: " . $result['name'] . "</p>";
-	echo "<p>$lang[DATE]: " . $result['date'] . "</p>";
-	echo "<p>$lang[RESULT]: " . $result['theory'] . "</p>";
-	echo "<p>$lang[SAFETY]: " . $result['safety'] . "</p>";
-	echo "<p>$lang[RESULT]: " . $result['logboek'] . "</p>";
-	echo "<p>$lang[MATERIAL]: " . $result['method_materials'] . "</p>";
-	if(empty($result['grade'])) {
-		echo "<p>Cijfer: Nog niet beoordeeld</p>";
+if(isset($_POST['changeGrade'])){
+	if ($_POST['grade'] <= 10 && $_POST['grade'] >= 0) {
+		$grade = $_POST['grade'];
+		$db->updateGradeVieuw($labjournaalid, $grade);
+		echo "cijer bijgewerkt";
 	} else {
-		echo "<p>$lang[GRADE]: " . $result['grade'] . "</p>";
+		echo "dit is geen correct cijfer";
 	}
-	echo "<p>$lang[GOAL]: " . $result['Goal'] . "</p>";
-	echo "<p>$lang[YEAR]: " . $result['year'] . "</p>";
-	echo "<p>Document: " . $result['Attachment'] . "</p>";
-	echo "<p>$lang[HYPOTHESIS]: " . $result['Hypothesis'] . "</p>";
 }
+if(isset($_POST['archive'])){
+	$db->archiveLabjournaal($_GET['labjournaal'], 2);
+}
+if(isset($_POST['unArchive'])){
+	$db->archiveLabjournaal($_GET['labjournaal'], 1);
+}
+
+$labjournal = $db->DocentLabjournaalView($labjournaalid);
+?>
+
+
+<?php
+	while ($result = $labjournal->fetch_array(MYSQLI_ASSOC)){
+		echo "<h1 class='labjournaaltitle'>" . $result['title'] . "</h1>";
+		if ($result['submitted'] == 2) {
+			echo "<form method='POST'>
+					<input type='submit' value='Un archive' name='unArchive'>
+				</form>";
+		} else {
+			echo "<form method='POST'>
+					<input type='submit' value='Archive' name='archive'>
+				</form>";
+		}
+		
+		?>
+		<div class="labjournaalcontainer">
+		<?php
+		echo "<div class='groteretextarealabjournaal'><h4>$lang[NAME]: </h4>" . "<p>" . $result['name'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[DATE]: </h4>" . "<p>" . $result['date'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[GOAL]: </h4>" . "<p>" . $result['Goal'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[HYPOTHESIS]: </h4>" . "<p>" . $result['Hypothesis'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[MATERIALS]: </h4>" . "<p>" . $result['method_materials'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[THEORY]: </h4>" . "<p>" . $result['theory'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[SAFETY]: </h4>" . "<p>" . $result['safety'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[RESULT]: </h4>" . "<p>" . $result['logboek'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>$lang[GRADE]: </h4> 
+		<form method='POST'>
+			<input type='text' name='grade' value=" .$result['grade'] . ">
+			<input type='submit' name='changeGrade'>
+		</form>
+		</div>
+		</div>
+		<div class='fileSource'>";
+			// check if its a img of excel file
+			$fileSortCheck = strtolower($result["Attachment"]);
+			$file = $result["Attachment"];
+			// check if source is a image
+			if (preg_match('/(\.jpg|\.png|\.jpeg|\.gif)$/', $fileSortCheck)) {
+				echo '<img src="'.$file.'" alt="" srcset="">';
+				// check if source is a csv format from excel.
+			} else if (preg_match('/(\.csv)$/', $fileSortCheck)){
+					echo "<br>";
+					echo "<table>\n\n";
+						$f = fopen($file, "r");
+						while (($line = fgetcsv($f)) !== false) {
+							echo "<tr>";
+							foreach ($line as $cell) {
+								echo "<td style='border: 1px solid black;'>" . htmlspecialchars($cell) . "</td>";
+							}
+							echo "</tr>\n";
+						}
+						fclose($f);
+					echo "\n</table>";
+			} else if (empty($result["Attachment"])){
+				# just a check if there is a scoure set.
+			} else {
+				echo "AN error occurred: file was not found";
+			}
+		echo '</div>';
+	}
 
 ?>

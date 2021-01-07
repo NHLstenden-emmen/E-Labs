@@ -74,7 +74,7 @@
 				{
 					case 'e-labs'://file path of your home/start page
 					case 'home':
-					case 'grade':
+					case 'labjournaal':
 					case '':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;
@@ -92,6 +92,9 @@
 						break;
 					case 'gebruikersoverzicht':
 						echo '<link rel="stylesheet" href="css/pages/gebruikersoverzichtd.css">';
+					break;
+					case 'labjournaalview':
+						echo '<link rel="stylesheet" href="css/pages/labjournaalview.css">';
 						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
