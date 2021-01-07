@@ -74,7 +74,7 @@
 				{
 					case 'e-labs'://file path of your home/start page
 					case 'home':
-					case 'grade':
+					case 'labjournaal':
 					case '':
 						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
 						break;

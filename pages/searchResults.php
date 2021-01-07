@@ -39,9 +39,10 @@
 							echo "<td>$searchResults[grade]</td>";
 						}
 						echo "<td class='actionButtons'>";
-						if ($searchResults['submitted'] == 0) {
+
+						if($searchResults['submitted'] == 0) {
 							echo "<a href='EditJournaal?id=" . $searchResults['labjournaal_id'] . "'><i class='far fa-edit'></i></a>";
-						} else{
+						} else {
 							echo "<a href='viewLabjournaal?id=" . $searchResults['labjournaal_id'] . "'><i class='fas fa-eye'></i></a>";
 						}
 						echo "<a href='pdf?labjournaal_id=$searchResults[labjournaal_id]' target='_blank'>  <i class='fas fa-print'></i></a>
