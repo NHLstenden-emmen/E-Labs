@@ -1,9 +1,12 @@
 .labjournaalcontainer {
 	padding: 20px;
 	text-align: center;
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	grid-template-columns: 660px 660px;
-	justify-content: center;
+	justify-content: space-around;
+	flex-flow: wrap;
+
 }
 
 .labjournaalcontainer .groteretextarealabjournaal {
@@ -12,6 +15,9 @@
 	resize: none;
 	margin-bottom: 30px;
 	text-align: center;
+	box-sizing: content-box;
+	
+	
 }
 
 .labjournaalcontainer p {
@@ -20,6 +26,7 @@
 	height: 200px;
 	margin-bottom: 30px;
 	width: 600px;
+	overflow: auto;
 }
 .labjournaalcontainer .nieuwetitellabjournaal {
 	margin: auto;
@@ -49,4 +56,15 @@
 	padding: 30px;
 	justify-content: center;
 	display: flex;
+}
+
+input {
+	margin: auto;
+	height: 50px;
+	width: 100%;
+	resize: none;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-right: 160px;
 }
