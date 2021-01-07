@@ -688,5 +688,24 @@
 			}
 			return NULL;
 		}
+
+		public function selectAllUsers2($sorting, $ascdesc) {
+            if ($ascdesc == "DESC"){
+            	$sql = "SELECT * FROM `users`
+					ORDER BY $sorting DESC";
+            } else {
+            	$sql = "SELECT * FROM `users`
+					ORDER BY $sorting ASC";
+            }
+            if($stmt = $this->conn->prepare($sql)) {
+				//$stmt->bind_param("s", $sorting);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
 	}
 ?>

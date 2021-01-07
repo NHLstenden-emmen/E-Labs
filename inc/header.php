@@ -89,6 +89,9 @@
 						break;
 					case 'gebruikertoevoegen':
 						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
+						break;
+					case 'gebruikersoverzicht':
+						echo '<link rel="stylesheet" href="css/pages/gebruikersoverzichtd.css">';
 					break;
 					case 'labjournaalview':
 						echo '<link rel="stylesheet" href="css/pages/labjournaalview.css">';
