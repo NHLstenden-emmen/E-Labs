@@ -1,4 +1,5 @@
-<?php
+<div class="Gebruikersoverzichtdocent">
+    <?php
     $selectAllUsers = $db->selectAllUsers();
     
     if(isset($_GET['sorting'])) {
@@ -37,12 +38,13 @@
         $selectAllUsers = $db->selectAllUsers2($sorting, $ascdesc);
     }
 
-    echo "<table width='100%' border='1'>";
-    echo "<tr>
-            <th>" . $lang['NAME'] . "<a href='?sorting=name&ad=" . $ascdesc . "'class='icon-block tableHeaderIcons'><i class='fas fa-sort'></i></a></th>
-            <th>" . $lang['E-MAIL'] . "<a href='?sorting=email&ad=" . $ascdesc . "'class='icon-block tableHeaderIcons'><i class='fas fa-sort'></i></a></th>
-            <th>" . $lang['ROLE'] . "<a href='?sorting=role&ad=" . $ascdesc . "'class='icon-block tableHeaderIcons'><i class='fas fa-sort'></i></a></th>
-            <th>" . $lang['EDIT_PROFILE'] . "</th>
+    echo "<div class='tableoverzichtdocent'>";
+    echo "<table>";
+    echo "<tr id='blauwerand'>
+            <th id='wittetekst'>" . $lang['NAME'] . "<a href='?sorting=name&ad=" . $ascdesc . "'class='icon-block tableHeaderIcons'><i class='fas fa-sort'></i></a></th>
+            <th id='wittetekst'>" . $lang['E-MAIL'] . "<a href='?sorting=email&ad=" . $ascdesc . "'class='icon-block tableHeaderIcons'><i class='fas fa-sort'></i></a></th>
+            <th id='wittetekst'>" . $lang['ROLE'] . "<a href='?sorting=role&ad=" . $ascdesc . "'class='icon-block tableHeaderIcons'><i class='fas fa-sort'></i></a></th>
+            <th id='wittetekst'>" . $lang['EDIT_PROFILE'] . "</th>
         </tr>";
     /*while ($result = $selectAllUsers->fetch_array(MYSQLI_ASSOC)){
         if($result['role'] != "DELETED"){
@@ -73,3 +75,5 @@
                     echo "</table>";
                
 ?>
+</div>
+</div>
