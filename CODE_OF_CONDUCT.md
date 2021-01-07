@@ -14,6 +14,7 @@ CODE:
 - Zorg er voor dat als je een speciale functie maakt / een groot onderdeel dat je er documentatie over schrijft in de docs. (Dit mag in het nederlands)
 - Alles wat je maakt moet responsive zijn.
 - Maak gebruik van 4 tabs voor de indentation
+- Curly brackets achter de commando.
 
 ## Our Pledge
 
