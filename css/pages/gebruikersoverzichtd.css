@@ -1,7 +1,6 @@
 .Gebruikersoverzichtdocent
 {
 	margin: 20px;
-	background-color: green;
 }
 
 
@@ -9,7 +8,6 @@
 {
 	width: 100%;
 	border: 1px;
-
 	border-collapse: collapse;
 }
 
@@ -19,12 +17,12 @@
 {
 	border: 1px solid;
 	text-align: left;
-	width: 28%;
+	width: 30%;
 }
 
 #blauwerand
 {
-	background-color: blue;
+	background-color: #005aa7;
 }
 
 #wittetekst
