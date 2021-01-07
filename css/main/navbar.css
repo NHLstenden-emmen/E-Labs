@@ -73,7 +73,6 @@ nav #search {
 		border-right: 0px solid var(--white);
 	}
 	nav .topnavbar {
-		margin: 0px;
 		display: flex;
 		flex-direction: column;
 		align-self: center;
