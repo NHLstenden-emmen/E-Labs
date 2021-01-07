@@ -49,14 +49,40 @@ $labjournal = $db->DocentLabjournaalView($labjournaalid);
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[THEORY]: </h4>" . "<p>" . $result['theory'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[SAFETY]: </h4>" . "<p>" . $result['safety'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[RESULT]: </h4>" . "<p>" . $result['logboek'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[DOCUMENT]: </h4>" . "<p>" . $result['Attachment'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaal'><h4>$lang[GRADE]: </h4> 
 		<form method='POST'>
 			<input type='text' name='grade' value=" .$result['grade'] . ">
 			<input type='submit' name='changeGrade'>
 		</form>
-		</div>";
+		</div>
+		</div>
+		<div class='fileSource'>";
+			// check if its a img of excel file
+			$fileSortCheck = strtolower($result["Attachment"]);
+			$file = $result["Attachment"];
+			// check if source is a image
+			if (preg_match('/(\.jpg|\.png|\.jpeg|\.gif)$/', $fileSortCheck)) {
+				echo '<img src="'.$file.'" alt="" srcset="">';
+				// check if source is a csv format from excel.
+			} else if (preg_match('/(\.csv)$/', $fileSortCheck)){
+					echo "<br>";
+					echo "<table>\n\n";
+						$f = fopen($file, "r");
+						while (($line = fgetcsv($f)) !== false) {
+							echo "<tr>";
+							foreach ($line as $cell) {
+								echo "<td style='border: 1px solid black;'>" . htmlspecialchars($cell) . "</td>";
+							}
+							echo "</tr>\n";
+						}
+						fclose($f);
+					echo "\n</table>";
+			} else if (empty($result["Attachment"])){
+				# just a check if there is a scoure set.
+			} else {
+				echo "AN error occurred: file was not found";
+			}
+		echo '</div>';
 	}
 
 ?>
-</div>

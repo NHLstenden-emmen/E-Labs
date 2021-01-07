@@ -12,7 +12,6 @@
 	resize: none;
 	margin-bottom: 30px;
 	text-align: center;
-	
 }
 
 .labjournaalcontainer p {
@@ -29,20 +28,25 @@
 	margin-bottom: 30px;
 }
 
-.labjournalcontainer .smalltextarealabjournaal{
-    margin: auto;
+.labjournalcontainer .smalltextarealabjournaal {
+	margin: auto;
 	height: 200px;
 	width: 200px;
 	resize: none;
 	margin-bottom: 30px;
 }
 
- .labjournaaltitle {
+.labjournaaltitle {
 	margin: auto;
 	height: 50px;
-	width: 	100%;
+	width: 100%;
 	resize: none;
 	text-align: center;
 	margin-top: 30px;
 	margin-bottom: 30px;
+}
+.fileSource {
+	padding: 30px;
+	justify-content: center;
+	display: flex;
 }
