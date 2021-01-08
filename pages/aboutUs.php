@@ -58,7 +58,7 @@
     <div class="foto-aboutR">
         <img src=gebruikersBestanden/profilePictures/blank-profile-picture.png class="rounded-circle-about">
         <div class="tekst-aboutR">
-            Faya Derksen<br>
+            Faya Derks<br>
             Life Science Student<br>
             Opdrachtgeefster
         </div>
