@@ -65,6 +65,9 @@
 					case 'createnewlabjournaal'://file path of nieuwlabjournaal
 						echo '<link rel="stylesheet" href="css/pages/nieuwlabjournaal.css">';
 						break;
+					case 'aboutus':
+						echo '<link rel="stylesheet" href="css/pages/aboutus.css">';
+						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
 						break;
@@ -96,9 +99,13 @@
 					case 'labjournaalview':
 						echo '<link rel="stylesheet" href="css/pages/labjournaalview.css">';
 						break;
+					case 'aboutus':
+						echo '<link rel="stylesheet" href="css/pages/aboutus.css">';
+						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
 						break;
+
 				}
 			} else{
 				echo '<link rel="stylesheet" href="css/pages/404.css">';
