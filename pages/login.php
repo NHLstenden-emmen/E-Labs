@@ -18,7 +18,7 @@
                     setcookie("member_login", '');
                 }
                 // this changes the cookie lang to the users database prefred lang
-                setcookie("lang", $result['lang'], time()+3600);
+                setcookie("lang", $result['lang'], time()+(3600 * 24 * 30));
 
                 // store values in session
                 $_SESSION['email'] = $result['email'];
