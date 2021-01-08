@@ -69,7 +69,6 @@
 		}
 	}
 	if(isset($_POST['update'])){
-		echo 'hallo kees';
 		if (!empty($_POST['naam']) && !empty($_POST['email']) && !empty($_POST['docentnummer'])) {
 			$name = $_POST['naam'];
 			$email = $_POST['email'];
@@ -125,7 +124,7 @@
 				?></p>
 			</div>
 		</div>
-		<div class=buttons>
+		<div class=profileEditButtons>
 			<input type="submit" name="update" value="update">
 			<input type="reset" name="resetadd" value="Reset">
 		</div>

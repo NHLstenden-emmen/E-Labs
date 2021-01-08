@@ -94,3 +94,6 @@
 .gebruikersProfile .changePassword input[type="submit"] {
 	margin-bottom: 50px;
 }
+.profileEditButtons {
+	text-align: center;
+}
