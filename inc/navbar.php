@@ -2,15 +2,18 @@
 	if(array_key_exists('logout', $_POST)) { 
 		session_destroy(); 
 		header("Location: login");
+		// server fix for the relocation problem
+		echo "<script>window.location.href='login';</script>";
+		exit;
 	} 
 	if(isset($_GET['submit'])) {
 		// echo "geklikt";
 	}
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-	<div class="img-logo">
+	<a href="home" class="img-logo">
 		<img src="images/logo.png" alt="web logo">
-	</div>
+	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -19,55 +22,65 @@
 		<li class="nav-item">
 			<a class="nav-link" href="home">E-labs</a>
 		</li>
-		<?php if ($_SESSION['role'] == 'Docent') { ?>
+		<?php if ($_SESSION['role'] == 'Docent') { 
+			if(isset($_GET['archive'])) {
+				if (isset($_GET['changeArchive'])) {
+					if($_GET['archive'] != "true") {
+						$archiveNavbar = "true";
+					} else {
+						$archiveNavbar = "false";
+					}
+				} else {
+					if($_GET['archive'] == "true") {
+						$archiveNavbar = "true";
+					} else {
+						$archiveNavbar = "false";
+					}
+				}
+			} else {
+				$archiveNavbar = "false";
+			}
+
+			?>
 			<li class="nav-item">
-				<a class="nav-link" href="grade?year=1"><?php echo $lang["YEAR_1"];?></a>
+				<a class="nav-link" href="labjournaal?year=1<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_1"];?></a>
 			</li>
-		<?php } else{ ?>
+			<li class="nav-item">
+				<a class="nav-link" href="labjournaal?year=2<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_2"];?></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="labjournaal?year=3<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_3"];?></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="notificationsoverzicht">notifications overview</a>
+			</li>
+		<?php } else if ($_SESSION['role'] == 'Student'){ ?>
 			<li class="nav-item">
 				<a class="nav-link" href="labjournaal"><?php echo $lang["LAB_JOURNAL"];?></a>
 			</li>
-		<?php }?>
-		<?php  if ($_SESSION['role'] == 'Docent') { ?>
-			<li class="nav-item">
-				<a class="nav-link" href="grade?year=2"><?php echo $lang["YEAR_2"];?></a>
-			</li>
-		<?php } else {?>
 			<li class="nav-item">
 				<a class="nav-link" href="#"><?php echo $lang["PREPARATIONS"];?></a>
 			</li>
-		<?php } ?>
-		<?php  if ($_SESSION['role'] == 'Docent') { ?>
-			<li class="nav-item">
-				<a class="nav-link" href="grade?year=3"><?php echo $lang["YEAR_3"];?></a>
-			</li>
-		<?php } else {?>
-			
-		<?php } ?>
+		<?php }?>
 		</ul>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<button <?php if(isset($_GET['search'])){ echo "style='display:none'"; } ?> class="btn btn-default">
-					<a href="?search" class="searchButton search-form-tigger">
-						<i class="fas fa-search fa-2x"></i>
-					</a>
+			<li class="nav-item searchbar">
+				<button class="btn btn btn-default hide-me" data-target="#search" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-search fa-2x"></i>
 				</button>
-				<?php 
-					if(isset($_GET['search'])) {
-				?>
-						<form action="searchResults" method="post" id="searchForm">
-							<input class="form-control" type="text" name="searchInput">
-							<button type="submit" class="searchButton btn btn-default" name="submit">
-								<i class="fas fa-search fa-2x"></i>
-							</button>
-						</form>
-				<?php
-					}
-				?>
+				<div class="dropdown-menu" id="search">
+					<form action="searchResults" method="post" id="searchForm">
+						<input class="form-control" type="text" name="searchInput">
+						<button type="submit" class="searchButton btn btn-default" name="submit">
+							<i class="fas fa-search fa-2x"></i>
+						</button>
+					</form>
+				</div>
 			</li>
-			<li class="btn-group topnavbar">
-				<button type="button" class="btn"><?php echo $_SESSION['name'];?></button>
+
+			<li class="nav-item btn-group topnavbar">
 				<button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<?php echo $_SESSION['name'];?>
 					<span class="sr-only">Toggle Dropdown</span>
 				</button>
 				<div class="dropdown-menu">

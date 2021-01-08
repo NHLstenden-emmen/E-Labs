@@ -48,6 +48,28 @@
 			}
 			return NULL;
 		}
+		public function selectStudents(){
+			// this gets all students and returns them
+			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `role` = 'Student'")) {
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function checkUsersAllowance($userId, $userName, $userEmail){
+			if($stmt = $this->conn->prepare("SELECT `role` FROM `users` WHERE `user_id` = ? AND `name` = ? AND `email` = ? ")){
+					$stmt->bind_param("sss", $userId, $userName, $userEmail);
+					$stmt->execute();
+					$result = $stmt->get_result();
+					$stmt->free_result();
+					$stmt->close();
+					return $result;
+				}
+		}
 
 		public function selectCurrentUsers($userID){
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
@@ -117,18 +139,26 @@
 			$message = htmlspecialchars($message);
 			$date_time = htmlspecialchars($date_time);
 
-			if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `viewer`, `title`, `message`, `date_time`) VALUES (?,?,?,?,?)")) {
-				$stmt->bind_param("iissd", $creater, $viewer, $title, $message, $date_time);
-				$stmt->execute();
-				$stmt->close();
-				return "bericht toegevoegd";
+			if ($viewer == '0') {
+				if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `title`, `message`, `date_time`) VALUES (?,?,?,?)")) {
+					$stmt->bind_param("isss", $creater, $title, $message, $date_time);
+					$stmt->execute();
+					$stmt->close();
+					return "bericht toegevoegd";
+				}
+			} else {
+				if ($stmt = $this->conn->prepare("INSERT INTO `notifications`( `creater`, `viewer`, `title`, `message`, `date_time`) VALUES (?,?,?,?,?)")) {
+					$stmt->bind_param("iisss", $creater, $viewer, $title, $message, $date_time);
+					$stmt->execute();
+					$stmt->close();
+					return "bericht toegevoegd";
+				}
 			}
-			return NULL;
 		}
 
 		
 		public function selectAllNotifications(){
-			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `viewer` IS NULL")) {
+			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `viewer` IS NULL ORDER BY date_time DESC")) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -139,7 +169,7 @@
 		}
 
 		public function selectCurrentUserNotifications($userID){
-			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `viewer` = ?")) {
+			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `viewer` = ? ORDER BY date_time DESC")) {
 				$stmt->bind_param("i", $userID);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -150,12 +180,19 @@
 			return NULL;
 		}
 
-		public function selectAllLabjournals($year, $userId) {
-            if (
-            	$stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE year = ?
-					AND lab_journal_users.user_id = ?")) {
-                $stmt->bind_param("ii", $year, $userId);
+		public function selectAllLabjournals($year, $userId, $sorting, $ascdesc) {
+            if ($ascdesc == "DESC"){
+            	$sql = "SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE year = $year
+					AND lab_journal_users.user_id = $userId
+					ORDER BY $sorting DESC";
+            } else {
+            	$sql = "SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+					WHERE year = $year
+					AND lab_journal_users.user_id = $userId
+					ORDER BY $sorting ASC";
+            }
+            if($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -166,23 +203,14 @@
 		}
 		
     
-		public function getAllGradeResults($year, $sortName){
-			if(!empty($sortName)){
-				$sql = "SELECT DISTINCT users.user_id, users.name
-					FROM users
-					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
-					GROUP BY users.user_id
-					ORDER BY users.name $sortName";
-			} else {
-				$sql = "SELECT DISTINCT users.user_id, users.name
-					FROM users
-					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE lab_journal.year = $year AND lab_journal.submitted = 1
-					GROUP BY users.user_id";
-			}
+		public function getAllGradeResults($year,$archive,$ascdesc){
+			$sql = "SELECT DISTINCT users.user_id, users.name
+				FROM users
+				INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+				INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
+				WHERE lab_journal.year = $year AND lab_journal.submitted = $archive
+				GROUP BY users.user_id
+				ORDER BY users.name $ascdesc";
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -193,21 +221,21 @@
 			return NULL;
 		}
 
-		public function getGradeResultsPerPerson($userId, $year, $sortDate){
+		public function getGradeResultsPerPerson($userId, $year,$archive, $sortDate){
 		
 			if(!empty($sortDate)) {
 				$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = 1
+					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = $archive
 					ORDER BY lab_journal.date $sortDate";
 			} else{	
 				$sql = "SELECT lab_journal.labjournaal_id, lab_journal.grade, lab_journal.title
 					FROM users
 					INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 					INNER JOIN lab_journal ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = 1";					
+					WHERE users.user_id = ? AND lab_journal.year = $year AND lab_journal.submitted = $archive";
 			}
 
 			if ($stmt = $this->conn->prepare($sql)) {
@@ -228,11 +256,45 @@
 					$stmt->close();
 					return $result;
 				}
+				else{
+					return mysqli_error($this->conn);
+				}
 		}
 		public function selectpdfcontentpreperation(){}
 
 		// this still needs a join in lab-journaal-users
-		public function LabjournaalToevoegen($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
+		public function LabjournaalToevoegenWithOutAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis){
+			
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$creater_id = htmlspecialchars($creater_id);
+			$logboek = htmlspecialchars($logboek);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$grade = htmlspecialchars($grade);
+			$year = htmlspecialchars($year);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+
+			if ($stmt = $this->conn->prepare("INSERT INTO `lab_journal`(`title`, `date`, `theory`, `safety`, `creater_id`, `logboek`, `method_materials`, `submitted`, `grade`, `year`, `Goal`, `Hypothesis`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)")) {
+				$stmt->bind_param("ssssissiiiss", $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
+				$stmt->execute();
+				$stmt->close();
+			}
+			if ($stmt = $this->conn->prepare("SELECT `labjournaal_id` FROM `lab_journal` WHERE `date`= ? AND `creater_id`= ?")) {
+                $stmt->bind_param('si',$date, $creater_id);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function LabjournaalToevoegenWithAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
 			
 			$title = htmlspecialchars($title);
 			$date = htmlspecialchars($date);
@@ -276,6 +338,20 @@
 			return NULL;
 		}
 
+		public function archiveLabjournaal($labjournaalid, $submitted){
+			
+			$labjournaalid = htmlspecialchars($labjournaalid);
+			$submitted = htmlspecialchars($submitted);
+
+			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` SET `submitted`= ? WHERE `labjournaal_id` = ?")) {
+				$stmt->bind_param('ii', $submitted, $labjournaalid);
+				$stmt->execute();
+				$stmt->close();
+				return "functie is uit gevoegd";
+			}
+			return NULL;
+		}
+
 		public function updateUsersLanguage($userId, $language){
 
 			$userId = htmlspecialchars($userId);
@@ -292,10 +368,10 @@
 		public function selectStudentSearchResultsLabjournal($userId, $searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
 				JOIN users ON lab_journal_users.user_id = users.user_id
-				WHERE creater_id = ?
+				WHERE lab_journal_users.user_id = ?
 				AND (title LIKE ?
 				OR theory LIKE ?
 				OR safety LIKE ?
@@ -303,6 +379,7 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -317,10 +394,10 @@
 		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
 				JOIN users ON preperation_users.user_id = users.user_id
-				WHERE creater_id = ?
+				WHERE preperation_users.user_id = ?
 				AND (title LIKE ?
 				OR materials LIKE ?
 				OR safety LIKE ?
@@ -328,6 +405,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -342,7 +420,7 @@
 		public function selectTeacherSearchResultsPreperation($searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `preparation`
+				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE (title LIKE ?
@@ -352,6 +430,8 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				AND submitted = 1
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -366,7 +446,7 @@
 		public function selectTeacherSearchResultsLabjournal($searchWord) {
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
-				"SELECT title, `date`, grade, creater_id FROM `lab_journal`
+				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournaal_id = lab_journal_users.lab_journal_id
 				JOIN users ON lab_journal_users.user_id = users.user_id
 				WHERE (title LIKE ?
@@ -376,6 +456,8 @@
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
+				AND submitted = 1
+				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 				$stmt->execute();
@@ -401,7 +483,7 @@
 			return NULL;
 		}
 		
-		public function updatelabjournaal($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id){
+		public function updatelabjournaalWithAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id){
 
 			$title = htmlspecialchars($title);
 			$date = htmlspecialchars($date);
@@ -426,10 +508,34 @@
 				$stmt->close();
 				return "gelukt";
 			}
-			else{
-				$conn = $this->conn;
-				return mysqli_error($conn);
+			return NULL;
+		}
+
+		public function updatelabjournaalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id){
+
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$logboek = htmlspecialchars($logboek);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$year = htmlspecialchars($year);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+			$UserID = htmlspecialchars($UserID);
+			$labjournaal_id = htmlspecialchars($labjournaal_id);
+
+			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` 
+			JOIN lab_journal_users ON lab_journal_users.lab_journal_id =  lab_journal.labjournaal_id
+			SET `title`=?,`date`=?,`theory`=?,`safety`=?, `logboek`=?,`method_materials`=?,`submitted`=?, `year`=?,`Goal`=?,`Hypothesis`=? 
+			WHERE lab_journal_users.`user_id` = ? AND labjournaal_id = ?")) {
+                $stmt->bind_param('ssssssiissii', $title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+				$stmt->execute();
+				$stmt->close();
+				return "gelukt";
 			}
+			return NULL;
 		}
 
 		public function getLabjournaal($labjournaal, $userId){
@@ -437,10 +543,10 @@
 			$labjournaal = htmlspecialchars($labjournaal);
 			$userId = htmlspecialchars($userId);
 			
-			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis` 
+			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis`,`creater_id` 
 			FROM `lab_journal` 
 			JOIN lab_journal_users ON lab_journal.labjournaal_id = lab_journal_users.lab_journal_id
-			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ? ")) {
+			WHERE lab_journal.labjournaal_id = ? AND lab_journal_users.user_id = ?")) {
                 $stmt->bind_param('ii', $labjournaal, $userId);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -507,6 +613,114 @@
 				$stmt->execute();
 				$stmt->close();
 				return 'geupdate';
+			}
+			return NULL;
+		}
+    
+		public function updateGradeVieuw($labjournaal_id, $cijfer){
+
+			$cijfer = htmlspecialchars($cijfer);
+
+			if ($stmt = $this->conn->prepare("UPDATE lab_journal SET grade='$cijfer' WHERE labjournaal_id=$labjournaal_id")) {
+				$stmt->execute();
+				$stmt->close();
+				return;
+			}
+			return NULL;
+		}
+    
+		public function DeleteUser($userid){
+			if($stmt = $this->conn->prepare('UPDATE `users` SET `email` = "DELETED", `password` = "DELETED", `role`= "DELETED", `profile_picture` = NULL WHERE `user_id` =?')){
+				$stmt->bind_param('i', $userid);
+				$stmt->execute();
+				$stmt->close();
+				$message = "User Succesfully Deleted";
+				return $message;
+			}
+			else{
+				return mysqli_error($this->conn);
+			}
+		}
+    
+		public function GetAllLabUsers($labid){
+		if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `lab_journal_id` FROM `lab_journal_users` JOIN `users` ON lab_journal_users.user_id = users.user_id WHERE lab_journal_id = ?')){
+			$stmt->bind_param('i', $labid);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$stmt->free_result();
+			$stmt->close();
+			return $result;
+			}
+			else{ return mysqli_error($this->conn);}
+		}
+		public function DeleteExtraUser($userid, $labjournaalid){
+		if($stmt = $this->conn->prepare('DELETE FROM `lab_journal_users` WHERE `user_id` = ? AND `lab_journal_id` = ?')){
+			$stmt->bind_param('ii', $userid, $labjournaalid);
+			$stmt->execute();
+			$stmt->close();
+			return "Verwijderen gelukt";
+		}
+		else{ return mysqli_error($this->conn);}
+	}
+    
+		public function deleteNotification($notificationId){
+			
+			$notificationId = htmlspecialchars($notificationId);
+
+			if ($stmt = $this->conn->prepare("DELETE FROM `notifications` WHERE `notification_id` = ?")) {
+                $stmt->bind_param('i', $notificationId);
+				$stmt->execute();
+				$stmt->close();
+				return "Deleted Notification";
+			}
+			return NULL;
+		}
+
+		public function viewNotification($labjournalid){
+			if ($stmt = $this->conn->prepare('SELECT notification_id, title, `message`, date_time, 
+			krijgViewer.name as Vname, 
+			krijgCreater.name as Cname 
+			FROM `notifications`
+			JOIN users krijgCreater ON notifications.creater = krijgCreater.user_id
+			LEFT JOIN users krijgViewer ON notifications.viewer = krijgViewer.user_id
+			WHERE `notification_id` = ?')){
+				$stmt->bind_param('i', $labjournalid);
+				$stmt->execute();
+				$result = $stmt->get_result();
+                $stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+		
+		public function selectCurrentCreaterNotifications($userID){
+			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `creater` = ? AND viewer IS NOT NULL ORDER BY date_time DESC")) {
+				$stmt->bind_param("i", $userID);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function selectAllUsers2($sorting, $ascdesc) {
+            if ($ascdesc == "DESC"){
+            	$sql = "SELECT * FROM `users`
+					ORDER BY $sorting DESC";
+            } else {
+            	$sql = "SELECT * FROM `users`
+					ORDER BY $sorting ASC";
+            }
+            if($stmt = $this->conn->prepare($sql)) {
+				//$stmt->bind_param("s", $sorting);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
 			}
 			return NULL;
 		}
