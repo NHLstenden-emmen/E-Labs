@@ -647,7 +647,9 @@
 			$stmt->close();
 			return $result;
 			}
-			else{ return mysqli_error($this->conn);}
+			else{ 
+				return mysqli_error($this->conn);
+			}
 		}
 		public function DeleteExtraUser($userid, $labjournaalid){
 		if($stmt = $this->conn->prepare('DELETE FROM `lab_journal_users` WHERE `user_id` = ? AND `lab_journal_id` = ?')){

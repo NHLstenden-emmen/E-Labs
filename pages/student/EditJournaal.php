@@ -18,6 +18,17 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 	$Hypothesis = $_POST['Hypothesis'];
 	$UserID = $_SESSION['user_id'];
 	$labjournaal_id = $_GET['id'];
+	if(isset($_SESSION['addusers'])){
+		var_dump($_SESSION['addusers']);
+		foreach($_SESSION['addusers'] as $userid){
+			$additionalusers = $db->GetAllLabUsers($labjournaal_id);
+			foreach($additionalusers as $additionalusers){
+				if($additionalusers['user_id'] == $userid){
+					$db->connectNewLabjournaalWithUser($additionalusers['user_id'], $_GET['id']);
+				}
+			}
+		}
+	}
 	if(!empty($_FILES['fileupload']['name'])){
 		
 		$target_file = basename($_FILES["fileupload"]["name"]);
@@ -58,6 +69,7 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 if (empty($message) && isset($_GET['id'])) {
 	$getLabjournaal = $db->getLabjournaal($_GET['id'], $_SESSION['user_id']);
 	while ($result = $getLabjournaal->fetch_array(MYSQLI_ASSOC)){ 
+		$_SESSION['creator_id'] = $result['creater_id'];
 		if ($result["submitted"] == 0) {
 		?>
 	<form method="post" enctype='multipart/form-data' class="newlabjournaalcontainer">
@@ -68,44 +80,84 @@ if (empty($message) && isset($_GET['id'])) {
 				<!-- </form> -->
 			</div>
 			<div class="col-md-4 mb-3 offset-1">
-					<?php
-						echo "<label for='users'><a class='help'><i class='fas fa-question-circle' Title='Ctrl + Linkermuisknop om meerdere te selecteren'></i></a>".$lang['OTHERSTUDENTS']."</label>";
-						$student = $db->selectStudents();
-						echo '<div class="twoinone"><div><select name="medestudenten" multiple>';
-						while ($user = $student->fetch_array(MYSQLI_ASSOC)){
-							if($user['user_id'] !== $_SESSION['user_id'] && $user['user_id'] !== $result['creater_id']){
-								echo "<option value='".$user['user_id']."'";
-								$labusers = $db->GetAllLabUsers($_GET['id']);
-								while($labuser = $labusers->fetch_array(MYSQLI_ASSOC)){
-									if($user['user_id'] === $labuser['user_id']){
-										echo "selected='selected'";
+				<div class="selectstudent">
+					<div>
+						<?php echo $lang["OTHERSTUDENTS"];?>:</br>
+						<input type="search" name="searchstudent">
+						<input type="submit" name="search" Value="Search"><br>
+						<table id="selectphp">
+							<?php
+							if(!isset($_SESSION['addusers'])){
+								$_SESSION['addusers'] = array();
+							}
+							if(isset($_POST['adduser'])){
+								array_push($_SESSION['addusers'], $_POST['adduser']);
+								if(isset($_POST['inleveren']) || isset($_POST['opslaan'])){
+									unset($_SESSION['addusers']);
+									unset($_SESSION['user_id_lab']);
+								}
+							}
+							if(isset($_POST['search']) && !empty($_POST['searchstudent'])){
+								$searchfor = "%".$_POST['searchstudent']."%";
+								$resultsearch = $db->selectStudentslab($searchfor);
+								if(isset($resultsearch) && $resultsearch != NULL){
+									echo "<tr><th>Name</th><th>Studentnumber</th></tr>";
+									foreach ($resultsearch as $user){
+										$_SESSION['user_id_lab'] = $user['user_id'];
+										echo "<tr><td>".$user['name']."</td><td>".$user['user_number']."</td><td>";
+										foreach($_SESSION['addusers'] as $labuser){
+											if($user['user_id'] == $labuser && $user['user_id'] != $_SESSION['creator_id']){
+												echo $_SESSION['button'] = "<button class='unclickable'>Added</button>";
+											}
+										}								
+										if($user['user_id'] == $_SESSION['creator_id']){
+											echo $_SESSION['button'] = "<button class='unclickable'>Creator</button>";
+										}
+										if(!isset($_SESSION['button'])){
+											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">Add user</button>";
+										}
+										elseif(isset($_SESSION['button'])){
+											unset($_SESSION['button']);
+										}
+										echo "</td></tr>";
+									} 
+								} 
+							}
+							?>
+						</table>
+					</div>
+					<div>
+						<pre><table>
+							<?php
+							$labusers = $db->GetAllLabUsers($_GET['id']);
+							foreach($labusers as $lab){
+								$labuserid = (int)$lab['user_id'];
+								array_push($_SESSION['addusers'], $labuserid);
+								$_SESSION['addusers'] = array_unique($_SESSION['addusers']);
+							}
+							foreach($_SESSION['addusers'] as $user){
+								$userdata = $db->selectCurrentUsers($user);
+								foreach($userdata as $userlabjournal){
+									if($userlabjournal['user_id'] != $_SESSION['creator_id']){
+										$username = $userlabjournal['name'];
+										echo "<tr><td>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>Delete</button></td></tr>";
 									}
 								}
-								echo ">".$user['name']."</option>";
 							}
-						}
-						echo "</select></div><div>";
-						if($_SESSION['user_id'] == $result['creater_id']){
-							$labusers = $db->GetAllLabUsers($_GET['id']);
-							echo "<ul><pre>";
-							while ($users = $labusers->fetch_array(MYSQLI_ASSOC)){
-								if($users['user_id'] !== $result['creater_id']){
-									$username = $users['name'];
-									echo "<li>".$username."&#9;&#9;<button name='delete' value='".$users['user_id']."'>Delete</button></li>";
-								}
-							}
-							echo "</pre></ul>";
-						}
-						echo "</div></div>";
-						if(isset($_POST['delete'])){
-							$deleteuser = $_POST['delete'];
-							$delete = $db->DeleteExtraUser($deleteuser, $_GET['id']);
-							echo $delete;
+							?>
+						</table></pre>
+						<?php
+						if(isset($_POST['deleteuser'])){
+							$deleteuser = $_POST['deleteuser'];
+							$_SESSION['addusers'] = array_diff($_SESSION['addusers'], array($deleteuser));
+							$db->DeleteExtraUser($deleteuser, $_GET['id']);
+							echo "<script>window.location.href = window.location.href;</script>";
 						}
 						?>
+					</div>
+				</div>
 			</div>
 		</div>
-		<!-- <form method="post" class="newlabjournaalcontainer"> -->
 		<div class="form-row">
 			<div class="col-md-4 mb-3 offset-1">
 				<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>

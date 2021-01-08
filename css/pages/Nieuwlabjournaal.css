@@ -8,6 +8,12 @@ li {
 	display: grid;
 	grid-template-columns: auto auto;
 	font-size: small;
+	overflow-y: auto;
+	min-width: 430px;
+}
+.selectstudent pre{
+	max-width: 300px;
+	padding-top: 0;
 }
 .selectstudent button{
 	width: 58.5px;
