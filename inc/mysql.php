@@ -600,6 +600,23 @@
 			}
 			return NULL;
 		}
+
+		public function docentprofielbewerken($userID, $name, $email, $user_number){
+
+			$userID = htmlspecialchars($userID);
+			$name = htmlspecialchars($name);
+			$email = htmlspecialchars($email);
+			$user_number = htmlspecialchars($user_number);
+
+			if ($stmt = $this->conn->prepare("UPDATE `users` SET `name` =?, `email` =?, `user_number` =? WHERE `user_id`=?")) {
+				$stmt->bind_param('ssii', $name, $email, $user_number, $userID);
+				$stmt->execute();
+				$stmt->close();
+				return 'geupdate';
+			}
+			return NULL;
+		}
+    
 		public function updateGradeVieuw($labjournaal_id, $cijfer){
 
 			$cijfer = htmlspecialchars($cijfer);
