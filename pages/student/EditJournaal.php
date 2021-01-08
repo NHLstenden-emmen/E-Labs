@@ -19,14 +19,20 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 	$UserID = $_SESSION['user_id'];
 	$labjournaal_id = $_GET['id'];
 	if(isset($_SESSION['addusers'])){
-		var_dump($_SESSION['addusers']);
-		foreach($_SESSION['addusers'] as $userid){
-			$additionalusers = $db->GetAllLabUsers($labjournaal_id);
-			foreach($additionalusers as $additionalusers){
-				if($additionalusers['user_id'] == $userid){
-					$db->connectNewLabjournaalWithUser($additionalusers['user_id'], $_GET['id']);
-				}
-			}
+		$additionalusers = $db->GetAllLabUsers($labjournaal_id);
+		$arrayusers = $additionalusers->fetch_all(MYSQLI_ASSOC);
+		$userids = array_map(function($x){
+			return $x['user_id'];
+		}, $arrayusers);
+		$arraysorted = array_diff($_SESSION['addusers'], $userids);
+		// echo "<br>";
+		// var_dump($arraysorted);
+		// echo "<br>";
+		// var_dump($arrayusers);
+		// echo "<br>";
+		var_dump($additionalusers);
+		foreach($arraysorted as $arraysorted2){
+		$db->connectNewLabjournaalWithUser($arraysorted2, $_GET['id']);
 		}
 	}
 	if(!empty($_FILES['fileupload']['name'])){
@@ -91,7 +97,7 @@ if (empty($message) && isset($_GET['id'])) {
 								$_SESSION['addusers'] = array();
 							}
 							if(isset($_POST['adduser'])){
-								array_push($_SESSION['addusers'], $_POST['adduser']);
+								array_push($_SESSION['addusers'], (int)$_POST['adduser']);
 								if(isset($_POST['inleveren']) || isset($_POST['opslaan'])){
 									unset($_SESSION['addusers']);
 									unset($_SESSION['user_id_lab']);
