@@ -52,8 +52,8 @@ if (!empty($_POST['title']) && isset($_POST['title']) && (isset($_post['inlevere
 		}
 
 		// Allow certain file formats
-		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-			echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>";
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "csv" ) {
+			echo "Sorry, only JPG, JPEG, PNG, GIF & csv files are allowed.<br>";
 			$uploadOk = 0;
 		}
 

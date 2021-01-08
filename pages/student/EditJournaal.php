@@ -200,6 +200,7 @@ if (empty($message) && isset($_GET['id'])) {
 					<input type="radio" name="year" value="3"<?php if($year == 3){echo 'checked';}?>>
 			</div>
 			<div class="col-md-4 mb-3 offset-1">
+			<a class="help"><i class="fas fa-question-circle" title="Je kan alleen JPG, JPEG, PNG, GIF & CSV(excel file form)"></i></a>
 				<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
 				<input name='fileupload' type='file'>				
 			</div>	
