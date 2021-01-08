@@ -4,7 +4,7 @@
         <div class="tekst-aboutL">
             Kevin Smulders<br>
             Informatica Student<br>
-            Project leider
+            software developer / project leider
         </div>
     </div>
     <div class="foto-aboutR">
@@ -12,7 +12,7 @@
         <div class="tekst-aboutR">
             Mike Verschuur<br>
             Informatica Student<br>
-            coordinator
+            software developer / coordinator
         </div>
     </div>
     <div class="foto-aboutL">
@@ -20,7 +20,7 @@
         <div class="tekst-aboutL">
             Coen Dokter<br>
             Informatica Student<br>
-            Kwaliteitscontroleur
+            software developer / kwaliteitscontroleur
         </div>
     </div>
     <div class="foto-aboutR">
@@ -28,7 +28,7 @@
         <div class="tekst-aboutR">
             Tamara kijk in de Vegte<br>
             Informatica Student<br>
-            Planner
+            software developer / planner
         </div>
     </div>
     <div class="foto-aboutL">
@@ -36,7 +36,7 @@
         <div class="tekst-aboutL">
             Lucas Haijtink<br>
             Informatica Student<br>
-            Kwaliteitscontroleur
+            software developer / kwaliteitscontroleur
         </div>
     </div>
     <div class="foto-aboutR">
@@ -44,7 +44,7 @@
         <div class="tekst-aboutR">
             Niels Stevens<br>
             Informatica Student<br>
-            notulist
+            software developer / notulist
         </div>
     </div>
     <div class="foto-aboutL">
@@ -52,7 +52,7 @@
         <div class="tekst-aboutL">
             Esmee Kajuiter<br>
             Informatica Student<br>
-            notulist
+            software developer / notulist
         </div>
     </div>
     <div class="foto-aboutR">
