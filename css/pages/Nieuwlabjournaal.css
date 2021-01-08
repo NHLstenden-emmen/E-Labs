@@ -1,13 +1,30 @@
 li{
 	list-style-type: none;
 }
-.selectstudent{
-	text-align: left;
-
+.unclickable{
+	pointer-events: none;
 }
-.selectphp{
-	padding: 10px;
-	width: 200px;
+.selectstudent{
+	display: grid;
+	grid-template-columns: auto auto;
+	font-size: small;
+}
+.selectstudent button{
+	width: 58.5px;
+}
+#selectphp{
+	margin-top: 10px;
+	width: 250px;
+	height: 28px;
+	font-size: x-small;
+	border-left: 1px;
+}
+#selectphp th{
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+}
+#selectphp td{
+	border-left: 1px solid black;
 }
 .help {
 	cursor: help;
