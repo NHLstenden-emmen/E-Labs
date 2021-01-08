@@ -2,64 +2,73 @@
     <div class="foto-aboutL">
         <img src=images/fotokevin.png class="rounded-circle-about">
         <div class="tekst-aboutL">
-            Naam: Kevin Smulders<br>
-            Rol: Informatica Student
+            Kevin Smulders<br>
+            Informatica Student<br>
+            Project leider
         </div>
     </div>
     <div class="foto-aboutR">
         <img src=images/fotomike.jpg class="rounded-circle-about">
         <div class="tekst-aboutR">
-            Naam: Mike Verschuur<br>
-            Rol: Informatica Student
+            Mike Verschuur<br>
+            Informatica Student<br>
+            coordinator
         </div>
     </div>
     <div class="foto-aboutL">
         <img src=images/fotocoen.jpg class="rounded-circle-about">
         <div class="tekst-aboutL">
-            Naam: Coen Dokter<br>
-            Rol: Informatica Student
+            Coen Dokter<br>
+            Informatica Student<br>
+            Kwaliteitscontroleur
         </div>
     </div>
     <div class="foto-aboutR">
         <img src=images/fototamara.jpg class="rounded-circle-about">
         <div class="tekst-aboutR">
-            Naam: Tamara kijk in de Vegte<br>
-            Rol: Informatica Student
+            Tamara kijk in de Vegte<br>
+            Informatica Student<br>
+            Planner
         </div>
     </div>
     <div class="foto-aboutL">
         <img src=images/fotolucas.png class="rounded-circle-about">
         <div class="tekst-aboutL">
-            Naam: Lucas Haijtink<br>
-            Rol: Informatica Student
+            Lucas Haijtink<br>
+            Informatica Student<br>
+            Kwaliteitscontroleur
         </div>
     </div>
     <div class="foto-aboutR">
         <img src=images/fotoniels.png class="rounded-circle-about">
         <div class="tekst-aboutR">
-            Naam: Niels Stevens<br>
-            Rol: Informatica Student
+            Niels Stevens<br>
+            Informatica Student<br>
+            notulist
         </div>
     </div>
     <div class="foto-aboutL">
         <img src=images/fotoesmee.jpg class="rounded-circle-about">
         <div class="tekst-aboutL">
-            Naam: Esmee Kajuiter<br>
-            Rol: Informatica Student
+            Esmee Kajuiter<br>
+            Informatica Student<br>
+            notulist
         </div>
     </div>
     <div class="foto-aboutR">
         <img src=gebruikersBestanden/profilePictures/blank-profile-picture.png class="rounded-circle-about">
         <div class="tekst-aboutR">
-            Naam: Faya Derksen<br>
-            Rol: Opdrachtgeefster
+            Faya Derksen<br>
+            Life Science Student<br>
+            Opdrachtgeefster
         </div>
     </div>
     <div class="foto-aboutL">
         <img src=gebruikersBestanden/profilePictures/blank-profile-picture.png class="rounded-circle-about">
         <div class="tekst-aboutL margin-about">
-            Naam: Marjolein Korenhof<br>
-            Rol: Opdrachtgeefster
+            Marjolein Korenhof<br>
+            Life Science Student<br>
+            Opdrachtgeefster
         </div>
     </div>
 </div>
