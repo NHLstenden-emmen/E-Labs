@@ -443,7 +443,7 @@
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
-				-- AND submitted = 1
+				AND submitted = 1
 				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
@@ -693,6 +693,25 @@
 		public function selectCurrentCreaterNotifications($userID){
 			if ($stmt = $this->conn->prepare("SELECT notification_id, creater, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creater = users.user_id WHERE `creater` = ? AND viewer IS NOT NULL ORDER BY date_time DESC")) {
 				$stmt->bind_param("i", $userID);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		public function selectAllUsers2($sorting, $ascdesc) {
+            if ($ascdesc == "DESC"){
+            	$sql = "SELECT * FROM `users`
+					ORDER BY $sorting DESC";
+            } else {
+            	$sql = "SELECT * FROM `users`
+					ORDER BY $sorting ASC";
+            }
+            if($stmt = $this->conn->prepare($sql)) {
+				//$stmt->bind_param("s", $sorting);
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();

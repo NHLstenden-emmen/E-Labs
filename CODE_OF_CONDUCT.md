@@ -17,6 +17,7 @@ CODE:
 - Curly bracket openen achter de functienaam.
 - Maak gebruik van camelcase voor functie namen in php.
 - Maak gebruik van Snake case voor database benamingen.
+- maak gebruik van de css variable voor kleuren en 
 
 ## Our Pledge
 

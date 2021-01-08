@@ -22,7 +22,7 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 		
 		$target_file = basename($_FILES["fileupload"]["name"]);
 		$uploadOk = 1;
-		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		$fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		// check the size of the file
 		if ($_FILES["fileupload"]["size"] > 2000000) {
 			echo "Sorry, your file is too large.<br>";
@@ -30,8 +30,8 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 		}
 
 		// Allow certain file formats
-		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-			echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>";
+		if($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg" && $fileType != "gif" && $fileType != "csv" ) {
+			echo "Sorry, only JPG, JPEG, PNG, GIF & CSV(excel file form) files are allowed.<br>";
 			$uploadOk = 0;
 		}
 
@@ -149,23 +149,36 @@ if (empty($message) && isset($_GET['id'])) {
 			</div>
 			<div class="col-md-4 mb-3 offset-1">
 				<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
-				<input name='fileupload' type='file'>
-				<?php 
-					// check if its a img of excel file
-					// if (condition) {
-						echo '<img src="'.$result["Attachment"].'" alt="" srcset="">';
-					// } else if (condition){
-					// 	# code...
-					// } else if (empty($result["Attachment"])){
-					// 	# code...
-					// } else {
-					// 	# code...
-					// }
-					
-				?>
-				
+				<input name='fileupload' type='file'>				
 			</div>	
 		</div>
+		<?php 
+			// check if its a img of excel file
+			$fileSortCheck = strtolower($result["Attachment"]);
+			$file = $result["Attachment"];
+			// check if source is a image
+			if (preg_match('/(\.jpg|\.png|\.jpeg|\.gif)$/', $fileSortCheck)) {
+				echo '<img src="'.$file.'" alt="" srcset="">';
+				// check if source is a csv format from excel.
+			} else if (preg_match('/(\.csv)$/', $fileSortCheck)){
+					echo "<br>";
+					echo "<table>\n\n";
+						$f = fopen($file, "r");
+						while (($line = fgetcsv($f)) !== false) {
+							echo "<tr>";
+							foreach ($line as $cell) {
+								echo "<td style='border: 1px solid black;'>" . htmlspecialchars($cell) . "</td>";
+							}
+							echo "</tr>\n";
+						}
+						fclose($f);
+					echo "\n</table>";
+			} else if (empty($result["Attachment"])){
+				# just a check if there is a scoure set.
+			} else {
+				echo "AN error occurred: file was not found";
+			}
+		?>
 		<div class="form-row">
 			<div class="col-md-4 mb-3 offset-1">
 				<input type="submit" name="Opslaan" value="<?php echo $lang["SAVE"];?>">

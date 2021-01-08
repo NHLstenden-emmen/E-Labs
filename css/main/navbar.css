@@ -16,15 +16,6 @@ nav .nav-link {
 	border-right: 1px solid var(--white);
 }
 
-@media (max-width: 767px) {
-	nav .nav-item {
-		border-right: 0px solid var(--white);
-	}
-
-	.img-logo {
-		border-right: 0px solid var(--white);
-	}
-}
 
 nav .fa-search {
 	color: var(--white);
@@ -58,4 +49,49 @@ nav .languageSwitch {
 nav .nav-profile-pic {
 	height: 60px;
 	width: 60px;
+}
+
+.hide-me[aria-expanded="true"] {
+	display: none;
+}
+
+nav #search {
+	background-color: transparent;
+	border: none;
+	position: unset;
+	padding: 0;
+}
+
+@media (max-width: 767px) {
+	nav .navbar-collapse {
+		text-align: center;
+	}
+	nav .nav-item {
+		border-right: 0px solid var(--white);
+	}
+	.img-logo {
+		border-right: 0px solid var(--white);
+	}
+	nav .topnavbar {
+		display: flex;
+		flex-direction: column;
+		align-self: center;
+		width: 80%;
+	}
+	nav .searchbar {
+		display: flex;
+		width: 80%;
+		align-self: center;
+		justify-content: center;
+	}
+	.navbar-nav .dropdown-menu {
+		width: 100%;
+	}
+	.dropdown-item {
+		text-align: center;
+	}
+	.img-person {
+		padding-top: 10px;
+	}
+
 }
