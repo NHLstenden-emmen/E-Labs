@@ -57,7 +57,20 @@
 				$stmt->close();
 				return $result;
 			}
-			return NULL;
+			return mysqli_error($this->conn);
+		}
+
+		public function selectStudentslab($name){
+			// this gets all students and returns them
+			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `role` = 'Student' AND `name` LIKE ?")) {
+				$stmt->bind_param("s", $name);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return mysqli_error($this->conn);
 		}
 
 		public function checkUsersAllowance($userId, $userName, $userEmail){
@@ -651,7 +664,9 @@
 			$stmt->close();
 			return $result;
 			}
-			else{ return mysqli_error($this->conn);}
+			else{ 
+				return mysqli_error($this->conn);
+			}
 		}
 		public function DeleteExtraUser($userid, $labjournaalid){
 		if($stmt = $this->conn->prepare('DELETE FROM `lab_journal_users` WHERE `user_id` = ? AND `lab_journal_id` = ?')){
