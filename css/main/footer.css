@@ -1,6 +1,7 @@
 .page-footer {
 	background-color: var(--primaryColor);
 	color: var(--white);
+	margin-top: 50px;
 }
 .footer-copyright a {
 	color: var(--white);

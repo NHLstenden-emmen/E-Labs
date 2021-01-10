@@ -1,25 +1,48 @@
-li{
+li {
 	list-style-type: none;
 }
-.twoinone{
+.unclickable{
+	pointer-events: none;
+}
+.selectstudent{
 	display: grid;
-	grid-template-columns: 300px 300px;
+	grid-template-columns: auto auto;
+	font-size: small;
+	overflow-y: auto;
+	min-width: 430px;
+}
+.selectstudent pre{
+	max-width: 300px;
+	padding-top: 0;
+}
+.selectstudent button{
+	width: 58.5px;
+}
+#selectphp{
+	margin-top: 10px;
+	width: 250px;
+	height: 28px;
+	font-size: x-small;
+	border-left: 1px;
+}
+#selectphp th{
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+}
+#selectphp td{
+	border-left: 1px solid black;
 }
 .help {
 	cursor: help;
 }
 .newlabjournaalcontainer {
+	border-radius: 25px;
 	padding: 20px;
-	text-align: center;
-	display: grid;
-	grid-template-columns: 660px 660px;
-	justify-content: center;
 }
 
 .newlabjournaalcontainer .groteretextarealabjournaal {
 	margin: auto;
-	height: 200px;
-	width: 600px;
+	height: 150px;
 	resize: none;
 	margin-bottom: 30px;
 }
@@ -31,7 +54,6 @@ li{
 .newlabjournaalcontainer .nieuwetitellabjournaal {
 	margin: auto;
 	height: 30px;
-	width: 600px;
 	margin-bottom: 30px;
 }
 .newlabjournaalcontainer input[type="submit"],

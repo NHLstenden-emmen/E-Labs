@@ -9,6 +9,19 @@
     if (strpos($pagePath, '?') !== false) {   
         $pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
     }
+    if($pagePath == "createNewLabjournaal" || $pagePath == "EditJournaal"){
+        }
+        elseif (isset($_SESSION['addusers'])){
+            unset($_SESSION['addusers']);
+            unset($_SESSION['title']);
+            unset($_SESSION['theory']);
+            unset($_SESSION['safety']);
+            unset($_SESSION['logboek']);
+            unset($_SESSION['method_materials']);
+            unset($_SESSION['year']); 
+            unset($_SESSION['Goal']); 
+            unset($_SESSION['Hypothesis']); 
+        }
 
     if (strtolower($pagePath) == 'pdf'){
         if(isset($_GET['labjournaal_id'])){
@@ -23,8 +36,8 @@
         include 'inc/mysql.php';
         $db = new Database();
         include 'inc/select.php';
-        include 'inc/header.php';
         include 'inc/selectYear.php';
+        include 'inc/header.php';
         
         // build the website
         if (empty($_SESSION['role'])) {

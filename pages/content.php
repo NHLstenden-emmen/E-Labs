@@ -37,6 +37,9 @@
 					case 'searchresults':
 						include 'searchResults.php';
 						break;
+					case 'aboutus':
+						include 'aboutUs.php';
+						break;
 					default:
 						include '404.php'; // when the page isset found
 				}
@@ -45,9 +48,9 @@
 				{
 					case 'e-labs': //file path of your home/start page
 					case 'home':
-					case 'grade':
+					case 'labjournaal':
 					case '':
-						include 'docent/grade.php';
+						include 'docent/labjournaal.php';
 						break;
 					case 'gebruikersoverzicht':
 						include 'docent/gebruikersoverzicht.php';
@@ -75,6 +78,9 @@
 						break;
 					case 'accountverwijderen':
 						include 'docent/accountverwijderen.php';
+						break;
+					case 'aboutus':
+						include 'aboutUs.php';
 						break;
 					default:
 						include '404.php'; // when the page isset found

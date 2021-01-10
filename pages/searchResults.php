@@ -17,7 +17,7 @@
 			<div id="searchResultTable" class="col-xs-12 col-sm-9 col-lg-9">
 			<?php
 			if($allResultsLabjournal->num_rows == 0 && $allResultsPreperation->num_rows ==0){
-				echo "<h4 id='noResultsText'>Geen zoekresultaat gevonden</h4>";
+				echo "<h4 id='noResultsText'>Geen zoekresultaat gevonden voor: ". $searchWord ."</h4>";
 			} else {
 				if($allResultsLabjournal->num_rows !== 0){
 				?>
@@ -39,9 +39,10 @@
 							echo "<td>$searchResults[grade]</td>";
 						}
 						echo "<td class='actionButtons'>";
-						if ($searchResults['submitted'] == 0) {
+
+						if($searchResults['submitted'] == 0) {
 							echo "<a href='EditJournaal?id=" . $searchResults['labjournaal_id'] . "'><i class='far fa-edit'></i></a>";
-						} else{
+						} else {
 							echo "<a href='viewLabjournaal?id=" . $searchResults['labjournaal_id'] . "'><i class='fas fa-eye'></i></a>";
 						}
 						echo "<a href='pdf?labjournaal_id=$searchResults[labjournaal_id]' target='_blank'>  <i class='fas fa-print'></i></a>

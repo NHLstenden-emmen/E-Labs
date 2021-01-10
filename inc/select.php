@@ -5,7 +5,7 @@ if(isset($_COOKIE['lang'])) {
 }
 // this is the main language
 else {
-	setcookie("lang", "nl", time()+3600);
+	setcookie("lang", "nl", time()+(3600 * 24 * 30));
 	$selectLang = 'nl';
 }
 
