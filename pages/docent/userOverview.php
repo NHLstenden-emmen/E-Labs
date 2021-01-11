@@ -66,7 +66,7 @@
                         echo "<td> <a href='editaccount?id=" . $allResults['user_id'] . "'>".$lang['EDIT'] ."</a>";
                         echo "&nbsp;&nbsp;";
                         if($allResults['user_id'] !== $_SESSION['user_id']){
-                        echo "<a href='editaccount?id=".$allResults['user_id']."'>" .$lang['DEL']."</a>";}
+                        echo "<a href='deleteaccount?id=".$allResults['user_id']."'>" .$lang['DEL']."</a>";}
                         echo "</td></tr>";}
                     }
                     echo "</table>";
