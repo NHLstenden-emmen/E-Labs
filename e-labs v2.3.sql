@@ -85,6 +85,7 @@ CREATE TABLE `preparation` (
   `creator_id` int(10) NOT NULL,
   `hypothesis` varchar(255) NOT NULL,
   `device settings` varchar(255) NOT NULL,
+  `submitted` tinyint(1) NOT NULL,
   `grade` int(2) NOT NULL,
   `year` int(1) NOT NULL,
   `safety` varchar(255) NOT NULL,

@@ -438,7 +438,7 @@
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE (title LIKE ?
 				OR materials LIKE ?
-				OR safety LIKE ?
+				OR `safety` LIKE ?
 				OR method LIKE ?
 				OR preparation_questions LIKE ?
 				OR goal LIKE ?
@@ -464,8 +464,8 @@
 				JOIN users ON lab_journal_users.user_id = users.user_id
 				WHERE (title LIKE ?
 				OR theory LIKE ?
-				OR safety LIKE ?
-				OR log LIKE ?
+				OR `safety` LIKE ?
+				OR `log` LIKE ?
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
