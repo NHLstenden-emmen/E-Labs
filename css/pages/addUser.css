@@ -1,22 +1,22 @@
- .textInputGebruiker {
+.textInputGebruiker {
 	width: 100%;
 	border-radius: 10px;
 	border: 1px solid grey;
 	height: 30px;
 }
-.gebruikerToevoegenContainer {
+.addUserContainer {
 	padding-top: 20px;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
-input[type=number] {
+input[type="number"] {
 	-moz-appearance: textfield;
 }
 
-.gebruikerToevoegenContainer form {
+.addUserContainer form {
 	width: 40%;
 	margin: 0 auto;
 }
@@ -34,24 +34,24 @@ input[type=number] {
 }
 
 .formButtonsGebruiker input {
- 	background-color: var(--primaryColor);
-    border: none;
-    border-radius: 30px;
-    color: white;
-    width: 25%;
- }
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 25%;
+}
 
- .radioButtonRol {
- 	margin-left: 10px;
- }
+.radioButtonRol {
+	margin-left: 10px;
+}
 
 /*Aangepaste css mobiele versie*/
 @media (max-width: 767px) {
-	.gebruikerToevoegenContainer form {
+	.addUserContainer form {
 		width: 90%;
-		margin:  10px;
+		margin: 10px;
 	}
 	.formButtonsGebruiker input {
-   		width: 30%;
- }
+		width: 30%;
+	}
 }

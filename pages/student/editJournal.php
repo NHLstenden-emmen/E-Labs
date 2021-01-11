@@ -36,7 +36,7 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 		$fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		// check the size of the file
 		if ($_FILES["fileupload"]["size"] > 2000000) {
-			echo $lang['BIG_FILE']"<br";
+			echo $lang['BIG_FILE']."<br";
 			$uploadOk = 0;
 		}
 
@@ -114,7 +114,7 @@ if (empty($message) && isset($_GET['id'])) {
 											echo $_SESSION['button'] = "<button class='unclickable'>Creator</button>";
 										}
 										if(!isset($_SESSION['button'])){
-											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">"$lang['ADD_USER']."</button>";
+											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">".$lang['ADD_USER']."</button>";
 										}
 										elseif(isset($_SESSION['button'])){
 											unset($_SESSION['button']);
@@ -247,7 +247,7 @@ if (empty($message) && isset($_GET['id'])) {
 		if ($message == "gelukt") {
 			echo $lang['LABJOURNALADDED'].". <a href='labjournal'>".$lang['GOBACKOVERVIEW']."</a>";
 		} else {
-			echo '<a href="labjournal">.'$lang['PROBLEMOCCURRED'].'</a>';
+			echo '<a href="labjournal">'.$lang['PROBLEMOCCURRED'].'</a>';
 		}
 }
 ?>

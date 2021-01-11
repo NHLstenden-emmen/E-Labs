@@ -70,14 +70,6 @@ CREATE TABLE `notifications` (
   `date_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`notification_id`, `creator`, `viewer`, `title`, `message`, `date_time`) VALUES
-(1, 1, 1, 'title voor kevin', 'verhaaltje voor kevin', '2020-09-10 14:20:13'),
-(2, 1, NULL, 'title voor iedereen', 'verhaaltje voor iedereen', '2020-11-10 17:46:13');
-
 -- --------------------------------------------------------
 
 --
