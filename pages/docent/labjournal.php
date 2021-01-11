@@ -66,13 +66,13 @@ if(isset($_GET['sorting'])) {
 }
 ?>
 <div class="docentenHomePage">
-<h1>Dit is een overzicht van alle labjournaals</h1>
+<h1><?=$lang['OVERVIEWLABJOURNALS'];?></h1>
 <h4>
     <a href="?year=<?php echo $year?>&archive=<?php echo $archive?>&changeArchive">
         <?php if ($archive == "false") {
-            echo "go to archive";
+            echo $lang['TOARCHIVE'];
         } else {
-            echo "go back to dashboard";
+            echo $lang['GOBACKOVERVIEW'];
         }
         ?>
     </a>
@@ -95,25 +95,25 @@ if(isset($_GET['sorting'])) {
         while ($result = $leerlingen->fetch_array(MYSQLI_ASSOC)){
 
             if($sorting == "date"){
-                $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year,$submitted, $ascdescDate);
+                $labjournals = $db->getGradeResultsPerPerson($result['user_id'], $year,$submitted, $ascdescDate);
             } else {
-                $labjournaals = $db->getGradeResultsPerPerson($result['user_id'], $year,$submitted, '');
+                $labjournals = $db->getGradeResultsPerPerson($result['user_id'], $year,$submitted, '');
             }
 
             echo "<tr>";
             echo "<td>" . $result['name'] . "</td>";
         
             //  If-Else for displaying digit & correct background color
-            while ($labjournaal = $labjournaals->fetch_array(MYSQLI_ASSOC)){
-                $cijfer = $labjournaal['grade'];
-                $cijferTitel = mb_strimwidth($labjournaal['title'], 0, 15, "...");
-                $labjournaalID = $labjournaal['labjournaal_id'];
+            while ($labjournal = $labjournals->fetch_array(MYSQLI_ASSOC)){
+                $cijfer = $labjournal['grade'];
+                $cijferTitel = mb_strimwidth($labjournal['title'], 0, 15, "...");
+                $labjournalID = $labjournal['labjournal_id'];
                 if($cijfer >= 1 && $cijfer <= 5.4) {
-                    echo "<td class='onvoldoende'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
+                    echo "<td class='onvoldoende'> <a href='labjournalview?labjournal=".$labjournalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
                 } elseif($cijfer >= 5.5 && $cijfer <= 10) {
-                    echo "<td class='goed'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
+                    echo "<td class='goed'> <a href='labjournalview?labjournal=".$labjournalID."'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
                 } else {
-                    echo "<td class='nietbeoordeeld'> <a href='labjournaalview?labjournaal=".$labjournaalID."'>" .  $cijferTitel . ":. " . $cijfer." </a></td>"; 
+                    echo "<td class='nietbeoordeeld'> <a href='labjournalview?labjournal=".$labjournalID."'>" .  $cijferTitel . ":. " . $cijfer." </a></td>"; 
                 }
             }
 

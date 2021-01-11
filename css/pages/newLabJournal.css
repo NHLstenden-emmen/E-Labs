@@ -11,12 +11,16 @@ li {
 	overflow-y: auto;
 	min-width: 430px;
 }
+.selectedusers{
+	width: auto;
+}
 .selectstudent pre{
-	max-width: 300px;
+	width: auto;
 	padding-top: 0;
+	overflow: none;
 }
 .selectstudent button{
-	width: 58.5px;
+	width: 68px;
 }
 #selectphp{
 	margin-top: 10px;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
     <head>
 		<!-- start favicon -->
 		<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
@@ -48,25 +48,22 @@
 					case '':
 						echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
 						break;
-					case 'labjournaal':
-						echo '<link rel="stylesheet" href="css/pages/studentLabjournaal.css">';
+					case 'labjournal':
+						echo '<link rel="stylesheet" href="css/pages/studentLabJournal.css">';
 						break;
-					case 'gebruikersprofiel':
-						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
-						break;
-					case 'gebruikertoevoegen':
-						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
+					case 'userprofile':
+						echo '<link rel="stylesheet" href="css/pages/userProfile.css">';
 						break;
 					case 'searchresults':
 						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
 						break;
-					case 'editjournaal':
-					case 'viewlabjournaal':
-					case 'createnewlabjournaal'://file path of nieuwlabjournaal
-						echo '<link rel="stylesheet" href="css/pages/nieuwlabjournaal.css">';
+					case 'editjournal':
+					case 'viewlabjournal':
+					case 'createnewlabjournal': //file path of nieuwlabjournal
+						echo '<link rel="stylesheet" href="css/pages/newLabJournal.css">';
 						break;
 					case 'aboutus':
-						echo '<link rel="stylesheet" href="css/pages/aboutus.css">';
+						echo '<link rel="stylesheet" href="css/pages/aboutUs.css">';
 						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
@@ -77,30 +74,30 @@
 				{
 					case 'e-labs'://file path of your home/start page
 					case 'home':
-					case 'labjournaal':
+					case 'labjournal':
 					case '':
-						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						echo '<link rel="stylesheet" href="css/pages/teacherHome.css">';
 						break;
 					case 'year':
-						echo '<link rel="stylesheet" href="css/pages/docentenHome.css">';
+						echo '<link rel="stylesheet" href="css/pages/teacherHome.css">';
 						break;
-					case 'gebruikersprofiel':
-						echo '<link rel="stylesheet" href="css/pages/gebruikersprofiel.css">';
+					case 'userprofile':
+						echo '<link rel="stylesheet" href="css/pages/userProfile.css">';
 						break;
 					case 'searchresults':
 						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
 						break;
-					case 'gebruikertoevoegen':
-						echo '<link rel="stylesheet" href="css/pages/gebruikerToevoegen.css">';
+					case 'adduser':
+						echo '<link rel="stylesheet" href="css/pages/addUser.css">';
 						break;
-					case 'gebruikersoverzicht':
-						echo '<link rel="stylesheet" href="css/pages/gebruikersoverzichtd.css">';
+					case 'useroverview':
+						echo '<link rel="stylesheet" href="css/pages/userOverview.css">';
 					break;
-					case 'labjournaalview':
-						echo '<link rel="stylesheet" href="css/pages/labjournaalview.css">';
+					case 'labjournalview':
+						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
 						break;
 					case 'aboutus':
-						echo '<link rel="stylesheet" href="css/pages/aboutus.css">';
+						echo '<link rel="stylesheet" href="css/pages/aboutUs.css">';
 						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';

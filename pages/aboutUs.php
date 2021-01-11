@@ -60,7 +60,7 @@
         <div class="tekst-aboutR">
             Faya Derks<br>
             Life Science Student<br>
-            Opdrachtgeefster
+            Opdrachtgever
         </div>
     </div>
     <div class="foto-aboutL">
@@ -68,7 +68,7 @@
         <div class="tekst-aboutL margin-about">
             Marjolein Korenhof<br>
             Life Science Student<br>
-            Opdrachtgeefster
+            Opdrachtgever
         </div>
     </div>
 </div>

@@ -25,14 +25,8 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 			return $x['user_id'];
 		}, $arrayusers);
 		$arraysorted = array_diff($_SESSION['addusers'], $userids);
-		// echo "<br>";
-		// var_dump($arraysorted);
-		// echo "<br>";
-		// var_dump($arrayusers);
-		// echo "<br>";
-		var_dump($additionalusers);
 		foreach($arraysorted as $arraysorted2){
-		$db->connectNewLabjournaalWithUser($arraysorted2, $_GET['id']);
+		$db->connectNewLabjournalWithUser($arraysorted2, $_GET['id']);
 		}
 	}
 	if(!empty($_FILES['fileupload']['name'])){
@@ -42,13 +36,13 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 		$fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		// check the size of the file
 		if ($_FILES["fileupload"]["size"] > 2000000) {
-			echo "Sorry, your file is too large.<br>";
+			echo $lang['BIG_FILE']"<br";
 			$uploadOk = 0;
 		}
 
 		// Allow certain file formats
 		if($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg" && $fileType != "gif" && $fileType != "csv" ) {
-			echo "Sorry, only JPG, JPEG, PNG, GIF & CSV(excel file form) files are allowed.<br>";
+			echo $lang['WRONG_FILE']." (".$lang['ONLY']." JPG, JPEG, PNG, GIF & csv ".$lang['ALLOWED'].")<br>";
 			$uploadOk = 0;
 		}
 
@@ -62,20 +56,20 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 			$Attachment = $upload_directory.$TargetPath;
 		}
 		if ($uploadOk == 1) {
-			$message = $db->updatelabjournaalWithAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+			$message = $db->updatelabjournalWithAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 		} else {
-			$message = $db->updatelabjournaalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+			$message = $db->updatelabjournalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 		}
 	} else{
-		$message = $db->updatelabjournaalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+		$message = $db->updatelabjournalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 	}
 }
 
 
 if (empty($message) && isset($_GET['id'])) {
-	$getLabjournaal = $db->getLabjournaal($_GET['id'], $_SESSION['user_id']);
+	$getLabjournaal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
 	while ($result = $getLabjournaal->fetch_array(MYSQLI_ASSOC)){ 
-		$_SESSION['creator_id'] = $result['creater_id'];
+		$_SESSION['creator_id'] = $result['creator_id'];
 		if ($result["submitted"] == 0) {
 		?>
 	<form method="post" enctype='multipart/form-data' class="newlabjournaalcontainer">
@@ -107,20 +101,20 @@ if (empty($message) && isset($_GET['id'])) {
 								$searchfor = "%".$_POST['searchstudent']."%";
 								$resultsearch = $db->selectStudentslab($searchfor);
 								if(isset($resultsearch) && $resultsearch != NULL){
-									echo "<tr><th>Name</th><th>Studentnumber</th></tr>";
+									echo "<tr><th>".$lang['NAME']."</th><th>".$lang['STUDENT_NUMBER']."</th></tr>";
 									foreach ($resultsearch as $user){
 										$_SESSION['user_id_lab'] = $user['user_id'];
 										echo "<tr><td>".$user['name']."</td><td>".$user['user_number']."</td><td>";
 										foreach($_SESSION['addusers'] as $labuser){
 											if($user['user_id'] == $labuser && $user['user_id'] != $_SESSION['creator_id']){
-												echo $_SESSION['button'] = "<button class='unclickable'>Added</button>";
+												echo $_SESSION['button'] = "<button class='unclickable'>".$lang['ADDED']."</button>";
 											}
 										}								
 										if($user['user_id'] == $_SESSION['creator_id']){
 											echo $_SESSION['button'] = "<button class='unclickable'>Creator</button>";
 										}
 										if(!isset($_SESSION['button'])){
-											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">Add user</button>";
+											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">"$lang['ADD_USER']."</button>";
 										}
 										elseif(isset($_SESSION['button'])){
 											unset($_SESSION['button']);
@@ -146,7 +140,7 @@ if (empty($message) && isset($_GET['id'])) {
 								foreach($userdata as $userlabjournal){
 									if($userlabjournal['user_id'] != $_SESSION['creator_id']){
 										$username = $userlabjournal['name'];
-										echo "<tr><td>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>Delete</button></td></tr>";
+										echo "<tr><td>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>".$lang['DELETE']."</button></td></tr>";
 									}
 								}
 							}
@@ -206,7 +200,7 @@ if (empty($message) && isset($_GET['id'])) {
 					<input type="radio" name="year" value="3"<?php if($year == 3){echo 'checked';}?>>
 			</div>
 			<div class="col-md-4 mb-3 offset-1">
-			<a class="help"><i class="fas fa-question-circle" title="Je kan alleen JPG, JPEG, PNG, GIF & CSV(excel file form)"></i></a>
+			<a class="help"><i class="fas fa-question-circle" title="<?=$lang['ONLY'].' JPG, JPEG, PNG, GIF & csv '.$lang['ALLOWED']?>"></i></a>
 				<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
 				<input name='fileupload' type='file'>				
 			</div>	
@@ -235,7 +229,7 @@ if (empty($message) && isset($_GET['id'])) {
 			} else if (empty($result["Attachment"])){
 				# just a check if there is a scoure set.
 			} else {
-				echo "AN error occurred: file was not found";
+				echo $lang['FILENOTFOUND'];
 			}
 		?>
 		<div class="form-row">
@@ -251,9 +245,9 @@ if (empty($message) && isset($_GET['id'])) {
 	<?php  }}
 	} else {
 		if ($message == "gelukt") {
-			echo '<a href="labjournaal">Labjournaal bijgewerkt terug naar het overzicht.</a>';
+			echo $lang['LABJOURNALADDED'].". <a href='labjournal'>".$lang['GOBACKOVERVIEW']."</a>";
 		} else {
-			echo '<a href="labjournaal">Er is een probleem opgetreden.</a>';
+			echo '<a href="labjournal">.'$lang['PROBLEMOCCURRED'].'</a>';
 		}
 }
 ?>

@@ -1,9 +1,9 @@
 <div class="gebruikertoevoegenblock" id="InputAdd">
-    <form action="gebruikertoevoegen" method="POST" autocomplete="off">
-        <label for="role">Rol:</label><br>
+    <form action="adduser" method="POST" autocomplete="off">
+        <label for="role"><?=$lang['ROLE'];?></label><br>
         <input type="radio" name="role" id="Studentrole" value="Student" checked><label for="Studentrole">Student</label>
-        <input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole">Docent</label><br>
-        <label for="name">Volledige naam:</label><br>
+        <input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole"><?=$lang['TEACHER'];?></label><br>
+        <label for="name"><?=$lang['NAME'];?></label><br>
         <input type="text" name="name" required><br>
         <label for="studentid"><?php echo $lang["STUDENT_NUMBER"];?>:</label><br>
         <input type="number" name="studentid" required><br>
@@ -14,7 +14,7 @@
         <label for="password-repeat"><?php echo $lang["REPEAT_PASSWORD"];?>:</label><br>
         <input type="password" name="passwordrepeat" required min="8"><br>
         <div class=buttons>
-            <input type="submit" name="submitadd" value="Toevoegen">
+            <input type="submit" name="submitadd" value="<?=$lang['ADD'];?>">
             <input type="reset" name="resetadd" value="Reset">
         </div>
     </form>
@@ -37,11 +37,11 @@
                 echo $message;
             }
             else{
-                die("Wachtwoorden komen niet overeen");
+                die($lang['PASSWORDSDONTMATCH']);
             }
         }
         else{
-            die("Vul alle velden in s.v.p.");
+            die($lang['FILLINFIELDS']);
         }
     }
 ?>

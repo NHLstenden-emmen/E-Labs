@@ -11,7 +11,7 @@
 				<div class="notifications">
 					<p class="title"><?php echo $thisResult['title']?></p>
 					<p class="message"><?php echo $thisResult['message']?></p>
-					<p class="creater"><?php echo $lang['MADE_BY'].' '. $thisResult['name'] ?></p>
+					<p class="creater"><?php echo $lang['MADEBY'].' '. $thisResult['name'] ?></p>
 					<p class="date_time"><?php echo $thisResult['date_time']?></p>
 				</div>
 			<?php }?>
@@ -24,7 +24,7 @@
 				<div class="notifications">
 					<p class="title"><?php echo $allResults['title']?></p>
 					<p class="message"><?php echo $allResults['message']?></p>
-					<p class="creater"><?php echo $lang['MADE_BY'].' '. $allResults['name'] ?></p>
+					<p class="creater"><?php echo $lang['MADEBY'].' '. $allResults['name'] ?></p>
 					<p class="date_time"><?php echo $allResults['date_time']?></p>
 				</div>
 			<?php }?>

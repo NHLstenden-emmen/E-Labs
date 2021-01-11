@@ -40,9 +40,9 @@ while($users = $labusers->fetch_array(MYSQLI_ASSOC)){
             $this->Cell(0,10,$this->PageNo().'/{nb}',0,0,'C');
         }
         }
-        if(isset($_GET['labjournaal_id'])){
-            $labjournaal_id = $_GET['labjournaal_id'];
-            $output = $db->selectcontentlabjournal($labjournaal_id);
+        if(isset($_GET['labjournal_id'])){
+            $labjournal_id = $_GET['labjournal_id'];
+            $output = $db->selectcontentlabjournal($labjournal_id);
             while ($outputarray = $output->fetch_array(MYSQLI_ASSOC)){
                 $title = $outputarray['title'];
                 $date = $outputarray['date'];
@@ -53,7 +53,7 @@ while($users = $labusers->fetch_array(MYSQLI_ASSOC)){
                 $safety = $outputarray['safety'];
                 $goal = $outputarray['Goal'];
                 $var1n = $lang['METHOD_MATERIALS'];
-                $var2n = $lang['LOGBOOK'];
+                $var2n = $lang['LOG'];
                 $var3n = $lang['THEORY'];
             }
         }

@@ -63,10 +63,10 @@
                         echo "<td>".$allResults['name']."</td>";
                         echo "<td>".$allResults['email']."</td>";
                         echo "<td>".$allResults['role']."</td>";
-                        echo "<td> <a href='acountbewerken?id=" . $allResults['user_id'] . "'>".$lang['EDIT'] ."</a>";
+                        echo "<td> <a href='editaccount?id=" . $allResults['user_id'] . "'>".$lang['EDIT'] ."</a>";
                         echo "&nbsp;&nbsp;";
                         if($allResults['user_id'] !== $_SESSION['user_id']){
-                        echo "<a href='accountverwijderen?id=".$allResults['user_id']."'>" .$lang['DEL']."</a>";}
+                        echo "<a href='editaccount?id=".$allResults['user_id']."'>" .$lang['DEL']."</a>";}
                         echo "</td></tr>";}
                     }
                     echo "</table>";

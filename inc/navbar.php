@@ -43,20 +43,20 @@
 
 			?>
 			<li class="nav-item">
-				<a class="nav-link" href="labjournaal?year=1<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_1"];?></a>
+				<a class="nav-link" href="labjournal?year=1<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR"]." 1";?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="labjournaal?year=2<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_2"];?></a>
+				<a class="nav-link" href="labjournal?year=2<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR"]." 2";?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="labjournaal?year=3<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR_3"];?></a>
+				<a class="nav-link" href="labjournal?year=3<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR"]." 3";?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="notificationsoverzicht">notifications overview</a>
+				<a class="nav-link" href="notificationsoverview"><?=$lang['NOTIFICATIONOVERVIEW'];?></a>
 			</li>
 		<?php } else if ($_SESSION['role'] == 'Student'){ ?>
 			<li class="nav-item">
-				<a class="nav-link" href="labjournaal"><?php echo $lang["LAB_JOURNAL"];?></a>
+				<a class="nav-link" href="labjournal"><?php echo $lang["LABJOURNAL"];?></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#"><?php echo $lang["PREPARATIONS"];?></a>
@@ -85,8 +85,8 @@
 				</button>
 				<div class="dropdown-menu">
 					<?php  if ($_SESSION['role'] == 'Docent') { ?>
-						<a class="dropdown-item" href="gebruikersoverzicht"><?php echo $lang["USER_OVERVIEW"];?> </a>
-						<a class="dropdown-item" href="gebruikertoevoegen"><?php echo $lang["ADD_USER"];?></a>
+						<a class="dropdown-item" href="useroverview"><?php echo $lang["USER_OVERVIEW"];?> </a>
+						<a class="dropdown-item" href="adduser"><?php echo $lang["ADD_USER"];?></a>
 						<div class="dropdown-divider"></div>
 					<?php } else {?>
 					<?php } ?>
@@ -127,14 +127,14 @@
 			</li>
 		</ul>
 		<div class="img-person">
-			<a href="gebruikersprofiel">
+			<a href="userprofile">
 				<img src="<?php 
 				if (empty($_SESSION['pf_Pic'])) {
 					echo "gebruikersBestanden/profilePictures/blank-profile-picture.png";
 				} else {
 					echo $_SESSION['pf_Pic'];
 				}
-				?>" alt="profile foto in header" class="rounded-circle nav-profile-pic">
+				?>" alt="profilepicture in header" class="rounded-circle nav-profile-pic">
 			</a>
 		</div>
 	</div>

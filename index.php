@@ -9,7 +9,7 @@
     if (strpos($pagePath, '?') !== false) {   
         $pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
     }
-    if($pagePath == "createNewLabjournaal" || $pagePath == "EditJournaal"){
+    if($pagePath == "createNewLabjournal" || $pagePath == "EditJournal"){
         }
         elseif (isset($_SESSION['addusers'])){
             unset($_SESSION['addusers']);
@@ -24,8 +24,8 @@
         }
 
     if (strtolower($pagePath) == 'pdf'){
-        if(isset($_GET['labjournaal_id'])){
-            $id = 'labjournaal_id='.$_GET['labjournaal_id'];
+        if(isset($_GET['labjournal_id'])){
+            $id = 'labjournal_id='.$_GET['labjournal_id'];
         }
         elseif(isset($_GET['preperation_id'])){
             $id = 'preperation_id='.$_GET['preperation_id'];

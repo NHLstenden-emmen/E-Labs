@@ -22,30 +22,30 @@
 				if($allResultsLabjournal->num_rows !== 0){
 				?>
 				<table>
-					<h3>Gezocht op: <?php echo $searchWord?></h3>
-					<h4>Labjournaal</h4>
-					<th>Titel</th>
-					<th>Datum</th>
-					<th>Cijfer</th>
-					<th>Acties</th>
+					<h3><?php echo $lang['SEARCHEDFOR']." ".$searchWord?></h3>
+					<h4><?=$lang['LABJOURNAL'];?></h4>
+					<th><?=$lang['TITLE'];?></th>
+					<th><?=$lang['DATE'];?></th>
+					<th><?=$lang['GRADE'];?></th>
+					<th><?=$lang['ACTIONS'];?></th>
 				<?php
 					while($searchResults = $allResultsLabjournal->fetch_array(MYSQLI_ASSOC)){
 						echo "<tr>";
-						echo "<td>$searchResults[title]</td>";
-						echo "<td>$searchResults[date]</td>";
+						echo "<td>".$searchResults['title']."</td>";
+						echo "<td>".$searchResults['date']."</td>";
 						if($searchResults['grade'] == NULL ) {
 							echo "<td>-</td>";
 						} else {
-							echo "<td>$searchResults[grade]</td>";
+							echo "<td>".$searchResults['grade']."</td>";
 						}
 						echo "<td class='actionButtons'>";
 
 						if($searchResults['submitted'] == 0) {
-							echo "<a href='EditJournaal?id=" . $searchResults['labjournaal_id'] . "'><i class='far fa-edit'></i></a>";
+							echo "<a href='EditJournal?id=" . $searchResults['labjournal_id'] . "'><i class='far fa-edit'></i></a>";
 						} else {
-							echo "<a href='viewLabjournaal?id=" . $searchResults['labjournaal_id'] . "'><i class='fas fa-eye'></i></a>";
+							echo "<a href='viewLabjournal?id=" . $searchResults['labjournal_id'] . "'><i class='fas fa-eye'></i></a>";
 						}
-						echo "<a href='pdf?labjournaal_id=$searchResults[labjournaal_id]' target='_blank'>  <i class='fas fa-print'></i></a>
+						echo "<a href='pdf?labjournaal_id=". $searchResults['labjournal_id']."' target='_blank'>  <i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";	
 					}
@@ -54,29 +54,29 @@
 
 				if($allResultsPreperation->num_rows !==0) {
 				?>
-					<h4>Voorbereiding</h4>
+					<h4><?=$lang['PREPARATIONS'];?></h4>
 					<table>
-					<th>Titel</th>
-					<th>Datum</th>
-					<th>Cijfer</th>
-					<th>Acties</th>
+					<th><?=$lang['TITLE'];?></th>
+					<th><?=$lang['DATE'];?></th>
+					<th><?=$lang['GRADE'];?></th>
+					<th><?=$lang['ACTIONS'];?></th>
 				<?php
 					while($searchResults = $allResultsPreperation->fetch_array(MYSQLI_ASSOC)){
 						echo "<tr>";
-						echo "<td>$searchResults[title]</td>";
-						echo "<td>$searchResults[date]</td>";
+						echo "<td>".$searchResults['title']."</td>";
+						echo "<td>".$searchResults['date']."</td>";
 						if($searchResults['grade'] == NULL ) {
 							echo "<td>-</td>";
 						} else {
-							echo "<td>$searchResults[grade]</td>";
+							echo "<td>".$searchResults['grade']."</td>";
 						}
 						echo "<td class='actionButtons'>";
 						if ($searchResults['submitted'] == 0) {
-							echo "<a href='EditJournaal?id=" . $searchResults['preparation_id'] . "'><i class='far fa-edit'></i></a>";
+							echo "<a href='EditJournal?id=" . $searchResults['preparation_id'] . "'><i class='far fa-edit'></i></a>";
 						} else{
-							echo "<a href='viewLabjournaal?id=" . $searchResults['preparation_id'] . "'><i class='fas fa-eye'></i></a>";
+							echo "<a href='viewLabjournal?id=" . $searchResults['preparation_id'] . "'><i class='fas fa-eye'></i></a>";
 						}
-						echo "<a href='pdf?preparation_id=$searchResults[preparation_id]' target='_blank'>  <i class='fas fa-print'></i></a>
+						echo "<a href='pdf?preparation_id=" . $searchResults['preparation_id'] . "' target='_blank'>  <i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";	
 					}
@@ -84,7 +84,7 @@
 				}
 			}
 		} else {
-			echo "<h4 id='noResultsText'>Geen zoekwoord ingevoerd</h4>";
+			echo "<h4 id='noResultsText'>".$lang['NOSEARCHWORDFOUND']."</h4>";
 		}
 
 		?>

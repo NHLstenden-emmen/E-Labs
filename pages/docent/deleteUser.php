@@ -13,11 +13,11 @@ if(isset($_GET['id'])){
     }
 ?>
 <div>
-    <h2>Account verwijderen</h2>
-    <h3>Weet u zeker dat u <?php echo $name;?> wilt verwijderen?</h3>
-    <form method="POST" action="accountverwijderen">
-        <button type="submit" name="submit" value="Yes">Yes</button>
-        <a href="gebruikersoverzicht"><button name="cancel" Value="no">No</button></a>
+    <h2><?=$lang['DELETEACCOUNT'];?></h2>
+    <h3><?php echo $lang['AREYOUSUREDELETE'], $name, $lang['THISUSER'];?></h3>
+    <form method="POST" action="deleteuser">
+        <button type="submit" name="submit" value="Yes"><?=$lang['YES'];?></button>
+        <a href="useroverview"><button name="cancel" Value="no"><?=$lang['NO'];?></button></a>
     </form>
 </div>
 <?php } ?>

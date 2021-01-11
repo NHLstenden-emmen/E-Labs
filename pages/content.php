@@ -13,26 +13,26 @@
 					case '':
 						include 'student/home.php';
 						break;
-					case 'labjournaal':
-						include 'student/labjournaal.php';
+					case 'labjournal':
+						include 'student/labjournal.php';
 						break;
-					case 'editjournaal':
-						include 'student/EditJournaal.php';
+					case 'editjournal':
+						include 'student/EditJournal.php';
 						break;
-					case 'createnewlabjournaal':
-						include 'student/createNewLabjournaal.php';
+					case 'createnewlabjournal':
+						include 'student/createNewLabjournal.php';
 						break;
-					case 'updatelabjournaal':
-						include 'student/updatelabjournaal.php';
+					case 'updatelabjournal':
+						include 'student/updatelabjournal.php';
 						break;
 					case 'exel':
 						include 'student/EXEL.php';
 						break;
-					case 'gebruikersprofiel':
-						include 'student/gebruikersprofiel.php';
+					case 'userprofile':
+						include 'student/userProfile.php';
 						break;
-					case 'viewlabjournaal':
-						include 'student/viewLabjournaal.php';
+					case 'viewlabjournal':
+						include 'student/viewLabjournal.php';
 						break;
 					case 'searchresults':
 						include 'searchResults.php';
@@ -48,36 +48,36 @@
 				{
 					case 'e-labs': //file path of your home/start page
 					case 'home':
-					case 'labjournaal':
+					case 'labjournal':
 					case '':
-						include 'docent/labjournaal.php';
+						include 'docent/labjournal.php';
 						break;
-					case 'gebruikersoverzicht':
-						include 'docent/gebruikersoverzicht.php';
+					case 'useroverview':
+						include 'docent/userOverview.php';
 						break;
-					case 'gebruikertoevoegen':
-						include 'docent/gebruikerToevoegen.php';
+					case 'adduser':
+						include 'docent/addUser.php';
 						break;
-					case 'gebruikersprofiel':
-						include 'docent/gebruikersprofiel.php';
+					case 'userprofile':
+						include 'docent/userProfile.php';
 						break;
-					case 'notificationsoverzicht':
+					case 'notificationsoverview':
 						include 'docent/notifications.php';
 						break;
 					case 'addeditnotification':
 						include 'docent/addEditNotification.php';
 						break;
-					case 'labjournaalview':
-						include 'docent/labjournaalView.php';
+					case 'labjournalview':
+						include 'docent/labjournalView.php';
 						break;
-					case'acountbewerken':
+					case'editaccount':
 						include 'docent/editAccount.php';
 						break;
 					case 'searchresults':
 						include 'searchResults.php';
 						break;
-					case 'accountverwijderen':
-						include 'docent/accountverwijderen.php';
+					case 'deleteaccount':
+						include 'docent/deleteAccount.php';
 						break;
 					case 'aboutus':
 						include 'aboutUs.php';

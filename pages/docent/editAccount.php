@@ -11,15 +11,15 @@
             if($password === $passwordr){
                 $options = [ 'cost' => 12, ];
                 $hashPass = password_hash($password, PASSWORD_BCRYPT, $options);
-                $message = $db->docentstudentprofielbewerken($userID, $name, $email, $usernumber, $hashPass, $role);
+                $message = $db->teacherStudentEditProfile($userID, $name, $email, $usernumber, $hashPass, $role);
                 echo $message;
             }
             else{
-                die("Wachtwoorden komen niet overeen");
+                die(echo $lang['PASSWORDSDONTMATCH']);
             }
         }
         else{
-            die("Vul alle velden in s.v.p.");
+            die(echo $lang['FILLINFIELDS']);
         }
 	}
 	if (!isset($message)) {
@@ -28,11 +28,11 @@
 		?>
 		<div class="gebruikertoevoegenblock" id="InputAdd">
 			<form method="POST" autocomplete="off">
-				<label for="role">Rol:</label><br>
+				<label for="role"><?=$lang['ROLE'];?></label><br>
 				<input type="radio" name="role" id="Studentrole" value="Student" checked><label for="Studentrole">Student</label>
-				<input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole">Docent</label><br>
+				<input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole"><?=$lang['teacher'];?></label><br>
 
-				<label for="name">Volledige naam:</label><br>
+				<label for="name"><?=$lang['NAME'];?></label><br>
 				<input type="text" name="name" value='<?php echo $result['name']?>' required><br>
 
 				<label for="studentid"><?php echo $lang["STUDENT_NUMBER"];?>:</label><br>
@@ -48,7 +48,7 @@
 				<input type="password" name="passwordrepeat" required min="8"><br>
 				
 				<div class=buttons>
-					<input type="submit" name="update" value="update">
+					<input type="submit" name="update" value="Update">
 					<input type="reset" name="resetadd" value="Reset">
 				</div>
 			</form>

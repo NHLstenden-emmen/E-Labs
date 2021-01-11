@@ -8,11 +8,11 @@
 			$deleteNotification = $db->deleteNotification($_GET['delete']);
 		}if (!isset($deleteNotification)){ ?> 
 			<form method="POST">
-				<input type="submit" name="deletNotification" value="deletNotification">
+				<input type="submit" name="deletNotification" value="<?=$lang['DELETENOTIFICATION'];?>">
 			</form>
-			<p>Are you sure u want to delete this notification:</p>
+			<p><?=$lang['AREYOUSURE'];?></p>
 		<?php } else {
-			echo "<p>notification deleted</p>";
+			echo "<p>".$lang['NOTIFICATIONDELETED']."</p>";
 		}
 	} else {
 		//this wil be loaded when there is no get set so you can add a new notification
@@ -26,20 +26,20 @@
 		}
 		if (!isset($addNewNotification)) {
 		?> 
-		<h1>Create a notification</h1>
+		<h1><?=$lang['CREATENOTIFICATION'];?></h1>
 		<form method="POST">
 			<div>
-				<label for="title">title</label>
+				<label for="title"><?=$lang['TITLE'];?></label>
 				<input type="text" name="title" required>
 			</div>
 			<div>
-				<label for="message">message</label>
+				<label for="message"><?=$lang['MESSAGE'];?></label>
 				<textarea name="message" cols="50" rows="7" style="resize: none;" required></textarea>
 			</div>
 			<div>
-				<label for="student">selecteerd een student of geen:</label>
+				<label for="student"><?=$lang['SELECTSTUDENTS'];?></label>
 				<select name="student">
-				<option value='0'>ALLE studenten</option>
+				<option value='0'><?=$lang['ALLSTUDENTS'];?></option>
 				<?php
 					$selectStudents = $db->selectStudents();
 					while ($user = $selectStudents->fetch_array(MYSQLI_ASSOC)){
@@ -51,19 +51,19 @@
 				</select>
 			</div>
 			<div>
-				<input type="submit" name="postNotification" value="postNotification">
+				<input type="submit" name="postNotification" value="<?=$lang['SEND'];?>">
 				<input type="reset" value="reset">
 			</div>
 			<div>
 		</form>
-<?php } else { echo 'gebruiker toegevoegd';}}
+<?php } else { echo $lang['ADDEDUSER'];}}
 if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($deleteNotification)) {
 while ($notification = $viewNotification->fetch_array(MYSQLI_ASSOC)){ ?>
-	<p class="title">title: <?php echo $notification['title']?></p>
-	<p class="message">Message: <?php echo $notification['message']?></p>
+	<p class="title"><?php echo $lang['TITLE'].": ".$notification['title']?></p>
+	<p class="message"><?php echo $lang['MESSAGE'].": ".$notification['message']?></p>
 	<?php if ($notification['Vname'] != NULL ) { ?>
-		<p class="message">send to: <?php echo $notification['Vname']?></p>
+		<p class="message"><?php echo $lang['SENDTO'].": ".$notification['Vname']?></p>
 	<?php }?>
-	<p class="creater"><?php echo $lang['MADE_BY'].' '. $notification['Cname'] ?></p>
-	<p class="date_time">Datum: <?php echo $notification['date_time']?></p>
+	<p class="creater"><?php echo $lang['MADEBY'].': '. $notification['Cname'] ?></p>
+	<p class="date_time"><?php echo $lang['DATE'].": ".$notification['date_time']?></p>
 <?php }}?>

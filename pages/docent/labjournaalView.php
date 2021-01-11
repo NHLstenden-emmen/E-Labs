@@ -1,27 +1,27 @@
 <?php
-if(isset($_GET['labjournaal'])) {
-	$labjournaalid = $_GET['labjournaal'];
+if(isset($_GET['labjournal'])) {
+	$labjournalid = $_GET['labjournal'];
 } else {
-	$labjournaalid = 'not found';
+	$labjournalid = 'not found';
 }
 
 if(isset($_POST['changeGrade'])){
 	if ($_POST['grade'] <= 10 && $_POST['grade'] >= 0) {
 		$grade = $_POST['grade'];
-		$db->updateGradeVieuw($labjournaalid, $grade);
-		echo "cijer bijgewerkt";
+		$db->updateGradeVieuw($labjournalid, $grade);
+		echo $lang['GRADECHANGED'];
 	} else {
-		echo "dit is geen correct cijfer";
+		echo $LANG['WRONGGRADE'];
 	}
 }
 if(isset($_POST['archive'])){
-	$db->archiveLabjournaal($_GET['labjournaal'], 2);
+	$db->archiveLabjournal($_GET['labjournal'], 2);
 }
-if(isset($_POST['unArchive'])){
-	$db->archiveLabjournaal($_GET['labjournaal'], 1);
+if(isset($_POST['deArchive'])){
+	$db->archiveLabjournal($_GET['labjournal'], 1);
 }
 
-$labjournal = $db->DocentLabjournaalView($labjournaalid);
+$labjournal = $db->teacherLabjournalView($labjournalid);
 ?>
 
 
@@ -30,7 +30,7 @@ $labjournal = $db->DocentLabjournaalView($labjournaalid);
 		echo "<h1 class='labjournaaltitle'>" . $result['title'] . "</h1>";
 		if ($result['submitted'] == 2) {
 			echo "<form method='POST'>
-					<input type='submit' value='Un archive' name='unArchive'>
+					<input type='submit' value='Dearchive' name='deArchive'>
 				</form>";
 		} else {
 			echo "<form method='POST'>
@@ -41,15 +41,15 @@ $labjournal = $db->DocentLabjournaalView($labjournaalid);
 		?>
 		<div class="labjournaalcontainer">
 		<?php
-		echo "<div class='groteretextarealabjournaal'><h4>$lang[NAME]: </h4>" . "<p>" . $result['name'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[DATE]: </h4>" . "<p>" . $result['date'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[GOAL]: </h4>" . "<p>" . $result['Goal'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[HYPOTHESIS]: </h4>" . "<p>" . $result['Hypothesis'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[MATERIALS]: </h4>" . "<p>" . $result['method_materials'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[THEORY]: </h4>" . "<p>" . $result['theory'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[SAFETY]: </h4>" . "<p>" . $result['safety'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[RESULT]: </h4>" . "<p>" . $result['logboek'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>$lang[GRADE]: </h4> 
+		echo "<div class='groteretextarealabjournaal'><h4>".$lang['NAME'].": </h4><p>" . $result['name'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>".$lang['DATE'].": </h4><p>" . $result['date'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>".$lang['GOAL'].": </h4><p>" . $result['Goal'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>".$lang['HYPOTHESIS'].": </h4><p>" . $result['Hypothesis'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>".$lang['MATERIALS'].": </h4><p>" . $result['method_materials'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>".$lang['THEORY'].": </h4><p>" . $result['theory'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>".$lang['SAFETY'].": </h4><p>" . $result['safety'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>".$lang['RESULT'].": </h4><p>" . $result['logboek'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaal'><h4>".$lang['GRADE'].": </h4> 
 		<form method='POST'>
 			<input type='text' name='grade' value=" .$result['grade'] . ">
 			<input type='submit' name='changeGrade'>
@@ -78,9 +78,9 @@ $labjournal = $db->DocentLabjournaalView($labjournaalid);
 						fclose($f);
 					echo "\n</table>";
 			} else if (empty($result["Attachment"])){
-				# just a check if there is a scoure set.
+				# just a check if there is a source set.
 			} else {
-				echo "AN error occurred: file was not found";
+				echo $lang['FILENOTFOUND'];
 			}
 		echo '</div>';
 	}

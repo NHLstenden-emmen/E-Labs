@@ -24,7 +24,7 @@ if (!empty($_POST['title']) && isset($_POST['title']) && (isset($_post['inlevere
 	$date =  date('Y-m-d H:i:s');
 	$theory = $_POST['theory'];
 	$safety = $_POST['safety'];
-	$creater_id = $_SESSION['user_id'];
+	$creator_id = $_SESSION['user_id'];
 	$logboek = $_POST['logboek'];
 	$method_materials = $_POST['method_materials'];
 	if(isset($_POST['inleveren'])){
@@ -47,13 +47,13 @@ if (!empty($_POST['title']) && isset($_POST['title']) && (isset($_post['inlevere
 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		// check the size of the file
 		if ($_FILES["fileupload"]["size"] > 2000000) {
-			echo "Sorry, your file is too large.<br>";
+			echo $lang['BIG_FILE']."<br>";
 			$uploadOk = 0;
 		}
 
 		// Allow certain file formats
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "csv" ) {
-			echo "Sorry, only JPG, JPEG, PNG, GIF & csv files are allowed.<br>";
+			echo $lang['WRONG_FILE']." (".$lang['ONLY']." JPG, JPEG, PNG, GIF & csv ".$lang['ALLOWED'].")<br>";
 			$uploadOk = 0;
 		}
 
@@ -67,27 +67,27 @@ if (!empty($_POST['title']) && isset($_POST['title']) && (isset($_post['inlevere
 			$Attachment = $upload_directory.$TargetPath;
 		}
 		if ($uploadOk == 1) {
-			echo $title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis;
-			$createdLabjournaalID = $db->LabjournaalToevoegenWithAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
+			echo $title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis;
+			$createdLabjournaalID = $db->addLabJournalWithAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
 		} else {
-			$createdLabjournaalID = $db->LabjournaalToevoegenWithOutAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
+			$createdLabjournaalID = $db->addLabJournalWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
 		}
 	} else{ 
-		$createdLabjournaalID = $db->LabjournaalToevoegenWithOutAttachment($title, $date, $theory, $safety, $creater_id, $logboek, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
+		$createdLabjournaalID = $db->addLabJournalWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
 	}
 
 
 	while ($thisResult = $createdLabjournaalID->fetch_array(MYSQLI_ASSOC)){
-		$message = $db->connectNewLabjournaalWithUser($_SESSION['user_id'], $thisResult['labjournaal_id']);
+		$message = $db->connectNewLabjournalWithUser($_SESSION['user_id'], $thisResult['labjournal_id']);
 		if(isset($medestud)){
 		foreach($medestud as $entry){
-			$db->connectNewLabjournaalWithUser($entry, $thisResult['labjournaal_id']);
+			$db->connectNewLabjournalWithUser($entry, $thisResult['labjournal_id']);
 		}}
 	}
 	if ($message == "Labjournaal toegevoegd") {
-		echo '<a href="labjournaal">Labjournaal toegevoegd terug naar het overzicht.</a>';
+		echo $lang['LABJOURNALADDED'].". <a href='labjournal'>".$lang['GOBACKOVERVIEW']."</a>";
 	} else {
-		echo '<a href="labjournaal">Er is een probleem opgetreden.</a>';
+		echo '<a href="labjournal">'.$lang['PROBLEMOCCURRED'].'</a>';
 	}
 	unset($_SESSION['title']);
 	unset($_SESSION['theory']);
@@ -111,21 +111,22 @@ if (empty($message)) {
 				<div>
 					<?php echo $lang["OTHERSTUDENTS"];?>:</br>
 					<input type="search" name="searchstudent">
-					<input type="submit" name="search" Value="Search"><br>
-					<table id="selectphp">
+					<input type="submit" name="search" Value=<?=$lang['SEARCH'];?>><br>
 					<?php
 					if(!isset($_SESSION['addusers'])){
 						$_SESSION['addusers'] = array();
 					}
 					if(isset($_POST['adduser'])){
 						array_push($_SESSION['addusers'], $_POST['adduser']);
+						$_SESSION['addusers'] = array_unique($_SESSION['addusers']);
 						if(isset($_POST['inleveren']) || isset($_POST['opslaan'])){
-							$db->connectNewLabjournaalWithUser($_POST['adduser'], $createdLabjournaalID);
+							$db->connectNewLabjournalWithUser($_POST['adduser'], $createdLabjournaalID);
 							unset($_SESSION['addusers']);
 							unset($_SESSION['user_id_lab']);
 						}
 					}
 					if(isset($_POST['search']) && !empty($_POST['searchstudent'])){
+						echo "<table id='selectphp'>";
 						$searchfor = "%".$_POST['searchstudent']."%";
 						$result = $db->selectStudentslab($searchfor);
 						if(isset($result) && $result != NULL){
@@ -144,31 +145,30 @@ if (empty($message)) {
 									echo $_SESSION['button'] = "<button class='unclickable'>Creator</button></td></tr>";
 								}
 								if(!isset($_SESSION['button'])){
-									echo "<button name='adduser' Value='".$_SESSION['user_id_lab']."'>Add user</button></td></tr>";
+									echo "<button name='adduser' Value='".$_SESSION['user_id_lab']."'>".$lang['ADD_USER']."</button></td></tr>";
 								}
 								else{
 									unset($_SESSION['button']);
 								}
 							} 
 						} 
+					echo "</table>";
 					}
 					?>
-					</table>
 				</div>
-				<div>
-					<pre>
-						<?php
+				<div class="selectedusers">
+					<?php
+					if(isset($_SESSION['addusers'])){
+						echo "<pre>";
 						foreach($_SESSION['addusers'] as $user){
 							$userdata = $db->selectCurrentUsers($user);
 							foreach($userdata as $userlabjournal){
 								$username = $userlabjournal['name'];
-								echo "<li>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>Delete</button></li>";
+								echo "<li>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>".$lang['DELETE']."</button></li>";
 							}
-							
 						}
-						?>
-					</pre>
-					<?php
+						echo "</pre>";
+					}
 					if(isset($_POST['deleteuser'])){
 						$deleteuser = $_POST['deleteuser'];
 						$_SESSION['addusers'] = array_diff($_SESSION['addusers'], array($deleteuser));
@@ -201,7 +201,7 @@ if (empty($message)) {
 	</div>
 	<div class="form-row">
 		<div class="col-md-4 mb-3 offset-1">
-			<label for="logboek"><?php echo $lang["LOGBOOK"];?>:</label> </br>
+			<label for="logboek"><?php echo $lang["LOG"];?>:</label> </br>
 				<textarea class="groteretextarealabjournaal" name="logboek"><?=$_SESSION['logboek']?></textarea>
 		</div>
 		<div class="col-md-4 mb-3 offset-1">
@@ -212,11 +212,11 @@ if (empty($message)) {
 	<div class="form-row">
 		<div class="col-md-4 mb-3 offset-1">
 			<label for="year">Year:</label> </br>
-			<label for="1"><?php echo $lang["YEAR_1"];?></label>
+			<label for="1"><?php echo $lang["YEAR"]." 1";?></label>
 				<input type="radio" name="year" value="1" checked>
-			<label for="1"><?php echo $lang["YEAR_2"];?></label>
+			<label for="1"><?php echo $lang["YEAR"]." 2";?></label>
 				<input type="radio" name="year" value="2">
-			<label for="1"><?php echo $lang["YEAR_3"];?></label>
+			<label for="1"><?php echo $lang["YEAR"]." 3";?></label>
 				<input type="radio" name="year" value="3">
 		</div>
 		<div class="col-md-4 mb-3 offset-1">

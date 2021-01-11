@@ -33,13 +33,13 @@
 
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
-		<a href="createNewLabjournaal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
+		<a href="createNewLabjournal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
 	</p>
 	<div id="mainContainer" class="row">
 		<div id="yearNav" class="col-xs-12 col-sm-3 col-lg-2">
-			<a href="?year=1">- <?php echo $lang["YEAR_1"];  ?></a>
-			<a href="?year=2">- <?php echo $lang["YEAR_2"];  ?></a>
-			<a href="?year=3">- <?php echo $lang["YEAR_3"];  ?></a>
+			<a href="?year=1">- <?php echo $lang["YEAR"]." 1";?></a>
+			<a href="?year=2">- <?php echo $lang["YEAR"]." 2";?></a>
+			<a href="?year=3">- <?php echo $lang["YEAR"]." 3";?></a>
 		</div>
 		<div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
 			<h3><?php echo $lang["YEAR_OVERVIEW"] . $year; ?></h3>
@@ -62,11 +62,11 @@
 						}
 						echo "<td class='actionButtons'>";
 						if ($allResults['submitted'] == 0) {
-							echo "&nbsp;<a href='EditJournaal?id=".$allResults['labjournaal_id']."'><i class='far fa-edit'></i></a>";
+							echo "&nbsp;<a href='EditJournal?id=".$allResults['labjournal_id']."'><i class='far fa-edit'></i></a>";
 						} else{
-							echo "&nbsp;<a href='viewLabjournaal?id=".$allResults['labjournaal_id']."'><i class='fas fa-eye'></i></a>";
+							echo "&nbsp;<a href='viewLabjournal?id=".$allResults['labjournal_id']."'><i class='fas fa-eye'></i></a>";
 						}
-						echo "&nbsp;<a href='pdf?labjournaal_id=$allResults[labjournaal_id]' target='_blank'><i class='fas fa-print'></i></a>
+						echo "&nbsp;<a href='pdf?labjournal_id=".$allResults['labjournal_id']."' target='_blank'><i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";
 					}	
