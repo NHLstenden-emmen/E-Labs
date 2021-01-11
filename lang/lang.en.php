@@ -109,5 +109,6 @@ return [
 	'YEAR' => 'Year',
 	'YEAR_OVERVIEW' => 'Overview year ',
 	'YES' => 'Yes',
+	'SEARCHEDFOR' => 'Searched for',
 ]
 ?>
