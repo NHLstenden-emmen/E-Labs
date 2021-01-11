@@ -341,7 +341,7 @@
 		public function connectNewLabjournalWithUser($userId, $LabjournalId){
 			
 			$userId = htmlspecialchars($userId);
-			$LabjournaalId = htmlspecialchars($LabjournaalId);
+			$LabjournalId = htmlspecialchars($LabjournalId);
 			if ($stmt = $this->conn->prepare("INSERT INTO `lab_journal_users`(`user_id`, `lab_journal_id`) VALUES (?,?)")) {
                 $stmt->bind_param('ii', $userId, $LabjournalId);
 				$stmt->execute();
@@ -388,7 +388,7 @@
 				AND (title LIKE ?
 				OR theory LIKE ?
 				OR safety LIKE ?
-				OR logboek LIKE ?
+				OR log LIKE ?
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
@@ -465,7 +465,7 @@
 				WHERE (title LIKE ?
 				OR theory LIKE ?
 				OR safety LIKE ?
-				OR logboek LIKE ?
+				OR log LIKE ?
 				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
@@ -556,7 +556,7 @@
 			$labjournal = htmlspecialchars($labjournal);
 			$userId = htmlspecialchars($userId);
 			
-			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`logboek`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis`,`creator_id` 
+			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`log`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis`,`creator_id` 
 			FROM `lab_journal` 
 			JOIN lab_journal_users ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
 			WHERE lab_journal.labjournal_id = ? AND lab_journal_users.user_id = ?")) {

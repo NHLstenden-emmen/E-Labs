@@ -46,6 +46,7 @@ return [
 	'HYPOTHESIS' => 'Hypothese',
 	'HYPOTHESIS' => 'Hypothese',
 	'LABJOURNAL' => 'Labjournaal',
+	'LABJOURNALADDED' => 'Labjournaal toegevoegd',
 	'LANGUAGE' => 'Taal',
 	'LOG' => 'Logboek',
 	'LOGIN' => 'Log in',

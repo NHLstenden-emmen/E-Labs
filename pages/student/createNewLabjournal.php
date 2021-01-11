@@ -25,7 +25,7 @@ if (!empty($_POST['title']) && isset($_POST['title']) && (isset($_post['inlevere
 	$theory = $_POST['theory'];
 	$safety = $_POST['safety'];
 	$creator_id = $_SESSION['user_id'];
-	$logboek = $_POST['logboek'];
+	$log = $_POST['logboek'];
 	$method_materials = $_POST['method_materials'];
 	if(isset($_POST['inleveren'])){
 		$submitted = 1;

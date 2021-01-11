@@ -44,6 +44,7 @@ return [
 	'HAND_IN' => 'Hand in',
 	'HYPOTHESIS' => 'Hypothesis',
 	'LABJOURNAL' => 'Labjournal',
+	'LABJOURNALADDED' => 'Labjournal added',
 	'LANGUAGE' => 'language',
 	'LOG' => 'Logbook',
 	'LOGIN' => 'login',

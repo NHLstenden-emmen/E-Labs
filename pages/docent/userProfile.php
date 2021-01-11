@@ -13,7 +13,7 @@
 					$TargetPath=$time.$UploadedFileName;
 				
 					if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
-						$db->updateProfilePhoto($_SESSION['user_id'], $upload_directory.$TargetPath);
+						$db->updateProfilePicture($_SESSION['user_id'], $upload_directory.$TargetPath);
 						$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
 						echo "<script>window.location.href='gebruikersprofiel';</script>";
 						exit;
@@ -32,7 +32,7 @@
 		if($_SESSION['pf_Pic'] != "gebruikersBestanden/profilePictures/blank-profile-picture.png"){
 			unlink($_SESSION['pf_Pic']);
 			$upload_directory = "gebruikersBestanden/profilePictures/blank-profile-picture.png";
-			$db->updateProfielFoto($_SESSION['user_id'], $upload_directory);
+			$db->updateProfilePicture($_SESSION['user_id'], $upload_directory);
 			$_SESSION['pf_Pic'] = $upload_directory;
 			echo "<script>window.location.href='gebruikersprofiel';</script>";
 			exit;

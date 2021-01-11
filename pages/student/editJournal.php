@@ -5,7 +5,7 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 	$theory = $_POST['theory'];
 	$safety = $_POST['safety'];
 	$creater_id = $_SESSION['user_id'];
-	$logboek = $_POST['logboek'];
+	$log = $_POST['log'];
 	$method_materials = $_POST['method_materials'];
 	if(isset($_POST['Inleveren'])){
 		$submitted = 1;
@@ -36,7 +36,7 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 		$fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		// check the size of the file
 		if ($_FILES["fileupload"]["size"] > 2000000) {
-			echo $lang['BIG_FILE']"<br";
+			echo $lang['BIG_FILE']."<br>";
 			$uploadOk = 0;
 		}
 
@@ -56,19 +56,19 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 			$Attachment = $upload_directory.$TargetPath;
 		}
 		if ($uploadOk == 1) {
-			$message = $db->updatelabjournalWithAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+			$message = $db->updatelabjournalWithAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 		} else {
-			$message = $db->updatelabjournalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+			$message = $db->updatelabjournalWithOutAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 		}
 	} else{
-		$message = $db->updatelabjournalWithOutAtatchment($title, $date, $theory, $safety, $logboek, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+		$message = $db->updatelabjournalWithOutAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
 	}
 }
 
 
 if (empty($message) && isset($_GET['id'])) {
-	$getLabjournaal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
-	while ($result = $getLabjournaal->fetch_array(MYSQLI_ASSOC)){ 
+	$getLabjournal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
+	while ($result = $getLabjournal->fetch_array(MYSQLI_ASSOC)){ 
 		$_SESSION['creator_id'] = $result['creator_id'];
 		if ($result["submitted"] == 0) {
 		?>
@@ -114,7 +114,7 @@ if (empty($message) && isset($_GET['id'])) {
 											echo $_SESSION['button'] = "<button class='unclickable'>Creator</button>";
 										}
 										if(!isset($_SESSION['button'])){
-											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">"$lang['ADD_USER']."</button>";
+											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">".$lang['ADD_USER']."</button>";
 										}
 										elseif(isset($_SESSION['button'])){
 											unset($_SESSION['button']);
@@ -180,8 +180,8 @@ if (empty($message) && isset($_GET['id'])) {
 		</div>
 		<div class="form-row">
 			<div class="col-md-4 mb-3 offset-1">
-				<label for="logboek"><?php echo $lang["LOGBOOK"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="logboek" value="<?php echo $result['logboek'];?>"><?php echo $result['logboek'];?></textarea>
+				<label for="log"><?php echo $lang["LOG"];?>:</label> </br>
+					<textarea class="groteretextarealabjournaal" name="log" value="<?php echo $result['log'];?>"><?php echo $result['log'];?></textarea>
 			</div>
 			<div class="col-md-4 mb-3 offset-1">
 				<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label> </br>
@@ -192,11 +192,11 @@ if (empty($message) && isset($_GET['id'])) {
 			<div class="col-md-4 mb-3 offset-1">
 			
 				<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
-				<label for="1"><?php echo $lang["YEAR_1"];?></label>
+				<label for="1"><?php echo $lang["YEAR"]." 1";?></label>
 					<input type="radio" name="year" value="1" <?php if($year == 1){echo 'checked';}?>>
-				<label for="1"><?php echo $lang["YEAR_2"];?></label>
+				<label for="1"><?php echo $lang["YEAR"]." 2";?></label>
 					<input type="radio" name="year" value="2"<?php if($year == 2){echo 'checked';}?>>
-				<label for="1"><?php echo $lang["YEAR_3"];?></label>
+				<label for="1"><?php echo $lang["YEAR"]." 3";?></label>
 					<input type="radio" name="year" value="3"<?php if($year == 3){echo 'checked';}?>>
 			</div>
 			<div class="col-md-4 mb-3 offset-1">
@@ -247,7 +247,7 @@ if (empty($message) && isset($_GET['id'])) {
 		if ($message == "gelukt") {
 			echo $lang['LABJOURNALADDED'].". <a href='labjournal'>".$lang['GOBACKOVERVIEW']."</a>";
 		} else {
-			echo '<a href="labjournal">.'$lang['PROBLEMOCCURRED'].'</a>';
+			echo '<a href="labjournal">'.$lang['PROBLEMOCCURRED'].'</a>';
 		}
 }
 ?>

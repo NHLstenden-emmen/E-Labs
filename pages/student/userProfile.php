@@ -12,7 +12,7 @@
 			$extensions=array( 'image/jpeg', 'image/png', 'image/jpg' );
 			if( in_array( $type, $extensions )){
 				if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
-					$db->updateProfilePhoto($_SESSION['user_id'], $upload_directory.$TargetPath);
+					$db->updateProfilePicture($_SESSION['user_id'], $upload_directory.$TargetPath);
 					$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
 				}
 			}
@@ -22,9 +22,9 @@
 		if($_SESSION['pf_Pic'] != "gebruikersBestanden/profilePictures/blank-profile-picture.png"){
 			unlink($_SESSION['pf_Pic']);
 			$upload_directory = "gebruikersBestanden/profilePictures/blank-profile-picture.png";
-			$db->updateProfilePhoto($_SESSION['user_id'], $upload_directory);
+			$db->updateProfilePicture($_SESSION['user_id'], $upload_directory);
 			$_SESSION['pf_Pic'] = $upload_directory;
-			echo "<script>window.location.href='gebruikersprofiel';</script>";
+			echo "<script>window.location.href='userprofile';</script>";
 			exit;
 		}
 	}
@@ -55,7 +55,7 @@
 				$errorPass = $lang['PASSWORDSDONTMATCH'];
 			}
 		} else {
-			$errorPass = $lang['FILLINFIELDS'];
+			$errorPass = "";
 		}
 	}
 ?>
