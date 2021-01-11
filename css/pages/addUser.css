@@ -1,30 +1,49 @@
-.gebruikertoevoegenblock form {
-	width: 180px;
-	display: block;
-	margin: 0 auto;
-	margin-top: 50px;
+ .textInputGebruiker {
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid grey;
+	height: 30px;
 }
-.gebruikertoevoegenblock label {
-	margin-right: 5px;
+.gebruikerToevoegenContainer {
+	padding-top: 20px;
 }
-.gebruikertoevoegenblock input::-webkit-outer-spin-button,
-.gebruikertoevoegenblock input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-}
-.gebruikertoevoegenblock#InputAdd {
-	width: 500px;
-	height: 500px;
-	border: 2px solid black;
+
+.gebruikerToevoegenContainer form {
+	width: 40%;
 	margin: 0 auto;
 }
-.gebruikertoevoegenblock .buttons {
-	margin-top: 50px;
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-row-gap: 5px;
-	width: 180px;
-	height: 25px;
+
+#rolGebruikerRadio {
+	display: flex;
+	justify-content: space-between;
 }
-.gebruikertoevoegenblock .buttons input {
-	width: 90px;
+
+.formButtonsGebruiker {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20px;
+	height: 50px;
+}
+
+.formButtonsGebruiker input {
+ 	background-color: var(--primaryColor);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    width: 25%;
+ }
+
+ .radioButtonRol {
+ 	margin-left: 10px;
+ }
+
+/*Aangepaste css mobiele versie*/
+@media (max-width: 767px) {
+	.gebruikerToevoegenContainer form {
+		width: 90%;
+		margin:  10px;
+	}
+	.formButtonsGebruiker input {
+   		width: 30%;
+ }
 }
