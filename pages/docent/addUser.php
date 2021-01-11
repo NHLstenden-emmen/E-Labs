@@ -1,5 +1,5 @@
-<div class="gebruikerToevoegenContainer">
-    <form action="gebruikertoevoegen" method="POST" autocomplete="off">
+<div class="addUserContainer">
+    <form method="POST" autocomplete="off">
         <label for="role">Rol:</label><br>  
         <input type="radio" name="role" id="Studentrole" value="Student" checked>
         <label for="Studentrole">Student</label>
@@ -40,11 +40,11 @@
                 echo $message;
             }
             else{
-                die($lang['PASSWORDSDONTMATCH']);
+                exit($lang['PASSWORDSDONTMATCH']);
             }
         }
         else{
-            die($lang['FILLINFIELDS']);
+            exit($lang['FILLINFIELDS']);
         }
     }
 ?>

@@ -15,11 +15,11 @@
                 echo $message;
             }
             else{
-                die(echo $lang['PASSWORDSDONTMATCH']);
+                exit($lang['PASSWORDSDONTMATCH']);
             }
         }
         else{
-            die(echo $lang['FILLINFIELDS']);
+            exit($lang['FILLINFIELDS']);
         }
 	}
 	if (!isset($message)) {
@@ -30,7 +30,7 @@
 			<form method="POST" autocomplete="off">
 				<label for="role"><?=$lang['ROLE'];?></label><br>
 				<input type="radio" name="role" id="Studentrole" value="Student" checked><label for="Studentrole">Student</label>
-				<input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole"><?=$lang['teacher'];?></label><br>
+				<input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole"><?=$lang['TEACHER'];?></label><br>
 
 				<label for="name"><?=$lang['NAME'];?></label><br>
 				<input type="text" name="name" value='<?php echo $result['name']?>' required><br>

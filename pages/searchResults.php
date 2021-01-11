@@ -16,7 +16,7 @@
 	?>
 			<div id="searchResultTable" class="col-xs-12 col-sm-9 col-lg-9">
 			<?php
-			if($allResultsLabjournal->num_rows == 0 && $allResultsPreperation->num_rows ==0){
+			if($allResultsLabjournal->num_rows == 0 && $allResultsPreperation->num_rows == 0){
 				echo "<h4 id='noResultsText'>Geen zoekresultaat gevonden voor: ". $searchWord ."</h4>";
 			} else {
 				if($allResultsLabjournal->num_rows !== 0){
