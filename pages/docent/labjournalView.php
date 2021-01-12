@@ -39,17 +39,18 @@ $labjournal = $db->teacherLabjournalView($labjournalid);
 		}
 		
 		?>
-		<div class="labjournaalcontainer">
+		<div class="labjournaalcontainer4delen">
 		<?php
-		echo "<div class='groteretextarealabjournaal'><h4>".$lang['NAME'].": </h4><p>" . $result['name'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['DATE'].": </h4><p>" . $result['date'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['GOAL'].": </h4><p>" . $result['Goal'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['HYPOTHESIS'].": </h4><p>" . $result['Hypothesis'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['MATERIALS'].": </h4><p>" . $result['method_materials'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['THEORY'].": </h4><p>" . $result['theory'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['SAFETY'].": </h4><p>" . $result['safety'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['LOG'].": </h4><p>" . $result['log'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['GRADE'].": </h4> 
+		echo "<div class='smalltextarealabjournaallinks'><h4>".$lang['NAME'].": </h4><p>" . $result['name'] . "</p></div>";
+		echo "<div class='smalltextarealabjournaalrechts'><h4>".$lang['DATE'].": </h4><p>" . $result['date'] . "</p></div>";
+		echo "</div><div class='labjournaalcontainer3delen'>";
+		echo "<div class='grotetextarealabjournaallinks'><h4>".$lang['GOAL'].": </h4><p>" . $result['Goal'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['HYPOTHESIS'].": </h4><p>" . $result['Hypothesis'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalrechts'><h4>".$lang['MATERIALS'].": </h4><p>" . $result['method_materials'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaallinks'><h4>".$lang['THEORY'].": </h4><p>" . $result['theory'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['SAFETY'].": </h4><p>" . $result['safety'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalrechts'><h4>".$lang['LOG'].": </h4><p>" . $result['log'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['GRADE'].": </h4> 
 		<form method='POST'>
 			<input type='text' name='grade' value=" .$result['grade'] . ">
 			<input type='submit' name='changeGrade' value =".$lang['CHANGEGRADE'].">
