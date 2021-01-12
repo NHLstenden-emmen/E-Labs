@@ -68,7 +68,7 @@
 				<div class="dropdown-menu" id="search">
 					<form action="searchResults" method="post" id="searchForm">
 						<input class="form-control" type="text" name="searchInput">
-						<button type="submit" class="searchbar btn btn-default" name="submit">
+						<button type="submit" class="searchbar searchbarButton btn btn-default" name="submit">
 							<i class="fas fa-search fa-2x"></i>
 						</button>
 					</form>

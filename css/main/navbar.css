@@ -88,6 +88,9 @@ nav #search {
 		align-self: center;
 		justify-content: center;
 	}
+	nav .searchbarButton {
+		width: 50px;
+	}
 	.navbar-nav .dropdown-menu {
 		width: 100%;
 	}
