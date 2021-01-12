@@ -26,36 +26,38 @@
 		}
 		if (!isset($addNewNotification)) {
 		?> 
-		<h1><?=$lang['CREATENOTIFICATION'];?></h1>
-		<form method="POST">
-			<div>
-				<label for="title"><?=$lang['TITLE'];?></label>
-				<input type="text" name="title" required>
-			</div>
-			<div>
-				<label for="message"><?=$lang['MESSAGE'];?></label>
-				<textarea name="message" cols="50" rows="7" style="resize: none;" required></textarea>
-			</div>
-			<div>
-				<label for="student"><?=$lang['SELECTSTUDENTS'];?></label>
-				<select name="student">
-				<option value='0'><?=$lang['ALLSTUDENTS'];?></option>
-				<?php
-					$selectStudents = $db->selectStudents();
-					while ($user = $selectStudents->fetch_array(MYSQLI_ASSOC)){
-						if($user['user_id'] !== $_SESSION['user_id']){
-							echo "<option value='".$user["user_id"]."'>".$user['name']."</option>";
+		<div class="addEditNotificationContainer">
+			<h1><?=$lang['CREATENOTIFICATION'];?></h1>
+			<form method="POST">
+				<div>
+					<label for="title"><?=$lang['TITLE'];?></label>
+					<input type="text" class="textInputNotification" name="title" required>
+				</div>
+				<div>
+					<label for="message"><?=$lang['MESSAGE'];?></label>
+					<textarea name="message" class="textAreaNotification" required></textarea>
+				</div>
+				<div>
+					<label for="student"><?=$lang['SELECTSTUDENTS'];?></label>
+					<select name="student">
+					<option value='0'><?=$lang['ALLSTUDENTS'];?></option>
+					<?php
+						$selectStudents = $db->selectStudents();
+						while ($user = $selectStudents->fetch_array(MYSQLI_ASSOC)){
+							if($user['user_id'] !== $_SESSION['user_id']){
+								echo "<option value='".$user["user_id"]."'>".$user['name']."</option>";
+							}
 						}
-					}
-				?>
-				</select>
-			</div>
-			<div>
-				<input type="submit" name="postNotification" value="<?=$lang['SEND'];?>">
-				<input type="reset" value="reset">
-			</div>
-			<div>
-		</form>
+					?>
+					</select>
+				</div>
+				<div class="formButtons">
+					<input type="submit" name="postNotification" value="<?=$lang['SEND'];?>">
+					<input type="reset" value="reset">
+				</div>
+				<div>
+			</form>
+		</div>
 <?php } else { echo $lang['ADDEDUSER'];}}
 if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($deleteNotification)) {
 while ($notification = $viewNotification->fetch_array(MYSQLI_ASSOC)){ ?>
