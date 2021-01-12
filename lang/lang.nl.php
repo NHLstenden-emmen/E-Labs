@@ -17,6 +17,7 @@ return [
 	'BIG_FILE' => 'Het toegevoegde bestand is te groot',
 	'CHANGE_PROFILE_PHOTO' => 'Profielfoto veranderen',
 	'CHANGEDPASSWORD' => 'Wachtwoord veranderd',
+	'CHANGEGRADE' => 'Verander cijfer',
 	'CLASS' => 'Klas',
 	'CREATENOTIFICATION' => 'Nieuw bericht aanmaken',
 	'CURRENT' => 'Huidig',

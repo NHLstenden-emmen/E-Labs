@@ -614,7 +614,7 @@
 			return NULL;
 		}
 
-		public function docentprofielbewerken($userID, $name, $email, $user_number){
+		public function teacherProfileEdit($userID, $name, $email, $user_number){
 
 			$userID = htmlspecialchars($userID);
 			$name = htmlspecialchars($name);

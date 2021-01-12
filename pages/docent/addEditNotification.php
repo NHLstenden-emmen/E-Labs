@@ -65,7 +65,7 @@
 		</div>
 		<?php 	
 		} else { 
-		echo $lang['ADDEDUSER'];
+		echo $lang['ADDEDNOTIFICATION'];
 		}
 	}
 	if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($deleteNotification)) {

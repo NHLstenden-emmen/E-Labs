@@ -8,7 +8,7 @@ if(isset($_GET['labjournal'])) {
 if(isset($_POST['changeGrade'])){
 	if ($_POST['grade'] <= 10 && $_POST['grade'] >= 0) {
 		$grade = $_POST['grade'];
-		$db->updateGradeVieuw($labjournalid, $grade);
+		$db->updateGradeView($labjournalid, $grade);
 		echo $lang['GRADECHANGED'];
 	} else {
 		echo $LANG['WRONGGRADE'];
@@ -52,7 +52,7 @@ $labjournal = $db->teacherLabjournalView($labjournalid);
 		echo "<div class='grotetextarealabjournaal'><h4>".$lang['GRADE'].": </h4> 
 		<form method='POST'>
 			<input type='text' name='grade' value=" .$result['grade'] . ">
-			<input type='submit' name='changeGrade'>
+			<input type='submit' name='changeGrade' value =".$lang['CHANGEGRADE'].">
 		</form>
 		</div>
 		</div>

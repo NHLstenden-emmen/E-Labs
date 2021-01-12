@@ -17,6 +17,7 @@ return [
 	'BIG_FILE' => 'The file you added is too big',
 	'CHANGE_PROFILE_PHOTO' => 'Change profile photo',
 	'CHANGEDPASSWORD' => 'Password has been changed',
+	'CHANGEGRADE' => 'Change grade',
 	'CLASS' => 'Class',
 	'CREATENOTIFICATION' => 'Create new notification',
 	'CURRENT' => 'Current',
