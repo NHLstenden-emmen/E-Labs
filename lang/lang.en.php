@@ -51,7 +51,7 @@ return [
 	'LOGIN' => 'login',
 	'LOGOUT' => 'log out',
 	'MADEBY' => 'Made by',
-	'MATERIAL' => 'Material',
+	'MATERIALS' => 'Materials',
 	'MESSAGE' => 'Message',
 	'METHOD' => 'Method',
 	'METHOD_MATERIALS' => 'Method Materials',
