@@ -11,7 +11,7 @@
             if($password === $passwordr){
                 $options = [ 'cost' => 12, ];
                 $hashPass = password_hash($password, PASSWORD_BCRYPT, $options);
-                $message = $db->teacherStudentEditProfile($userID, $name, $email, $usernumber, $hashPass, $role);
+                $message = $db->teacherStudentProfileEdit($userID, $name, $email, $usernumber, $hashPass, $role);
                 echo $message;
             }
             else{
