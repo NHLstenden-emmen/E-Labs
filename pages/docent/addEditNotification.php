@@ -8,13 +8,13 @@
 			$deleteNotification = $db->deleteNotification($_GET['delete']);
 		}
 		if (!isset($deleteNotification)) { 
-?> 
+?> 		
+		<div class="deleteNotificationButton">
 			<form method="POST">
-				<div class="formButtons">
-					<input type="submit" name="deletNotification" value="<?=$lang['DELETENOTIFICATION'];?>">
-				</div>
-			</form>
-			<p><?php $lang['AREYOUSURE'];?></p>
+				<p><?=$lang['AREYOUSURE'];?></p>
+				<input type="submit" name="deletNotification" value="<?=$lang['DELETENOTIFICATION'];?>">
+			</form>	
+		</div>
 		<?php 
 		} else {
 			echo "<p>".$lang['NOTIFICATIONDELETED']."</p>";

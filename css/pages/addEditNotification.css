@@ -40,7 +40,6 @@
 }
 
 .viewNotificationContainer {
-	padding-top: 20px;
 	width: 40%;
 	margin: 0 auto;
 }
@@ -49,7 +48,19 @@
  	border-spacing: 100px 50px;
  	display: flex;
  	justify-content: center;
- 	font-size: larger;
+}
+
+.deleteNotificationButton {
+	text-align: center;
+}
+
+.deleteNotificationButton input {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 25%;
+	height: 30px;
 }
 
 /*Aangepaste css mobiele versie*/
@@ -62,10 +73,12 @@
 		width: 30%;
 	}
 	.viewNotificationContainer {
-		border-collapse: unset;
 		width: 100%;
 	}
 	.viewNotificationContainer table {
 		font-size: unset;
+	}
+	.deleteNotificationButton input {
+		width: 100%;
 	}
 }
