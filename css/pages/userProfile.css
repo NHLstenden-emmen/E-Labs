@@ -2,13 +2,40 @@
 	text-align: center;
 }
 
-.gebruikersProfile .Gebruikersprofielcontainer {
+.Gebruikersprofielvakken {
 	display: grid;
 	grid-template-columns: 35% 25% 25% 15%;
 	width: 100%;
-	height: 110px;
+	height: 330px;
 	line-height: 10px;
 	padding-top: 8px;
+}
+
+.Gebruikersprofielvakkenstudent {
+	display: grid;
+	grid-template-columns: 35% 25% 25% 15%;
+	width: 100%;
+	height: 160px;
+	line-height: 10px;
+	padding-top: 8px;
+}
+
+.Gebruikersprofielvakken2 {
+	display: grid;
+	grid-template-columns: 35% 25% 25% 15%;
+	width: 100%;
+	height: 250px;
+	line-height: 10px;
+	padding-top: 8px;
+}
+
+.Gebruikersprofielvakkenspan {
+	margin-top: 40px;
+	height: 250px;
+	width: 260px;
+	grid-column: span 1 / -3;
+	padding: 0px;
+	line-height: 15px;
 }
 
 .gebruikersProfile .profielfototje {
@@ -27,8 +54,18 @@
 	display: block;
 }
 
+.gebruikersProfile #Gebruikersprofieldocentinformatie {
+	margin-top: 40px;
+	height: 330px;
+	width: 260px;
+	grid-column: span 1 / -3;
+	padding: 0px;
+	line-height: 15px;
+}
+
 .gebruikersProfile #Gebruikersprofielstudentinformatierechts {
-	height: 270px;
+	margin-top: 40px;
+	height: 330px;
 	width: 260px;
 	grid-column: span 1 / -3;
 	padding: 0px;
@@ -36,15 +73,21 @@
 }
 
 .gebruikersProfile #Gebruikersprofielstudentinformatielinks {
-	height: 270px;
+	margin-top: 40px;
+	height: 330px;
 	width: 260px;
 	grid-column: span 1 / -2;
 	padding: 0px;
 	line-height: 15px;
 }
 
-.gebruikersProfile #profielinformatiekleurgrijs {
+.gebruikersProfile #TextInputProfiel {
 	color: grey;
+	width: 400px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    height: 30px;
+    padding: 5px;
 }
 
 .gebruikersProfile #Buttonopslaanprofiel {
@@ -57,43 +100,70 @@
 }
 
 @media screen and (max-width: 700px) {
-	.gebruikersProfile .Gebruikersprofielcontainer,
+	.gebruikersProfile .Gebruikersprofielvakken,
 	.gebruikersProfile #Gebruikersprofielstudentinformatielinks,
-	.gebruikersProfile #Gebruikersprofielstudentinformatierechts {
+	.gebruikersProfile #Gebruikersprofielstudentinformatierechts,
+	.Gebruikersprofielvakkenspan {
 		grid-column: 1 / 4;
 		width: 70%;
 		height: 100%;
 		margin-left: 5%;
+		margin-top: 10%;
 	}
 }
 
 @media screen and (max-width: 600px) {
 	.gebruikersProfile #Gebruikersprofielstudentinformatierechts,
 	.gebruikersProfile #Gebruikersprofielstudentinformatielinks,
-	.gebruikersProfile .Gebruikersprofielcontainer {
+	.gebruikersProfile .Gebruikersprofielvakken,
+	.Gebruikersprofielvakkenspan {
 		grid-column: 1 / 4;
 		width: 90%;
 		height: 100%;
 		margin-left: 5%;
+		margin-top: 10%;
 	}
 }
+
 .gebruikersProfile {
 	margin-top: 20px;
 }
+
 .gebruikersProfile .changeprofilepicture {
 	text-align: center;
 }
-.gebruikersProfile .changePassword {
-	text-align: center;
-}
-.gebruikersProfile .changePassword div {
-	display: inline-block;
-	margin: 30px;
-}
 
-.gebruikersProfile .changePassword input[type="submit"] {
-	margin-bottom: 50px;
-}
 .profileEditButtons {
 	text-align: center;
+}
+
+#ButtonProfielBlauw {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 10%;
+}
+
+.languageSwitch {
+	border: 1px solid grey;
+	border-radius: 30px;
+	color: black;
+	width: 25%;
+}
+
+#ProfilePicButtons {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 15%;
+}
+
+#ProfilePicButtonsbestand input{
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 25%;
 }
