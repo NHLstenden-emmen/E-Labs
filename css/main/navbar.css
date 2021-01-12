@@ -66,6 +66,12 @@ nav #search {
 	text-align: center;
 }
 
+@media (max-width: 1068px) {
+	nav .form-control {
+		max-width: 130px;
+	}
+}
+
 @media (max-width: 991px) {
 	nav .navbar-collapse {
 		text-align: center;
@@ -81,6 +87,9 @@ nav #search {
 		flex-direction: column;
 		align-self: center;
 		width: 80%;
+	}
+	nav .form-control {
+		max-width: 100%;
 	}
 	nav .searchbar {
 		display: flex;
