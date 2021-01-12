@@ -56,7 +56,7 @@
 			</div>
 			<div>
 		</form>
-<?php } else { echo $lang['ADDEDUSER'];}}
+<?php } else { echo $lang['ADDEDNOTIFICATION'];}}
 if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($deleteNotification)) {
 while ($notification = $viewNotification->fetch_array(MYSQLI_ASSOC)){ ?>
 	<p class="title"><?php echo $lang['TITLE'].": ".$notification['title']?></p>

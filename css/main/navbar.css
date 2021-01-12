@@ -5,9 +5,11 @@ nav img {
 nav .nav-item {
 	border-right: 1px solid var(--white);
 }
+
 nav .nav-link {
 	color: var(--white);
 }
+
 .navbar-light .navbar-nav .nav-link {
 	color: var(--white);
 }
@@ -20,8 +22,8 @@ nav .fa-search {
 	color: var(--white);
 }
 
-nav #searchBar {
-	padding-right: 10px;
+nav .searchbar {
+	height: 50px;
 }
 
 nav #searchForm {
@@ -37,15 +39,17 @@ nav .topnavbar {
 	min-width: 120px;
 }
 
-nav .searchButton i {
+nav .searchbar i {
 	padding: 0;
 	margin: 0;
 }
+
 nav .languageSwitch {
 	width: 100%;
 	border: 0;
 	background: none;
 }
+
 nav .nav-profile-pic {
 	height: 60px;
 	width: 60px;
@@ -60,6 +64,7 @@ nav #search {
 	border: none;
 	position: unset;
 	padding: 0;
+	margin: 0;
 }
 
 .navDropdown {
@@ -96,6 +101,9 @@ nav #search {
 		width: 80%;
 		align-self: center;
 		justify-content: center;
+	}
+	nav .searchbarButton {
+		width: 50px;
 	}
 	.navbar-nav .dropdown-menu {
 		width: 100%;

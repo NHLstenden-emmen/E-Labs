@@ -5,6 +5,7 @@ return [
 	'ADD' => 'Toevoegen',
 	'ADD_USER' => 'Gebruiker toevoegen',
 	'ADDED' => 'toegevoegd',
+	'ADDEDNOTIFICATION' => 'Bericht toegevoegd',
 	'ADDEDUSER' => 'Gebruiker toegevoegd',
 	'ADDNEWNOTIFICATION' => 'Maak nieuw bericht aan',
 	'ADJUST_PROFILE_PICTURE' => 'Profielfoto aanpassen',

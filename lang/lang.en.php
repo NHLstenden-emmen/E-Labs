@@ -5,6 +5,7 @@ return [
 	'ADD' => 'Add',
 	'ADD_USER' => 'Add user',
 	'ADDED' => 'Added',
+	'ADDEDNOTIFICATION' => 'Added notification',
 	'ADDEDUSER' => 'User added',
 	'ADDNEWNOTIFICATION' => 'Add new notification',
 	'ADJUST_PROFILE_PICTURE' => 'Edit profile picture',

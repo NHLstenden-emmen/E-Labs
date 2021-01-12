@@ -9,7 +9,7 @@ include '../inc/select.php';
 include '../inc/mysql.php';
 $db = new DATABASE;
 $user = $_SESSION['user_id'];
-$labid = $_GET['labjournaal_id'];
+$labid = $_GET['labjournal_id'];
 $labusers = $db->GetAllLabUsers($labid);
 while($users = $labusers->fetch_array(MYSQLI_ASSOC)){
     $labuser = $users['user_id'];
@@ -48,7 +48,7 @@ while($users = $labusers->fetch_array(MYSQLI_ASSOC)){
                 $date = $outputarray['date'];
                 $hypothesis = $outputarray['Hypothesis'];
                 $var1 = $outputarray['method_materials'];
-                $var2 = $outputarray['logboek'];
+                $var2 = $outputarray['log   '];
                 $var3 = $outputarray['theory'];
                 $safety = $outputarray['safety'];
                 $goal = $outputarray['Goal'];

@@ -27,7 +27,7 @@
 					<th><?=$lang['TITLE'];?></th>
 					<th><?=$lang['DATE'];?></th>
 					<th><?=$lang['GRADE'];?></th>
-					<th><?=$lang['ACTIONS'];?></th>
+					<th><?=$lang['ACTION'];?></th>
 				<?php
 					while($searchResults = $allResultsLabjournal->fetch_array(MYSQLI_ASSOC)){
 						echo "<tr>";
