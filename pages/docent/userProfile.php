@@ -75,7 +75,7 @@
 			$user_number = $_POST['docentnummer'];
 			$userID = $_SESSION['user_id'];
 
-			$message = $db->docentProfileEdit($userID, $name, $email, $user_number);
+			$message = $db->teacherProfileEdit($userID, $name, $email, $user_number);
 			echo $message;
 		if($message != NULL){
 			$_SESSION['name'] = $name;
@@ -133,15 +133,15 @@
 	<form method='post' class="changePassword">
 		<div>
 			<label for="huidigewachtwoord"><?php echo $lang['CURRENT']. " " . $lang['PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='huidigewachtwoord' type='password'>
+			<input placeholder='******' name='currentPassword' type='password'>
 		</div></br>
 		<div>
 			<label for="newWachtwoord"><?php echo $lang['NEW']." " .$lang['PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='newWachtwoord' type='password'>
+			<input placeholder='******' name='newPassword' type='password'>
 		</div>
 		<div>
 			<label for="newWachtwoordHerhalen"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='newWachtwoordHerhalen' type='password'>
+			<input placeholder='******' name='newPasswordRepeat' type='password'>
 		</div></br>
 		<div>
 			<p><?php echo $errorPass?></p>
