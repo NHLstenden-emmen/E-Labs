@@ -6,9 +6,6 @@
 		echo "<script>window.location.href='login';</script>";
 		exit;
 	} 
-	if(isset($_GET['submit'])) {
-		// echo "geklikt";
-	}
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 	<a href="home" class="img-logo">
@@ -65,13 +62,13 @@
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item searchbar">
-				<button class="btn btn btn-default hide-me" data-target="#search" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+				<button class="btn btn btn-default hide-me searchbar" data-target="#search" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-search fa-2x"></i>
 				</button>
 				<div class="dropdown-menu" id="search">
 					<form action="searchResults" method="post" id="searchForm">
 						<input class="form-control" type="text" name="searchInput">
-						<button type="submit" class="searchButton btn btn-default" name="submit">
+						<button type="submit" class="searchbar btn btn-default" name="submit">
 							<i class="fas fa-search fa-2x"></i>
 						</button>
 					</form>
