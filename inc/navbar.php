@@ -83,7 +83,7 @@
 					<?php echo $_SESSION['name'];?>
 					<span class="sr-only">Toggle Dropdown</span>
 				</button>
-				<div class="dropdown-menu">
+				<div class="dropdown-menu navDropdown">
 					<?php  if ($_SESSION['role'] == 'Docent') { ?>
 						<a class="dropdown-item" href="useroverview"><?php echo $lang["USER_OVERVIEW"];?> </a>
 						<a class="dropdown-item" href="adduser"><?php echo $lang["ADD_USER"];?></a>

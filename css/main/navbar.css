@@ -16,7 +16,6 @@ nav .nav-link {
 	border-right: 1px solid var(--white);
 }
 
-
 nav .fa-search {
 	color: var(--white);
 }
@@ -35,6 +34,7 @@ nav .topnavbar {
 	border: 1px solid white;
 	background-color: white;
 	border-radius: 10px;
+	min-width: 120px;
 }
 
 nav .searchButton i {
@@ -60,6 +60,10 @@ nav #search {
 	border: none;
 	position: unset;
 	padding: 0;
+}
+
+.navDropdown {
+	text-align: center;
 }
 
 @media (max-width: 767px) {
