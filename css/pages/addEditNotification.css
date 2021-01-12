@@ -30,7 +30,26 @@
 	resize: none;
 	width: 100%;
 	min-height: 300px;
-	border-radius: 30px;
+	border-radius: 10px;
+	border: 1px solid grey;
+}
+
+.notificationHeader {
+	font-weight: bold;
+	color: var(--primaryColor);
+}
+
+.viewNotificationContainer {
+	padding-top: 20px;
+	width: 40%;
+	margin: 0 auto;
+}
+.viewNotificationContainer table {
+	border-collapse: separate;
+ 	border-spacing: 100px 50px;
+ 	display: flex;
+ 	justify-content: center;
+ 	font-size: larger;
 }
 
 /*Aangepaste css mobiele versie*/
@@ -41,5 +60,12 @@
 	}
 	.formButtons input {
 		width: 30%;
+	}
+	.viewNotificationContainer {
+		border-collapse: unset;
+		width: 100%;
+	}
+	.viewNotificationContainer table {
+		font-size: unset;
 	}
 }

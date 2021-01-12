@@ -1,17 +1,22 @@
 <?php if (isset($_GET['view'])) {
 		//this wil be loaded when you try to view a notification
 		$viewNotification = $db->viewNotification($_GET['view']);
-	} else if (isset($_GET['delete']))  {
+	} else if (isset($_GET['delete'])) {
 		//this wil be loaded when you try to delete a notification
 		$viewNotification = $db->viewNotification($_GET['delete']);
 		if (isset($_POST['deletNotification'])) {
 			$deleteNotification = $db->deleteNotification($_GET['delete']);
-		}if (!isset($deleteNotification)){ ?> 
+		}
+		if (!isset($deleteNotification)) { 
+?> 
 			<form method="POST">
-				<input type="submit" name="deletNotification" value="<?=$lang['DELETENOTIFICATION'];?>">
+				<div class="formButtons">
+					<input type="submit" name="deletNotification" value="<?=$lang['DELETENOTIFICATION'];?>">
+				</div>
 			</form>
-			<p><?=$lang['AREYOUSURE'];?></p>
-		<?php } else {
+			<p><?php $lang['AREYOUSURE'];?></p>
+		<?php 
+		} else {
 			echo "<p>".$lang['NOTIFICATIONDELETED']."</p>";
 		}
 	} else {
@@ -58,14 +63,41 @@
 				<div>
 			</form>
 		</div>
-<?php } else { echo $lang['ADDEDUSER'];}}
-if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($deleteNotification)) {
-while ($notification = $viewNotification->fetch_array(MYSQLI_ASSOC)){ ?>
-	<p class="title"><?php echo $lang['TITLE'].": ".$notification['title']?></p>
-	<p class="message"><?php echo $lang['MESSAGE'].": ".$notification['message']?></p>
-	<?php if ($notification['Vname'] != NULL ) { ?>
-		<p class="message"><?php echo $lang['SENDTO'].": ".$notification['Vname']?></p>
-	<?php }?>
-	<p class="creater"><?php echo $lang['MADEBY'].': '. $notification['Cname'] ?></p>
-	<p class="date_time"><?php echo $lang['DATE'].": ".$notification['date_time']?></p>
-<?php }}?>
+		<?php 	
+		} else { 
+		echo $lang['ADDEDUSER'];
+		}
+	}
+	if (isset($_GET['view']) || isset($_GET['delete']) AND !isset($deleteNotification)) {
+		while ($notification = $viewNotification->fetch_array(MYSQLI_ASSOC)){ 
+		?>
+			<div class="viewNotificationContainer">
+				<table>
+					<tr>
+						<td class="notificationHeader"><?php echo $lang['TITLE']?>:</td>
+						<td><?php echo $notification['title']?></td>
+					</tr>
+					<tr>
+					<?php 
+						if ($notification['Vname'] != NULL ) { 
+					?>		
+							<td class="notificationHeader"><?php echo $lang['SENDTO']?>:</td>
+							<td><?php echo $notification['Vname']?></td>
+					<?php 
+						}
+					?>
+					</tr>
+					<tr>
+						<td class="notificationHeader"><?php echo $lang['MADEBY']?>:</td>
+						<td><?php echo $notification['Cname']?></td>
+					</tr>
+					<tr>
+						<td class="notificationHeader"><?php echo $lang['DATE']?>:</td>
+						<td><?php echo $notification['date_time']?></td>
+					</tr>
+				</table>
+			</div>
+		<?php 	
+		}
+	}
+		?>
