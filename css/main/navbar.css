@@ -66,7 +66,7 @@ nav #search {
 	text-align: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
 	nav .navbar-collapse {
 		text-align: center;
 	}
@@ -97,5 +97,4 @@ nav #search {
 	.img-person {
 		padding-top: 10px;
 	}
-
 }
