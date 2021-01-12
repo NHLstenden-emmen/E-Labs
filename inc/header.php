@@ -88,11 +88,15 @@
 						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
 						break;
 					case 'adduser':
-						echo '<link rel="stylesheet" href="css/pages/addUser.css">';
+					case 'editaccount':
+						echo '<link rel="stylesheet" href="css/pages/editAddUser.css">';
 						break;
 					case 'useroverview':
 						echo '<link rel="stylesheet" href="css/pages/userOverview.css">';
 					break;
+					case 'addeditnotification':
+						echo '<link rel="stylesheet" href="css/pages/addEditNotification.css">';
+						break;
 					case 'labjournalview':
 						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
 						break;

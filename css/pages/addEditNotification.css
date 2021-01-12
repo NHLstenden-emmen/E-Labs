@@ -1,0 +1,84 @@
+.addEditNotificationContainer h1, form {
+	padding-top: 20px;
+	width: 40%;
+	margin: 0 auto;
+}
+
+.formButtons {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20px;
+	height: 50px;
+}
+
+.formButtons input {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 25%;
+}
+
+.textInputNotification {
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid grey;
+	height: 30px;
+}
+
+.textAreaNotification {
+	resize: none;
+	width: 100%;
+	min-height: 300px;
+	border-radius: 10px;
+	border: 1px solid grey;
+}
+
+.notificationHeader {
+	font-weight: bold;
+	color: var(--primaryColor);
+}
+
+.viewNotificationContainer {
+	width: 40%;
+	margin: 0 auto;
+}
+.viewNotificationContainer table {
+	border-collapse: separate;
+ 	border-spacing: 100px 50px;
+ 	display: flex;
+ 	justify-content: center;
+}
+
+.deleteNotificationButton {
+	text-align: center;
+}
+
+.deleteNotificationButton input {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 25%;
+	height: 30px;
+}
+
+/*Aangepaste css mobiele versie*/
+@media (max-width: 767px) {
+	.addEditNotificationContainer h1, form {
+		width: 90%;
+		margin: 10px;
+	}
+	.formButtons input {
+		width: 30%;
+	}
+	.viewNotificationContainer {
+		width: 100%;
+	}
+	.viewNotificationContainer table {
+		font-size: unset;
+	}
+	.deleteNotificationButton input {
+		width: 100%;
+	}
+}
