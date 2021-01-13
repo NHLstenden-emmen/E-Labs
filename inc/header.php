@@ -53,7 +53,7 @@
 						echo '<link rel="stylesheet" href="css/pages/studentLabJournal.css">';
 						break;
 					case 'viewlabjournal':
-					case 'viewlabpreparation':
+					case 'viewpreparation':
 						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
 						break;
 					case 'editjournal':

@@ -1,6 +1,6 @@
 <?php
-	$getLabjournaal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
-	while ($result = $getLabjournaal->fetch_array(MYSQLI_ASSOC)){ 
+	$getPreparation = $db->getPreparation($_GET['id'], $_SESSION['user_id']);
+	while ($result = $getPreparation->fetch_array(MYSQLI_ASSOC)){ 
 		?>
 	<form method="post">
 		<div class="labjournaalcontainer4delen">
