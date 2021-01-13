@@ -1,4 +1,4 @@
-.addEditNotificationContainer h1, form {
+.addEditNotificationContainer h1, .addEditNotificationContainer form {
 	padding-top: 20px;
 	width: 40%;
 	margin: 0 auto;
@@ -65,7 +65,7 @@
 
 /*Aangepaste css mobiele versie*/
 @media (max-width: 767px) {
-	.addEditNotificationContainer h1, form {
+	.addEditNotificationContainer h1, .addEditNotificationContainer form {
 		width: 90%;
 		margin: 10px;
 	}
