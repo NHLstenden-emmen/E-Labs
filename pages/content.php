@@ -22,11 +22,25 @@
 					case 'createnewlabjournal':
 						include 'student/labjournaal/createNewLabjournal.php';
 						break;
-					case 'userprofile':
-						include 'student/userProfile.php';
-						break;
 					case 'viewlabjournal':
 						include 'student/labjournaal/viewLabjournal.php';
+						break;
+
+					case 'preparations':
+						include 'student/preparations/preparations.php';
+						break;
+					case 'editpreparation':
+						include 'student/preparations/EditPreparation.php';
+						break;
+					case 'createnewpreparation':
+						include 'student/preparations/createNewPreparation.php';
+						break;
+					case 'viewlabpreparation':
+						include 'student/preparations/viewPreparation.php';
+						break;
+
+					case 'userprofile':
+						include 'student/userProfile.php';
 						break;
 					case 'searchresults':
 						include 'searchResults.php';
@@ -46,6 +60,15 @@
 					case '':
 						include 'docent/labjournaal/labjournal.php';
 						break;
+					case 'labjournalview':
+						include 'docent/labjournaal/labjournalView.php';
+						break;
+					case 'preparations':
+						include 'docent/preparations/preparations.php';
+						break;
+					case 'preparationsview':
+						include 'docent/preparations/preparationsView.php';
+						break;
 					case 'useroverview':
 						include 'docent/userOverview.php';
 						break;
@@ -60,9 +83,6 @@
 						break;
 					case 'addeditnotification':
 						include 'docent/addEditNotification.php';
-						break;
-					case 'labjournalview':
-						include 'docent/labjournaal/labjournalView.php';
 						break;
 					case'editaccount':
 						include 'docent/editAccount.php';
