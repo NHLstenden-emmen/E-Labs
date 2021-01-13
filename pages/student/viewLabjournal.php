@@ -3,11 +3,17 @@
 	while ($result = $getLabjournaal->fetch_array(MYSQLI_ASSOC)){ 
 		?>
 	<form method="post">
-		<div class="labjournaalcontainer3delen">
-			<div class="grotetextarealabjournaalmidden">
-				<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
-				<p class="groteretextarealabjournaal" name="title"><?php echo $result['title'];?></p>
+		<div class="labjournaalcontainer4delen">
+			<div class="smalltextarealabjournaallinks">
+				<label for="title" class="titlejaarmargintopviewlabjournaal"><?php echo $lang["TITLE"];?>:</label> </br>
+				<p name="title"><?php echo $result['title'];?></p>
 			</div>
+			<div class="smalltextarealabjournaalrechts">
+				<label for="year" class="titlejaarmargintopviewlabjournaal"><?php echo $lang["YEAR"];?>:</label> </br>
+				<p><?php echo $result["year"];?></p>
+			</div>
+		</div>
+		<div class="labjournaalcontainer3delen">
 			<div class="grotetextarealabjournaallinks">
 				<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
 				<p name="Goal"><?php echo $result['Goal'];?></p>
@@ -31,10 +37,6 @@
 			<div class="grotetextarealabjournaalrechts">
 				<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label> </br>
 				<p name="method_materials" value="<?php echo $result['method_materials'];?>"><?php echo $result['method_materials'];?></p>
-			</div>
-			<div class="grotetextarealabjournaalmidden">
-				<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
-				<p><?php echo $result["year"];?></p>
 			</div>
 		</div>
 	</form>

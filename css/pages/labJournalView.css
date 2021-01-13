@@ -77,6 +77,10 @@
 	margin-left: 5%;
 }
 
+.titlejaarmargintopviewlabjournaal {
+	margin-top: 5%;
+}
+
 .labjournaalboxcijfer {
 	border: 2px solid var(--primaryColor);
 	border-radius: 10px;
