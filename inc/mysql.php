@@ -914,6 +914,16 @@
 			}
 			return NULL;
 		}
+
+		public function DeleteExtraUserInPreparation($userid, $preparation_id){
+			if($stmt = $this->conn->prepare('DELETE FROM `preperation_users` WHERE `user_id` = ? AND `preparation_id` = ?')){
+				$stmt->bind_param('ii', $userid, $preparation_id);
+				$stmt->execute();
+				$stmt->close();
+				return "Verwijderen gelukt";
+			}
+			return NULL;
+		}
     
 		public function deleteNotification($notificationId){
 			
