@@ -60,13 +60,16 @@
 	}
 ?>
 <div class="gebruikersProfile">
-	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle">
+	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle"></br>
 	<form method='post' enctype='multipart/form-data' class="changeprofilepicture"> 
-		<input name='profpic' type='file'>
-		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' >
-		<input value='<?=$lang['DELETE'];?>' name='deletepf' type='submit'>
+		<div>
+			<input name='profpic' type='file'>
+		</div>
+		</br>
+		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' id="ButtonProfielBlauw">
+		<input value='<?=$lang['DELETE'];?>' name='deletepf' type='submit' id="ButtonProfielBlauw">
 	</form>
-	<div class="Gebruikersprofielcontainer">
+	<div class="Gebruikersprofielvakkenstudent">
 		<div id="Gebruikersprofielstudentinformatierechts"> 
 			<p> <?php echo $lang['STUDENT_NUMBER']?>: </p>
 			<p id="profielinformatiekleurgrijs"> <?php echo $_SESSION['user_number']?></p>
@@ -80,20 +83,24 @@
 			<p id="profielinformatiekleurgrijs">  <?php echo $_COOKIE['lang']?> </p>
 		</div>
 	</div>
-	<form method="POST" class='changePassword'>
+	<div class="Gebruikersprofielvakken2">
+	<form method="POST" class='Gebruikersprofielvakkenspan'>
 		<div>
-			<label for="currentPassword"><?php echo $lang['CURRENT']." ".$lang['PASSWORD'];?>:</label> </br>
-			<input placeholder='******' name='currentPassword' type='password'>
+			<label for="huidigewachtwoord"><?php echo $lang['CURRENT']." ".$lang['PASSWORD'];?>:</label> </br>
+			<input placeholder='******' name='huidigewachtwoord' type='password' id="TextInputProfiel">
 		</div></br>
 		<div>
-			<label for="newPassword"><?php echo $lang['NEW']." ".$lang['PASSWORD'];?>:</label> </br>
-			<input placeholder='******' name='newPassword' type='password'>
-		</div>
+			<label for="newWachtwoord"><?php echo $lang['NEW']." ".$lang['PASSWORD'];?>:</label> </br>
+			<input placeholder='******' name='newWachtwoord' type='password' id="TextInputProfiel">
+		</div></br>
 		<div>
-			<label for="newPasswordRepeat"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='newPasswordRepeat' type='password'>
+			<label for="newWachtwoordHerhalen"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
+			<input placeholder='******' name='newWachtwoordHerhalen' type='password' id="TextInputProfiel">
 		</div></br>
 		<p><?php echo $errorPass?></p>
-		<input value='Update' name='wachtwoordwijzigen' type='submit'>
+		</div>
+		<div class=profileEditButtons>
+			<input value='Update' name='wachtwoordwijzigen' type='submit' id="ButtonProfielBlauw">
+		</div>
 	</form>
 </div>

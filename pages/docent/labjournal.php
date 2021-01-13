@@ -77,6 +77,8 @@ if(isset($_GET['sorting'])) {
         ?>
     </a>
  </h4>
+ <div id="labjournaalContainer">
+ <div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
     <table>
         <tr>
             <th><a href="?year=<?php echo $year ?>&sorting=name&namesort=<?php echo $ascdesc?>&datesort=<?php echo $ascdescDate?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons">
@@ -88,7 +90,7 @@ if(isset($_GET['sorting'])) {
                     <i class="fas fa-sort"></i>
                 </a>
             </th>
-        </tr>
+
         <?php
 
         //  If sql query found row(with information) -> do this
@@ -120,5 +122,8 @@ if(isset($_GET['sorting'])) {
             echo "</tr>";
         }
         ?>
+		</tr>
     </table>
+	</div>
+	</div>
 </div>

@@ -83,19 +83,57 @@ if (empty($message) && isset($_GET['id'])) {
 		}
 		if ($result["submitted"] == 0) {
 		?>
-	<form method="post" enctype='multipart/form-data' class="newlabjournaalcontainer">
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-				<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
-				<input type="text" name="title" class="nieuwetitellabjournaal" value="<?php echo $result['title'];?>">
+	<form method="post" enctype='multipart/form-data'>
+		<div class="newlabjournaalcontainer3delen">
+			<div class="grotetextarealabjournaalmidden">
+				<label for="title" class="titlemarge"><?php echo $lang["TITLE"];?>:</label> </br>
+				<input type="text" name="title" class="inputtitle" value="<?php echo $result['title'];?>">
 				<!-- </form> -->
 			</div>
-			<div class="col-md-4 mb-3 offset-1">
+			<div class="grotetextarealabjournaallinks">
+				<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
+				<textarea class="labjournaaltext" name="Goal" value="<?php echo $result['Goal'];?>"><?php echo $result['Goal'];?></textarea>
+			</div>
+			<div class="grotetextarealabjournaalmidden">
+				<label for="Hypothesis"><?php echo $lang["HYPOTHESIS"];?>:</label> </br>
+				<textarea class="labjournaaltext" name="Hypothesis" value="<?php echo $result['Hypothesis'];?>"><?php echo $result['Hypothesis'];?></textarea>
+			</div>
+			<div class="grotetextarealabjournaalrechts">
+				<label for="theory"><?php echo $lang["THEORY"];?>:</label> </br>
+				<textarea class="labjournaaltext" name="theory" value="<?php echo $result['theory'];?>"><?php echo $result['theory'];?></textarea>
+			</div>
+			<div class="grotetextarealabjournaallinks">
+				<label for="safety"><?php echo $lang["SAFETY"];?>:</label> </br>
+				<textarea class="labjournaaltext" name="safety" value="<?php echo $result['safety'];?>"><?php echo $result['safety'];?></textarea>
+			</div>
+			<div class="grotetextarealabjournaalmidden">
+				<label for="log"><?php echo $lang["LOG"];?>:</label> </br>
+				<textarea class="labjournaaltext" name="log" value="<?php echo $result['log'];?>"><?php echo $result['log'];?></textarea>
+			</div>
+			<div class="grotetextarealabjournaalrechts">
+				<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label> </br>
+				<textarea class="labjournaaltext" name="method_materials" value="<?php echo $result['method_materials'];?>"><?php echo $result['method_materials'];?></textarea>
+			</div>
+			<div class="grotetextarealabjournaallinks">
+				<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
+				<label for="1"><?php echo $lang["YEAR"]." 1";?></label>
+					<input type="radio" name="year" value="1" <?php if($year == 1){echo 'checked';}?>>
+				<label for="1"><?php echo $lang["YEAR"]." 2";?></label>
+					<input type="radio" name="year" value="2"<?php if($year == 2){echo 'checked';}?>>
+				<label for="1"><?php echo $lang["YEAR"]." 3";?></label>
+					<input type="radio" name="year" value="3"<?php if($year == 3){echo 'checked';}?>>
+			</div>
+			<div class="grotetextarealabjournaalmidden">
+			<a class="help"><i class="fas fa-question-circle" title="<?=$lang['ONLY'].' JPG, JPEG, PNG, GIF & csv '.$lang['ALLOWED']?>"></i></a>
+				<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
+				<input name='fileupload' type='file'>				
+			</div>
+			<div class="grotetextarealabjournaalrechts">
 				<div class="selectstudent">
 					<div>
 						<?php echo $lang["OTHERSTUDENTS"];?>:</br>
-						<input type="search" name="searchstudent">
-						<input type="submit" name="search" Value="Search"><br>
+						<input type="search" name="searchstudent" class="searchstudentbox">
+						<input type="submit" name="search" class="searchstudentbutton" Value="Search"><br>
 						<table id="selectphp">
 							<?php
 							if(!isset($_SESSION['addusers'])){
@@ -112,7 +150,7 @@ if (empty($message) && isset($_GET['id'])) {
 								$searchfor = "%".$_POST['searchstudent']."%";
 								$resultsearch = $db->selectStudentslab($searchfor);
 								if(isset($resultsearch) && $resultsearch != NULL){
-									echo "<tr><th>".$lang['NAME']."</th><th>".$lang['STUDENT_NUMBER']."</th></tr>";
+									echo "<tr><th>".$lang['NAME']."</th><th>".$lang['STUDENT_NUMBER']."</th><th>Toevoegen</th></tr>";
 									foreach ($resultsearch as $user){
 										$_SESSION['user_id_lab'] = $user['user_id'];
 										echo "<tr><td>".$user['name']."</td><td>".$user['user_number']."</td><td>";
@@ -137,8 +175,7 @@ if (empty($message) && isset($_GET['id'])) {
 							?>
 						</table>
 					</div>
-					<div>
-						<pre><table>
+					<div class="selectedusers">
 							<?php
 							$labusers = $db->GetAllLabUsers($_GET['id']);
 							foreach($labusers as $lab){
@@ -156,7 +193,7 @@ if (empty($message) && isset($_GET['id'])) {
 								}
 							}
 							?>
-						</table></pre>
+						
 						<?php
 						if(isset($_POST['deleteuser'])){
 							$deleteuser = $_POST['deleteuser'];
@@ -166,92 +203,52 @@ if (empty($message) && isset($_GET['id'])) {
 						}
 						?>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-				<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="Goal" value="<?php echo $result['Goal'];?>"><?php echo $result['Goal'];?></textarea>
-			</div>
-			<div class="col-md-4 mb-3 offset-1">
-				<label for="Hypothesis"><?php echo $lang["HYPOTHESIS"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="Hypothesis" value="<?php echo $result['Hypothesis'];?>"><?php echo $result['Hypothesis'];?></textarea>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-				<label for="theory"><?php echo $lang["THEORY"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="theory" value="<?php echo $result['theory'];?>"><?php echo $result['theory'];?></textarea>
-			</div>
-			<div class="col-md-4 mb-3 offset-1">
-				<label for="safety"><?php echo $lang["SAFETY"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="safety" value="<?php echo $result['safety'];?>"><?php echo $result['safety'];?></textarea>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-				<label for="log"><?php echo $lang["LOG"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="log" value="<?php echo $result['log'];?>"><?php echo $result['log'];?></textarea>
-			</div>
-			<div class="col-md-4 mb-3 offset-1">
-				<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="method_materials" value="<?php echo $result['method_materials'];?>"><?php echo $result['method_materials'];?></textarea>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-			
-				<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
-				<label for="1"><?php echo $lang["YEAR"]." 1";?></label>
-					<input type="radio" name="year" value="1" <?php if($year == 1){echo 'checked';}?>>
-				<label for="1"><?php echo $lang["YEAR"]." 2";?></label>
-					<input type="radio" name="year" value="2"<?php if($year == 2){echo 'checked';}?>>
-				<label for="1"><?php echo $lang["YEAR"]." 3";?></label>
-					<input type="radio" name="year" value="3"<?php if($year == 3){echo 'checked';}?>>
-			</div>
-			<div class="col-md-4 mb-3 offset-1">
-			<a class="help"><i class="fas fa-question-circle" title="<?=$lang['ONLY'].' JPG, JPEG, PNG, GIF & csv '.$lang['ALLOWED']?>"></i></a>
-				<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
-				<input name='fileupload' type='file'>				
-			</div>	
-		</div>
-		<?php 
-			// check if its a img of excel file
-			$fileSortCheck = strtolower($result["Attachment"]);
-			$file = $result["Attachment"];
-			// check if source is a image
-			if (preg_match('/(\.jpg|\.png|\.jpeg|\.gif)$/', $fileSortCheck)) {
-				echo '<img src="'.$file.'" alt="" srcset="">';
-				// check if source is a csv format from excel.
-			} else if (preg_match('/(\.csv)$/', $fileSortCheck)){
-					echo "<br>";
-					echo "<table>\n\n";
-						$f = fopen($file, "r");
-						while (($line = fgetcsv($f)) !== false) {
-							echo "<tr>";
-							foreach ($line as $cell) {
-								echo "<td style='border: 1px solid black;'>" . htmlspecialchars($cell) . "</td>";
+		<div class="newlabjournaalcontainer4delen">	
+			<div class="bestandlabjournaaltoegevoegd">
+			<?php 
+				// check if its a img of excel file
+				$fileSortCheck = strtolower($result["Attachment"]);
+				$file = $result["Attachment"];
+				// check if source is a image
+				if (preg_match('/(\.jpg|\.png|\.jpeg|\.gif)$/', $fileSortCheck)) {
+					echo '<img src="'.$file.'" alt="" class="bestandlabjournaaltoegevoegdwidth" srcset="">';
+					// check if source is a csv format from excel.
+				} else if (preg_match('/(\.csv)$/', $fileSortCheck)){
+						echo "<br>";
+						echo "<table>\n\n";
+							$f = fopen($file, "r");
+							while (($line = fgetcsv($f)) !== false) {
+								echo "<tr>";
+								foreach ($line as $cell) {
+									echo "<td style='border: 1px solid black;'>" . htmlspecialchars($cell) . "</td>";
+								}
+								echo "</tr>\n";
 							}
-							echo "</tr>\n";
-						}
-						fclose($f);
-					echo "\n</table>";
-			} else if (empty($result["Attachment"])){
-				# just a check if there is a scoure set.
-			} else {
-				echo $lang['FILENOTFOUND'];
-			}
-		?>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-				<input type="submit" name="Opslaan" value="<?php echo $lang["SAVE"];?>">
-				<input type="submit" name="Inleveren" value="<?php echo $lang["HAND_IN"];?>">
-			</div>
-			<div class="col-md-4 mb-3 offset-1">
-				<input type="reset" name="reset" value="<?php echo $lang["RESET"];?>"> </br>
+							fclose($f);
+						echo "\n</table>";
+				} else if (empty($result["Attachment"])){
+					# just a check if there is a scoure set.
+				} else {
+					echo $lang['FILENOTFOUND'];
+				}
+			?>
 			</div>
 		</div>
+		<div class="newlabjournaalcontainer3delen">
+			<div class="grotetextarealabjournaalmidden">
+				<input type="submit" name="Opslaan" class="oirbuttonlabjournaal" value="<?php echo $lang["SAVE"];?>">
+			</div>
+			<div class="grotetextarealabjournaalmidden">
+				<input type="submit" name="Inleveren" class="oirbuttonlabjournaal" value="<?php echo $lang["HAND_IN"];?>">
+			</div>
+			<div class="grotetextarealabjournaalmidden">
+				<input type="reset" name="reset" class="oirbuttonlabjournaal" value="<?php echo $lang["RESET"];?>"> </br>
+			</div>
+		</div>
+	</div>
 	</form>
 	<?php  }}
 	} else {

@@ -99,18 +99,55 @@ if (!empty($_POST['title']) && isset($_POST['title']) && (isset($_post['inlevere
 }
 if (empty($message)) {
 ?>
-<form method="post" class="newlabjournaalcontainer" enctype='multipart/form-data' >
-	<div class="form-row">
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
-			<input type="text" name="title" class="nieuwetitellabjournaal" value="<?=$_SESSION['title']?>">
-		</div>
-		<div class="col-md-4 mb-3 offset-1">
+<form method="post" enctype='multipart/form-data' >
+<div class="newlabjournaalcontainer3delen">
+	<div class="grotetextarealabjournaalmidden">
+		<label for="title" class="titlemarge"><?php echo $lang["TITLE"];?>:</label> </br>
+		<input type="text" name="title" class="inputtitle" value="<?=$_SESSION['title']?>">
+	</div>
+	<div class="grotetextarealabjournaallinks">
+		<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
+		<textarea class="labjournaaltext" name="Goal"><?=$_SESSION['Goal']?></textarea>
+	</div>
+	<div class="grotetextarealabjournaalmidden">
+		<label for="Hypothesis"><?php echo $lang["HYPOTHESIS"];?>:</label> </br>
+		<textarea class="labjournaaltext" name="Hypothesis"><?=$_SESSION['Hypothesis']?></textarea>
+	</div>
+	<div class="grotetextarealabjournaalrechts">				
+		<label for="theory"><?php echo $lang["THEORY"];?>:</label> </br>
+		<textarea name="theory"><?=$_SESSION['theory']?></textarea>
+	</div>
+	<div class="grotetextarealabjournaallinks">				
+		<label for="safety"><?php echo $lang["SAFETY"];?>:</label> </br>
+		<textarea name="safety"><?=$_SESSION['safety']?></textarea>
+	</div>
+	<div class="grotetextarealabjournaalmidden">
+		<label for="logboek"><?php echo $lang["LOG"];?>:</label> </br>
+		<textarea name="logboek"><?=$_SESSION['logboek']?></textarea>
+	</div>
+	<div class="grotetextarealabjournaalrechts">
+		<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label></br>
+		<textarea name="method_materials"><?=$_SESSION['method_materials']?></textarea>
+	</div>
+	<div class="grotetextarealabjournaallinks">
+		<label for="year">Year:</label> </br>
+		<label for="1"><?php echo $lang["YEAR"]." 1";?></label>
+			<input type="radio" name="year" value="1" checked>
+		<label for="1"><?php echo $lang["YEAR"]." 2";?></label>
+			<input type="radio" name="year" value="2">
+		<label for="1"><?php echo $lang["YEAR"]." 3";?></label>
+			<input type="radio" name="year" value="3">
+	</div>
+	<div class="grotetextarealabjournaalmidden">
+		<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
+		<input name='fileupload' type='file'>
+	</div>	
+	<div class="grotetextarealabjournaalrechts">
 			<div class="selectstudent">
 				<div>
 					<?php echo $lang["OTHERSTUDENTS"];?>:</br>
-					<input type="search" name="searchstudent">
-					<input type="submit" name="search" Value=<?=$lang['SEARCH'];?>><br>
+					<input type="search" name="searchstudent" class="searchstudentbox">
+					<input type="submit" name="search" class="searchstudentbutton" Value=<?=$lang['SEARCH'];?>><br>
 					<?php
 					if(!isset($_SESSION['addusers'])){
 						$_SESSION['addusers'] = array();
@@ -129,7 +166,7 @@ if (empty($message)) {
 						$searchfor = "%".$_POST['searchstudent']."%";
 						$result = $db->selectStudentslab($searchfor);
 						if(isset($result) && $result != NULL){
-							echo "<tr><th>Name</th><th>Studentnumber</th></tr>";
+							echo "<tr><th>Name</th><th>Studentnumber</th><th>Toevoegen</th></tr>";
 							foreach ($result as $user){
 								$_SESSION['user_id_lab'] = $user['user_id'];
 								echo "<tr><td>".$user['name']."</td><td>".$user['user_number']."</td><td>";
@@ -175,63 +212,20 @@ if (empty($message)) {
 					}
 					?>
 				</div>
-			</div>
+			</div> 
 		</div>
+	<div class="grotetextarealabjournaalmidden">
+		<input type="submit" name="opslaan" class="oirbuttonlabjournaal" value="<?php echo $lang["SAVE"];?>">
 	</div>
-	<div class="form-row">
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
-				<textarea class="groteretextarealabjournaal" name="Goal"><?=$_SESSION['Goal']?></textarea>
-		</div>
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="Hypothesis"><?php echo $lang["HYPOTHESIS"];?>:</label> </br>
-				<textarea class="groteretextarealabjournaal" name="Hypothesis"><?=$_SESSION['Hypothesis']?></textarea>
-		</div>
+	<div class="grotetextarealabjournaalmidden">
+		<input type="submit" name="inleveren" class="oirbuttonlabjournaal" value="<?php echo $lang["HAND_IN"];?>">
 	</div>
-	<div class="form-row">
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="theory"><?php echo $lang["THEORY"];?>:</label> </br>
-				<textarea class="groteretextarealabjournaal" name="theory"><?=$_SESSION['theory']?></textarea>
-		</div>
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="safety"><?php echo $lang["SAFETY"];?>:</label> </br>
-				<textarea class="groteretextarealabjournaal" name="safety"><?=$_SESSION['safety']?></textarea>
-		</div>
+	<div class="grotetextarealabjournaalmidden">
+		<input type="reset" name="reset" class="oirbuttonlabjournaal" value="<?php echo $lang["RESET"];?>"> </br>
 	</div>
-	<div class="form-row">
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="logboek"><?php echo $lang["LOG"];?>:</label> </br>
-				<textarea class="groteretextarealabjournaal" name="logboek"><?=$_SESSION['logboek']?></textarea>
-		</div>
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label></br>
-				<textarea class="groteretextarealabjournaal" name="method_materials"><?=$_SESSION['method_materials']?></textarea>
-		</div>
 	</div>
-	<div class="form-row">
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="year">Year:</label> </br>
-			<label for="1"><?php echo $lang["YEAR"]." 1";?></label>
-				<input type="radio" name="year" value="1" checked>
-			<label for="1"><?php echo $lang["YEAR"]." 2";?></label>
-				<input type="radio" name="year" value="2">
-			<label for="1"><?php echo $lang["YEAR"]." 3";?></label>
-				<input type="radio" name="year" value="3">
-		</div>
-		<div class="col-md-4 mb-3 offset-1">
-			<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
-			<input name='fileupload' type='file'>
-		</div>	
-	</div>
-	<div class="form-row">
-		<div class="col-md-4 mb-3 offset-1">
-			<input type="submit" name="opslaan" value="<?php echo $lang["SAVE"];?>">
-			<input type="submit" name="inleveren" value="<?php echo $lang["HAND_IN"];?>">
-		</div>
-		<div class="col-md-4 mb-3 offset-1">
-			<input type="reset" name="reset" value="<?php echo $lang["RESET"];?>"> </br>
-		</div>
-	</div>
+</div>
 </form>
+
 
 <?php } ?>

@@ -1,8 +1,36 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	display: grid;
+	grid-template-rows: 76px auto 60px ;
+}
+
 .page-footer {
 	background-color: var(--primaryColor);
 	color: var(--white);
-	margin-top: 50px;
+	width: 100%;
+	grid-row: 3;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 .footer-copyright a {
 	color: var(--white);
+}
+
+#contentContainer {
+	padding-bottom: 20px;
+}
+
+/*Aangepaste css mobiele versie*/
+@media (max-width: 767px) {
+	.page-footer {
+		height: 100%;
+		padding-bottom: 0;
+		padding-top: 0;
+	}
 }
