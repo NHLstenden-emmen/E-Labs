@@ -85,9 +85,9 @@ if (!empty($_POST['title']) && !empty($_POST['theory']) && !empty($_POST['safety
 	}
 	echo $message;
 	if ($message == "Preparation toegevoegd") {
-		echo $lang['LUCASHELPENGLISHEN'].". <a href='preparation'>".$lang['GOBACKOVERVIEW']."</a>";
+		echo $lang['LUCASHELPENGLISHEN'].". <a href='preparations'>".$lang['GOBACKOVERVIEW']."</a>";
 	} else {
-		echo '<a href="preparation">'.$lang['PROBLEMOCCURRED'].'</a>';
+		echo '<a href="preparations">'.$lang['PROBLEMOCCURRED'].'</a>';
 	}
 	unset($_SESSION['title']);
 	unset($_SESSION['theory']);
