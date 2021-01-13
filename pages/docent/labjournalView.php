@@ -28,7 +28,7 @@ $labjournal = $db->teacherLabjournalView($labjournalid);
 	while ($result = $labjournal->fetch_array(MYSQLI_ASSOC)){
 		echo "<h1 class='labjournaaltitle'>" . $result['title'] . "</h1>";
 		?>
-		<div class="labjournaalcontainer4delen">
+		<div class="labjournaalcontainer4delen"> 
 		<?php
 		echo "<div class='smalltextarealabjournaallinks'><h4>".$lang['NAME'].": </h4><p>" . $result['name'] . "</p></div>";
 		echo "<div class='smalltextarealabjournaalrechts'><h4>".$lang['DATE'].": </h4><p>" . $result['date'] . "</p></div>";

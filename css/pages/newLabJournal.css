@@ -123,3 +123,28 @@ li {
 .newlabjournaalcontainer input[type="reset"] {
 	margin-top: 30px;
 }
+
+@media screen and (max-width: 900px) {
+
+	.newlabjournaalcontainer3delen {
+		text-align: center;
+		display: grid;
+		grid-template-columns: 5% 90% 5%;
+	}
+	
+	.newlabjournaalcontainer3delen .grotetextarealabjournaalrechts {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-bottom: 5%;
+		margin-left: 5%;
+	}
+
+	.newlabjournaalcontainer3delen .grotetextarealabjournaallinks {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-left: 5%;
+		margin-bottom: 5%;
+	}		
+}
