@@ -335,9 +335,7 @@
 					$stmt->close();
 					return $result;
 				}
-				else{
-					return mysqli_error($this->conn);
-				}
+			return NULL;
 		}
 		
 		public function addLabJournalWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis){
@@ -928,9 +926,7 @@
 				$message = "User Succesfully Deleted";
 				return $message;
 			}
-			else{
-				return mysqli_error($this->conn);
-			}
+			return NULL;
 		}
     
 		public function GetAllLabUsers($labid){
@@ -1045,14 +1041,8 @@
 			$sorting = htmlspecialchars($sorting);
 			$ascdesc = htmlspecialchars($ascdesc);
 
-            if ($ascdesc == "DESC"){
-            	$sql = "SELECT * FROM `users`
-					ORDER BY $sorting DESC";
-            } else {
-            	$sql = "SELECT * FROM `users`
-					ORDER BY $sorting ASC";
-            }
-            if($stmt = $this->conn->prepare($sql)) {
+            if($stmt = $this->conn->prepare("SELECT * FROM `users`
+			ORDER BY $sorting $ascdesc")) {
 				//$stmt->bind_param("s", $sorting);
 				$stmt->execute();
 				$result = $stmt->get_result();
