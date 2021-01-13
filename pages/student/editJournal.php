@@ -30,7 +30,14 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 		}
 	}
 	if(!empty($_FILES['fileupload']['name'])){
-		
+		$getLabjournal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
+		while ($result = $getLabjournal->fetch_array(MYSQLI_ASSOC)){ 
+			if(!empty($result['Attachment'])){
+				if(file_exists($result['Attachment'])){
+					unlink($result['Attachment']);
+				}
+			}
+		}
 		$target_file = basename($_FILES["fileupload"]["name"]);
 		$uploadOk = 1;
 		$fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -70,6 +77,10 @@ if (empty($message) && isset($_GET['id'])) {
 	$getLabjournal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
 	while ($result = $getLabjournal->fetch_array(MYSQLI_ASSOC)){ 
 		$_SESSION['creator_id'] = $result['creator_id'];
+		if(!empty($_FILES['fileupload']['name'])){
+			var_dump($result['Attachment']);
+			unlink($result['Attachment']);
+		}
 		if ($result["submitted"] == 0) {
 		?>
 	<form method="post" enctype='multipart/form-data' class="newlabjournaalcontainer">
