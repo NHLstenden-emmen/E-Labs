@@ -305,6 +305,20 @@
 					return mysqli_error($this->conn);
 				}
 		}
+
+		public function selectcontentpreparation($prepid){
+			if($stmt = $this->conn->prepare("SELECT * FROM `preparation` WHERE preparation_id = ?")){
+					$stmt->bind_param("i", $prepid);
+					$stmt->execute();
+					$result = $stmt->get_result();
+					$stmt->free_result();
+					$stmt->close();
+					return $result;
+				}
+				else{
+					return mysqli_error($this->conn);
+				}
+		}
 		
 		public function addLabJournalWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis){
 			
@@ -893,9 +907,9 @@
 			return NULL;
 		}
 
-		public function GetAllPreparationUsers($labid){
+		public function GetAllPreparationUsers($prepid){
 		if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `preparation_id` FROM `preperation_users` JOIN `users` ON preperation_users.user_id = users.user_id WHERE preparation_id = ?')){
-			$stmt->bind_param('i', $labid);
+			$stmt->bind_param('i', $prepid);
 			$stmt->execute();
 			$result = $stmt->get_result();
 			$stmt->free_result();

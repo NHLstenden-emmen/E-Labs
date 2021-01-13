@@ -9,7 +9,7 @@
     if (strpos($pagePath, '?') !== false) {   
         $pagePath = substr($pagePath, 0, strpos($pagePath, "?")); 
     }
-    if($pagePath == "createNewLabjournal" || $pagePath == "EditJournal"){
+    if($pagePath == "createNewLabjournal" || $pagePath == "EditJournal" || $pagePath == "editpreparation" || $pagePath == "createnewpreparation"){
         }
         elseif (isset($_SESSION['addusers'])){
             unset($_SESSION['addusers']);

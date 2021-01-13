@@ -66,7 +66,7 @@
 						} else{
 							echo "&nbsp;<a href='viewpreparation?id=".$allResults['preparation_id']."'><i class='fas fa-eye'></i></a>";
 						}
-						echo "&nbsp;<a href='pdf?labjournal_id=".$allResults['preparation_id']."' target='_blank'><i class='fas fa-print'></i></a>
+						echo "&nbsp;<a href='pdf?preperation_id=".$allResults['preparation_id']."' target='_blank'><i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";
 					}	
