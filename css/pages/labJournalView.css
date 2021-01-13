@@ -1,3 +1,4 @@
+
 .labjournaalcontainer3delen {
 	text-align: center;
 	display: grid;
@@ -117,4 +118,35 @@ input {
 	justify-content: center;
 	display: flex;
 }
+
+@media screen and (max-width: 900px) {
+
+	.labjournaalcontainer3delen {
+		text-align: center;
+		display: grid;
+		grid-template-columns: 5% 90% 5%;
+
+	}
+	
+	.labjournaalcontainer3delen .grotetextarealabjournaalrechts {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -2;
+	margin-bottom: 5%;
+	margin-left: 5%;
+}
+
+.labjournaalcontainer3delen .grotetextarealabjournaallinks {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -2;
+	margin-left: 5%;
+	margin-bottom: 5%;
+}
+
+
+
+	
+}
+
 
