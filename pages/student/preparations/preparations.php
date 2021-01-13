@@ -20,20 +20,20 @@
 			}
 		}
 		// Gets every labjournal of the choosen year 
-		$allLabjournals = $db->selectAllLabjournals($year, $userId, $sorting, $ascdesc);
+		$allPreperations = $db->selectAllPreperations($year, $userId, $sorting, $ascdesc);
 	} else {
 		// Set default value
 		$sorting = "date";
 		$ascdesc = "DESC";
-
+ 
 		// Gets every labjournal of the choosen year
-		$allLabjournals = $db->selectAllLabjournals($year, $userId, $sorting, $ascdesc);
+		$allPreperations = $db->selectAllPreperations($year, $userId, $sorting, $ascdesc);
 	}
 ?>
 
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
-		<a href="createNewLabjournal">+ <?php echo $lang["NEW_LAB_JOURNAL"];?></a>
+		<a href="createnewpreparation">+ <?php echo $lang["LUCASHELPENGLISHEN"];?></a>
 	</p>
 	<div id="mainContainer" class="row">
 		<div id="yearNav" class="col-xs-12 col-sm-3 col-lg-2">
@@ -51,7 +51,7 @@
 					<th><?php echo $lang["ACTION"];?></th>
 				</tr>
 				<?php
-					while($allResults = $allLabjournals->fetch_array(MYSQLI_ASSOC)){
+					while($allResults = $allPreperations->fetch_array(MYSQLI_ASSOC)){
 						echo "<tr>";
 						echo "<td>$allResults[title]</td>";
 						echo "<td>$allResults[date]</td>";
@@ -62,11 +62,11 @@
 						}
 						echo "<td class='actionButtons'>";
 						if ($allResults['submitted'] == 0) {
-							echo "&nbsp;<a href='EditJournal?id=".$allResults['labjournal_id']."'><i class='far fa-edit'></i></a>";
+							echo "&nbsp;<a href='editpreparation?id=".$allResults['preparation_id']."'><i class='far fa-edit'></i></a>";
 						} else{
-							echo "&nbsp;<a href='viewLabjournal?id=".$allResults['labjournal_id']."'><i class='fas fa-eye'></i></a>";
+							echo "&nbsp;<a href='viewpreparation?id=".$allResults['preparation_id']."'><i class='fas fa-eye'></i></a>";
 						}
-						echo "&nbsp;<a href='pdf?labjournal_id=".$allResults['labjournal_id']."' target='_blank'><i class='fas fa-print'></i></a>
+						echo "&nbsp;<a href='pdf?labjournal_id=".$allResults['preparation_id']."' target='_blank'><i class='fas fa-print'></i></a>
 							</td>";
 						echo "</tr>";
 					}	

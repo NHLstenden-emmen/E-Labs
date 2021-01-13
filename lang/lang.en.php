@@ -113,5 +113,6 @@ return [
 	'YEAR_OVERVIEW' => 'Overview year ',
 	'YES' => 'Yes',
 	'SEARCHEDFOR' => 'Searched for',
+	'LUCASHELPENGLISHEN' => 'lucas help i cry',
 ]
 ?>

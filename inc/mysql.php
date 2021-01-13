@@ -193,19 +193,18 @@
 			return NULL;
 		}
 
-		public function selectAllLabjournals($year, $userId, $sorting, $ascdesc) {
-            if ($ascdesc == "DESC"){
-            	$sql = "SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
-					WHERE year = $year
-					AND lab_journal_users.user_id = $userId
-					ORDER BY $sorting DESC";
-            } else {
-            	$sql = "SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
-					WHERE year = $year
-					AND lab_journal_users.user_id = $userId
-					ORDER BY $sorting ASC";
-            }
-            if($stmt = $this->conn->prepare($sql)) {
+		public function selectAllPreperations($year, $userId, $sorting, $ascdesc) {
+
+			$year = htmlspecialchars($year);
+			$userId = htmlspecialchars($userId);
+			$sorting = htmlspecialchars($sorting);
+			$ascdesc = htmlspecialchars($ascdesc);
+
+            if($stmt = $this->conn->prepare("SELECT * FROM `preparation` JOIN `preperation_users` ON preparation.preparation_id = preperation_users.preparation_id 
+			WHERE year = ?
+			AND preperation_users.user_id = ?
+			ORDER BY $sorting $ascdesc")) {
+				$stmt->bind_param("ii", $year,$userId);
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -215,6 +214,26 @@
 			return NULL;
 		}
 		
+		public function selectAllLabjournals($year, $userId, $sorting, $ascdesc) {
+
+			$year = htmlspecialchars($year);
+			$userId = htmlspecialchars($userId);
+			$sorting = htmlspecialchars($sorting);
+			$ascdesc = htmlspecialchars($ascdesc);
+
+            if($stmt = $this->conn->prepare("SELECT * FROM `lab_journal` JOIN `lab_journal_users` ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
+				WHERE year = ?
+				AND lab_journal_users.user_id = ?
+				ORDER BY $sorting $ascdesc")) {
+				$stmt->bind_param("ii", $year,$userId);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
     
 		public function getAllGradeResults($year,$archive, $sorting, $ascdesc) {
 			if($ascdesc == "DESC") {
@@ -414,7 +433,7 @@
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
 				"SELECT * FROM `preparation`
-				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
+				JOIN preperation_users ON preparation_id = preperation_users.preparation_id
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE preperation_users.user_id = ?
 				AND (title LIKE ?
@@ -440,7 +459,7 @@
 			$searchWord = htmlspecialchars($searchWord);
 			if($stmt = $this->conn->prepare(
 				"SELECT * FROM `preparation`
-				JOIN preperation_users ON preparation_id = preperation_users.preperation_id
+				JOIN preperation_users ON preparation_id = preperation_users.preparation_id
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE (title LIKE ?
 				OR materials LIKE ?

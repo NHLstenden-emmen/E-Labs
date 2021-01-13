@@ -35,7 +35,7 @@
 					case 'createnewpreparation':
 						include 'student/preparations/createNewPreparation.php';
 						break;
-					case 'viewlabpreparation':
+					case 'viewpreparation':
 						include 'student/preparations/viewPreparation.php';
 						break;
 
