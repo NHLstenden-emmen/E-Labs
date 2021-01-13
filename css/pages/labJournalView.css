@@ -125,7 +125,12 @@ input {
 		text-align: center;
 		display: grid;
 		grid-template-columns: 5% 90% 5%;
-
+	}
+	
+	.labjournaalcontainer4delen {
+	text-align: center;
+	display: grid;
+	grid-template-columns: 5% 90% 5%;
 	}
 	
 	.labjournaalcontainer3delen .grotetextarealabjournaalrechts {
@@ -143,6 +148,23 @@ input {
 		margin-left: 5%;
 		margin-bottom: 5%;
 	}	
+	
+	.labjournaalcontainer4delen .smalltextarealabjournaallinks {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -2;
+	margin-bottom: 5%;
+	margin-left: 5%;
+	}
+
+	.labjournaalcontainer4delen .smalltextarealabjournaalrechts {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-bottom: 5%;
+		margin-left: 5%;
+	}
+	
 }
 
 
