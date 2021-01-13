@@ -216,14 +216,20 @@
 		}
 		
     
-		public function getAllGradeResults($year,$archive,$ascdesc){
-			$sql = "SELECT DISTINCT users.user_id, users.name
-				FROM users
-				INNER JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-				INNER JOIN lab_journal ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
+		public function getAllGradeResults($year,$archive, $sorting, $ascdesc) {
+			if($ascdesc == "DESC") {
+				$sql = "SELECT * FROM `users` 
+				JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+				JOIN lab_journal ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
 				WHERE lab_journal.year = $year AND lab_journal.submitted = $archive
-				GROUP BY users.user_id
-				ORDER BY users.name $ascdesc";
+				ORDER BY $sorting DESC";
+			} else {
+				$sql = "SELECT * FROM `users` 
+				JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+				JOIN lab_journal ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
+				WHERE lab_journal.year = $year AND lab_journal.submitted = $archive
+				ORDER BY $sorting ASC";
+			}
 			if ($stmt = $this->conn->prepare($sql)) {
 				$stmt->execute();
 				$result = $stmt->get_result();
