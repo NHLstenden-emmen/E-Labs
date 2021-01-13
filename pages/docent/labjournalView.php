@@ -39,7 +39,7 @@ $labjournal = $db->teacherLabjournalView($labjournalid);
 		echo "<div class='grotetextarealabjournaallinks'><h4>".$lang['THEORY'].": </h4><p>" . $result['theory'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['SAFETY'].": </h4><p>" . $result['safety'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaalrechts'><h4>".$lang['LOG'].": </h4><p>" . $result['log'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['GRADE'].": </h4> 
+		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['GRADE'].": </h4>
 		<form method='POST'>
 			<input type='text' name='grade' class='labjournaalboxcijfer' value=" .$result['grade'] . ">
 			<input type='submit' name='changeGrade' class='labjournaalbuttoncijfer' value =".$lang['CHANGEGRADE'].">

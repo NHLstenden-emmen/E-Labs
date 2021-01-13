@@ -57,8 +57,10 @@
 					case 'searchresults':
 						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
 						break;
-					case 'editjournal':
 					case 'viewlabjournal':
+						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
+						break;
+					case 'editjournal':
 					case 'createnewlabjournal': //file path of nieuwlabjournal
 						echo '<link rel="stylesheet" href="css/pages/newLabJournal.css">';
 						break;

@@ -3,39 +3,38 @@
 	while ($result = $getLabjournaal->fetch_array(MYSQLI_ASSOC)){ 
 		?>
 	<form method="post">
-		<div class="newlabjournaalcontainer3delen">
+		<div class="labjournaalcontainer3delen">
 			<div class="grotetextarealabjournaalmidden">
 				<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
 				<p class="groteretextarealabjournaal" name="title"><?php echo $result['title'];?></p>
 			</div>
-			<div></div>
-			<div>
+			<div class="grotetextarealabjournaallinks">
 				<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
-				<p class="groteretextarealabjournaal" name="Goal"><?php echo $result['Goal'];?></p>
+				<p name="Goal"><?php echo $result['Goal'];?></p>
 			</div>
-			<div>
+			<div class="grotetextarealabjournaalmidden">
 				<label for="Hypothesis"><?php echo $lang["HYPOTHESIS"];?>:</label> </br>
-				<p class="groteretextarealabjournaal" name="Hypothesis" value="<?php echo $result['Hypothesis'];?>"><?php echo $result['Hypothesis'];?></p>
+				<p name="Hypothesis" value="<?php echo $result['Hypothesis'];?>"><?php echo $result['Hypothesis'];?></p>
 			</div>
-			<div>
+			<div class="grotetextarealabjournaalrechts">
 				<label for="theory"><?php echo $lang["THEORY"];?>:</label> </br>
-				<p class="groteretextarealabjournaal" name="theory" value="<?php echo $result['theory'];?>"><?php echo $result['theory'];?></p>
+				<p name="theory" value="<?php echo $result['theory'];?>"><?php echo $result['theory'];?></p>
 			</div>
-			<div>
+			<div class="grotetextarealabjournaallinks">
 				<label for="safety"><?php echo $lang["SAFETY"];?>:</label> </br>
-				<p class="groteretextarealabjournaal" name="safety" value="<?php echo $result['safety'];?>"><?php echo $result['safety'];?></p>
+				<p name="safety" value="<?php echo $result['safety'];?>"><?php echo $result['safety'];?></p>
 			</div>
-			<div>
+			<div class="grotetextarealabjournaalmidden">
 				<label for="logboek"><?php echo $lang["LOG"];?>:</label> </br>
-				<p class="groteretextarealabjournaal" name="logboek" value="<?php echo $result['log'];?>"><?php echo $result['log'];?></p>
+				<p name="logboek" value="<?php echo $result['log'];?>"><?php echo $result['log'];?></p>
 			</div>
-			<div>
+			<div class="grotetextarealabjournaalrechts">
 				<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label> </br>
-				<p class="groteretextarealabjournaal" name="method_materials" value="<?php echo $result['method_materials'];?>"><?php echo $result['method_materials'];?></p>
+				<p name="method_materials" value="<?php echo $result['method_materials'];?>"><?php echo $result['method_materials'];?></p>
 			</div>
-			<div>
+			<div class="grotetextarealabjournaalmidden">
 				<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
-				<p class='groteretextarealabjournaal'><?php echo $result["year"];?></p>
+				<p><?php echo $result["year"];?></p>
 			</div>
 		</div>
 	</form>
