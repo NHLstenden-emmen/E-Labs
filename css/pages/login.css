@@ -13,7 +13,7 @@
 .loginPagina .loginbox {
 	grid-column: span 1 / -2;
 	text-align: center;
-	background-color: #134074;
+	background-color: var(--primaryColor);
 	height: 650px;
 }
 

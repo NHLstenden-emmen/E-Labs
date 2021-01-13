@@ -19,7 +19,7 @@ $_SESSION['year'] = $_POST['year'];
 $_SESSION['Goal'] = $_POST['Goal'];
 $_SESSION['Hypothesis'] = $_POST['Hypothesis'];
 }
-if (!empty($_POST['title']) && isset($_POST['title']) && (isset($_post['inleveren']) || isset($_POST['opslaan']))) {
+if (!empty($_POST['title']) && !empty($_POST['theory']) && !empty($_POST['safety']) && !empty($_POST['logboek']) && !empty($_POST['method_materials']) && !empty($_POST['year']) && !empty($_POST['Goal']) && !empty($_POST['Hypothesis']) && (isset($_post['inleveren']) || isset($_POST['opslaan']))){
 	$title = $_POST['title'];
 	$date =  date('Y-m-d H:i:s');
 	$theory = $_POST['theory'];
@@ -97,7 +97,10 @@ if (!empty($_POST['title']) && isset($_POST['title']) && (isset($_post['inlevere
 	unset($_SESSION['Goal']); 
 	unset($_SESSION['Hypothesis']); 
 }
-if (empty($message)) {
+else if(isset($_POST['inleveren']) || isset($_POST['opslaan'])){
+	echo $lang['FILLINFIELDS'];
+}
+if (empty($message)){
 ?>
 <form method="post" enctype='multipart/form-data' >
 <div class="newlabjournaalcontainer3delen">
