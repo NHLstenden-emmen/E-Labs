@@ -12,12 +12,14 @@ if(isset($_GET['id'])){
     $name = $result['name'];
     }
 ?>
-<div>
+<div class="deleteUserContainer">
     <h2><?=$lang['DELETEACCOUNT'];?></h2>
     <h3><?php echo $lang['AREYOUSUREDELETE'], $name, $lang['THISUSER'];?></h3>
     <form method="POST" action="deleteaccount">
-        <button type="submit" name="submit" value="Yes"><?=$lang['YES'];?></button>
-        <a href="useroverview"><button name="cancel" Value="no"><?=$lang['NO'];?></button></a>
+        <div class="deleteUserButtonsContainer">
+            <button type="submit" class="deleteButton" name="submit" value="Yes"><?=$lang['YES'];?></button>
+            <a href="useroverview" class="deleteButton"><button name="cancel" Value="no"><?=$lang['NO'];?></button></a>
+        </div>
     </form>
 </div>
 <?php } ?>
