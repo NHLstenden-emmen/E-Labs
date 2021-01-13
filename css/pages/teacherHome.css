@@ -1,5 +1,6 @@
 .docentenHomePage {
 	margin: 20px;
+	text-align: -webkit-center;
 }
 .docentenHomePage table {
 	font-family: arial, sans-serif;
@@ -15,21 +16,20 @@
 }
 
 .docentenHomePage .onvoldoende {
-	background-color: red;
-}
-
-.docentenHomePage .voldoende {
-	background-color: gold;
+	background-color: #e60000;
 }
 
 .docentenHomePage .goed {
-	background-color: lime;
+	background-color: #00b300;
 }
 
 .docentenHomePage .nietbeoordeeld {
 	background-color: lightgray;
 }
 
+.gradeTextColor {
+	color: var(--dark);
+}
 
 #labjournaalContainer #newLabjournal {
 	text-align: center;
