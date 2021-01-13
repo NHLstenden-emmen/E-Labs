@@ -24,20 +24,9 @@ if(isset($_POST['deArchive'])){
 $labjournal = $db->teacherLabjournalView($labjournalid);
 ?>
 
-
 <?php
 	while ($result = $labjournal->fetch_array(MYSQLI_ASSOC)){
 		echo "<h1 class='labjournaaltitle'>" . $result['title'] . "</h1>";
-		if ($result['submitted'] == 2) {
-			echo "<form method='POST'>
-					<input type='submit' value='Dearchive' name='deArchive'>
-				</form>";
-		} else {
-			echo "<form method='POST'>
-					<input type='submit' value='Archive' name='archive'>
-				</form>";
-		}
-		
 		?>
 		<div class="labjournaalcontainer4delen">
 		<?php
@@ -52,12 +41,22 @@ $labjournal = $db->teacherLabjournalView($labjournalid);
 		echo "<div class='grotetextarealabjournaalrechts'><h4>".$lang['LOG'].": </h4><p>" . $result['log'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['GRADE'].": </h4> 
 		<form method='POST'>
-			<input type='text' name='grade' value=" .$result['grade'] . ">
-			<input type='submit' name='changeGrade' value =".$lang['CHANGEGRADE'].">
+			<input type='text' name='grade' class='labjournaalboxcijfer' value=" .$result['grade'] . ">
+			<input type='submit' name='changeGrade' class='labjournaalbuttoncijfer' value =".$lang['CHANGEGRADE'].">
 		</form>
 		</div>
-		</div>
-		<div class='fileSource'>";
+		<div class='grotetextarealabjournaalmidden'>";
+		if ($result['submitted'] == 2) {
+			echo "<form method='POST'>
+					<input type='submit' value='Dearchive' name='deArchive' class='labjournaalbuttonarchive'>
+				</form>";
+		} else {
+			echo "<form method='POST'>
+					<input type='submit' value='Archive' name='archive' class='labjournaalbuttonarchive'>
+				</form>";
+		}
+		echo "</div></div>";
+		echo "<div class='fileSource'>";
 			// check if its a img of excel file
 			$fileSortCheck = strtolower($result["Attachment"]);
 			$file = $result["Attachment"];
