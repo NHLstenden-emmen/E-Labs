@@ -12,3 +12,25 @@
 	--dark: #151515;
 	--white: #ffffff;
 }
+
+html, body {
+	height: 100%;
+}
+
+body {
+	display: grid;
+	grid-template-rows: min-content auto 60px;
+}
+
+#contentContainer {
+	padding-bottom: 20px;
+}
+
+/*Aangepaste css mobiele versie*/
+@media (max-width: 767px) {
+	.page-footer {
+		height: 100%;
+		padding-bottom: 0;
+		padding-top: 0;
+	}
+}

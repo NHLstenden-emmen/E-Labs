@@ -1,12 +1,3 @@
-html, body {
-	height: 100%;
-}
-
-body {
-	display: grid;
-	grid-template-rows: 76px auto 60px ;
-}
-
 .page-footer {
 	background-color: var(--primaryColor);
 	color: var(--white);
@@ -20,10 +11,6 @@ body {
 }
 .footer-copyright a {
 	color: var(--white);
-}
-
-#contentContainer {
-	padding-bottom: 20px;
 }
 
 /*Aangepaste css mobiele versie*/
