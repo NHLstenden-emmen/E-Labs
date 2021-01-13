@@ -197,7 +197,7 @@ if (empty($message) && isset($_GET['id'])) {
 						if(isset($_POST['deleteuser'])){
 							$deleteuser = $_POST['deleteuser'];
 							$_SESSION['addusers'] = array_diff($_SESSION['addusers'], array($deleteuser));
-							$db->DeleteExtraUser($deleteuser, $_GET['id']);
+							$db->DeleteExtraUserInPreparation($deleteuser, $_GET['id']);
 							echo "<script>window.location.href = window.location.href;</script>";
 						}
 						?>
