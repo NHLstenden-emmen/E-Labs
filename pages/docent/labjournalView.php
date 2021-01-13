@@ -39,30 +39,15 @@ $labjournal = $db->teacherLabjournalView($labjournalid);
 		echo "<div class='grotetextarealabjournaallinks'><h4>".$lang['THEORY'].": </h4><p>" . $result['theory'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['SAFETY'].": </h4><p>" . $result['safety'] . "</p></div>";
 		echo "<div class='grotetextarealabjournaalrechts'><h4>".$lang['LOG'].": </h4><p>" . $result['log'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['GRADE'].": </h4>
-		<form method='POST'>
-			<input type='text' name='grade' class='labjournaalboxcijfer' value=" .$result['grade'] . ">
-			<input type='submit' name='changeGrade' class='labjournaalbuttoncijfer' value =".$lang['CHANGEGRADE'].">
-		</form>
-		</div>
-		<div class='grotetextarealabjournaalmidden'>";
-		if ($result['submitted'] == 2) {
-			echo "<form method='POST'>
-					<input type='submit' value='Dearchive' name='deArchive' class='labjournaalbuttonarchive'>
-				</form>";
-		} else {
-			echo "<form method='POST'>
-					<input type='submit' value='Archive' name='archive' class='labjournaalbuttonarchive'>
-				</form>";
-		}
-		echo "</div></div>";
-		echo "<div class='fileSource'>";
+		echo "</div>";
+		echo "<div class='labjournaalcontainer4delen'>";
+			echo "<div class='bestandlabjournaaltoegevoegd'>";
 			// check if its a img of excel file
 			$fileSortCheck = strtolower($result["Attachment"]);
 			$file = $result["Attachment"];
 			// check if source is a image
 			if (preg_match('/(\.jpg|\.png|\.jpeg|\.gif)$/', $fileSortCheck)) {
-				echo '<img src="'.$file.'" alt="" srcset="">';
+				echo '<img src="'.$file.'" alt="" class="bestandlabjournaaltoegevoegdwidth" srcset="">';
 				// check if source is a csv format from excel.
 			} else if (preg_match('/(\.csv)$/', $fileSortCheck)){
 					echo "<br>";
@@ -82,7 +67,25 @@ $labjournal = $db->teacherLabjournalView($labjournalid);
 			} else {
 				echo $lang['FILENOTFOUND'];
 			}
-		echo '</div>';
+			echo "</div>";
+		echo '</div>';	
+		echo "</div><div class='labjournaalcontainer3delen'>";
+		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['GRADE'].": </h4>
+		<form method='POST'>
+			<input type='text' name='grade' class='labjournaalboxcijfer' value=" .$result['grade'] . ">
+			<input type='submit' name='changeGrade' class='labjournaalbuttoncijfer' value =".$lang['CHANGEGRADE'].">
+		</form>
+		</div>
+		<div class='grotetextarealabjournaalmidden'>";
+		if ($result['submitted'] == 2) {
+			echo "<form method='POST'>
+					<input type='submit' value='Dearchive' name='deArchive' class='labjournaalbuttonarchive'>
+				</form>";
+		} else {
+			echo "<form method='POST'>
+					<input type='submit' value='Archive' name='archive' class='labjournaalbuttonarchive'>
+				</form>";
+		}
+		echo "</div></div>";
 	}
-
 ?>

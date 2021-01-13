@@ -120,10 +120,9 @@
 	margin-bottom: 30px;
 }
 
-.fileSource {
-	padding: 30px;
-	justify-content: center;
-	display: flex;
+.bestandlabjournaaltoegevoegd {
+	grid-column: span 2 / -2;
+	margin-bottom: 3%;
 }
 
 @media screen and (max-width: 900px) {
@@ -172,6 +171,14 @@
 		margin-left: 5%;
 	}
 	
+	.bestandlabjournaaltoegevoegd {
+		grid-column: span 1 / -2;
+		margin-bottom: 2%;
+	}
+	
+	.bestandlabjournaaltoegevoegdwidth {
+		width: 100%;
+	}
 }
 
 
