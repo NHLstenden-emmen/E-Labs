@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2020 at 11:55 PM
+-- Generation Time: Jan 13, 2021 at 08:57 PM
 -- Server version: 10.4.16-MariaDB-log
 -- PHP Version: 7.4.12
 
@@ -52,7 +52,7 @@ CREATE TABLE `lab_journal` (
 
 CREATE TABLE `lab_journal_users` (
   `user_id` int(10) NOT NULL,
-  `lab_journal_id` int(10) NOT NULL
+  `lab_journal_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -101,7 +101,7 @@ CREATE TABLE `preparation` (
 
 CREATE TABLE `preperation_users` (
   `user_id` int(10) NOT NULL,
-  `preperation_id` int(50) NOT NULL
+  `preparation_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -128,7 +128,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `email`, `user_number`, `password`, `profile_picture`, `lang`, `role`) VALUES
 (1, 'Kevin', 'kevin@docent.com', 123456, '$2y$12$x1mzfqUZcEBFkCvhKRt35.SBs5RLRD0D.PZVzyXmBrOXBDXQepF92', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent'),
 (2, 'Marjolein', 'Marjolein@docent.com', 444318, '$2y$12$x1mzfqUZcEBFkCvhKRt35.SBs5RLRD0D.PZVzyXmBrOXBDXQepF92', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent'),
-(3, 'Faya', 'Faya@docent.com', 444318, '$2y$12$cTqvLHlsL/PmgCF/F8o4rOpq33St9IwVNs7bLjB79QBp4Hraodlsa', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent');
+(3, 'Faya', 'Faya@docent.com', 444318, '$2y$12$cTqvLHlsL/PmgCF/F8o4rOpq33St9IwVNs7bLjB79QBp4Hraodlsa', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent'),
+(4, 'mike', 'mike@student.com', 123498231, '$2y$12$dUzcBjA99R6dYQj3toVnSeiUzpTWeWpzoS.w5DY.qQVuemH6LYfYu', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Student');
 
 --
 -- Indexes for dumped tables
@@ -168,7 +169,7 @@ ALTER TABLE `preparation`
 --
 ALTER TABLE `preperation_users`
   ADD KEY `preperation_link additional user to user` (`user_id`),
-  ADD KEY `preperation_link additional id to preperation` (`preperation_id`);
+  ADD KEY `preperation_link additional id to preperation` (`preparation_id`);
 
 --
 -- Indexes for table `users`
@@ -185,7 +186,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `lab_journal`
 --
 ALTER TABLE `lab_journal`
-  MODIFY `labjournal_id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `labjournal_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -203,7 +204,7 @@ ALTER TABLE `preparation`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -213,15 +214,15 @@ ALTER TABLE `users`
 -- Constraints for table `lab_journal`
 --
 ALTER TABLE `lab_journal`
-  ADD CONSTRAINT `link creator_id to user` FOREIGN KEY (`creator_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `labjournal link creator_id to user` FOREIGN KEY (`creator_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `lab_journal_users`
 --
 ALTER TABLE `lab_journal_users`
-  ADD CONSTRAINT `link labjournal_id tussen to labjournaal id` FOREIGN KEY (`lab_journal_id`) REFERENCES `lab_journal` (`labjournal_id`),
-  ADD CONSTRAINT `link labjournal tussen user to user id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-lab_journal
+  ADD CONSTRAINT `link labjournal tussen user to user id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `link labjournal_id tussen to labjournaal id` FOREIGN KEY (`lab_journal_id`) REFERENCES `lab_journal` (`labjournal_id`);
+
 --
 -- Constraints for table `notifications`
 --
@@ -233,17 +234,16 @@ ALTER TABLE `notifications`
 -- Constraints for table `preparation`
 --
 ALTER TABLE `preparation`
-  ADD CONSTRAINT `link preperations creator to user` FOREIGN KEY (`creator_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `preparation link creator_id to user` FOREIGN KEY (`creator_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `preperation_users`
 --
 ALTER TABLE `preperation_users`
-  ADD CONSTRAINT `preperation_link additional id to preperation` FOREIGN KEY (`preperation_id`) REFERENCES `preparation` (`preparation_id`),
-  ADD CONSTRAINT `preperation_link additional user to user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `preperation_link additional id to preperation` FOREIGN KEY (`preparation_id`) REFERENCES `preparation` (`preparation_id`),
+  ADD CONSTRAINT `preperation_link additional user to user	` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-`e-labs`
