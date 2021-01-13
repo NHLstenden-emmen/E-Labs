@@ -22,6 +22,7 @@
 	border-radius: 10px;
 	border: 2px solid var(--primaryColor);
 	height: 300px;
+	overflow: auto;
 }
 
 .labjournaalcontainer4delen p {
