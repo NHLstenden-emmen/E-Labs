@@ -61,6 +61,7 @@
 		}
 
 		public function selectStudentslab($name){
+			$name = htmlspecialchars($name);
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `role` = 'Student' AND `name` LIKE ?")) {
 				$stmt->bind_param("s", $name);
 				$stmt->execute();
@@ -73,6 +74,11 @@
 		}
 
 		public function checkUsersAllowance($userId, $userName, $userEmail){
+
+			$userId = htmlspecialchars($userId);
+			$userName = htmlspecialchars($userName);
+			$userEmail = htmlspecialchars($userEmail);
+
 			if($stmt = $this->conn->prepare("SELECT `role` FROM `users` WHERE `user_id` = ? AND `name` = ? AND `email` = ? ")){
 					$stmt->bind_param("sss", $userId, $userName, $userEmail);
 					$stmt->execute();
@@ -84,6 +90,9 @@
 		}
 
 		public function selectCurrentUsers($userID){
+			
+			$userID = htmlspecialchars($userID);
+
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `user_id` = ?")) {
 				$stmt->bind_param("i", $userID);
 				$stmt->execute();
@@ -102,6 +111,7 @@
 			$user_number = htmlspecialchars($user_number);
 			$password = htmlspecialchars($password);
 			$role = htmlspecialchars($role);
+
 			// this query gets all the users form the table
 			if ($stmt = $this->conn->prepare("SELECT `email`, `user_number` FROM `users`")) {
 				$stmt->execute();
@@ -132,6 +142,9 @@
 		}
 
 		public function getTheUserPasswordForLogin($email){
+
+			$email = htmlspecialchars($email);
+
 			if ($stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ?")) {
 				$stmt->bind_param("s", $email);
 				$stmt->execute();
@@ -181,6 +194,7 @@
 		}
 
 		public function selectCurrentUserNotifications($userID){
+			$userID = htmlspecialchars($userID);
 			if ($stmt = $this->conn->prepare("SELECT notification_id, creator, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creator = users.user_id WHERE `viewer` = ? ORDER BY date_time DESC")) {
 				$stmt->bind_param("i", $userID);
 				$stmt->execute();
@@ -235,6 +249,12 @@
 		}
     
 		public function getAllGradeResults($year,$submitted, $sorting, $ascdesc) {
+
+			$year = htmlspecialchars($year);
+			$submitted = htmlspecialchars($submitted);
+			$sorting = htmlspecialchars($sorting);
+			$ascdesc = htmlspecialchars($ascdesc);
+
 			if ($stmt = $this->conn->prepare("SELECT * FROM `users` 
 			JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
 			JOIN lab_journal ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
@@ -251,6 +271,12 @@
 		}
 
 		public function getAllPreparationsGradeResults($year,$submitted, $sorting, $ascdesc) {
+
+			$year = htmlspecialchars($year);
+			$submitted = htmlspecialchars($submitted);
+			$sorting = htmlspecialchars($sorting);
+			$ascdesc = htmlspecialchars($ascdesc);
+
 			if ($stmt = $this->conn->prepare("SELECT * FROM `users` 
 			JOIN preperation_users ON users.user_id = preperation_users.user_id
 			JOIN preparation ON preparation.preparation_id  = preperation_users.preparation_id 
@@ -267,6 +293,11 @@
 		}
 
 		public function getGradeResultsPerPerson($userId, $year,$archive, $sortDate){
+			
+			$year = htmlspecialchars($year);
+			$userId = htmlspecialchars($userId);
+			$archive = htmlspecialchars($archive);
+			$sortDate = htmlspecialchars($sortDate);
 		
 			if(!empty($sortDate)) {
 				$sql = "SELECT lab_journal.labjournal_id, lab_journal.grade, lab_journal.title
@@ -293,6 +324,9 @@
 			}
 		}
 		public function selectcontentlabjournal($labjournal_id){
+
+			$labjournal_id = htmlspecialchars($labjournal_id);
+
 			if($stmt = $this->conn->prepare("SELECT * FROM `lab_journal` WHERE labjournal_id = ?")){
 					$stmt->bind_param("i", $labjournal_id);
 					$stmt->execute();
@@ -301,9 +335,7 @@
 					$stmt->close();
 					return $result;
 				}
-				else{
-					return mysqli_error($this->conn);
-				}
+			return NULL;
 		}
 
 		public function selectcontentpreparation($prepid){
@@ -517,7 +549,10 @@
 			return NULL;
 		}
 		public function selectStudentSearchResultsLabjournal($userId, $searchWord) {
+
 			$searchWord = htmlspecialchars($searchWord);
+			$userId = htmlspecialchars($userId);
+
 			if($stmt = $this->conn->prepare(
 				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournal_id = lab_journal_users.lab_journal_id
@@ -543,7 +578,10 @@
 		}
 
 		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
+			
+			$userId = htmlspecialchars($userId);
 			$searchWord = htmlspecialchars($searchWord);
+
 			if($stmt = $this->conn->prepare(
 				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preparation_id
@@ -569,7 +607,9 @@
 		}
 
 		public function selectTeacherSearchResultsPreperation($searchWord){
+
 			$searchWord = htmlspecialchars($searchWord);
+
 			if($stmt = $this->conn->prepare(
 				"SELECT * FROM `preparation`
 				JOIN preperation_users ON preparation_id = preperation_users.preparation_id
@@ -595,7 +635,9 @@
 		}
 
 		public function selectTeacherSearchResultsLabjournal($searchWord) {
+
 			$searchWord = htmlspecialchars($searchWord);
+
 			if($stmt = $this->conn->prepare(
 				"SELECT * FROM `lab_journal`
 				JOIN lab_journal_users ON labjournal_id = lab_journal_users.lab_journal_id
@@ -816,6 +858,9 @@
 		}
 
 		public function teacherLabjournalView($labjournalid){
+
+			$labjournalid = htmlspecialchars($labjournalid);
+
 			if ($stmt = $this->conn->prepare('SELECT * FROM `lab_journal` INNER JOIN users ON lab_journal.creator_id = users.user_id WHERE labjournal_id = ?')){
 				$stmt->bind_param('i', $labjournalid);
 				$stmt->execute();
@@ -828,6 +873,7 @@
 		}
 
 		public function teacherPreparationView($preparation_id){
+			$preparation_id = htmlspecialchars($preparation_id);
 			if ($stmt = $this->conn->prepare('SELECT * FROM `preparation` INNER JOIN users ON preparation.creator_id = users.user_id WHERE preparation_id = ?')){
 				$stmt->bind_param('i', $preparation_id);
 				$stmt->execute();
@@ -858,6 +904,7 @@
 		public function updateGradeView($labjournal_id, $grade){
 
 			$grade = htmlspecialchars($grade);
+			$labjournal_id = htmlspecialchars($labjournal_id);
 
 			if ($stmt = $this->conn->prepare("UPDATE lab_journal SET grade=? WHERE labjournal_id=?")) {
 				$stmt->bind_param('ii', $grade, $labjournal_id);
@@ -883,6 +930,9 @@
 		}
     
 		public function DeleteUser($userid){
+			
+			$userid = htmlspecialchars($userid);
+
 			if($stmt = $this->conn->prepare('UPDATE `users` SET `email` = "DELETED", `password` = "DELETED", `role`= "DELETED", `profile_picture` = NULL WHERE `user_id` =?')){
 				$stmt->bind_param('i', $userid);
 				$stmt->execute();
@@ -890,24 +940,28 @@
 				$message = "User Succesfully Deleted";
 				return $message;
 			}
-			else{
-				return mysqli_error($this->conn);
-			}
+			return NULL;
 		}
     
 		public function GetAllLabUsers($labid){
-		if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `lab_journal_id` FROM `lab_journal_users` JOIN `users` ON lab_journal_users.user_id = users.user_id WHERE lab_journal_id = ?')){
-			$stmt->bind_param('i', $labid);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			$stmt->free_result();
-			$stmt->close();
-			return $result;
+
+			$labid = htmlspecialchars($labid);
+
+			if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `lab_journal_id` FROM `lab_journal_users` JOIN `users` ON lab_journal_users.user_id = users.user_id WHERE lab_journal_id = ?')){
+				$stmt->bind_param('i', $labid);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
 			}
 			return NULL;
 		}
 
 		public function GetAllPreparationUsers($prepid){
+
+			$prepid = htmlspecialchars($prepid);
+			
 		if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `preparation_id` FROM `preperation_users` JOIN `users` ON preperation_users.user_id = users.user_id WHERE preparation_id = ?')){
 			$stmt->bind_param('i', $prepid);
 			$stmt->execute();
@@ -920,8 +974,26 @@
 		}
 
 		public function DeleteExtraUser($userid, $labjournalid){
+			
+			$userid = htmlspecialchars($userid);
+			$labjournalid = htmlspecialchars($labjournalid);
+
 			if($stmt = $this->conn->prepare('DELETE FROM `lab_journal_users` WHERE `user_id` = ? AND `lab_journal_id` = ?')){
 				$stmt->bind_param('ii', $userid, $labjournalid);
+				$stmt->execute();
+				$stmt->close();
+				return "Verwijderen gelukt";
+			}
+			return NULL;
+		}
+
+		public function DeleteExtraUserInPreparation($userid, $preparation_id){
+
+			$userid = htmlspecialchars($userid);
+			$preparation_id = htmlspecialchars($preparation_id);
+
+			if($stmt = $this->conn->prepare('DELETE FROM `preperation_users` WHERE `user_id` = ? AND `preparation_id` = ?')){
+				$stmt->bind_param('ii', $userid, $preparation_id);
 				$stmt->execute();
 				$stmt->close();
 				return "Verwijderen gelukt";
@@ -943,6 +1015,9 @@
 		}
 
 		public function viewNotification($labjournalid){
+
+			$labjournalid = htmlspecialchars($labjournalid);
+
 			if ($stmt = $this->conn->prepare('SELECT notification_id, title, `message`, date_time, 
 			krijgViewer.name as Vname, 
 			krijgCreator.name as Cname 
@@ -961,6 +1036,9 @@
 		}
 		
 		public function selectCurrentCreatorNotifications($userID){
+
+			$userID = htmlspecialchars($userID);
+
 			if ($stmt = $this->conn->prepare("SELECT notification_id, creator, viewer, title, `message`, date_time, `name` FROM `notifications` JOIN users ON notifications.creator = users.user_id WHERE `creator` = ? AND viewer IS NOT NULL ORDER BY date_time DESC")) {
 				$stmt->bind_param("i", $userID);
 				$stmt->execute();
@@ -973,14 +1051,12 @@
 		}
 
 		public function selectAllUsers2($sorting, $ascdesc) {
-            if ($ascdesc == "DESC"){
-            	$sql = "SELECT * FROM `users`
-					ORDER BY $sorting DESC";
-            } else {
-            	$sql = "SELECT * FROM `users`
-					ORDER BY $sorting ASC";
-            }
-            if($stmt = $this->conn->prepare($sql)) {
+
+			$sorting = htmlspecialchars($sorting);
+			$ascdesc = htmlspecialchars($ascdesc);
+
+            if($stmt = $this->conn->prepare("SELECT * FROM `users`
+			ORDER BY $sorting $ascdesc")) {
 				//$stmt->bind_param("s", $sorting);
 				$stmt->execute();
 				$result = $stmt->get_result();
