@@ -39,7 +39,7 @@ CREATE TABLE `lab_journal` (
   `submitted` tinyint(1) NOT NULL,
   `grade` int(2) NOT NULL,
   `year` int(11) NOT NULL,
-  `Attachment` varchar(100) NOT NULL,
+  `Attachment` varchar(255) NOT NULL,
   `Goal` varchar(2000) NOT NULL,
   `Hypothesis` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -80,17 +80,17 @@ CREATE TABLE `preparation` (
   `preparation_id` int(50) NOT NULL,
   `title` varchar(50) NOT NULL,
   `date` datetime NOT NULL,
-  `materials` varchar(255) NOT NULL,
-  `method` varchar(255) NOT NULL,
+  `theory` varchar(1000) NOT NULL,
+  `safety` varchar(1000) NOT NULL,
   `creator_id` int(10) NOT NULL,
-  `hypothesis` varchar(255) NOT NULL,
-  `device settings` varchar(255) NOT NULL,
+  `log` varchar(1000) NOT NULL,
+  `method_materials` varchar(1000) NOT NULL,
   `submitted` tinyint(1) NOT NULL,
   `grade` int(2) NOT NULL,
-  `year` int(1) NOT NULL,
-  `safety` varchar(255) NOT NULL,
-  `preparation_questions` varchar(255) NOT NULL,
-  `goal` varchar(2000) NOT NULL
+  `year` int(11) NOT NULL,
+  `Attachment` varchar(255) NOT NULL,
+  `Goal` varchar(1000) NOT NULL,
+  `Hypothesis` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -186,13 +186,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `lab_journal`
 --
 ALTER TABLE `lab_journal`
-  MODIFY `labjournal_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `labjournal_id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `notification_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `preparation`
@@ -240,8 +240,8 @@ ALTER TABLE `preparation`
 -- Constraints for table `preperation_users`
 --
 ALTER TABLE `preperation_users`
-  ADD CONSTRAINT `preperation_link additional id to preperation` FOREIGN KEY (`preparation_id`) REFERENCES `preparation` (`preparation_id`),
-  ADD CONSTRAINT `preperation_link additional user to user	` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `preperation_link additional user to user	` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `preperation_link additional id to preperation` FOREIGN KEY (`preparation_id`) REFERENCES `preparation` (`preparation_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
