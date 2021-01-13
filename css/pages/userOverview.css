@@ -24,3 +24,11 @@
 #wittetekst {
 	color: white;
 }
+
+@media (max-width: 500px) {
+	.Gebruikersoverzichtdocent {
+		margin-left: 5px;
+		margin-right: 0px;
+		font-size: 11px;
+	}
+}
