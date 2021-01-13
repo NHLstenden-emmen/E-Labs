@@ -134,19 +134,15 @@ input {
 	grid-column: span 1 / -2;
 	margin-bottom: 5%;
 	margin-left: 5%;
-}
+	}
 
-.labjournaalcontainer3delen .grotetextarealabjournaallinks {
-	height: 100%;
-	width: 90%;
-	grid-column: span 1 / -2;
-	margin-left: 5%;
-	margin-bottom: 5%;
-}
-
-
-
-	
+	.labjournaalcontainer3delen .grotetextarealabjournaallinks {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-left: 5%;
+		margin-bottom: 5%;
+	}	
 }
 
 
