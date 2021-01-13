@@ -1,5 +1,5 @@
 <?php
-	$getLabjournaal = $db->getLabjournaal($_GET['id'], $_SESSION['user_id']);
+	$getLabjournaal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
 	while ($result = $getLabjournaal->fetch_array(MYSQLI_ASSOC)){ 
 		?>
 	<form method="post" class="newlabjournaalcontainer">
@@ -25,8 +25,8 @@
 			<p class="groteretextarealabjournaal" name="safety" value="<?php echo $result['safety'];?>"><?php echo $result['safety'];?></p>
 		</div>
 		<div>
-			<label for="logboek"><?php echo $lang["LOGBOOK"];?>:</label> </br>
-			<p class="groteretextarealabjournaal" name="logboek" value="<?php echo $result['logboek'];?>"><?php echo $result['logboek'];?></p>
+			<label for="logboek"><?php echo $lang["LOG"];?>:</label> </br>
+			<p class="groteretextarealabjournaal" name="logboek" value="<?php echo $result['log'];?>"><?php echo $result['log'];?></p>
 		</div>
 		<div>
 			<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label> </br>

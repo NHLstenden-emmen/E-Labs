@@ -602,7 +602,7 @@
 			return NULL;
 		}
 
-		public function DocentLabjournalView($labjournalid){
+		public function teacherLabjournalView($labjournalid){
 			if ($stmt = $this->conn->prepare('SELECT * FROM `lab_journal` INNER JOIN users ON lab_journal.creator_id = users.user_id WHERE labjournal_id = ?')){
 				$stmt->bind_param('i', $labjournalid);
 				$stmt->execute();
@@ -614,7 +614,7 @@
 			return NULL;
 		}
 
-		public function docentprofielbewerken($userID, $name, $email, $user_number){
+		public function teacherProfileEdit($userID, $name, $email, $user_number){
 
 			$userID = htmlspecialchars($userID);
 			$name = htmlspecialchars($name);
