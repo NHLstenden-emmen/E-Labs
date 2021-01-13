@@ -102,6 +102,7 @@ return [
 	'THEORY' => 'Theorie',
 	'THISUSER' => ' wilt verwijderen?',
 	'TITLE' => 'Titel',
+	'LABTITLE' => 'Labjournaal title',
 	'TOARCHIVE' => 'Naar het archief',
 	'UPLOAD_FILE' => 'bestand uploaden',
 	'USER_OVERVIEW' => 'gebruikers overzicht',

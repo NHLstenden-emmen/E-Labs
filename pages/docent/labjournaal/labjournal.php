@@ -51,6 +51,13 @@ if(isset($_GET['sorting'])) {
         } elseif($_GET['ad'] == "DESC") {
             $ascdesc = "ASC";
         }
+    } elseif($_GET['sorting'] == "title") {
+        $sorting = "title";
+        if($_GET['ad'] == "ASC") {
+            $ascdesc = "DESC";
+        } elseif($_GET['ad'] == "DESC") {
+            $ascdesc = "ASC";
+        }
     }
     // Gets every student of the choosen year 
         $leerlingen = $db->getAllGradeResults($year, $submitted, $sorting, $ascdesc);
@@ -79,7 +86,9 @@ if(isset($_GET['sorting'])) {
         <tr>
             <th><?php echo $lang["NAME"];?><a href="?sorting=name&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
             <th><?php echo $lang["DATE"];?><a href="?sorting=date&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
-            <th>Cijfers</th>
+            <th><?php echo $lang["LABTITLE"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["GRADE"];?></th>
+            <th><?php echo $lang["ACTION"];?></th>
         </tr>
         <?php
 
@@ -89,16 +98,18 @@ if(isset($_GET['sorting'])) {
             echo "<tr>";
             echo "<td>$result[name]</td>";
             echo "<td>$result[date]</td>";
+            echo "<td>$result[title]</td>";
             $cijfer = $result['grade'];
             $cijferTitel = mb_strimwidth($result['title'], 0, 15, "...");
 
-                if($cijfer >= 1 && $cijfer <= 5.4) {
-                    echo "<td class='onvoldoende'> <a href='labjournalview?labjournal=".$result['labjournal_id']."' class='gradeTextColor'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
-                } elseif($cijfer >= 5.5 && $cijfer <= 10) {
-                    echo "<td class='goed gradeTextColor'> <a href='labjournalview?labjournal=".$result['labjournal_id']."' class='gradeTextColor'>" .  $cijferTitel . ": " . $cijfer . "</a></td>";
-                } else {
-                    echo "<td class='nietbeoordeeld'> <a href='labjournalview?labjournal=".$result['labjournal_id']."' class='gradeTextColor'>" .  $cijferTitel . ": " . $cijfer." </a></td>"; 
-                }
+            if($cijfer >= 1 && $cijfer <= 5.4) {
+                echo "<td class='onvoldoende'>". $cijfer . "</td>";
+            } elseif($cijfer >= 5.5 && $cijfer <= 10) {
+                echo "<td class='goed gradeTextColor'>". $cijfer . "</td>";
+            } else {
+                echo "<td class='nietbeoordeeld'> ". $cijfer."</td>"; 
+            }
+            echo "<td> <a href='labjournalview?labjournal=".$result['labjournal_id']."' class='gradeTextColor'><i class='fas fa-eye'></i></a></td>";
         }
         ?>
 		</tr>

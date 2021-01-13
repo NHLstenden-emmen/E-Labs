@@ -98,6 +98,7 @@ return [
 	'THEORY' => 'Theory',
 	'THISUSER' => '?',
 	'TITLE' => 'Title',
+	'LABTITLE' => 'Labjournal title',
 	'TOARCHIVE' => 'To archive',
 	'UPLOAD_FILE' => 'Upload file',
 	'USER_OVERVIEW' => 'User overview',
