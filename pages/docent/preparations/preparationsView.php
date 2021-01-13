@@ -1,6 +1,6 @@
 <?php
-if(isset($_GET['labjournal'])) {
-	$labjournalid = $_GET['labjournal'];
+if(isset($_GET['preparation'])) {
+	$labjournalid = $_GET['preparation'];
 } else {
 	$labjournalid = 'not found';
 }
@@ -8,20 +8,20 @@ if(isset($_GET['labjournal'])) {
 if(isset($_POST['changeGrade'])){
 	if ($_POST['grade'] <= 10 && $_POST['grade'] >= 0) {
 		$grade = $_POST['grade'];
-		$db->updateGradeView($labjournalid, $grade);
+		$db->updatePreparationGradeView($labjournalid, $grade);
 		echo $lang['GRADECHANGED'];
 	} else {
 		echo $LANG['WRONGGRADE'];
 	}
 }
 if(isset($_POST['archive'])){
-	$db->archiveLabjournal($_GET['labjournal'], 2);
+	$db->archivePreparation($_GET['preparation'], 2);
 }
 if(isset($_POST['deArchive'])){
-	$db->archiveLabjournal($_GET['labjournal'], 1);
+	$db->archivePreparation($_GET['preparation'], 1);
 }
 
-$labjournal = $db->teacherLabjournalView($labjournalid);
+$labjournal = $db->teacherPreparationView($labjournalid);
 ?>
 
 <?php

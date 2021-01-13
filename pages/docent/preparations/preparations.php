@@ -60,16 +60,16 @@ if(isset($_GET['sorting'])) {
         }
     }
     // Gets every student of the choosen year 
-        $leerlingen = $db->getAllGradeResults($year, $submitted, $sorting, $ascdesc);
+        $leerlingen = $db->getAllPreparationsGradeResults($year, $submitted, $sorting, $ascdesc);
 } else {
     // Set default value
     $sorting = "date";
     $ascdesc = "DESC";
-    $leerlingen = $db->getAllGradeResults($year,$submitted, $sorting, $ascdesc);
+    $leerlingen = $db->getAllPreparationsGradeResults($year,$submitted, $sorting, $ascdesc);
 }
 ?>
 <div class="docentenHomePage">
-<h1><?=$lang['OVERVIEWLABJOURNALS'];?></h1>
+<h1><?=$lang['LUCASHELPENGLISHEN'];?></h1>
 <h4>
     <a href="?year=<?php echo $year?>&archive=<?php echo $archive?>&changeArchive">
         <?php if ($archive == "false") {
@@ -86,7 +86,7 @@ if(isset($_GET['sorting'])) {
         <tr>
             <th><?php echo $lang["NAME"];?><a href="?sorting=name&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
             <th><?php echo $lang["DATE"];?><a href="?sorting=date&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
-            <th><?php echo $lang["LABTITLE"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["LUCASHELPENGLISHEN"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
             <th><?php echo $lang["GRADE"];?></th>
             <th><?php echo $lang["ACTION"];?></th>
         </tr>
@@ -109,7 +109,7 @@ if(isset($_GET['sorting'])) {
             } else {
                 echo "<td class='nietbeoordeeld'> ". $cijfer."</td>"; 
             }
-            echo "<td> <a href='labjournalview?labjournal=".$result['labjournal_id']."' class='gradeTextColor'><i class='fas fa-eye'></i></a></td>";
+            echo "<td> <a href='preparationsview?preparation=".$result['preparation_id']."' class='gradeTextColor'><i class='fas fa-eye'></i></a></td>";
         }
         ?>
 		</tr>

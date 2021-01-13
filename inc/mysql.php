@@ -234,21 +234,29 @@
 			return NULL;
 		}
     
-		public function getAllGradeResults($year,$archive, $sorting, $ascdesc) {
-			if($ascdesc == "DESC") {
-				$sql = "SELECT * FROM `users` 
-				JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-				JOIN lab_journal ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
-				WHERE lab_journal.year = $year AND lab_journal.submitted = $archive
-				ORDER BY $sorting DESC";
-			} else {
-				$sql = "SELECT * FROM `users` 
-				JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
-				JOIN lab_journal ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
-				WHERE lab_journal.year = $year AND lab_journal.submitted = $archive
-				ORDER BY $sorting ASC";
+		public function getAllGradeResults($year,$submitted, $sorting, $ascdesc) {
+			if ($stmt = $this->conn->prepare("SELECT * FROM `users` 
+			JOIN lab_journal_users ON users.user_id = lab_journal_users.user_id
+			JOIN lab_journal ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
+			WHERE lab_journal.year = ? AND lab_journal.submitted = ?
+			ORDER BY $sorting $ascdesc")) {
+				$stmt->bind_param("ii", $year,$submitted);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
 			}
-			if ($stmt = $this->conn->prepare($sql)) {
+			return NULL;
+		}
+
+		public function getAllPreparationsGradeResults($year,$submitted, $sorting, $ascdesc) {
+			if ($stmt = $this->conn->prepare("SELECT * FROM `users` 
+			JOIN preperation_users ON users.user_id = preperation_users.user_id
+			JOIN preparation ON preparation.preparation_id  = preperation_users.preparation_id 
+			WHERE preparation.year = ? AND preparation.submitted = ?
+			ORDER BY $sorting $ascdesc")) {
+				$stmt->bind_param("ii", $year,$submitted);
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -460,6 +468,20 @@
 
 			if ($stmt = $this->conn->prepare("UPDATE `lab_journal` SET `submitted`= ? WHERE `labjournal_id` = ?")) {
 				$stmt->bind_param('ii', $submitted, $labjournalid);
+				$stmt->execute();
+				$stmt->close();
+				return "functie is uitgevoegd";
+			}
+			return NULL;
+		}
+
+		public function archivePreparation($preparation_id, $submitted){
+			
+			$labjournalid = htmlspecialchars($preparation_id);
+			$submitted = htmlspecialchars($submitted);
+
+			if ($stmt = $this->conn->prepare("UPDATE `preparation` SET `submitted`= ? WHERE `preparation_id` = ?")) {
+				$stmt->bind_param('ii', $submitted, $preparation_id);
 				$stmt->execute();
 				$stmt->close();
 				return "functie is uitgevoegd";
@@ -791,6 +813,18 @@
 			return NULL;
 		}
 
+		public function teacherPreparationView($preparation_id){
+			if ($stmt = $this->conn->prepare('SELECT * FROM `preparation` INNER JOIN users ON preparation.creator_id = users.user_id WHERE preparation_id = ?')){
+				$stmt->bind_param('i', $preparation_id);
+				$stmt->execute();
+				$result = $stmt->get_result();
+                $stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
 		public function teacherProfileEdit($userID, $name, $email, $user_number){
 
 			$userID = htmlspecialchars($userID);
@@ -813,6 +847,20 @@
 
 			if ($stmt = $this->conn->prepare("UPDATE lab_journal SET grade=? WHERE labjournal_id=?")) {
 				$stmt->bind_param('ii', $grade, $labjournal_id);
+				$stmt->execute();
+				$stmt->close();
+				return;
+			}
+			return NULL;
+		}
+
+		public function updatePreparationGradeView($preparation_id, $grade){
+
+			$preparation_id = htmlspecialchars($preparation_id);
+			$grade = htmlspecialchars($grade);
+
+			if ($stmt = $this->conn->prepare("UPDATE preparation SET grade=? WHERE preparation_id=?")) {
+				$stmt->bind_param('ii', $grade, $preparation_id);
 				$stmt->execute();
 				$stmt->close();
 				return;

@@ -162,7 +162,7 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `preparation`
   ADD PRIMARY KEY (`preparation_id`),
-  ADD UNIQUE KEY `creator_id` (`creator_id`);
+  ADD KEY `creator_id` (`creator_id`);
 
 --
 -- Indexes for table `preperation_users`
