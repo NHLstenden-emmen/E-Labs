@@ -17,21 +17,21 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 	$Goal = $_POST['Goal'];
 	$Hypothesis = $_POST['Hypothesis'];
 	$UserID = $_SESSION['user_id'];
-	$labjournaal_id = $_GET['id'];
+	$preparation_id = $_GET['id'];
 	if(isset($_SESSION['addusers'])){
-		$additionalusers = $db->GetAllLabUsers($labjournaal_id);
+		$additionalusers = $db->GetAllPreparationUsers($preparation_id);
 		$arrayusers = $additionalusers->fetch_all(MYSQLI_ASSOC);
 		$userids = array_map(function($x){
 			return $x['user_id'];
 		}, $arrayusers);
 		$arraysorted = array_diff($_SESSION['addusers'], $userids);
 		foreach($arraysorted as $arraysorted2){
-		$db->connectNewLabjournalWithUser($arraysorted2, $_GET['id']);
+		$db->connectNewPreparationWithUser($arraysorted2, $_GET['id']);
 		}
 	}
 	if(!empty($_FILES['fileupload']['name'])){
-		$getLabjournal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
-		while ($result = $getLabjournal->fetch_array(MYSQLI_ASSOC)){ 
+		$getPreparation = $db->getPreparation($_GET['id'], $_SESSION['user_id']);
+		while ($result = $getPreparation->fetch_array(MYSQLI_ASSOC)){ 
 			if(!empty($result['Attachment'])){
 				if(file_exists($result['Attachment'])){
 					unlink($result['Attachment']);
@@ -63,22 +63,21 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 			$Attachment = $upload_directory.$TargetPath;
 		}
 		if ($uploadOk == 1) {
-			$message = $db->updatelabjournalWithAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+			$message = $db->updatePreparationWithAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $preparation_id);
 		} else {
-			$message = $db->updatelabjournalWithOutAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+			$message = $db->updatePreperationWithoutAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $preparation_id);
 		}
 	} else{
-		$message = $db->updatelabjournalWithOutAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournaal_id);
+		$message = $db->updatePreperationWithoutAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $preparation_id);
 	}
 }
 
 
 if (empty($message) && isset($_GET['id'])) {
-	$getLabjournal = $db->getLabjournal($_GET['id'], $_SESSION['user_id']);
-	while ($result = $getLabjournal->fetch_array(MYSQLI_ASSOC)){ 
+	$getPreparation = $db->getPreparation($_GET['id'], $_SESSION['user_id']);
+	while ($result = $getPreparation->fetch_array(MYSQLI_ASSOC)){ 
 		$_SESSION['creator_id'] = $result['creator_id'];
 		if(!empty($_FILES['fileupload']['name'])){
-			var_dump($result['Attachment']);
 			unlink($result['Attachment']);
 		}
 		if ($result["submitted"] == 0) {
@@ -177,7 +176,7 @@ if (empty($message) && isset($_GET['id'])) {
 					</div>
 					<div class="selectedusers">
 							<?php
-							$labusers = $db->GetAllLabUsers($_GET['id']);
+							$labusers = $db->GetAllPreparationUsers($_GET['id']);
 							foreach($labusers as $lab){
 								$labuserid = (int)$lab['user_id'];
 								array_push($_SESSION['addusers'], $labuserid);
@@ -185,10 +184,10 @@ if (empty($message) && isset($_GET['id'])) {
 							}
 							foreach($_SESSION['addusers'] as $user){
 								$userdata = $db->selectCurrentUsers($user);
-								foreach($userdata as $userlabjournal){
-									if($userlabjournal['user_id'] != $_SESSION['creator_id']){
-										$username = $userlabjournal['name'];
-										echo "<tr><td>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>".$lang['DELETE']."</button></td></tr>";
+								foreach($userdata as $userPreparation){
+									if($userPreparation['user_id'] != $_SESSION['creator_id']){
+										$username = $userPreparation['name'];
+										echo "<tr><td>".$username."&#9;<button name='deleteuser' value='".$userPreparation['user_id']."'>".$lang['DELETE']."</button></td></tr>";
 									}
 								}
 							}
@@ -253,9 +252,9 @@ if (empty($message) && isset($_GET['id'])) {
 	<?php  }}
 	} else {
 		if ($message == "gelukt") {
-			echo $lang['LABJOURNALADDED'].". <a href='labjournal'>".$lang['GOBACKOVERVIEW']."</a>";
+			echo $lang['LUCASHELPENGLISHEN'].". <a href='preparations'>".$lang['GOBACKOVERVIEW']."</a>";
 		} else {
-			echo '<a href="labjournal">'.$lang['PROBLEMOCCURRED'].'</a>';
+			echo '<a href="preparations">'.$lang['PROBLEMOCCURRED'].'</a>';
 		}
 }
 ?>

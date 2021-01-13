@@ -61,7 +61,6 @@
 		}
 
 		public function selectStudentslab($name){
-			// this gets all students and returns them
 			if ($stmt = $this->conn->prepare("SELECT `user_id`, `name`, `email`, `user_number`, `profile_picture`, `lang`, `role` FROM `users` WHERE `role` = 'Student' AND `name` LIKE ?")) {
 				$stmt->bind_param("s", $name);
 				$stmt->execute();
@@ -298,9 +297,7 @@
 					return mysqli_error($this->conn);
 				}
 		}
-		public function selectpdfcontentpreperation(){}
-
-		// this still needs a join in lab-journaal-users
+		
 		public function addLabJournalWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis){
 			
 			$title = htmlspecialchars($title);
@@ -322,6 +319,38 @@
 				$stmt->close();
 			}
 			if ($stmt = $this->conn->prepare("SELECT `labjournal_id` FROM `lab_journal` WHERE `date`= ? AND `creator_id`= ?")) {
+                $stmt->bind_param('si',$date, $creator_id);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
+		
+		public function addPreparationWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis){
+			
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$creator_id = htmlspecialchars($creator_id);
+			$log = htmlspecialchars($log);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$grade = htmlspecialchars($grade);
+			$year = htmlspecialchars($year);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+
+			if ($stmt = $this->conn->prepare("INSERT INTO `preparation`(`title`, `date`, `theory`, `safety`, `creator_id`, `log`, `method_materials`, `submitted`, `grade`, `year`, `Goal`, `Hypothesis`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)")) {
+				$stmt->bind_param("ssssissiiiss", $title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
+				$stmt->execute();
+				$stmt->close();
+			}
+			if ($stmt = $this->conn->prepare("SELECT `preparation_id` FROM `preparation` WHERE `date`= ? AND `creator_id`= ?")) {
                 $stmt->bind_param('si',$date, $creator_id);
 				$stmt->execute();
 				$result = $stmt->get_result();
@@ -363,15 +392,63 @@
 			}
 			return NULL;
 		}
+
+		public function addPreparationWithAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis){
+			
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$creator_id = htmlspecialchars($creator_id);
+			$log = htmlspecialchars($log);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$grade = htmlspecialchars($grade);
+			$year = htmlspecialchars($year);
+			$Attachment = htmlspecialchars($Attachment);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+
+			if ($stmt = $this->conn->prepare("INSERT INTO `preparation`(`title`, `date`, `theory`, `safety`, `creator_id`, `log`, `method_materials`, `submitted`, `grade`, `year`, `Attachment`, `Goal`, `Hypothesis`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)")) {
+				$stmt->bind_param("ssssissiiisss", $title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
+				$stmt->execute();
+				$stmt->close();
+			}
+			if ($stmt = $this->conn->prepare("SELECT `preparation_id` FROM `preparation` WHERE `date`= ? AND `creator_id`= ?")) {
+                $stmt->bind_param('si',$date, $creator_id);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+
 		public function connectNewLabjournalWithUser($userId, $LabjournalId){
 			
 			$userId = htmlspecialchars($userId);
 			$LabjournalId = htmlspecialchars($LabjournalId);
+			
 			if ($stmt = $this->conn->prepare("INSERT INTO `lab_journal_users`(`user_id`, `lab_journal_id`) VALUES (?,?)")) {
                 $stmt->bind_param('ii', $userId, $LabjournalId);
 				$stmt->execute();
 				$stmt->close();
 				return "Labjournaal toegevoegd";
+			}
+			return NULL;
+		}
+
+		public function connectNewPreparationWithUser($userId, $preparation_id){
+			
+			$userId = htmlspecialchars($userId);
+			$preparation_id = htmlspecialchars($preparation_id);
+			
+			if ($stmt = $this->conn->prepare("INSERT INTO `preperation_users`(`user_id`, `preparation_id`) VALUES (?,?)")) {
+                $stmt->bind_param('ii', $userId, $preparation_id);
+				$stmt->execute();
+				$stmt->close();
+				return "Preparation toegevoegd";
 			}
 			return NULL;
 		}
@@ -549,6 +626,34 @@
 			return NULL;
 		}
 
+		public function updatePreparationWithAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournal_id){
+
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$log = htmlspecialchars($log);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$year = htmlspecialchars($year);
+			$Attachment = htmlspecialchars($Attachment);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+			$UserID = htmlspecialchars($UserID);
+			$labjournal_id = htmlspecialchars($labjournal_id);
+
+			if ($stmt = $this->conn->prepare("UPDATE `preparation` 
+			JOIN preperation_users ON preperation_users.preparation_id =  preparation.preparation_id
+			SET `title`=?,`date`=?,`theory`=?,`safety`=?, `log`=?,`method_materials`=?,`submitted`=?, `year`=?,`Attachment`=?,`Goal`=?,`Hypothesis`=? 
+			WHERE preperation_users.`user_id` = ? AND preparation_id = ?")) {
+                $stmt->bind_param('ssssssiisssii', $title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournal_id);
+				$stmt->execute();
+				$stmt->close();
+				return "gelukt";
+			}
+			return NULL;
+		}
+
 		public function updatelabjournalWithoutAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournal_id){
 
 			$title = htmlspecialchars($title);
@@ -576,6 +681,34 @@
 			return NULL;
 		}
 
+		public function updatePreperationWithoutAtatchment($title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournal_id){
+
+			$title = htmlspecialchars($title);
+			$date = htmlspecialchars($date);
+			$theory = htmlspecialchars($theory);
+			$safety = htmlspecialchars($safety);
+			$log = htmlspecialchars($log);
+			$method_materials = htmlspecialchars($method_materials);
+			$submitted = htmlspecialchars($submitted);
+			$year = htmlspecialchars($year);
+			$Goal = htmlspecialchars($Goal);
+			$Hypothesis = htmlspecialchars($Hypothesis);
+			$UserID = htmlspecialchars($UserID);
+			$labjournal_id = htmlspecialchars($labjournal_id);
+
+			if ($stmt = $this->conn->prepare("UPDATE `preparation` 
+			JOIN preperation_users ON preperation_users.preparation_id =  preparation.preparation_id
+			SET `title`=?,`date`=?,`theory`=?,`safety`=?, `log`=?,`method_materials`=?,`submitted`=?, `year`=?,`Goal`=?,`Hypothesis`=? 
+			WHERE preperation_users.`user_id` = ? AND preparation.preparation_id = ?")) {
+				
+                $stmt->bind_param('ssssssiissii', $title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Goal, $Hypothesis, $UserID, $labjournal_id);
+				$stmt->execute();
+				$stmt->close();
+				return "gelukt";
+			}
+			return NULL;
+		}
+
 		public function getLabjournal($labjournal, $userId){
 			
 			$labjournal = htmlspecialchars($labjournal);
@@ -586,6 +719,25 @@
 			JOIN lab_journal_users ON lab_journal.labjournal_id = lab_journal_users.lab_journal_id
 			WHERE lab_journal.labjournal_id = ? AND lab_journal_users.user_id = ?")) {
                 $stmt->bind_param('ii', $labjournal, $userId);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				$stmt->free_result();
+				$stmt->close();
+				return $result;
+			}
+			return NULL;
+		}
+		
+		public function getPreparation($Preparation, $userId){
+			
+			$Preparation = htmlspecialchars($Preparation);
+			$userId = htmlspecialchars($userId);
+			
+			if ($stmt = $this->conn->prepare("SELECT `title`,`theory`,`safety`,`log`,`method_materials`,`submitted`,`year`,`Attachment`,`Goal`,`Hypothesis`,`creator_id` 
+			FROM `preparation` 
+			JOIN preperation_users ON preparation.preparation_id = preperation_users.preparation_id
+			WHERE preparation.preparation_id = ? AND preperation_users.user_id = ?")) {
+                $stmt->bind_param('ii', $Preparation, $userId);
 				$stmt->execute();
 				$result = $stmt->get_result();
 				$stmt->free_result();
@@ -690,19 +842,30 @@
 			$stmt->close();
 			return $result;
 			}
-			else{ 
-				return mysqli_error($this->conn);
-			}
+			return NULL;
 		}
-		public function DeleteExtraUser($userid, $labjournalid){
-		if($stmt = $this->conn->prepare('DELETE FROM `lab_journal_users` WHERE `user_id` = ? AND `lab_journal_id` = ?')){
-			$stmt->bind_param('ii', $userid, $labjournalid);
+
+		public function GetAllPreparationUsers($labid){
+		if ($stmt = $this->conn->prepare('SELECT `name`,`users`.`user_id`, `preparation_id` FROM `preperation_users` JOIN `users` ON preperation_users.user_id = users.user_id WHERE preparation_id = ?')){
+			$stmt->bind_param('i', $labid);
 			$stmt->execute();
+			$result = $stmt->get_result();
+			$stmt->free_result();
 			$stmt->close();
-			return "Verwijderen gelukt";
+			return $result;
+			}
+			return NULL;
 		}
-		else{ return mysqli_error($this->conn);}
-	}
+
+		public function DeleteExtraUser($userid, $labjournalid){
+			if($stmt = $this->conn->prepare('DELETE FROM `lab_journal_users` WHERE `user_id` = ? AND `lab_journal_id` = ?')){
+				$stmt->bind_param('ii', $userid, $labjournalid);
+				$stmt->execute();
+				$stmt->close();
+				return "Verwijderen gelukt";
+			}
+			return NULL;
+		}
     
 		public function deleteNotification($notificationId){
 			

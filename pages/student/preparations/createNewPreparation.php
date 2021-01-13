@@ -67,26 +67,27 @@ if (!empty($_POST['title']) && !empty($_POST['theory']) && !empty($_POST['safety
 			$Attachment = $upload_directory.$TargetPath;
 		}
 		if ($uploadOk == 1) {
-			$createdLabjournaalID = $db->addLabJournalWithAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
+			$createdPreparationID = $db->addPreparationWithAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Attachment, $Goal, $Hypothesis);
 		} else {
-			$createdLabjournaalID = $db->addLabJournalWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
+			$createdPreparationID = $db->addPreparationWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
 		}
 	} else{ 
-		$createdLabjournaalID = $db->addLabJournalWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
+		$createdPreparationID = $db->addPreparationWithOutAttachment($title, $date, $theory, $safety, $creator_id, $log, $method_materials, $submitted, $grade, $year, $Goal, $Hypothesis);
 	}
 
 
-	while ($thisResult = $createdLabjournaalID->fetch_array(MYSQLI_ASSOC)){
-		$message = $db->connectNewLabjournalWithUser($_SESSION['user_id'], $thisResult['labjournal_id']);
+	while ($thisResult = $createdPreparationID->fetch_array(MYSQLI_ASSOC)){
+		$message = $db->connectNewPreparationWithUser($_SESSION['user_id'], $thisResult['preparation_id']);
 		if(isset($medestud)){
 		foreach($medestud as $entry){
-			$db->connectNewLabjournalWithUser($entry, $thisResult['labjournal_id']);
+			$db->connectNewPreparationWithUser($entry, $thisResult['preparation_id']);
 		}}
 	}
-	if ($message == "Labjournaal toegevoegd") {
-		echo $lang['LABJOURNALADDED'].". <a href='labjournal'>".$lang['GOBACKOVERVIEW']."</a>";
+	echo $message;
+	if ($message == "Preparation toegevoegd") {
+		echo $lang['LUCASHELPENGLISHEN'].". <a href='preparation'>".$lang['GOBACKOVERVIEW']."</a>";
 	} else {
-		echo '<a href="labjournal">'.$lang['PROBLEMOCCURRED'].'</a>';
+		echo '<a href="preparation">'.$lang['PROBLEMOCCURRED'].'</a>';
 	}
 	unset($_SESSION['title']);
 	unset($_SESSION['theory']);
@@ -159,7 +160,7 @@ if (empty($message)){
 						array_push($_SESSION['addusers'], $_POST['adduser']);
 						$_SESSION['addusers'] = array_unique($_SESSION['addusers']);
 						if(isset($_POST['inleveren']) || isset($_POST['opslaan'])){
-							$db->connectNewLabjournalWithUser($_POST['adduser'], $createdLabjournaalID);
+							$db->connectNewPreparationWithUser($_POST['adduser'], $createdPreparationID);
 							unset($_SESSION['addusers']);
 							unset($_SESSION['user_id_lab']);
 						}
@@ -201,9 +202,9 @@ if (empty($message)){
 						echo "<pre>";
 						foreach($_SESSION['addusers'] as $user){
 							$userdata = $db->selectCurrentUsers($user);
-							foreach($userdata as $userlabjournal){
-								$username = $userlabjournal['name'];
-								echo "<li>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>".$lang['DELETE']."</button></li>";
+							foreach($userdata as $userPreparation){
+								$username = $userPreparation['name'];
+								echo "<li>".$username."&#9;<button name='deleteuser' value='".$userPreparation['user_id']."'>".$lang['DELETE']."</button></li>";
 							}
 						}
 						echo "</pre>";

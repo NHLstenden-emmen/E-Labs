@@ -78,7 +78,6 @@ if (empty($message) && isset($_GET['id'])) {
 	while ($result = $getLabjournal->fetch_array(MYSQLI_ASSOC)){ 
 		$_SESSION['creator_id'] = $result['creator_id'];
 		if(!empty($_FILES['fileupload']['name'])){
-			var_dump($result['Attachment']);
 			unlink($result['Attachment']);
 		}
 		if ($result["submitted"] == 0) {
