@@ -36,5 +36,33 @@
 			<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
 			<p class='groteretextarealabjournaal'><?php echo $result["year"];?></p>
 		</div>
+		
+		<?php 
+			// check if its a img of excel file
+			$fileSortCheck = strtolower($result["Attachment"]);
+			$file = $result["Attachment"];
+			// check if source is a image
+			if (preg_match('/(\.jpg|\.png|\.jpeg|\.gif)$/', $fileSortCheck)) {
+				echo '<img src="'.$file.'" alt="" srcset="">';
+				// check if source is a csv format from excel.
+			} else if (preg_match('/(\.csv)$/', $fileSortCheck)){
+					echo "<br>";
+					echo "<table>\n\n";
+						$f = fopen($file, "r");
+						while (($line = fgetcsv($f)) !== false) {
+							echo "<tr>";
+							foreach ($line as $cell) {
+								echo "<td style='border: 1px solid black;'>" . htmlspecialchars($cell) . "</td>";
+							}
+							echo "</tr>\n";
+						}
+						fclose($f);
+					echo "\n</table>";
+			} else if (empty($result["Attachment"])){
+				# just a check if there is a scoure set.
+			} else {
+				echo $lang['FILENOTFOUND'];
+			}
+		?>
 	</form>
 <?php  }?>
