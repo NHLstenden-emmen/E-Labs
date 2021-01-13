@@ -66,8 +66,8 @@
 			<input name='profpic' type='file'>
 		</div>
 		</br>
-		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' id="ProfilePicButtons">
-		<input value='<?=$lang['DELETE'];?>' name='deletepf' type='submit' id="ProfilePicButtons">
+		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' id="ButtonProfielBlauw">
+		<input value='<?=$lang['DELETE'];?>' name='deletepf' type='submit' id="ButtonProfielBlauw">
 	</form>
 	<div class="Gebruikersprofielvakkenstudent">
 		<div id="Gebruikersprofielstudentinformatierechts"> 

@@ -3,39 +3,25 @@
 }
 
 .Gebruikersprofielvakken {
-	display: grid;
-	grid-template-columns: 35% 25% 25% 15%;
-	width: 100%;
-	height: 330px;
-	line-height: 10px;
-	padding-top: 8px;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20px;
 }
 
 .Gebruikersprofielvakkenstudent {
-	display: grid;
-	grid-template-columns: 35% 25% 25% 15%;
-	width: 100%;
-	height: 160px;
-	line-height: 10px;
-	padding-top: 8px;
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+	margin: 0 auto;
+	flex-direction: row;
 }
 
 .Gebruikersprofielvakken2 {
-	display: grid;
-	grid-template-columns: 35% 25% 25% 15%;
-	width: 100%;
-	height: 250px;
-	line-height: 10px;
-	padding-top: 8px;
-}
-
-.Gebruikersprofielvakkenspan {
-	margin-top: 40px;
-	height: 250px;
-	width: 260px;
-	grid-column: span 1 / -3;
-	padding: 0px;
-	line-height: 15px;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 30px;
+	margin: 0 auto;
+	height: 230px;
 }
 
 .gebruikersProfile .profielfototje {
@@ -56,38 +42,37 @@
 
 .gebruikersProfile #Gebruikersprofieldocentinformatie {
 	margin-top: 40px;
-	height: 330px;
+	height: 270px;
 	width: 260px;
-	grid-column: span 1 / -3;
 	padding: 0px;
 	line-height: 15px;
+	margin: 0 auto;
 }
 
-.gebruikersProfile #Gebruikersprofielstudentinformatierechts {
+.gebruikersProfile .Gebruikersprofielvakkenspan {
 	margin-top: 40px;
-	height: 330px;
+	height: 250px;
 	width: 260px;
-	grid-column: span 1 / -3;
 	padding: 0px;
 	line-height: 15px;
+	margin: 0 auto;
 }
 
-.gebruikersProfile #Gebruikersprofielstudentinformatielinks {
-	margin-top: 40px;
-	height: 330px;
-	width: 260px;
-	grid-column: span 1 / -2;
-	padding: 0px;
-	line-height: 15px;
+#Gebruikersprofielstudentinformatielinks, #Gebruikersprofielstudentinformatierechts {
+	padding-left: 50px;
+	width: 250px;
 }
 
 .gebruikersProfile #TextInputProfiel {
 	color: grey;
-	width: 400px;
     border-radius: 10px;
     border: 1px solid grey;
     height: 30px;
     padding: 5px;
+}
+
+#TextInputProfiel {
+	width: 100%;
 }
 
 .gebruikersProfile #Buttonopslaanprofiel {
@@ -99,29 +84,20 @@
 	display: block;
 }
 
-@media screen and (max-width: 700px) {
-	.gebruikersProfile .Gebruikersprofielvakken,
-	.gebruikersProfile #Gebruikersprofielstudentinformatielinks,
-	.gebruikersProfile #Gebruikersprofielstudentinformatierechts,
-	.Gebruikersprofielvakkenspan {
-		grid-column: 1 / 4;
-		width: 70%;
-		height: 100%;
-		margin-left: 5%;
-		margin-top: 10%;
+@media (max-width: 600px) {
+	#ButtonProfielBlauw {
+		width: 200px;
+		height: 30px;
 	}
-}
-
-@media screen and (max-width: 600px) {
-	.gebruikersProfile #Gebruikersprofielstudentinformatierechts,
-	.gebruikersProfile #Gebruikersprofielstudentinformatielinks,
-	.gebruikersProfile .Gebruikersprofielvakken,
-	.Gebruikersprofielvakkenspan {
-		grid-column: 1 / 4;
-		width: 90%;
-		height: 100%;
-		margin-left: 5%;
-		margin-top: 10%;
+	.Gebruikersprofielvakkenstudent, .Gebruikersprofielvakken2 {
+		display: block;
+	}
+	#Gebruikersprofielstudentinformatielinks, #Gebruikersprofielstudentinformatierechts {
+		padding-left: 40px;
+		margin: 0 auto;
+	}
+	#TextInputProfiel {
+		width: 100%;
 	}
 }
 
@@ -142,7 +118,7 @@
 	border: none;
 	border-radius: 30px;
 	color: white;
-	width: 10%;
+	width: 200px;
 }
 
 .languageSwitch {
@@ -158,6 +134,7 @@
 	border-radius: 30px;
 	color: white;
 	width: 15%;
+	height: 30px;
 }
 
 #ProfilePicButtonsbestand input{

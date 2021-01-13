@@ -95,9 +95,9 @@
 		<div>
 			<input name='profpic' type='file'>
 		</div>
-		</br></br>
-		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' id="ProfilePicButtons">
-		<input value='<?=$lang['DELETE'];?>' name='deletepf' type='submit'id="ProfilePicButtons">
+		</br>
+		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' id="ButtonProfielBlauw">
+		<input value='<?=$lang['DELETE'];?>' name='deletepf' type='submit'id="ButtonProfielBlauw">
 	</form>
 
 	<form method="POST" autocomplete="off" class="changeteacherinformation"> 
@@ -131,7 +131,8 @@
 	</form>
 
 	<div class="Gebruikersprofielvakken2">
-	<form method='post' class="Gebruikersprofielvakkenspan">
+		<div class="Gebruikersprofielvakkenspan">
+	<form method='post'>
 		<div>
 			<label for="huidigewachtwoord"><?php echo $lang['CURRENT']. " " . $lang['PASSWORD']?>:</label> </br>
 			<input placeholder='******' name='huidigewachtwoord' type='password' id="TextInputProfiel">
@@ -143,6 +144,7 @@
 		<div>
 			<label for="newWachtwoordHerhalen"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
 			<input placeholder='******' name='newWachtwoordHerhalen' type='password' id="TextInputProfiel">
+		</div>
 		</div>
 		</div>
 		<div class=profileEditButtons>
