@@ -72,125 +72,38 @@ if (empty($message) && isset($_GET['id'])) {
 		$_SESSION['creator_id'] = $result['creator_id'];
 		if ($result["submitted"] == 0) {
 		?>
-	<form method="post" enctype='multipart/form-data' class="newlabjournaalcontainer">
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-				<label for="title"><?php echo $lang["TITLE"];?>:</label> </br>
-				<input type="text" name="title" class="nieuwetitellabjournaal" value="<?php echo $result['title'];?>">
+	<form method="post" enctype='multipart/form-data'>
+		<div class="newlabjournaalcontainer3delen">
+			<div class="grotetextarealabjournaalmidden">
+				<label for="title" class="titlemarge"><?php echo $lang["TITLE"];?>:</label> </br>
+				<input type="text" name="title" class="inputtitle" value="<?php echo $result['title'];?>">
 				<!-- </form> -->
 			</div>
-			<div class="col-md-4 mb-3 offset-1">
-				<div class="selectstudent">
-					<div>
-						<?php echo $lang["OTHERSTUDENTS"];?>:</br>
-						<input type="search" name="searchstudent">
-						<input type="submit" name="search" Value="Search"><br>
-						<table id="selectphp">
-							<?php
-							if(!isset($_SESSION['addusers'])){
-								$_SESSION['addusers'] = array();
-							}
-							if(isset($_POST['adduser'])){
-								array_push($_SESSION['addusers'], (int)$_POST['adduser']);
-								if(isset($_POST['inleveren']) || isset($_POST['opslaan'])){
-									unset($_SESSION['addusers']);
-									unset($_SESSION['user_id_lab']);
-								}
-							}
-							if(isset($_POST['search']) && !empty($_POST['searchstudent'])){
-								$searchfor = "%".$_POST['searchstudent']."%";
-								$resultsearch = $db->selectStudentslab($searchfor);
-								if(isset($resultsearch) && $resultsearch != NULL){
-									echo "<tr><th>".$lang['NAME']."</th><th>".$lang['STUDENT_NUMBER']."</th></tr>";
-									foreach ($resultsearch as $user){
-										$_SESSION['user_id_lab'] = $user['user_id'];
-										echo "<tr><td>".$user['name']."</td><td>".$user['user_number']."</td><td>";
-										foreach($_SESSION['addusers'] as $labuser){
-											if($user['user_id'] == $labuser && $user['user_id'] != $_SESSION['creator_id']){
-												echo $_SESSION['button'] = "<button class='unclickable'>".$lang['ADDED']."</button>";
-											}
-										}								
-										if($user['user_id'] == $_SESSION['creator_id']){
-											echo $_SESSION['button'] = "<button class='unclickable'>Creator</button>";
-										}
-										if(!isset($_SESSION['button'])){
-											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">".$lang['ADD_USER']."</button>";
-										}
-										elseif(isset($_SESSION['button'])){
-											unset($_SESSION['button']);
-										}
-										echo "</td></tr>";
-									} 
-								} 
-							}
-							?>
-						</table>
-					</div>
-					<div>
-						<pre><table>
-							<?php
-							$labusers = $db->GetAllLabUsers($_GET['id']);
-							foreach($labusers as $lab){
-								$labuserid = (int)$lab['user_id'];
-								array_push($_SESSION['addusers'], $labuserid);
-								$_SESSION['addusers'] = array_unique($_SESSION['addusers']);
-							}
-							foreach($_SESSION['addusers'] as $user){
-								$userdata = $db->selectCurrentUsers($user);
-								foreach($userdata as $userlabjournal){
-									if($userlabjournal['user_id'] != $_SESSION['creator_id']){
-										$username = $userlabjournal['name'];
-										echo "<tr><td>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>".$lang['DELETE']."</button></td></tr>";
-									}
-								}
-							}
-							?>
-						</table></pre>
-						<?php
-						if(isset($_POST['deleteuser'])){
-							$deleteuser = $_POST['deleteuser'];
-							$_SESSION['addusers'] = array_diff($_SESSION['addusers'], array($deleteuser));
-							$db->DeleteExtraUser($deleteuser, $_GET['id']);
-							echo "<script>window.location.href = window.location.href;</script>";
-						}
-						?>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
+			<div class="grotetextarealabjournaallinks">
 				<label for="Goal"><?php echo $lang["GOAL"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="Goal" value="<?php echo $result['Goal'];?>"><?php echo $result['Goal'];?></textarea>
+				<textarea class="labjournaaltext" name="Goal" value="<?php echo $result['Goal'];?>"><?php echo $result['Goal'];?></textarea>
 			</div>
-			<div class="col-md-4 mb-3 offset-1">
+			<div class="grotetextarealabjournaalmidden">
 				<label for="Hypothesis"><?php echo $lang["HYPOTHESIS"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="Hypothesis" value="<?php echo $result['Hypothesis'];?>"><?php echo $result['Hypothesis'];?></textarea>
+				<textarea class="labjournaaltext" name="Hypothesis" value="<?php echo $result['Hypothesis'];?>"><?php echo $result['Hypothesis'];?></textarea>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
+			<div class="grotetextarealabjournaalrechts">
 				<label for="theory"><?php echo $lang["THEORY"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="theory" value="<?php echo $result['theory'];?>"><?php echo $result['theory'];?></textarea>
+				<textarea class="labjournaaltext" name="theory" value="<?php echo $result['theory'];?>"><?php echo $result['theory'];?></textarea>
 			</div>
-			<div class="col-md-4 mb-3 offset-1">
+			<div class="grotetextarealabjournaallinks">
 				<label for="safety"><?php echo $lang["SAFETY"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="safety" value="<?php echo $result['safety'];?>"><?php echo $result['safety'];?></textarea>
+				<textarea class="labjournaaltext" name="safety" value="<?php echo $result['safety'];?>"><?php echo $result['safety'];?></textarea>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
+			<div class="grotetextarealabjournaalmidden">
 				<label for="log"><?php echo $lang["LOG"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="log" value="<?php echo $result['log'];?>"><?php echo $result['log'];?></textarea>
+				<textarea class="labjournaaltext" name="log" value="<?php echo $result['log'];?>"><?php echo $result['log'];?></textarea>
 			</div>
-			<div class="col-md-4 mb-3 offset-1">
+			<div class="grotetextarealabjournaalrechts">
 				<label for="method_materials"><?php echo $lang["METHOD_MATERIALS"];?>:</label> </br>
-					<textarea class="groteretextarealabjournaal" name="method_materials" value="<?php echo $result['method_materials'];?>"><?php echo $result['method_materials'];?></textarea>
+				<textarea class="labjournaaltext" name="method_materials" value="<?php echo $result['method_materials'];?>"><?php echo $result['method_materials'];?></textarea>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-			
+			<div class="grotetextarealabjournaallinks">
 				<label for="year"><?php echo $lang["YEAR"];?>:</label> </br>
 				<label for="1"><?php echo $lang["YEAR"]." 1";?></label>
 					<input type="radio" name="year" value="1" <?php if($year == 1){echo 'checked';}?>>
@@ -199,12 +112,11 @@ if (empty($message) && isset($_GET['id'])) {
 				<label for="1"><?php echo $lang["YEAR"]." 3";?></label>
 					<input type="radio" name="year" value="3"<?php if($year == 3){echo 'checked';}?>>
 			</div>
-			<div class="col-md-4 mb-3 offset-1">
+			<div class="grotetextarealabjournaalmidden">
 			<a class="help"><i class="fas fa-question-circle" title="<?=$lang['ONLY'].' JPG, JPEG, PNG, GIF & csv '.$lang['ALLOWED']?>"></i></a>
 				<label for="fileupload"><?php echo $lang["UPLOAD_FILE"];?>:</label></br>
 				<input name='fileupload' type='file'>				
 			</div>	
-		</div>
 		<?php 
 			// check if its a img of excel file
 			$fileSortCheck = strtolower($result["Attachment"]);
@@ -232,15 +144,94 @@ if (empty($message) && isset($_GET['id'])) {
 				echo $lang['FILENOTFOUND'];
 			}
 		?>
-		<div class="form-row">
-			<div class="col-md-4 mb-3 offset-1">
-				<input type="submit" name="Opslaan" value="<?php echo $lang["SAVE"];?>">
-				<input type="submit" name="Inleveren" value="<?php echo $lang["HAND_IN"];?>">
+		<div class="grotetextarealabjournaalrechts">
+				<div class="selectstudent">
+					<div>
+						<?php echo $lang["OTHERSTUDENTS"];?>:</br>
+						<input type="search" name="searchstudent" class="searchstudentbox">
+						<input type="submit" name="search" class="searchstudentbutton" Value="Search"><br>
+						<table id="selectphp">
+							<?php
+							if(!isset($_SESSION['addusers'])){
+								$_SESSION['addusers'] = array();
+							}
+							if(isset($_POST['adduser'])){
+								array_push($_SESSION['addusers'], (int)$_POST['adduser']);
+								if(isset($_POST['inleveren']) || isset($_POST['opslaan'])){
+									unset($_SESSION['addusers']);
+									unset($_SESSION['user_id_lab']);
+								}
+							}
+							if(isset($_POST['search']) && !empty($_POST['searchstudent'])){
+								$searchfor = "%".$_POST['searchstudent']."%";
+								$resultsearch = $db->selectStudentslab($searchfor);
+								if(isset($resultsearch) && $resultsearch != NULL){
+									echo "<tr><th>".$lang['NAME']."</th><th>".$lang['STUDENT_NUMBER']."</th><th>Toevoegen</th></tr>";
+									foreach ($resultsearch as $user){
+										$_SESSION['user_id_lab'] = $user['user_id'];
+										echo "<tr><td>".$user['name']."</td><td>".$user['user_number']."</td><td>";
+										foreach($_SESSION['addusers'] as $labuser){
+											if($user['user_id'] == $labuser && $user['user_id'] != $_SESSION['creator_id']){
+												echo $_SESSION['button'] = "<button class='unclickable'>".$lang['ADDED']."</button>";
+											}
+										}								
+										if($user['user_id'] == $_SESSION['creator_id']){
+											echo $_SESSION['button'] = "<button class='unclickable'>Creator</button>";
+										}
+										if(!isset($_SESSION['button'])){
+											echo "<button name='adduser' Value=".$_SESSION['user_id_lab'].">".$lang['ADD_USER']."</button>";
+										}
+										elseif(isset($_SESSION['button'])){
+											unset($_SESSION['button']);
+										}
+										echo "</td></tr>";
+									} 
+								} 
+							}
+							?>
+						</table>
+					</div>
+					<div class="selectedusers">
+							<?php
+							$labusers = $db->GetAllLabUsers($_GET['id']);
+							foreach($labusers as $lab){
+								$labuserid = (int)$lab['user_id'];
+								array_push($_SESSION['addusers'], $labuserid);
+								$_SESSION['addusers'] = array_unique($_SESSION['addusers']);
+							}
+							foreach($_SESSION['addusers'] as $user){
+								$userdata = $db->selectCurrentUsers($user);
+								foreach($userdata as $userlabjournal){
+									if($userlabjournal['user_id'] != $_SESSION['creator_id']){
+										$username = $userlabjournal['name'];
+										echo "<tr><td>".$username."&#9;<button name='deleteuser' value='".$userlabjournal['user_id']."'>".$lang['DELETE']."</button></td></tr>";
+									}
+								}
+							}
+							?>
+						
+						<?php
+						if(isset($_POST['deleteuser'])){
+							$deleteuser = $_POST['deleteuser'];
+							$_SESSION['addusers'] = array_diff($_SESSION['addusers'], array($deleteuser));
+							$db->DeleteExtraUser($deleteuser, $_GET['id']);
+							echo "<script>window.location.href = window.location.href;</script>";
+						}
+						?>
+					</div>
+				</div> 
 			</div>
-			<div class="col-md-4 mb-3 offset-1">
-				<input type="reset" name="reset" value="<?php echo $lang["RESET"];?>"> </br>
+			<div class="grotetextarealabjournaalmidden">
+				<input type="submit" name="Opslaan" class="oirbuttonlabjournaal" value="<?php echo $lang["SAVE"];?>">
+			</div>
+			<div class="grotetextarealabjournaalmidden">
+				<input type="submit" name="Inleveren" class="oirbuttonlabjournaal" value="<?php echo $lang["HAND_IN"];?>">
+			</div>
+			<div class="grotetextarealabjournaalmidden">
+				<input type="reset" name="reset" class="oirbuttonlabjournaal" value="<?php echo $lang["RESET"];?>"> </br>
 			</div>
 		</div>
+	</div>
 	</form>
 	<?php  }}
 	} else {

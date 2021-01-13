@@ -1,46 +1,113 @@
-.labjournaalcontainer {
-	padding: 20px;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	grid-template-columns: 660px 660px;
-	justify-content: space-around;
-	flex-flow: wrap;
 
+.labjournaalcontainer3delen {
+	text-align: center;
+	display: grid;
+	grid-template-columns: 33.3% 33.4% 33.3%;
 }
 
-.labjournaalcontainer .groteretextarealabjournaal {
-	height: 200px;
-	width: 600px;
-	resize: none;
-	margin-bottom: 30px;
+.labjournaalcontainer4delen {
 	text-align: center;
-	box-sizing: content-box;
-	
-	
+	display: grid;
+	grid-template-columns: 16.7% 33.3% 33.3% 16.7%;
 }
 
-.labjournaalcontainer p {
+.labjournaalcontainer3delen .grotetextarealabjournaal {
+	height: 100%;
+	width: 90%;
+	text-align: center;
+	margin-bottom: 10%;
+}
+
+.labjournaalcontainer3delen p {
 	border-radius: 10px;
-	border: 3px solid blue;
-	height: 200px;
-	margin-bottom: 30px;
-	width: 600px;
-	overflow: auto;
+	border: 2px solid var(--primaryColor);
+	height: 300px;
 }
-.labjournaalcontainer .nieuwetitellabjournaal {
+
+.labjournaalcontainer4delen p {
+	border-radius: 10px;
+	border: 2px solid var(--primaryColor);
+}
+
+.labjournaalcontainer3delen .nieuwetitellabjournaal {
 	margin: auto;
 	height: 30px;
 	width: 600px;
 	margin-bottom: 30px;
 }
 
-.labjournalcontainer .smalltextarealabjournaal {
-	margin: auto;
-	height: 200px;
-	width: 200px;
-	resize: none;
-	margin-bottom: 30px;
+.labjournaalcontainer3delen .grotetextarealabjournaallinks {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -3;
+	margin-left: 5%;
+	margin-bottom: 5%;
+}
+
+.labjournaalcontainer3delen .grotetextarealabjournaalmidden {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -2;
+	margin-left: 5%;
+	margin-bottom: 5%;
+}
+
+.labjournaalcontainer3delen .grotetextarealabjournaalrechts {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -1;
+	margin-bottom: 5%;
+	margin-left: 5%;
+}
+
+.labjournaalcontainer4delen .smalltextarealabjournaallinks {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -3;
+	margin-bottom: 5%;
+	margin-left: 5%;
+
+}
+
+.labjournaalcontainer4delen .smalltextarealabjournaalrechts {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -2;
+	margin-bottom: 5%;
+	margin-left: 5%;
+}
+
+.titlejaarmargintopviewlabjournaal {
+	margin-top: 5%;
+}
+
+.labjournaalboxcijfer {
+	border: 2px solid var(--primaryColor);
+	border-radius: 10px;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+}
+
+.labjournaalbuttoncijfer {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	margin-top: 2%;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+}
+
+.labjournaalbuttonarchive {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	height: 50px;
+	width: 100%;
+	text-align: center;
 }
 
 .labjournaaltitle {
@@ -52,19 +119,59 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
+
 .fileSource {
 	padding: 30px;
 	justify-content: center;
 	display: flex;
 }
 
-input {
-	margin: auto;
-	height: 50px;
-	width: 100%;
-	resize: none;
-	text-align: center;
-	margin-top: 30px;
-	margin-bottom: 30px;
-	margin-right: 160px;
+@media screen and (max-width: 900px) {
+
+	.labjournaalcontainer3delen {
+		text-align: center;
+		display: grid;
+		grid-template-columns: 5% 90% 5%;
+	}
+	
+	.labjournaalcontainer4delen {
+		text-align: center;
+		display: grid;
+		grid-template-columns: 5% 90% 5%;
+	}
+	
+	.labjournaalcontainer3delen .grotetextarealabjournaalrechts {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-bottom: 5%;
+		margin-left: 5%;
+	}
+
+	.labjournaalcontainer3delen .grotetextarealabjournaallinks {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-left: 5%;
+		margin-bottom: 5%;
+	}	
+	
+	.labjournaalcontainer4delen .smalltextarealabjournaallinks {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-bottom: 5%;
+		margin-left: 5%;
+	}
+
+	.labjournaalcontainer4delen .smalltextarealabjournaalrechts {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-bottom: 5%;
+		margin-left: 5%;
+	}
+	
 }
+
+

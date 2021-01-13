@@ -24,39 +24,39 @@ if(isset($_POST['deArchive'])){
 $labjournal = $db->teacherLabjournalView($labjournalid);
 ?>
 
-
 <?php
 	while ($result = $labjournal->fetch_array(MYSQLI_ASSOC)){
 		echo "<h1 class='labjournaaltitle'>" . $result['title'] . "</h1>";
+		?>
+		<div class="labjournaalcontainer4delen"> 
+		<?php
+		echo "<div class='smalltextarealabjournaallinks'><h4>".$lang['NAME'].": </h4><p>" . $result['name'] . "</p></div>";
+		echo "<div class='smalltextarealabjournaalrechts'><h4>".$lang['DATE'].": </h4><p>" . $result['date'] . "</p></div>";
+		echo "</div><div class='labjournaalcontainer3delen'>";
+		echo "<div class='grotetextarealabjournaallinks'><h4>".$lang['GOAL'].": </h4><p>" . $result['Goal'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['HYPOTHESIS'].": </h4><p>" . $result['Hypothesis'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalrechts'><h4>".$lang['MATERIALS'].": </h4><p>" . $result['method_materials'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaallinks'><h4>".$lang['THEORY'].": </h4><p>" . $result['theory'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['SAFETY'].": </h4><p>" . $result['safety'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalrechts'><h4>".$lang['LOG'].": </h4><p>" . $result['log'] . "</p></div>";
+		echo "<div class='grotetextarealabjournaalmidden'><h4>".$lang['GRADE'].": </h4>
+		<form method='POST'>
+			<input type='text' name='grade' class='labjournaalboxcijfer' value=" .$result['grade'] . ">
+			<input type='submit' name='changeGrade' class='labjournaalbuttoncijfer' value =".$lang['CHANGEGRADE'].">
+		</form>
+		</div>
+		<div class='grotetextarealabjournaalmidden'>";
 		if ($result['submitted'] == 2) {
 			echo "<form method='POST'>
-					<input type='submit' value='Dearchive' name='deArchive'>
+					<input type='submit' value='Dearchive' name='deArchive' class='labjournaalbuttonarchive'>
 				</form>";
 		} else {
 			echo "<form method='POST'>
-					<input type='submit' value='Archive' name='archive'>
+					<input type='submit' value='Archive' name='archive' class='labjournaalbuttonarchive'>
 				</form>";
 		}
-		
-		?>
-		<div class="labjournaalcontainer">
-		<?php
-		echo "<div class='groteretextarealabjournaal'><h4>".$lang['NAME'].": </h4><p>" . $result['name'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['DATE'].": </h4><p>" . $result['date'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['GOAL'].": </h4><p>" . $result['Goal'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['HYPOTHESIS'].": </h4><p>" . $result['Hypothesis'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['MATERIALS'].": </h4><p>" . $result['method_materials'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['THEORY'].": </h4><p>" . $result['theory'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['SAFETY'].": </h4><p>" . $result['safety'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['LOG'].": </h4><p>" . $result['log'] . "</p></div>";
-		echo "<div class='grotetextarealabjournaal'><h4>".$lang['GRADE'].": </h4> 
-		<form method='POST'>
-			<input type='text' name='grade' value=" .$result['grade'] . ">
-			<input type='submit' name='changeGrade' value =".$lang['CHANGEGRADE'].">
-		</form>
-		</div>
-		</div>
-		<div class='fileSource'>";
+		echo "</div></div>";
+		echo "<div class='fileSource'>";
 			// check if its a img of excel file
 			$fileSortCheck = strtolower($result["Attachment"]);
 			$file = $result["Attachment"];
