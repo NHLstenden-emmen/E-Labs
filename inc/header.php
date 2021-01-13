@@ -97,6 +97,9 @@
 					case 'addeditnotification':
 						echo '<link rel="stylesheet" href="css/pages/addEditNotification.css">';
 						break;
+					case 'deleteaccount':
+						echo '<link rel="stylesheet" href="css/pages/deleteUser.css">';
+						break;
 					case 'labjournalview':
 						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
 						break;
