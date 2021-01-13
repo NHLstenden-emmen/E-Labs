@@ -142,3 +142,4 @@
 	<div id="sliderContainer" class="slider">
 		<img src="images/banner.jpg" class="img-fluid" alt="slider">
 	</div>
+	<div id="contentContainer">

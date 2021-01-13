@@ -1,6 +1,7 @@
+		</div>
 	</main>
 	<footer class="page-footer"> 
-		<div class="footer-copyright text-center py-3">
+		<div class="footer-copyright text-center">
 			<a href="https://www.nhlstenden.com/" target="_blank"> © NHL Stenden Emmen / E-labs</a> | <a href="https://www.nhlstenden.com/privacyverklaring" target="_blank">Privacy policy</a> | <a href="aboutus">About us</a> 
 		</div>
 	</footer>
