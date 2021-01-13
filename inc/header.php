@@ -49,20 +49,24 @@
 						echo '<link rel="stylesheet" href="css/pages/studentHome.css">';
 						break;
 					case 'labjournal':
+					case 'preparations':
 						echo '<link rel="stylesheet" href="css/pages/studentLabJournal.css">';
+						break;
+					case 'viewlabjournal':
+					case 'viewlabpreparation':
+						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
+						break;
+					case 'editjournal':
+					case 'createnewlabjournal':
+					case 'editpreparation':
+					case 'createnewpreparation':
+						echo '<link rel="stylesheet" href="css/pages/newLabJournal.css">';
 						break;
 					case 'userprofile':
 						echo '<link rel="stylesheet" href="css/pages/userProfile.css">';
 						break;
 					case 'searchresults':
 						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
-						break;
-					case 'viewlabjournal':
-						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
-						break;
-					case 'editjournal':
-					case 'createnewlabjournal': //file path of nieuwlabjournal
-						echo '<link rel="stylesheet" href="css/pages/newLabJournal.css">';
 						break;
 					case 'aboutus':
 						echo '<link rel="stylesheet" href="css/pages/aboutUs.css">';
@@ -77,8 +81,13 @@
 					case 'e-labs'://file path of your home/start page
 					case 'home':
 					case 'labjournal':
+					case 'preparations':
 					case '':
 						echo '<link rel="stylesheet" href="css/pages/teacherHome.css">';
+						break;
+					case 'labjournalview':
+					case 'preparationsview':
+						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
 						break;
 					case 'year':
 						echo '<link rel="stylesheet" href="css/pages/teacherHome.css">';
@@ -101,9 +110,6 @@
 						break;
 					case 'deleteaccount':
 						echo '<link rel="stylesheet" href="css/pages/deleteUser.css">';
-						break;
-					case 'labjournalview':
-						echo '<link rel="stylesheet" href="css/pages/labJournalView.css">';
 						break;
 					case 'aboutus':
 						echo '<link rel="stylesheet" href="css/pages/aboutUs.css">';
