@@ -50,6 +50,9 @@
 					<a class="nav-link" href="labjournal?year=3<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["YEAR"]." 3";?></a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="preparations<?php if($archiveNavbar == "true"){ echo "&archive=true";} ?>"><?php echo $lang["PREPARATIONS"];?></a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="notificationsoverview"><?=$lang['NOTIFICATIONOVERVIEW'];?></a>
 				</li>
 			<?php } else if ($_SESSION['role'] == 'Student'){ ?>
@@ -57,7 +60,7 @@
 					<a class="nav-link" href="labjournal"><?php echo $lang["LABJOURNAL"];?></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#"><?php echo $lang["PREPARATIONS"];?></a>
+					<a class="nav-link" href="preparations"><?php echo $lang["PREPARATIONS"];?></a>
 				</li>
 			<?php }?>
 			</ul>
