@@ -58,7 +58,6 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 		$upload_directory = "gebruikersBestanden/uploads/";
 		$time = time();
 		$TargetPath=$time.$UploadedFileName;
-	
 		if(move_uploaded_file($_FILES['fileupload']['tmp_name'], $upload_directory.$TargetPath)){ 
 			$Attachment = $upload_directory.$TargetPath;
 		}
@@ -72,14 +71,10 @@ if (!empty($_POST['title']) && isset($_POST['Opslaan']) || isset($_POST['Inlever
 	}
 }
 
-
 if (empty($message) && isset($_GET['id'])) {
 	$getPreparation = $db->getPreparation($_GET['id'], $_SESSION['user_id']);
 	while ($result = $getPreparation->fetch_array(MYSQLI_ASSOC)){ 
 		$_SESSION['creator_id'] = $result['creator_id'];
-		if(!empty($_FILES['fileupload']['name'])){
-			unlink($result['Attachment']);
-		}
 		if ($result["submitted"] == 0) {
 		?>
 	<form method="post" enctype='multipart/form-data'>
