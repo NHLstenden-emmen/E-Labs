@@ -723,7 +723,7 @@
 			if ($stmt = $this->conn->prepare("UPDATE `preparation` 
 			JOIN preperation_users ON preperation_users.preparation_id =  preparation.preparation_id
 			SET `title`=?,`date`=?,`theory`=?,`safety`=?, `log`=?,`method_materials`=?,`submitted`=?, `year`=?,`Attachment`=?,`Goal`=?,`Hypothesis`=? 
-			WHERE preperation_users.`user_id` = ? AND preparation_id = ?")) {
+			WHERE preperation_users.`user_id` = ? AND preparation.preparation_id = ?")) {
                 $stmt->bind_param('ssssssiisssii', $title, $date, $theory, $safety, $log, $method_materials, $submitted, $year, $Attachment, $Goal, $Hypothesis, $UserID, $labjournal_id);
 				$stmt->execute();
 				$stmt->close();
