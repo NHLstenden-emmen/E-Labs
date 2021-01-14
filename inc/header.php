@@ -50,7 +50,7 @@
 						break;
 					case 'labjournal':
 					case 'preparations':
-						echo '<link rel="stylesheet" href="css/pages/studentLabJournal.css">';
+						echo '<link rel="stylesheet" href="css/pages/studentLabjournal.css">'; 
 						break;
 					case 'viewlabjournal':
 					case 'viewpreparation':
