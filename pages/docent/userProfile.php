@@ -76,7 +76,6 @@
 			$userID = $_SESSION['user_id'];
 
 			$message = $db->teacherProfileEdit($userID, $name, $email, $user_number);
-			echo $message;
 		if($message != NULL){
 			$_SESSION['name'] = $name;
 			$_SESSION['email'] = $email;
@@ -89,9 +88,9 @@
 ?>
 
 <div class="gebruikersProfile">
+	<?php if(isset($message)){echo "<h4 style='text-align: center;'><b>".$message."</b></h4>";}?>
 	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle"></br>
 	<form method='post' enctype='multipart/form-data' class="changeprofilepicture"> 
-	<?php if(isset($message)){echo "<h4><b>".$message."</b></h4>";}?>
 		<div>
 			<input name='profpic' type='file'>
 		</div>

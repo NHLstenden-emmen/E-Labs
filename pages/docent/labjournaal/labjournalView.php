@@ -11,7 +11,7 @@ if(isset($_POST['changeGrade'])){
 		$db->updateGradeView($labjournalid, $grade);
 		echo $lang['GRADECHANGED'];
 	} else {
-		echo $LANG['WRONGGRADE'];
+		echo $lang['WRONGGRADE'];
 	}
 }
 if(isset($_POST['archive'])){
