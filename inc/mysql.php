@@ -579,21 +579,21 @@
 
 		public function selectStudentSearchResultsPreperation($userId, $searchWord) {
 			
-			$userId = htmlspecialchars($userId);
 			$searchWord = htmlspecialchars($searchWord);
+			$userId = htmlspecialchars($userId);
 
 			if($stmt = $this->conn->prepare(
 				"SELECT * FROM `preparation`
-				JOIN preperation_users ON preparation_id = preperation_users.preparation_id
+				JOIN preperation_users ON preparation.preparation_id = preperation_users.preparation_id
 				JOIN users ON preperation_users.user_id = users.user_id
 				WHERE preperation_users.user_id = ?
 				AND (title LIKE ?
-				OR materials LIKE ?
+				OR theory LIKE ?
 				OR safety LIKE ?
-				OR method LIKE ?
-				OR preparation_questions LIKE ?
-				OR goal LIKE ?
-				OR hypothesis LIKE ?)
+				OR log LIKE ?
+				OR method_materials LIKE ?
+				OR Goal LIKE ?
+				OR Hypothesis LIKE ?)
 				ORDER BY `date` DESC
 				")) {
 				$stmt->bind_param("isssssss", $userId, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
@@ -612,13 +612,13 @@
 
 			if($stmt = $this->conn->prepare(
 				"SELECT * FROM `preparation`
-				JOIN preperation_users ON preparation_id = preperation_users.preparation_id
+				JOIN preperation_users ON preparation.preparation_id = preperation_users.preparation_id
 				JOIN users ON preperation_users.user_id = users.user_id
-				WHERE (title LIKE ?
-				OR materials LIKE ?
-				OR `safety` LIKE ?
-				OR method LIKE ?
-				OR preparation_questions LIKE ?
+				AND (title LIKE ?
+				OR theory LIKE ?
+				OR safety LIKE ?
+				OR log LIKE ?
+				OR method_materials LIKE ?
 				OR goal LIKE ?
 				OR hypothesis LIKE ?)
 				AND submitted = 1
