@@ -78,6 +78,10 @@
 						<td><?php echo $notification['title']?></td>
 					</tr>
 					<tr>
+						<td class="notificationHeader"><?php echo $lang['MESSAGE']?>:</td>
+						<td><?php echo $notification['message']?></td>
+					</tr>
+					<tr>
 					<?php 
 						if ($notification['Vname'] != NULL ) { 
 					?>		
