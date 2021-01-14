@@ -1,5 +1,5 @@
 <?php
-// If you want to add any new translations, do this in aplhabetical order please 
+// If you want to add any new translations,do this in aplhabetical order please 
 return [
 	'ACTION' => 'Actions',
 	'ADD' => 'Add',
@@ -11,6 +11,7 @@ return [
 	'ADJUST_PROFILE_PICTURE' => 'Edit profile picture',
 	'ALL_NOTIFICATIONS' => 'All Notifications',
 	'ALLOWED' => 'Allowed',
+	'ALLPREPARATIONS' => 'All preparations',
 	'ALLSTUDENTS' => 'All students',
 	'AREYOUSURE' => 'Are you sure u want to delete this notification?',
 	'AREYOUSUREDELETE' => 'Are you sure you want to delete ',
@@ -20,6 +21,7 @@ return [
 	'CHANGEGRADE' => 'Change grade',
 	'CLASS' => 'Class',
 	'CREATENOTIFICATION' => 'Create new notification',
+	'CREATEPREPARATION' => 'Create new preparation',
 	'CURRENT' => 'Current',
 	'CURRENTPASSNOTCORRECT'=> 'The password you filled in is not correct',
 	'DATE' => 'Date',
@@ -47,6 +49,7 @@ return [
 	'HYPOTHESIS' => 'Hypothesis',
 	'LABJOURNAL' => 'Labjournal',
 	'LABJOURNALADDED' => 'Labjournal added',
+	'LABTITLE' => 'Labjournal title',
 	'LANGUAGE' => 'language',
 	'LOG' => 'Logbook',
 	'LOGIN' => 'login',
@@ -73,7 +76,9 @@ return [
 	'PASSWORDSDONTMATCH' => "Passwords don't match",
 	'PERSONALNOTIFICATIONS' => 'Personal notifications',
 	'PREPARATION_QUESTIONS' => 'Preparation questions',
+	'PREPARATIONADDED' => 'Preparation added',
 	'PREPARATIONS' => 'Preparations',
+	'PREPARATIONUPDATED' => 'Preparation updated',
 	'PRINTLAB' => 'Print Labjournal',
 	'PROBLEMOCCURRED' => 'A problem occurred',
 	'REMEMBER_EMAIL' => 'Remember email',
@@ -84,6 +89,7 @@ return [
 	'SAFETY' => 'Safety',
 	'SAVE' => 'Save',
 	'SEARCH' => 'Search',
+	'SEARCHEDFOR' => 'Searched for',
 	'SELECT_A_SORTING_OPTION' => 'Select a sorting option',
 	'SELECTSTUDENTS' => 'Select students',
 	'SEND' => 'Send',
@@ -98,7 +104,6 @@ return [
 	'THEORY' => 'Theory',
 	'THISUSER' => '?',
 	'TITLE' => 'Title',
-	'LABTITLE' => 'Labjournal title',
 	'TOARCHIVE' => 'To archive',
 	'UPLOAD_FILE' => 'Upload file',
 	'USER_OVERVIEW' => 'User overview',
@@ -112,10 +117,5 @@ return [
 	'YEAR' => 'Year',
 	'YEAR_OVERVIEW' => 'Overview year ',
 	'YES' => 'Yes',
-	'SEARCHEDFOR' => 'Searched for',
-	'CREATEPREPARATION' => 'Create new preparation',
-	'PREPARATIONADDED' => 'Preparation added',
-	'ALLPREPARATIONS' => 'All preparations',
-	'PREPARATIONUPDATED' => 'Preparation updated',
 ]
 ?>

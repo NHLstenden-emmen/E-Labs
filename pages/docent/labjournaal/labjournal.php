@@ -1,4 +1,5 @@
 <?php 
+//checks the year and sets it to the approppriate year
 if(isset($_GET['year'])) {
     if($_GET['year'] == 2) {
         $year = 2;
@@ -101,7 +102,7 @@ if(isset($_GET['sorting'])) {
             echo "<td>$result[title]</td>";
             $cijfer = $result['grade'];
             $cijferTitel = mb_strimwidth($result['title'], 0, 15, "...");
-
+            //if else for displaying correct colors
             if($cijfer >= 1 && $cijfer <= 5.4) {
                 echo "<td class='onvoldoende'>". $cijfer . "</td>";
             } elseif($cijfer >= 5.5 && $cijfer <= 10) {
