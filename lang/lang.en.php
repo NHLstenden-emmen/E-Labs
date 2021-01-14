@@ -113,6 +113,9 @@ return [
 	'YEAR_OVERVIEW' => 'Overview year ',
 	'YES' => 'Yes',
 	'SEARCHEDFOR' => 'Searched for',
-	'LUCASHELPENGLISHEN' => 'lucas help i cry',
+	'CREATEPREPARATION' => 'Create new preparation',
+	'PREPARATIONADDED' => 'Preparation added',
+	'ALLPREPARATIONS' => 'All preparations',
+	'PREPARATIONUPDATED' => 'Preparation updated',
 ]
 ?>

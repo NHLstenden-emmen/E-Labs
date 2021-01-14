@@ -117,6 +117,10 @@ return [
 	'YEAR_OVERVIEW' => 'Overzicht jaar ',
 	'YES' => 'Ja',
 	'SEARCHEDFOR' => 'Gezocht op',
-	'LUCASHELPENGLISHEN' => 'lucas help ik jank',
+	'CREATEPREPARATION' => 'Nieuwe preperation',
+	'PREPARATIONADDED' => 'voorbereiding toegevoegd',
+	'ALLPREPARATIONS' => 'Alle voorbereidingen',
+	'PREPARATIONUPDATED' => 'Voorbereiding geupdate',
+
 ]
 ?>

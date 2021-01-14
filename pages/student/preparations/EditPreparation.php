@@ -252,7 +252,7 @@ if (empty($message) && isset($_GET['id'])) {
 	<?php  }}
 	} else {
 		if ($message == "gelukt") {
-			echo $lang['LUCASHELPENGLISHEN'].". <a href='preparations'>".$lang['GOBACKOVERVIEW']."</a>";
+			echo $lang['PREPARATIONUPDATED'].". <a href='preparations'>".$lang['GOBACKOVERVIEW']."</a>";
 		} else {
 			echo '<a href="preparations">'.$lang['PROBLEMOCCURRED'].'</a>';
 		}

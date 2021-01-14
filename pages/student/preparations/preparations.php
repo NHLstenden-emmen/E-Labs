@@ -33,7 +33,7 @@
 
 <div id="labjournaalContainer">
 	<p id="newLabjournal">
-		<a href="createnewpreparation">+ <?php echo $lang["LUCASHELPENGLISHEN"];?></a>
+		<a href="createnewpreparation">+ <?php echo $lang["CREATEPREPARATION"];?></a>
 	</p>
 	<div id="mainContainer" class="row">
 		<div id="yearNav" class="col-xs-12 col-sm-3 col-lg-2">

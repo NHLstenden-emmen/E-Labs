@@ -69,7 +69,7 @@ if(isset($_GET['sorting'])) {
 }
 ?>
 <div class="docentenHomePage">
-<h1><?=$lang['LUCASHELPENGLISHEN'];?></h1>
+<h1><?=$lang['ALLPREPARATIONS'];?></h1>
 <h4>
     <a href="?year=<?php echo $year?>&archive=<?php echo $archive?>&changeArchive">
         <?php if ($archive == "false") {
@@ -86,7 +86,7 @@ if(isset($_GET['sorting'])) {
         <tr>
             <th><?php echo $lang["NAME"];?><a href="?sorting=name&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
             <th><?php echo $lang["DATE"];?><a href="?sorting=date&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
-            <th><?php echo $lang["LUCASHELPENGLISHEN"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["TITLE"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
             <th><?php echo $lang["GRADE"];?></th>
             <th><?php echo $lang["ACTION"];?></th>
         </tr>
