@@ -108,24 +108,24 @@ if(isset($title)){
     $pdf->ln(5);
     $pdf->SetFont('Arial','',16);
     $pdf->SetFont('Arial','',18);
+    $pdf->Cell(32,5, "$goallang:", 0, 2);
+    $pdf->SetFont('Arial','',16);
+    $pdf->MultiCell(0,5,$goal,'0','L');
+    $pdf->ln(5);
+    $pdf->SetFont('Arial','',18);
     $pdf->Cell(32,5, "$hypothesislang:", 0, 2);
     $pdf->SetFont('Arial','',16);
     $pdf->MultiCell(0,5,$hypothesis,'0','L');
     $pdf->ln(5);
     $pdf->SetFont('Arial','',18);
-    $pdf->Cell(32,5, "$var1n:", 0, 2);
-    $pdf->SetFont('Arial','',16);
-    $pdf->MultiCell(0,5,$var1,'0','L');
-    $pdf->ln(5);
-    $pdf->SetFont('Arial','',18);
-    $pdf->Cell(32,5, "$var2n:", 0, 2);
-    $pdf->SetFont('Arial','',16);
-    $pdf->MultiCell(0,5,$var2,'0','L');
-    $pdf->ln(5);
-    $pdf->SetFont('Arial','',18);
     $pdf->Cell(32,5, "$var3n:", 0, 2);
     $pdf->SetFont('Arial','',16);
     $pdf->MultiCell(0,5,$var3,'0','L');
+    $pdf->ln(5);
+    $pdf->SetFont('Arial','',18);
+    $pdf->Cell(32,5, "$safetylang:", 0, 2);
+    $pdf->SetFont('Arial','',16);
+    $pdf->MultiCell(0,5,$safety,'0','L');
     $pdf->ln(5);
     if(isset($var4)){
         $pdf->SetFont('Arial','',18);
@@ -135,14 +135,14 @@ if(isset($title)){
         $pdf->ln(5);
     }
     $pdf->SetFont('Arial','',18);
-    $pdf->Cell(32,5, "$safetylang:", 0, 2);
+    $pdf->Cell(32,5, "$var2n:", 0, 2);
     $pdf->SetFont('Arial','',16);
-    $pdf->MultiCell(0,5,$safety,'0','L');
+    $pdf->MultiCell(0,5,$var2,'0','L');
     $pdf->ln(5);
     $pdf->SetFont('Arial','',18);
-    $pdf->Cell(32,5, "$goallang:", 0, 2);
+    $pdf->Cell(32,5, "$var1n:", 0, 2);
     $pdf->SetFont('Arial','',16);
-    $pdf->MultiCell(0,5,$goal,'0','L');
+    $pdf->MultiCell(0,5,$var1,'0','L');
     $pdf->Output();
 }
 else{
