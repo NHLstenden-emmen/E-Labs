@@ -69,6 +69,9 @@ if(isset($_GET['sorting'])) {
 }
 ?>
 <div class="docentenHomePage">
+    <a href='?year=1<?php if($archive == "true"){ echo "&archive=true";}?>'><?php echo $lang["YEAR"]." 1";?></a> | 
+    <a href='?year=2<?php if($archive == "true"){ echo "&archive=true";}?>'><?php echo $lang["YEAR"]." 2";?></a> | 
+    <a href='?year=3<?php if($archive == "true"){ echo "&archive=true";}?>'><?php echo $lang["YEAR"]." 3";?></a>
 <h1><?=$lang['ALLPREPARATIONS'];?></h1>
 <h4>
     <a href="?year=<?php echo $year?>&archive=<?php echo $archive?>&changeArchive">
