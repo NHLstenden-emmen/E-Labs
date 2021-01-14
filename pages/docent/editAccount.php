@@ -29,8 +29,8 @@
 		<div class="addUserContainer">
 			<form method="POST" autocomplete="off">
 				<label for="role"><?=$lang['ROLE'];?></label><br>
-				<input type="radio" name="role" id="Studentrole" value="Student" checked><label for="Studentrole">Student</label>
-				<input type="radio" name="role" id="Docentrole" class="radioButtonRol" value="Docent"><label for="Docentrole"><?=$lang['TEACHER'];?></label><br>
+				<input type="radio" name="role" id="Studentrole" value="Student" <?php if($result['role'] == "Student"){ echo "checked";} ?> ><label for="Studentrole">Student</label>
+				<input type="radio" name="role" id="Docentrole" class="radioButtonRol" value="Docent" <?php if($result['role'] == "Docent"){ echo "checked";} ?>><label for="Docentrole"><?=$lang['TEACHER'];?></label><br>
 
 				<label for="name"><?=$lang['NAME'];?></label><br>
 				<input type="text" name="name" value='<?php echo $result['name']?>' required class="textInputGebruiker"><br>
