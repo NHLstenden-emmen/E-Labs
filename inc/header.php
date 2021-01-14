@@ -69,7 +69,7 @@
 						echo '<link rel="stylesheet" href="css/pages/searchResults.css">';
 						break;
 					case 'aboutus':
-						echo '<link rel="stylesheet" href="css/pages/aboutUs.css">';
+						echo '<link rel="stylesheet" href="css/pages/aboutus.css">';
 						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
@@ -112,7 +112,7 @@
 						echo '<link rel="stylesheet" href="css/pages/deleteUser.css">';
 						break;
 					case 'aboutus':
-						echo '<link rel="stylesheet" href="css/pages/aboutUs.css">';
+						echo '<link rel="stylesheet" href="css/pages/aboutus.css">';
 						break;
 					default:
 						echo '<link rel="stylesheet" href="css/pages/404.css">';
