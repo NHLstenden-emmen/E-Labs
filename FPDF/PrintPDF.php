@@ -90,7 +90,7 @@ if(isset($title)){
         // Position at 10 cm from bottom
         $this->SetY(-10);
         // Arial italic 8
-        $this->SetFont('Arial','I',8,);
+        $this->SetFont('Arial','I',8);
         // Page number
         $this->Cell(0,10,$this->PageNo().'/{nb}',0,0,'C');
     }
