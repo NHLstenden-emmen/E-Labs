@@ -101,7 +101,7 @@ if(isset($_GET['sorting'])) {
             echo "<td>$result[title]</td>";
             $cijfer = $result['grade'];
             $cijferTitel = mb_strimwidth($result['title'], 0, 15, "...");
-
+            // If else for displaying colors
             if($cijfer >= 1 && $cijfer <= 5.4) {
                 echo "<td class='onvoldoende'>". $cijfer . "</td>";
             } elseif($cijfer >= 5.5 && $cijfer <= 10) {
