@@ -1,4 +1,5 @@
 <?php 
+//checks the year and sets it to the approppriate year
 if(isset($_GET['year'])) {
     if($_GET['year'] == 2) {
         $year = 2;
@@ -84,9 +85,9 @@ if(isset($_GET['sorting'])) {
  <div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
     <table>
         <tr>
-            <th><?php echo $lang["NAME"];?><a href="?sorting=name&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
-            <th><?php echo $lang["DATE"];?><a href="?sorting=date&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
-            <th><?php echo $lang["LABTITLE"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["NAME"];?><a href="?year=<?php echo $year?>&sorting=name&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["DATE"];?><a href="?year=<?php echo $year?>&sorting=date&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["LABTITLE"];?><a href="?year=<?php echo $year?>&sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
             <th><?php echo $lang["GRADE"];?></th>
             <th><?php echo $lang["ACTION"];?></th>
         </tr>
@@ -101,7 +102,7 @@ if(isset($_GET['sorting'])) {
             echo "<td>$result[title]</td>";
             $cijfer = $result['grade'];
             $cijferTitel = mb_strimwidth($result['title'], 0, 15, "...");
-
+            //if else for displaying correct colors
             if($cijfer >= 1 && $cijfer <= 5.4) {
                 echo "<td class='onvoldoende'>". $cijfer . "</td>";
             } elseif($cijfer >= 5.5 && $cijfer <= 10) {

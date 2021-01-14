@@ -69,6 +69,9 @@ if(isset($_GET['sorting'])) {
 }
 ?>
 <div class="docentenHomePage">
+    <a href='?year=1<?php if($archive == "true"){ echo "&archive=true";}?>'><?php echo $lang["YEAR"]." 1";?></a> | 
+    <a href='?year=2<?php if($archive == "true"){ echo "&archive=true";}?>'><?php echo $lang["YEAR"]." 2";?></a> | 
+    <a href='?year=3<?php if($archive == "true"){ echo "&archive=true";}?>'><?php echo $lang["YEAR"]." 3";?></a>
 <h1><?=$lang['ALLPREPARATIONS'];?></h1>
 <h4>
     <a href="?year=<?php echo $year?>&archive=<?php echo $archive?>&changeArchive">
@@ -84,9 +87,9 @@ if(isset($_GET['sorting'])) {
  <div id="labjournalTable" class="col-xs-12 col-sm-9 col-lg-9">
     <table>
         <tr>
-            <th><?php echo $lang["NAME"];?><a href="?sorting=name&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
-            <th><?php echo $lang["DATE"];?><a href="?sorting=date&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
-            <th><?php echo $lang["TITLE"];?><a href="?sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["NAME"];?><a href="?year=<?php echo $year?>&sorting=name&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["DATE"];?><a href="?year=<?php echo $year?>&sorting=date&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
+            <th><?php echo $lang["TITLE"];?><a href="?year=<?php echo $year?>&sorting=title&ad=<?php echo $ascdesc?>&archive=<?php echo $archive?>" class="icon-block tableHeaderIcons"><i class="fas fa-sort"></i></a></th>
             <th><?php echo $lang["GRADE"];?></th>
             <th><?php echo $lang["ACTION"];?></th>
         </tr>
