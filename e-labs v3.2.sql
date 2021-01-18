@@ -7,6 +7,9 @@
 -- Server version: 10.4.16-MariaDB-log
 -- PHP Version: 7.4.12
 
+-- To Create the databse
+-- CREATE DATABASE `e-labs` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
