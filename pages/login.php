@@ -6,7 +6,7 @@
         $pass = $_POST['password'];
         $loginInfo = $db->getTheUserPasswordForLogin($email);
         if ($loginInfo->num_rows === 0) { 
-            $error = "de gebruiker is niet gevonden.";
+            $error = $lang['USERNOTFOUND'];
         }
         while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
             // this is a check if the password is correct
@@ -39,10 +39,10 @@
                     echo "<script>window.location.href='home';</script>";
                     exit;
                 } else{
-                    die('er is iets fout gegaan.');
+                    die($lang['SOMETHINGWRONG']);
                 }
             } else {
-                $error = "het wachtwoord klopt niet.";
+                $error = $lang['PASSWORDINCORRECT'];
             }
         }
     }
@@ -61,7 +61,7 @@
             </form>
             <form method='post' id='langSwitch'>
                 <button type='submit' value='en' class='en <?php if($_COOKIE['lang'] == 'en'){echo 'checked';} ?>' name='changelang'>
-                    Engels
+                    English
                 </button>
             </form>
         </div>

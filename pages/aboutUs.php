@@ -56,19 +56,19 @@
         </div>
     </div>
     <div class="foto-aboutR">
-        <img src=gebruikersBestanden/profilePictures/blank-profile-picture.png class="rounded-circle-about">
+        <img src=images/fotoFaya.jpg class="rounded-circle-about">
         <div class="tekst-aboutR">
             Faya Derks<br>
             Life Science Student<br>
-            Opdrachtgeefster
+            Opdrachtgever
         </div>
     </div>
     <div class="foto-aboutL">
-        <img src=gebruikersBestanden/profilePictures/blank-profile-picture.png class="rounded-circle-about">
+        <img src=images/fotoMarjolein.jpeg class="rounded-circle-about">
         <div class="tekst-aboutL margin-about">
             Marjolein Korenhof<br>
             Life Science Student<br>
-            Opdrachtgeefster
+            Opdrachtgever
         </div>
     </div>
 </div>

@@ -1,0 +1,34 @@
+.Gebruikersoverzichtdocent {
+	margin: 20px;
+}
+
+.tableoverzichtdocent {
+	width: 100%;
+	border: 1px;
+	border-collapse: collapse;
+}
+
+.tableoverzichtdocent th,
+.tableoverzichtdocent tr,
+.tableoverzichtdocent td {
+	border: 1px solid;
+	text-align: left;
+	width: 32%;
+	padding: 5px;
+}
+
+#blauwerand {
+	background-color: var(--primaryColor);
+}
+
+#wittetekst {
+	color: white;
+}
+
+@media (max-width: 500px) {
+	.Gebruikersoverzichtdocent {
+		margin-left: 5px;
+		margin-right: 0px;
+		font-size: 11px;
+	}
+}

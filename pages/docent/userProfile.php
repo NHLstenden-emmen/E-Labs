@@ -13,9 +13,9 @@
 					$TargetPath=$time.$UploadedFileName;
 				
 					if(move_uploaded_file($_FILES['profpic']['tmp_name'], $upload_directory.$TargetPath)){ 
-						$db->updateProfielFoto($_SESSION['user_id'], $upload_directory.$TargetPath);
+						$db->updateProfilePicture($_SESSION['user_id'], $upload_directory.$TargetPath);
 						$_SESSION['pf_Pic'] = $upload_directory.$TargetPath;
-						echo "<script>window.location.href='gebruikersprofiel';</script>";
+						echo "<script>window.location.href='userprofile';</script>";
 						exit;
 					}
 				}
@@ -32,40 +32,40 @@
 		if($_SESSION['pf_Pic'] != "gebruikersBestanden/profilePictures/blank-profile-picture.png"){
 			unlink($_SESSION['pf_Pic']);
 			$upload_directory = "gebruikersBestanden/profilePictures/blank-profile-picture.png";
-			$db->updateProfielFoto($_SESSION['user_id'], $upload_directory);
+			$db->updateProfilePicture($_SESSION['user_id'], $upload_directory);
 			$_SESSION['pf_Pic'] = $upload_directory;
-			echo "<script>window.location.href='gebruikersprofiel';</script>";
+			echo "<script>window.location.href='userprofile';</script>";
 			exit;
 		}
 	}
 
 	$errorPass ='';
-	if(isset($_POST['wachtwoordweizigen'])){
+	if(isset($_POST['wachtwoordwijzigen'])){
 		// a check if all passwords are filled in
-		if (!empty($_POST['newWachtwoord']) && !empty($_POST['newWachtwoordHerhalen']) && !empty($_POST['huidigewachtwoord'])) {
+		if (!empty($_POST['newPassword']) && !empty($_POST['newPasswordRepeat']) && !empty($_POST['currentPassword'])) {
 			// check if the new password matches
-			if ($_POST['newWachtwoord'] == $_POST['newWachtwoordHerhalen']) {
+			if ($_POST['newPassword'] == $_POST['newPasswordRepeat']) {
 				// gets the current users pasword
 				$loginInfo = $db->getTheUserPasswordForLogin($_SESSION['email']);
 				while ($result = $loginInfo->fetch_array(MYSQLI_ASSOC)){
 					// verifys the current password with the hash
-					if (password_verify($_POST['huidigewachtwoord'], $result['password'])){
+					if (password_verify($_POST['currentPassword'], $result['password'])){
 						// hashes the password
-						$errorPass = "wachtwoord verandert";
+						$errorPass = $lang['CHANGEDPASSWORD'];
 						$options = [ 'cost' => 12, ];
-						$newpass = $_POST['newWachtwoord'];
+						$newpass = $_POST['newPassword'];
 						$hash = password_hash($newpass, PASSWORD_BCRYPT, $options);
 						// puts the password in the databse
 						$db->updateCurrentUsersPassword($result['user_id'], $hash);
 					} else {
-						$errorPass = "current wachtwoord klopt niet";
+						$errorPass = $lang['CURRENTPASSNOTCORRECT'];
 					}
 				}
 			} else {
-				$errorPass = "de wachtwoorden komen niet overeen";
+				$errorPass = $lang['PASSWORDSDONTMATCH'];
 			}
 		} else {
-			$errorPass = "vul op alle locaties een wachtwoord in";
+			$errorPass = $lang['FILLINFIELDS'];
 		}
 	}
 	if(isset($_POST['update'])){
@@ -75,42 +75,41 @@
 			$user_number = $_POST['docentnummer'];
 			$userID = $_SESSION['user_id'];
 
-			$message = $db->docentprofielbewerken($userID, $name, $email, $user_number);
-			echo $message;
+			$message = $db->teacherProfileEdit($userID, $name, $email, $user_number);
 		if($message != NULL){
 			$_SESSION['name'] = $name;
 			$_SESSION['email'] = $email;
 			$_SESSION['user_number'] = $user_number;
 		}
 		} else{
-			echo "Vul alle velden in s.v.p.";
+			echo $lang['FILLINFIELDS'];
 		}
 	}
 ?>
 
 <div class="gebruikersProfile">
-	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle">
+	<?php if(isset($message)){echo "<h4 style='text-align: center;'><b>".$message."</b></h4>";}?>
+	<img src=<?php echo $_SESSION['pf_Pic']?> class="profielfototje rounded-circle"></br>
 	<form method='post' enctype='multipart/form-data' class="changeprofilepicture"> 
-	<?php if(isset($message)){echo "<h4><b>".$message."</b></h4>";}?>
-		<input name='profpic' type='file'>
-		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' >
-		<input value='delete' name='deletepf' type='submit'>
+		<div>
+			<input name='profpic' type='file'>
+		</div>
+		</br>
+		<input value='<?php echo $lang['CHANGE_PROFILE_PHOTO']?>' name='changepf' type='submit' id="ButtonProfielBlauw">
+		<input value='<?=$lang['DELETE'];?>' name='deletepf' type='submit'id="ButtonProfielBlauw">
 	</form>
 
 	<form method="POST" autocomplete="off" class="changeteacherinformation"> 
-		<div class="Gebruikersprofielcontainer">
-			<div id="Gebruikersprofielstudentinformatierechts">
-				<label for="docentnummer"><?php echo $lang['TEACHER_NUMBER']?>:</label><br>
-				<input type="text" name="docentnummer" value='<?php echo $_SESSION['user_number']?>' id="profielinformatiekleurgrijs" required><br>
-				
-				<label for="naam"><?php echo $lang['NAME']?>:</label><br>
-				<input type="text" name="naam" value='<?php echo $_SESSION['name']?>' id="profielinformatiekleurgrijs" required><br>
-			</div>
-			<div id="Gebruikersprofielstudentinformatielinks">
-				<label for="email"><?php echo $lang['E-MAIL']?>:</label><br>
-				<input type="text" name="email" value='<?php echo $_SESSION['email']?>' id="profielinformatiekleurgrijs" required><br>
+		<div class="Gebruikersprofielvakken">
+			<div id="Gebruikersprofieldocentinformatie">
+				<label for="docentnummer"><?php echo $lang['TEACHER_NUMBER']?>:</label></br>
+				<input type="text" name="docentnummer" value='<?php echo $_SESSION['user_number']?>' id="TextInputProfiel" required></br></br>
+				<label for="naam"><?php echo $lang['NAME']?>:</label></br>
+				<input type="text" name="naam" value='<?php echo $_SESSION['name']?>' id="TextInputProfiel" required></br></br>
+				<label for="email"><?php echo $lang['E-MAIL']?>:</label></br>
+				<input type="text" name="email" value='<?php echo $_SESSION['email']?>' id="TextInputProfiel" required></br></br>
 				<p> <?php echo $lang['LANGUAGE']?>: </p>
-				<p id="profielinformatiekleurgrijs">  <?php 
+				<p>  <?php 
 				// check if there is a cookie for lang set
 				if(!isset($_COOKIE['lang'])){
 					echo "<button type='submit' id='profileLangSwitch' value='en' class='languageSwitch' name='changelang'>EN</button>";
@@ -125,27 +124,31 @@
 			</div>
 		</div>
 		<div class=profileEditButtons>
-			<input type="submit" name="update" value="update">
-			<input type="reset" name="resetadd" value="Reset">
+			<input type="submit" name="update" value="Update" id="ButtonProfielBlauw">
+			<input type="reset" name="resetadd" value="Reset" id="ButtonProfielBlauw">
 		</div>
 	</form>
 
-	<form method='post' class="changePassword">
+	<div class="Gebruikersprofielvakken2">
+		<div class="Gebruikersprofielvakkenspan">
+	<form method='post'>
 		<div>
 			<label for="huidigewachtwoord"><?php echo $lang['CURRENT']. " " . $lang['PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='huidigewachtwoord' type='password'>
+			<input placeholder='******' name='currentPassword' type='password' id="TextInputProfiel">
 		</div></br>
 		<div>
 			<label for="newWachtwoord"><?php echo $lang['NEW']." " .$lang['PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='newWachtwoord' type='password'>
-		</div>
-		<div>
-			<label for="newWachtwoordHerhalen"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
-			<input placeholder='******' name='newWachtwoordHerhalen' type='password'>
+			<input placeholder='******' name='newPassword' type='password' id="TextInputProfiel">
 		</div></br>
 		<div>
+			<label for="newWachtwoordHerhalen"><?php echo $lang['REPEAT_PASSWORD']?>:</label> </br>
+			<input placeholder='******' name='newPasswordRepeat' type='password' id="TextInputProfiel">
+		</div>
+		</div>
+		</div>
+		<div class=profileEditButtons>
 			<p><?php echo $errorPass?></p>
-			<input value='update' name='wachtwoordweizigen' type='submit'>
+			<input value='Update' name='wachtwoordwijzigen' type='submit' id="ButtonProfielBlauw">
 		</div>
 	</form>
 </div>

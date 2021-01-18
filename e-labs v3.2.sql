@@ -3,9 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2020 at 11:55 PM
+-- Generation Time: Jan 13, 2021 at 08:57 PM
 -- Server version: 10.4.16-MariaDB-log
 -- PHP Version: 7.4.12
+
+-- To Create the databse
+-- CREATE DATABASE `e-labs` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,18 +31,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `lab_journal` (
-  `labjournaal_id` int(50) NOT NULL,
+  `labjournal_id` int(50) NOT NULL,
   `title` varchar(50) NOT NULL,
   `date` datetime NOT NULL,
   `theory` varchar(2000) NOT NULL,
   `safety` varchar(2000) NOT NULL,
-  `creater_id` int(10) NOT NULL,
-  `logboek` varchar(2000) NOT NULL,
+  `creator_id` int(10) NOT NULL,
+  `log` varchar(2000) NOT NULL,
   `method_materials` varchar(2000) NOT NULL,
   `submitted` tinyint(1) NOT NULL,
   `grade` int(2) NOT NULL,
   `year` int(11) NOT NULL,
-  `Attachment` varchar(100) NOT NULL,
+  `Attachment` varchar(255) NOT NULL,
   `Goal` varchar(2000) NOT NULL,
   `Hypothesis` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -52,7 +55,7 @@ CREATE TABLE `lab_journal` (
 
 CREATE TABLE `lab_journal_users` (
   `user_id` int(10) NOT NULL,
-  `lab_journal_id` int(10) NOT NULL
+  `lab_journal_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -63,20 +66,12 @@ CREATE TABLE `lab_journal_users` (
 
 CREATE TABLE `notifications` (
   `notification_id` int(10) NOT NULL,
-  `creater` int(10) NOT NULL,
+  `creator` int(10) NOT NULL,
   `viewer` int(10) DEFAULT NULL,
   `title` varchar(50) NOT NULL,
   `message` varchar(2000) NOT NULL,
   `date_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`notification_id`, `creater`, `viewer`, `title`, `message`, `date_time`) VALUES
-(1, 1, 1, 'title voor kevin', 'verhaaltje voor kevin', '2020-09-10 14:20:13'),
-(2, 1, NULL, 'title voor iedereen', 'verhaaltje voor iedereen', '2020-11-10 17:46:13');
 
 -- --------------------------------------------------------
 
@@ -88,16 +83,17 @@ CREATE TABLE `preparation` (
   `preparation_id` int(50) NOT NULL,
   `title` varchar(50) NOT NULL,
   `date` datetime NOT NULL,
-  `materials` varchar(255) NOT NULL,
-  `method` varchar(255) NOT NULL,
-  `creater_id` int(10) NOT NULL,
-  `hypothesis` varchar(255) NOT NULL,
-  `device settings` varchar(255) NOT NULL,
+  `theory` varchar(1000) NOT NULL,
+  `safety` varchar(1000) NOT NULL,
+  `creator_id` int(10) NOT NULL,
+  `log` varchar(1000) NOT NULL,
+  `method_materials` varchar(1000) NOT NULL,
+  `submitted` tinyint(1) NOT NULL,
   `grade` int(2) NOT NULL,
-  `year` int(1) NOT NULL,
-  `safety` varchar(255) NOT NULL,
-  `preparation_questions` varchar(255) NOT NULL,
-  `goal` varchar(2000) NOT NULL
+  `year` int(11) NOT NULL,
+  `Attachment` varchar(255) NOT NULL,
+  `Goal` varchar(1000) NOT NULL,
+  `Hypothesis` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -108,7 +104,7 @@ CREATE TABLE `preparation` (
 
 CREATE TABLE `preperation_users` (
   `user_id` int(10) NOT NULL,
-  `preperation_id` int(50) NOT NULL
+  `preparation_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -135,7 +131,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `email`, `user_number`, `password`, `profile_picture`, `lang`, `role`) VALUES
 (1, 'Kevin', 'kevin@docent.com', 123456, '$2y$12$x1mzfqUZcEBFkCvhKRt35.SBs5RLRD0D.PZVzyXmBrOXBDXQepF92', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent'),
 (2, 'Marjolein', 'Marjolein@docent.com', 444318, '$2y$12$x1mzfqUZcEBFkCvhKRt35.SBs5RLRD0D.PZVzyXmBrOXBDXQepF92', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent'),
-(3, 'Faya', 'Faya@docent.com', 444318, '$2y$12$cTqvLHlsL/PmgCF/F8o4rOpq33St9IwVNs7bLjB79QBp4Hraodlsa', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent');
+(3, 'Faya', 'Faya@docent.com', 444318, '$2y$12$cTqvLHlsL/PmgCF/F8o4rOpq33St9IwVNs7bLjB79QBp4Hraodlsa', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Docent'),
+(4, 'mike', 'mike@student.com', 123498231, '$2y$12$dUzcBjA99R6dYQj3toVnSeiUzpTWeWpzoS.w5DY.qQVuemH6LYfYu', 'gebruikersBestanden/profilePictures/blank-profile-picture.png', 'nl', 'Student');
 
 --
 -- Indexes for dumped tables
@@ -145,22 +142,22 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `user_number`, `password`, `pro
 -- Indexes for table `lab_journal`
 --
 ALTER TABLE `lab_journal`
-  ADD PRIMARY KEY (`labjournaal_id`),
-  ADD KEY `link creater id to user` (`creater_id`);
+  ADD PRIMARY KEY (`labjournal_id`),
+  ADD KEY `link creator_id to user` (`creator_id`);
 
 --
 -- Indexes for table `lab_journal_users`
 --
 ALTER TABLE `lab_journal_users`
-  ADD KEY `link labjournaal tussen  user to user id` (`user_id`),
-  ADD KEY `link labjournaal id tussen to labjournaal id` (`lab_journal_id`);
+  ADD KEY `link labjournal tussen user to user id` (`user_id`),
+  ADD KEY `link labjournal id to labjournal id` (`lab_journal_id`);
 
 --
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`notification_id`),
-  ADD KEY `link creater to user id` (`creater`),
+  ADD KEY `link creator to user id` (`creator`),
   ADD KEY `link viewer to user id` (`viewer`);
 
 --
@@ -168,14 +165,14 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `preparation`
   ADD PRIMARY KEY (`preparation_id`),
-  ADD UNIQUE KEY `creater_id` (`creater_id`);
+  ADD KEY `creator_id` (`creator_id`);
 
 --
 -- Indexes for table `preperation_users`
 --
 ALTER TABLE `preperation_users`
   ADD KEY `preperation_link additional user to user` (`user_id`),
-  ADD KEY `preperation_link additional id to preperation` (`preperation_id`);
+  ADD KEY `preperation_link additional id to preperation` (`preparation_id`);
 
 --
 -- Indexes for table `users`
@@ -192,13 +189,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `lab_journal`
 --
 ALTER TABLE `lab_journal`
-  MODIFY `labjournaal_id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `labjournal_id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `notification_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `preparation`
@@ -210,7 +207,7 @@ ALTER TABLE `preparation`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -220,37 +217,36 @@ ALTER TABLE `users`
 -- Constraints for table `lab_journal`
 --
 ALTER TABLE `lab_journal`
-  ADD CONSTRAINT `link creater id to user` FOREIGN KEY (`creater_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `labjournal link creator_id to user` FOREIGN KEY (`creator_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `lab_journal_users`
 --
 ALTER TABLE `lab_journal_users`
-  ADD CONSTRAINT `link labjournaal id tussen to labjournaal id` FOREIGN KEY (`lab_journal_id`) REFERENCES `lab_journal` (`labjournaal_id`),
-  ADD CONSTRAINT `link labjournaal tussen  user to user id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `link labjournal tussen user to user id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `link labjournal_id tussen to labjournaal id` FOREIGN KEY (`lab_journal_id`) REFERENCES `lab_journal` (`labjournal_id`);
 
 --
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `link creater to user id` FOREIGN KEY (`creater`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `link creator to user id` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `link viewer to user id` FOREIGN KEY (`viewer`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `preparation`
 --
 ALTER TABLE `preparation`
-  ADD CONSTRAINT `link preperations creater to user` FOREIGN KEY (`creater_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `preparation link creator_id to user` FOREIGN KEY (`creator_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `preperation_users`
 --
 ALTER TABLE `preperation_users`
-  ADD CONSTRAINT `preperation_link additional id to preperation` FOREIGN KEY (`preperation_id`) REFERENCES `preparation` (`preparation_id`),
-  ADD CONSTRAINT `preperation_link additional user to user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `preperation_link additional user to user	` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `preperation_link additional id to preperation` FOREIGN KEY (`preparation_id`) REFERENCES `preparation` (`preparation_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-`imagelocations`e-labs`e-labs`

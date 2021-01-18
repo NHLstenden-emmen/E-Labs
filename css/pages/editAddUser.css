@@ -1,0 +1,57 @@
+.textInputGebruiker {
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid grey;
+	height: 30px;
+}
+.addUserContainer {
+	padding-top: 20px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+.addUserContainer form {
+	width: 40%;
+	margin: 0 auto;
+}
+
+#rolGebruikerRadio {
+	display: flex;
+	justify-content: space-between;
+}
+
+.formButtonsGebruiker {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20px;
+	height: 50px;
+}
+
+.formButtonsGebruiker input {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 25%;
+}
+
+.radioButtonRol {
+	margin-left: 10px;
+}
+
+/*Aangepaste css mobiele versie*/
+@media (max-width: 767px) {
+	.addUserContainer form {
+		width: 90%;
+		margin: 10px;
+	}
+	.formButtonsGebruiker input {
+		width: 30%;
+	}
+}

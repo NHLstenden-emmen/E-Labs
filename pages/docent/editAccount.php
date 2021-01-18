@@ -11,44 +11,44 @@
             if($password === $passwordr){
                 $options = [ 'cost' => 12, ];
                 $hashPass = password_hash($password, PASSWORD_BCRYPT, $options);
-                $message = $db->docentstudentprofielbewerken($userID, $name, $email, $usernumber, $hashPass, $role);
+                $message = $db->teacherStudentProfileEdit($userID, $name, $email, $usernumber, $hashPass, $role);
                 echo $message;
             }
             else{
-                die("Wachtwoorden komen niet overeen");
+                exit($lang['PASSWORDSDONTMATCH']);
             }
         }
         else{
-            die("Vul alle velden in s.v.p.");
+            exit($lang['FILLINFIELDS']);
         }
 	}
 	if (!isset($message)) {
 		$selectCurrentUsers = $db->selectCurrentUsers($_GET['id']);
 		while ($result = $selectCurrentUsers->fetch_array(MYSQLI_ASSOC)){
 		?>
-		<div class="gebruikertoevoegenblock" id="InputAdd">
+		<div class="addUserContainer">
 			<form method="POST" autocomplete="off">
-				<label for="role">Rol:</label><br>
-				<input type="radio" name="role" id="Studentrole" value="Student" checked><label for="Studentrole">Student</label>
-				<input type="radio" name="role" id="Docentrole" value="Docent"><label for="Docentrole">Docent</label><br>
+				<label for="role"><?=$lang['ROLE'];?></label><br>
+				<input type="radio" name="role" id="Studentrole" value="Student" <?php if($result['role'] == "Student"){ echo "checked";} ?> ><label for="Studentrole">Student</label>
+				<input type="radio" name="role" id="Docentrole" class="radioButtonRol" value="Docent" <?php if($result['role'] == "Docent"){ echo "checked";} ?>><label for="Docentrole"><?=$lang['TEACHER'];?></label><br>
 
-				<label for="name">Volledige naam:</label><br>
-				<input type="text" name="name" value='<?php echo $result['name']?>' required><br>
+				<label for="name"><?=$lang['NAME'];?></label><br>
+				<input type="text" name="name" value='<?php echo $result['name']?>' required class="textInputGebruiker"><br>
 
 				<label for="studentid"><?php echo $lang["STUDENT_NUMBER"];?>:</label><br>
-				<input type="number" name="studentid" value='<?php echo $result['user_number']?>' required><br>
+				<input type="number" name="studentid" value='<?php echo $result['user_number']?>' required class="textInputGebruiker"><br>
 				
 				<label for="email"><?php echo $lang["E-MAIL"];?>:</label><br>
-				<input type="email" name="email" value='<?php echo $result['email']?>' required><br>
+				<input type="email" name="email" value='<?php echo $result['email']?>' required class="textInputGebruiker"><br>
 				
 				<label for="password"><?php echo $lang["PASSWORD"];?>:</label><br>
-				<input type="password" name="password" required min="8"><br>
+				<input type="password" name="password" required min="8" class="textInputGebruiker"><br>
 				
 				<label for="password-repeat"><?php echo $lang["REPEAT_PASSWORD"];?>:</label><br>
-				<input type="password" name="passwordrepeat" required min="8"><br>
+				<input type="password" name="passwordrepeat" required min="8" class="textInputGebruiker"><br>
 				
-				<div class=buttons>
-					<input type="submit" name="update" value="update">
+				<div class="formButtonsGebruiker">
+					<input type="submit" name="update" value="Update">
 					<input type="reset" name="resetadd" value="Reset">
 				</div>
 			</form>

@@ -1,0 +1,146 @@
+.gebruikersProfile #titelgebruikersprofiel {
+	text-align: center;
+}
+
+.Gebruikersprofielvakken {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20px;
+}
+
+.Gebruikersprofielvakkenstudent {
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+	margin: 0 auto;
+	flex-direction: row;
+}
+
+.Gebruikersprofielvakken2 {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 30px;
+	margin: 0 auto;
+	height: 230px;
+}
+
+.gebruikersProfile .profielfototje {
+	text-align: center;
+	width: 100px;
+	height: 100px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.gebruikersProfile #Buttonaanpassenprofiel {
+	border-radius: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.gebruikersProfile #Gebruikersprofieldocentinformatie {
+	margin-top: 40px;
+	height: 270px;
+	width: 260px;
+	padding: 0px;
+	line-height: 15px;
+	margin: 0 auto;
+}
+
+.gebruikersProfile .Gebruikersprofielvakkenspan {
+	margin-top: 40px;
+	height: 250px;
+	width: 260px;
+	padding: 0px;
+	line-height: 15px;
+	margin: 0 auto;
+}
+
+#Gebruikersprofielstudentinformatielinks, #Gebruikersprofielstudentinformatierechts {
+	padding-left: 50px;
+	width: 250px;
+}
+
+.gebruikersProfile #TextInputProfiel {
+	color: grey;
+    border-radius: 10px;
+    border: 1px solid grey;
+    height: 30px;
+    padding: 5px;
+}
+
+#TextInputProfiel {
+	width: 100%;
+}
+
+.gebruikersProfile #Buttonopslaanprofiel {
+	text-align: center;
+	margin: 20px auto;
+	border-radius: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+@media (max-width: 600px) {
+	#ButtonProfielBlauw {
+		width: 200px;
+		height: 30px;
+	}
+	.Gebruikersprofielvakkenstudent, .Gebruikersprofielvakken2 {
+		display: block;
+	}
+	#Gebruikersprofielstudentinformatielinks, #Gebruikersprofielstudentinformatierechts {
+		padding-left: 40px;
+		margin: 0 auto;
+	}
+	#TextInputProfiel {
+		width: 100%;
+	}
+}
+
+.gebruikersProfile {
+	margin-top: 20px;
+}
+
+.gebruikersProfile .changeprofilepicture {
+	text-align: center;
+}
+
+.profileEditButtons {
+	text-align: center;
+}
+
+#ButtonProfielBlauw {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 200px;
+}
+
+.languageSwitch {
+	border: 1px solid grey;
+	border-radius: 30px;
+	color: black;
+	width: 25%;
+}
+
+#ProfilePicButtons {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 15%;
+	height: 30px;
+}
+
+#ProfilePicButtonsbestand input{
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	width: 25%;
+}

@@ -1,0 +1,154 @@
+li {
+	list-style-type: none;
+}
+.unclickable{
+	pointer-events: none;
+}
+
+.selectstudent button{
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 10px;
+	color: white;
+	margin-top: 2%;
+	height: 30px;
+}
+
+#selectphp th{
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+}
+
+#selectphp td{
+	border-left: 1px solid black;
+}
+
+#selectphp{
+	border: 1px solid black;
+	margin-top: 2%;
+}
+
+.searchstudentbox {
+	border-color: var(--primaryColor);
+	border-radius: 10px;
+}
+
+.searchstudentbutton {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 10px;
+	color: white;
+	height: 30px;
+}
+
+.help {
+	cursor: help; 
+}
+
+.newlabjournaalcontainer3delen {
+	text-align: center;
+	display: grid;
+	grid-template-columns: 33.3% 33.4% 33.3%;
+}
+
+.newlabjournaalcontainer4delen {
+	text-align: center;
+	display: grid;
+	grid-template-columns: 16.7% 33.3% 33.3% 16.7%;
+}
+
+.newlabjournaalcontainer3delen textarea {
+	border-radius: 10px;
+	border: 2px solid var(--primaryColor);
+	width: 100%;
+	height: 250px;
+}	
+
+.newlabjournaalcontainer3delen .inputtitle {
+	border-radius: 10px;
+	border: 2px solid var(--primaryColor);
+	width: 100%;
+}	
+
+.newlabjournaalcontainer3delen .oirbuttonlabjournaal {
+	background-color: var(--primaryColor);
+	border: none;
+	border-radius: 30px;
+	color: white;
+	margin-top: 2%;
+	width: 100%;
+	height: 40px;
+}	
+
+.newlabjournaalcontainer3delen .titlemarge {
+	margin-top: 5%;
+}	
+
+.newlabjournaalcontainer3delen .grotetextarealabjournaallinks {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -3;
+	margin-left: 5%;
+	margin-bottom: 5%;
+}
+
+.newlabjournaalcontainer3delen .grotetextarealabjournaalmidden {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -2;
+	margin-left: 5%;
+	margin-bottom: 5%;
+}
+
+.newlabjournaalcontainer3delen .grotetextarealabjournaalrechts {
+	height: 100%;
+	width: 90%;
+	grid-column: span 1 / -1;
+	margin-bottom: 5%;
+	margin-left: 5%;
+}
+
+.bestandlabjournaaltoegevoegd {
+	grid-column: span 2 / -2;
+	margin-bottom: 3%;
+}
+
+@media screen and (max-width: 900px) {
+
+	.newlabjournaalcontainer3delen {
+		text-align: center;
+		display: grid;
+		grid-template-columns: 5% 90% 5%;
+	}
+
+	.newlabjournaalcontainer4delen {
+		text-align: center;
+		display: grid;
+		grid-template-columns: 5% 90% 5%;
+	}
+	
+	.newlabjournaalcontainer3delen .grotetextarealabjournaalrechts {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-bottom: 5%;
+		margin-left: 5%;
+	}
+
+	.newlabjournaalcontainer3delen .grotetextarealabjournaallinks {
+		height: 100%;
+		width: 90%;
+		grid-column: span 1 / -2;
+		margin-left: 5%;
+		margin-bottom: 5%;
+	}	
+	
+	.bestandlabjournaaltoegevoegd {
+		grid-column: span 1 / -2;
+		margin-bottom: 2%;
+	}
+	
+	.bestandlabjournaaltoegevoegdwidth {
+		width: 100%;
+	}
+}

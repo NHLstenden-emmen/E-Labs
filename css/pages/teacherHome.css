@@ -1,0 +1,75 @@
+.docentenHomePage {
+	margin: 20px;
+	text-align: -webkit-center;
+}
+.docentenHomePage table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 45%;
+}
+
+.docentenHomePage td,
+.docentenHomePage th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+.docentenHomePage .onvoldoende {
+	background-color: #e60000;
+}
+
+.docentenHomePage .goed {
+	background-color: #00b300;
+}
+
+.docentenHomePage .nietbeoordeeld {
+	background-color: lightgray;
+}
+
+.gradeTextColor {
+	color: var(--dark);
+}
+
+#labjournaalContainer #newLabjournal {
+	text-align: center;
+	padding-top: 20px;
+}
+
+#labjournaalContainer table {
+	border: 1px solid grey;
+	width: 100%;
+}
+
+#labjournaalContainer th {
+	background-color: var(--primaryColor);
+	color: var(--white);
+	text-align: center;
+}
+
+#labjournaalContainer td {
+	border: 1px solid grey;
+	text-align: center;
+}
+
+#labjournaalContainer #mainContainer {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#labjournaalContainer #yearNav {
+	display: flex;
+	flex-direction: column;
+	align-content: flex-end;
+	padding-left: 20px;
+}
+
+#disabledEdit {
+	color: lightgrey;
+}
+.tableHeaderIcons {
+	padding: 0;
+	margin: 0;
+	margin-left: 15px;
+	color: white;
+}
